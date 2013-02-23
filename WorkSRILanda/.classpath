@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="/Development/drools-distribution-5.5.0.Final.zip"/>
+	<classpathentry kind="lib" path="/Development/postgresql/postgresql-9.2-1002.jdbc3.jar"/>
+	<classpathentry kind="lib" path="/Development/mysql/mysql-connector-java-5.1.5-bin.jar"/>
+	<classpathentry kind="lib" path="/Development/mybatis/mybatis-3.2.0/mybatis-3.2.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Development/mybatis/mybatis-3.2.0/mybatis-3.2.0-sources.jar"/>
+	<classpathentry kind="lib" path="/Development/mybatis/mybatis-3.2.0/mybatis-3.2.0.jar"/>
+	<classpathentry kind="lib" path="/Development/ehcache/ehcache-2.6.3/lib/ehcache-core-2.6.3.jar"/>
+	<classpathentry kind="lib" path="/Development/ehcache/ehcache-2.6.3/lib/ehcache-terracotta-2.6.3.jar"/>
+	<classpathentry kind="lib" path="/Development/ehcache/ehcache-2.6.3/lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Development/ehcache/ehcache-2.6.3/lib/slf4j-jdk14-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Development/ehcache/ehcache-2.6.3/lib/terracotta-toolkit-1.6-runtime-5.3.0.jar"/>
+	<classpathentry kind="lib" path="/Development/mybatis/mybatis-3.2.0/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
