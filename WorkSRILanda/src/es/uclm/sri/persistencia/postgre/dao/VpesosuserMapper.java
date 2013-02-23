@@ -3,6 +3,7 @@ package es.uclm.sri.persistencia.postgre.dao;
 import es.uclm.sri.persistencia.postgre.dao.model.Vpesosuser;
 
 public interface VpesosuserMapper {
+	
     int deleteByPrimaryKey(Integer ID_VPESOSU);
 
     int insert(Vpesosuser record);
