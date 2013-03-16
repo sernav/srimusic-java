@@ -1,5 +1,8 @@
 package es.uclm.sri.sis.arqtecn;
 
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.Element;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -7,8 +10,6 @@ import es.uclm.sri.cache.EhcacheFactory;
 import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.postgre.dao.VpesosuserMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Vpesosuser;
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.Element;
 
 public class CachePesosUsuario extends AbstractCacheoPesos {
 
@@ -30,7 +31,7 @@ public class CachePesosUsuario extends AbstractCacheoPesos {
 	}
 
 	public void loadCache() {
-		EhcacheFactory.setCache(KConstantes.Cache.cacheVPesosAlbum);
+		EhcacheFactory.setCache(KConstantes.Cache.cacheVPesosUser);
 		cachePesosUser = EhcacheFactory.getCache();
 		
 	}
