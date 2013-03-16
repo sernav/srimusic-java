@@ -17,6 +17,6 @@ public abstract class AbstractCacheoPesos {
 	
 	public abstract Cache getCacheCompleta();
 	
-	public abstract Object getElementoKey (String key);
+	public abstract Object getElementoByKey (String key);
 
 }

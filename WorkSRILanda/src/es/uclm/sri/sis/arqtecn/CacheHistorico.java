@@ -27,9 +27,24 @@ public class CacheHistorico extends AbstractCacheoPesos {
 			session.close();
 		}	
 	}
+	
+	public Element[] getElementosTablaByUsuario(Integer idUsuario){
+		try{
+			sqlMapper.openSession();
+			HistuserMapper mapper = session.getMapper(HistuserMapper.class);
+			Histuser[] histusers = mapper.selectByIdUser(idUsuario);
+			Element[] elementos = new Element[histusers.length];
+			for (int i = 0; i < histusers.length; i++) {
+				elementos[i] = new Element(histusers[i].getID_HISTUSER(), histusers[i]);
+			}
+			return elementos;
+		} finally {
+			session.close();
+		}	
+	}
 
 	public void loadCache() {
-		EhcacheFactory.setCache(KConstantes.Cache.cacheHistuser);
+		EhcacheFactory.setCache(KConstantes.Cache.cacheHistUser);
 		cacheHistuser = EhcacheFactory.getCache();
 	}
 
@@ -47,7 +62,7 @@ public class CacheHistorico extends AbstractCacheoPesos {
 		return cacheHistuser;
 	}
 
-	public Element getElementoKey(String key) {
+	public Element getElementoByKey(String key) {
 		return cacheHistuser.get(key);
 	}
 

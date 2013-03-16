@@ -10,6 +10,8 @@ public interface HistuserMapper {
     int insertSelective(Histuser record);
 
     Histuser selectByPrimaryKey(Integer ID_HISTUSER);
+    
+    Histuser[] selectByIdUser(Integer ID_USERAPP_FK);
 
     int updateByPrimaryKeySelective(Histuser record);
 
