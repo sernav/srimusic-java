@@ -11,7 +11,7 @@ import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.postgre.dao.HistuserMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Histuser;
 
-public class CacheHistorico extends AbstractCacheoPesos {
+public class CacheHistorico extends AbstractCachePesos {
 	
 	private Cache cacheHistuser = null;
 	SqlSessionFactory sqlMapper = ConnectionFactory.getSession();

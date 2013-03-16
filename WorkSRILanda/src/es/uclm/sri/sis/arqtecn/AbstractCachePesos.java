@@ -4,7 +4,7 @@ import net.sf.ehcache.Cache;
 import es.uclm.sri.cache.EhcacheFactory;
 import es.uclm.sri.persistencia.ConnectionFactory;
 
-public abstract class AbstractCacheoPesos {
+public abstract class AbstractCachePesos {
 	
 	EhcacheFactory cacheFactory;
 	ConnectionFactory connectionSql;

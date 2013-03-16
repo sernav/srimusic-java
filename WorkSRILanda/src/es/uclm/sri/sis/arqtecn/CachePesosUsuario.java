@@ -11,7 +11,7 @@ import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.postgre.dao.VpesosuserMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Vpesosuser;
 
-public class CachePesosUsuario extends AbstractCacheoPesos {
+public class CachePesosUsuario extends AbstractCachePesos {
 
 	private Cache cachePesosUser = null;
 	SqlSessionFactory sqlMapper = ConnectionFactory.getSession();
