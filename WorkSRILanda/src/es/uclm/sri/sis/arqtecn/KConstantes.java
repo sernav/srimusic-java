@@ -8,5 +8,9 @@ public class KConstantes {
 		public static final String cacheVPesosAlbum = "VPESOSALBUM";
 		
 	}
+	
+	public class Reflexion {
+		public static final String rootElement = "CRAWLER";
+	}
 
 }
