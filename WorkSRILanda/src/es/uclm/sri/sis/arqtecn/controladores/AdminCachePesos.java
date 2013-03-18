@@ -6,11 +6,15 @@ import org.postgresql.core.v2.ConnectionFactoryImpl;
 
 public class AdminCachePesos {
 	
+	final String cacheHistoricoClass = "CacheHistorico";
+	
 	public AdminCachePesos() {
 		
 	}
 	
-	public static AdminCachePesos getInstance(String idConnection) {
+	public static AdminCachePesos getInstance(String idConnection, String nombClass) throws ClassNotFoundException {
+		Class c = Class.forName(nombClass);
+		Class[] i = c.getInterfaces();
 		return null;
 	}
 	

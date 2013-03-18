@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.arqtecn;
+package es.uclm.sri.sis.arqtecn.cache;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
@@ -10,8 +10,9 @@ import es.uclm.sri.cache.EhcacheFactory;
 import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.postgre.dao.VpesosuserMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Vpesosuser;
+import es.uclm.sri.sis.arqtecn.KConstantes;
 
-public class CachePesosUsuario extends AbstractCachePesos {
+public class CachePesosUsuario implements ICacheApp {
 
 	private Cache cachePesosUser = null;
 	SqlSessionFactory sqlMapper = ConnectionFactory.getSession();

@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.arqtecn;
+package es.uclm.sri.sis.arqtecn.cache;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
@@ -10,8 +10,9 @@ import es.uclm.sri.cache.EhcacheFactory;
 import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.postgre.dao.HistuserMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Histuser;
+import es.uclm.sri.sis.arqtecn.KConstantes;
 
-public class CacheHistorico extends AbstractCachePesos {
+public class CacheHistorico implements ICacheApp {
 	
 	private Cache cacheHistuser = null;
 	SqlSessionFactory sqlMapper = ConnectionFactory.getSession();
