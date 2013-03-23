@@ -18,5 +18,7 @@
 	<classpathentry kind="lib" path="/Development/xercesSamples.jar"/>
 	<classpathentry kind="lib" path="/Development/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="/Development/xerces-1.4.4.jar"/>
+	<classpathentry kind="lib" path="/Development/xmlParserAPIs-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/Development/xmlparserv2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
