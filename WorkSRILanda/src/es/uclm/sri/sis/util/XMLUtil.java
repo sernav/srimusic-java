@@ -2,6 +2,7 @@ package es.uclm.sri.sis.util;
 
 import java.io.FileInputStream;
 import java.io.StringReader;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,7 +26,7 @@ public class XMLUtil {
 	 * @param nombre del XML a cargar
 	 * @return Document
 	 * */
-	public Document loadFicheroBySAX(final String xmlFileName)
+	public static Document loadFicheroBySAX(final String xmlFileName)
 			throws DocumentException {
 		Document docu = null;
 		SAXReader reader = new SAXReader();
@@ -44,7 +45,7 @@ public class XMLUtil {
 	 * @param nombre del XML a cargar
 	 * @return Document
 	 * */
-	public Document loadFicheroByDOM(final String xmlFileName) {
+	public static Document loadFicheroByDOM(final String xmlFileName) {
 		Document document = null;
 		try {
 			FileInputStream fileInputStream = new FileInputStream(xmlFileName);
@@ -59,9 +60,48 @@ public class XMLUtil {
 		}
 		return document;
 	}
-
-	public void leerDocumentoXML(Document doc) {
-
+	
+	/**
+	 * Elemento root de fichero XML
+	 * 
+	 *  @param Document
+	 *  @param Root
+	 *  
+	 *  @return Element
+	 **/
+	public static Element getRootElement (Document xmlDocument, String strRoot) {
+		return xmlDocument.getElementById(strRoot);
+	}
+	
+	/**
+	 * Elementos a partir del root del XML
+	 * 
+	 * @param Element
+	 * @param Root
+	 * 
+	 * @return ArrayList de Elements
+	 * */
+	public static ArrayList<Element> getElements (Element rootElement, String strRoot) {
+		ArrayList<Element> listElements = new ArrayList<Element>();
+		NodeList elements = rootElement
+				.getElementsByTagName(strRoot);
+		for (int i = 0; i < elements.getLength(); i++) {
+			Element element = (Element) elements.item(i);
+			listElements.add(element);
+		}
+		return listElements;
+	}
+	
+	/**
+	 * Atributo de un elemento XML
+	 * 
+	 * @param Element
+	 * @param Atributo
+	 * 
+	 * @return Cadena con el valor del atributo
+	 * */
+	public static String getAttribute (Element element, String strAttr) {
+		return element.getAttribute(strAttr);
 	}
 
 	/**
@@ -70,7 +110,7 @@ public class XMLUtil {
 	 * @param nombre de la cargar
 	 * @return Document
 	 * */
-	public Document leerFicheroXML(final String cadenaXML) {
+	public static Document getDocumentoXML(final String cadenaXML) {
 		Document document = null;
 		try {
 			DOMParser domParser = new DOMParser();
@@ -91,7 +131,7 @@ public class XMLUtil {
 	 * 
 	 * @return Valor del atributo
 	 * */
-	public String readFicheroXML(Document xmlDocument, String strRoot, String strAttr) {
+	public static String getAttrDFicheroXML(Document xmlDocument, String strRoot, String strAttr) {
 		String value = "";
 		Element rootElement = xmlDocument.getDocumentElement();
 		NodeList elements = rootElement
@@ -112,7 +152,7 @@ public class XMLUtil {
 	 * 
 	 * @return Elemento introducido (Element)
 	 * */
-	public Element addElementoFicheroXML(Document xmlDocument, String newElement) {
+	public static Element addElementoFicheroXML(Document xmlDocument, String newElement) {
 		Element rootElement = xmlDocument.getDocumentElement();
 		Element element = xmlDocument.createElement(newElement);
 		rootElement.appendChild(element);
@@ -127,7 +167,7 @@ public class XMLUtil {
 	 * @param Documento XML
 	 * @param Valor del atributo
 	 * */
-	public void loadValorAttrXML(Document xmlDocument, String attrName, String attrValue) {
+	public static void loadValorAttrXML(Document xmlDocument, String attrName, String attrValue) {
 		Element rootElement = xmlDocument.getDocumentElement();
 		Element element = (Element) rootElement.getAttributeNode(attrName);
 		element.setAttribute(attrName, attrValue);
