@@ -1,36 +1,59 @@
 package es.uclm.sri.sis.arqtecn.cache;
 
-import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
-
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
-import es.uclm.sri.cache.EhcacheFactory;
-import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.postgre.dao.HistuserMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Histuser;
 import es.uclm.sri.sis.arqtecn.KConstantes;
 
-public class CacheHistorico implements ICacheApp {
+public class CacheHistorico extends AbstractCache {
 	
-	private Cache cacheHistuser = null;
-	SqlSessionFactory sqlMapper = ConnectionFactory.getSession();
-	SqlSession session = null;
-	Element eHistuser = null;
+	private static CacheHistorico instance = null;
+	
+	private CacheHistorico() {
+		nombreCache = KConstantes.Cache.cacheHistUser;
+		tablaDCache = KConstantes.Tablas.historico;
+		cache = getCache();
+	}
+	
+	private static void createInstance() {
+		if (instance == null) {
+			synchronized (CacheHistorico.class) {
+				if (instance == null)
+					instance = new CacheHistorico();
+			}
+		}
+	}
+	
+	public static CacheHistorico getInstance() {
+		createInstance();
+		return instance;
+	}
+	
+	public Element[] getElementosDCacheById(String id) {
+		Element[] elements = new Element[1];
+		elements[1] = getElementoDCacheByKey(id);
+		return elements;
+	}
+	
+	public void actualizarElementoDCache(Element element) {
+		String keyOldElement = "ID_USER" + "ID_ALBUM";
+		Element oldElement = cache.get(keyOldElement);
+		cache.replace(oldElement, element);
+	}
 
-	public void getElementosTablaById(Integer id) {
+	public Element getElementosDTablaById(Integer id) {
 		try{
 			sqlMapper.openSession();
 			HistuserMapper mapper = session.getMapper(HistuserMapper.class);
 			Histuser histuser = mapper.selectByPrimaryKey(id);
-			eHistuser = new Element(histuser.getID_HISTUSER(), histuser);
+			element = new Element(histuser.getID_HISTUSER(), histuser);
+			return element;
 		} finally {
 			session.close();
 		}	
 	}
 	
-	public Element[] getElementosTablaByUsuario(Integer idUsuario){
+	public Element[] getElementosDTablaByUsuario(Integer idUsuario){
 		try{
 			sqlMapper.openSession();
 			HistuserMapper mapper = session.getMapper(HistuserMapper.class);
@@ -44,28 +67,4 @@ public class CacheHistorico implements ICacheApp {
 			session.close();
 		}	
 	}
-
-	public void loadCache() {
-		EhcacheFactory.setCache(KConstantes.Cache.cacheHistUser);
-		cacheHistuser = EhcacheFactory.getCache();
-	}
-
-	public int loadElementosDCache() {
-		try{
-			cacheHistuser.put(eHistuser);
-			return 1;
-		} catch (Exception e){
-			e.printStackTrace();
-			return 0;
-		}
-	}
-
-	public Cache getCacheCompleta() {
-		return cacheHistuser;
-	}
-
-	public Element getElementoByKey(String key) {
-		return cacheHistuser.get(key);
-	}
-
 }
