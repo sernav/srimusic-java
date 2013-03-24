@@ -11,6 +11,8 @@ public interface VpesosuserMapper {
     int insertSelective(Vpesosuser record);
 
     Vpesosuser selectByPrimaryKey(Integer ID_VPESOSU);
+    
+    Vpesosuser[] selectByIdUser(Integer ID_USERAPP_FK);
 
     int updateByPrimaryKeySelective(Vpesosuser record);
 

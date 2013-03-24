@@ -10,6 +10,8 @@ public interface VpesosalbumMapper {
     int insertSelective(Vpesosalbum record);
 
     Vpesosalbum selectByPrimaryKey(Integer ID_VPESOSA);
+    
+    Vpesosalbum[] selectByIdUser(Integer ID_USERAPP_FK);
 
     int updateByPrimaryKeySelective(Vpesosalbum record);
 
