@@ -12,7 +12,7 @@ public class AdminCachePesos {
 		
 	}
 	
-	public static AdminCachePesos getInstance(String idConnection, String nombClass) throws ClassNotFoundException {
+	public static AdminCachePesos getInstance(String idConnect, String nombClass) throws ClassNotFoundException {
 		Class c = Class.forName(nombClass);
 		Class[] i = c.getInterfaces();
 		return null;
