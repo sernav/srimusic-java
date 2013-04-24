@@ -19,7 +19,7 @@ public class HtmlParserAlbum {
 	private final static String SUBURL_ROCKDELUXE = "http://www.rockdelux.com/discos/p/";
 	private final static int NUMPAGES = 12;
 	
-	private final static String DESTINY_PATH = "";
+	private final static String DESTINY_PATH = "/Users/sergionavarro/PFC/CSV_Albums";
 	
 	private static final Logger logger = Logger.getLogger(HtmlParserAlbum.class);
 
