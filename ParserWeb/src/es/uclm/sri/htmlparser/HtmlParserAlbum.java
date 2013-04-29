@@ -19,7 +19,7 @@ public class HtmlParserAlbum {
 	private final static String SUBURL_ROCKDELUXE = "http://www.rockdelux.com/discos/p/";
 	private final static int NUMPAGES = 12;
 	
-	private final static String DESTINY_PATH = "/Users/sergionavarro/PFC/CSV_Albums";
+	private final static String DESTINY_PATH = "/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Rockdeluxe";
 	
 	private static final Logger logger = Logger.getLogger(HtmlParserAlbum.class);
 
@@ -64,6 +64,7 @@ public class HtmlParserAlbum {
 					
 					if (strLink.contains(subUrl)) {
 						if (!link.text().equals("")) {
+							System.out.println(link.text().trim());
 							logger.info(tipoText[index] + ": " + link.text().trim());
 	
 							if (index > 0) {
@@ -78,15 +79,15 @@ public class HtmlParserAlbum {
 									logger.info(etq);
 								}
 								try {
-									album.setAnyo(Integer.parseInt(listEtiquetas.get(1).substring(0, 4)));
-									logger.info("Anyo album: " + album.getAnyo());
+									album.setFecha(listEtiquetas.get(1).substring(0, 4));
+									logger.info("Anyo album: " + album.getFecha());
 								} catch (Exception excp) {
 									logger.error("Fecha de album incorrecta");
 									try {
-										album.setAnyo(Integer.parseInt(listEtiquetas.get(0)));
+										album.setFecha(listEtiquetas.get(0));
 									} catch (Exception excp2) {
 										logger.error("Doble error de fecha");
-										album.setAnyo(1900);
+										album.setFecha("01/01/1900");
 									}
 								}
 								listaAlbums.add(album);
@@ -103,16 +104,16 @@ public class HtmlParserAlbum {
 						}
 					}
 				} 
+				/*
+				 * Crear el CSV con los datos
+				 * */
+				UtilCSVAlbum.generarCSVAlbums(listaAlbums, numMaxEtiquetas, destinyPath, logger);
 			}catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("N¼ de discos: " + listaAlbums.size());
 		}
-		/*
-		 * Crear el CSV con los datos
-		 * */
-		UtilCSVAlbum.generarCSVAlbums(listaAlbums, numMaxEtiquetas, destinyPath, logger);
 		
 	}
 
