@@ -44,7 +44,7 @@ public final class UtilCSVAlbum {
 						values[row][index + column] = "-";
 				}
 				values[row][numMaxEtiquetas + 2] = String.valueOf(itemAlbum
-						.getAnyo());
+						.getFecha());
 				row++;
 			}
 			printer.println(values);
@@ -66,10 +66,14 @@ public final class UtilCSVAlbum {
 		try {
 			writer.write("T’tulo");
 			writer.write("Artista");
-			writer.write("Anyo");
-			for (int i = 1; i <= numMaxEtiquetas; i++) {
-				writer.write("Etiqueta " + i);
-			}
+			writer.write("Fecha");
+			if (numMaxEtiquetas > 1) {
+				for (int i = 1; i <= numMaxEtiquetas; i++) {
+					writer.write("Etiqueta " + i);
+				}
+			} else
+				writer.write("GŽnero");
+			writer.write("Pa’s");
 			writer.endRecord();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -89,13 +93,16 @@ public final class UtilCSVAlbum {
 			try {
 				writer.write(itemAlbum.getTitulo());
 				writer.write(itemAlbum.getArtista());
-				writer.write(String.valueOf(itemAlbum.getAnyo()));
-				for (int index = 0; index < numMaxEtiquetas; index++) {
-					if (index < itemAlbum.getEtiquetas().size())
-						writer.write(itemAlbum.getEtiquetas().get(index));
-					else
-						writer.write("-");
+				writer.write(String.valueOf(itemAlbum.getFecha()));
+				if (numMaxEtiquetas > 1) {
+					for (int index = 0; index < numMaxEtiquetas; index++) {
+						if (index < itemAlbum.getEtiquetas().size())
+							writer.write(itemAlbum.getEtiquetas().get(index));
+					}
+				} else {
+					writer.write(itemAlbum.getEtiquetas().get(0));
 				}
+				writer.write(itemAlbum.getPais());
 				writer.endRecord();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
