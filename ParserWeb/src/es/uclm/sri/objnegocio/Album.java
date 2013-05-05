@@ -7,20 +7,35 @@ public class Album {
 	private String titulo;
 	private String artista;
 	private ArrayList<String> etiquetas;
-	private int anyo;
+	private String fecha;
+	private String pais;
+	private int numTemas;
 
-	public Album(String titulo, String artista, ArrayList<String> etiquetas, int anyo) {
+	public Album(String titulo, String artista, ArrayList<String> etiquetas, String fecha, 
+			String pais, int numTemas) {
 		this.titulo = titulo;
 		this.artista = artista;
 		this.etiquetas = etiquetas;
-		this.anyo = anyo;
+		this.fecha = fecha;
+		this.pais = pais;
+		this.numTemas = numTemas;
 	}
 	
 	public Album() {
 		this.titulo = "default";
 		this.artista = "default";
 		this.etiquetas = new ArrayList<String>();
-		this.anyo = 1900;
+		this.fecha = "01/01/2000";
+		this.pais = "default";
+		this.numTemas = 0;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
 	}
 
 	public String getTitulo() {
@@ -47,14 +62,20 @@ public class Album {
 		this.etiquetas = etiquetas;
 	}
 
-	public int getAnyo() {
-		return anyo;
+	public String getFecha() {
+		return fecha;
 	}
 
-	public void setAnyo(int anyo) {
-		this.anyo = anyo;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 	
-	
+	public int getNumTemas() {
+		return numTemas;
+	}
+
+	public void setFecha(int numTemas) {
+		this.numTemas = numTemas;
+	}
 
 }
