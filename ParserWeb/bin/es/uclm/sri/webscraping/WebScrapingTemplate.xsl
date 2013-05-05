@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="2.0" encoding="utf-8"?>
 <!--
 Declare a namespace for the XHTML, otherwise the XPATH will not work.
 -->
