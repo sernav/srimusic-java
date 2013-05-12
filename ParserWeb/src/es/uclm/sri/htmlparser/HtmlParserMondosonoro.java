@@ -10,8 +10,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
-import es.uclm.sri.csv.UtilCSVAlbum;
-import es.uclm.sri.objnegocio.Album;
+import es.uclm.sri.csv.TratarCSVAlbum;
+import es.uclm.sri.entidades.Album;
 
 public class HtmlParserMondosonoro {
 
@@ -74,7 +74,7 @@ public class HtmlParserMondosonoro {
 						// }
 					}
 				}
-				UtilCSVAlbum.generarCSVAlbums(listaAlbums, 1, destinyPath,
+				TratarCSVAlbum.generarCSVAlbums(listaAlbums, 1, destinyPath,
 						logger);
 
 			} catch (IOException e) {

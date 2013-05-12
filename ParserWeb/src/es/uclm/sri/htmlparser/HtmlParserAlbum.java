@@ -10,8 +10,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import es.uclm.sri.csv.UtilCSVAlbum;
-import es.uclm.sri.objnegocio.Album;
+import es.uclm.sri.csv.TratarCSVAlbum;
+import es.uclm.sri.entidades.Album;
 
 public class HtmlParserAlbum {
 	
@@ -107,7 +107,7 @@ public class HtmlParserAlbum {
 				/*
 				 * Crear el CSV con los datos
 				 * */
-				UtilCSVAlbum.generarCSVAlbums(listaAlbums, numMaxEtiquetas, destinyPath, logger);
+				TratarCSVAlbum.generarCSVAlbums(listaAlbums, numMaxEtiquetas, destinyPath, logger);
 			}catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

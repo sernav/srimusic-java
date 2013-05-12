@@ -11,10 +11,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import es.uclm.sri.csv.UtilCSVAlbum;
-import es.uclm.sri.objnegocio.Album;
-import es.uclm.sri.objnegocio.Artista;
-import es.uclm.sri.utils.Utils;
+import es.uclm.sri.csv.TratarCSVAlbum;
+import es.uclm.sri.entidades.Album;
+import es.uclm.sri.entidades.Artista;
+import es.uclm.sri.utilidades.Utils;
 
 public class ScrapeLastfm {
 	
@@ -72,7 +72,7 @@ public class ScrapeLastfm {
 						
 					}
 
-					UtilCSVAlbum.generarCSVAlbums(listaAlbums, 4, destinyPath,
+					TratarCSVAlbum.generarCSVAlbums(listaAlbums, 4, destinyPath,
 							logger);
 				}
 			} catch (SocketTimeoutException sto) {

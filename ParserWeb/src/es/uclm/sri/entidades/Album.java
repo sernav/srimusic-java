@@ -1,4 +1,4 @@
-package es.uclm.sri.objnegocio;
+package es.uclm.sri.entidades;
 
 import java.util.ArrayList;
 
@@ -78,4 +78,7 @@ public class Album {
 		this.numTemas = numTemas;
 	}
 
+	public String toString() {
+		return getTitulo() + " - " + getArtista() + " - " + getEtiquetas().toString();
+	}
 }

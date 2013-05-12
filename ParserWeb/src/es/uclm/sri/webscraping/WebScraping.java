@@ -24,7 +24,7 @@ public class WebScraping {
 	/**
 	 * Plantilla por defecto
 	 */
-	public static final String XSLT_TEMPLATE_URL = "/plantillas/WebScrapingTemplate.xsl";
+	public static final String XSLT_TEMPLATE_URL = "WebScrapingTemplate.xsl";
 
 	/**
 	 * Command line processing

@@ -1,4 +1,4 @@
-package es.uclm.sri.objnegocio;
+package es.uclm.sri.entidades;
 
 import java.util.ArrayList;
 
@@ -43,6 +43,10 @@ public class Artista {
 	
 	public void setAlbums(ArrayList<Album> albums) {
 		this.albums = albums;
-	}	
+	}
+	
+	public String toString() {
+		return getNombre() + " - " + getAlbums().toString();
+	}
 
 }

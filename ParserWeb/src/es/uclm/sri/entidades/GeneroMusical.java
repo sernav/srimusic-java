@@ -1,4 +1,4 @@
-package es.uclm.sri.objnegocio;
+package es.uclm.sri.entidades;
 
 public class GeneroMusical {
 	
@@ -29,6 +29,10 @@ public class GeneroMusical {
 
 	public void setNumOcurrencias(int numOcurrencias) {
 		this.numOcurrencias = numOcurrencias;
+	}
+	
+	public String toString() {
+		return getTipo() + " - " + getNumOcurrencias();
 	}
 
 }

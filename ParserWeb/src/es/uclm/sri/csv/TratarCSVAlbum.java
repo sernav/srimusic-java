@@ -9,13 +9,18 @@ import java.util.Iterator;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.log4j.Logger;
 
+import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
-import es.uclm.sri.objnegocio.Album;
+import es.uclm.sri.entidades.Album;
 
-public final class UtilCSVAlbum {
+public final class TratarCSVAlbum {
+	
+	public static void main(String[] args) {
+		leerCVSAlbums("/Users/sergionavarro/PFC/CSV_Albums_Lastfm.csv");
+	}
 
-	private UtilCSVAlbum() {
+	private TratarCSVAlbum() {
 		super();
 	}
 
@@ -117,6 +122,39 @@ public final class UtilCSVAlbum {
 		}
 		logger.info("Proceso concluido");
 		writer.close();
+	}
+	
+	public static ArrayList<Album> leerCVSAlbums(String originalyPath) {
+		CsvReader reader = null;
+		ArrayList<Album> listaAlbums = new ArrayList<Album>();
+		try{
+			reader = new CsvReader(originalyPath);
+			reader.setDelimiter(',');
+			while (reader.readRecord()) {
+				Album album = new Album();
+				ArrayList<String> listaEtq = new ArrayList<String>();
+				int numColumn = reader.getColumnCount();
+				album.setTitulo(reader.get(0));
+				album.setArtista(reader.get(1));
+				album.setFecha(reader.get(2));
+				album.setPais("");
+				for (int i=3; i < numColumn-1; i++) {
+					if (!reader.get(i).equals("default"))
+						listaEtq.add(reader.get(i));
+				}
+				album.setEtiquetas(listaEtq);
+				listaAlbums.add(album);
+			}
+		} catch (IOException e) {
+			System.out.println("Error de I/O!");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			reader.close();
+		}
+		
+		return listaAlbums;
 	}
 
 }
