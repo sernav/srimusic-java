@@ -1,16 +1,16 @@
 package es.uclm.sri.sis.entidades;
 
-public class GeneroMusical {
+public class Genero {
 	
 	private String tipo;
 	private int numOcurrencias;
 	
-	public GeneroMusical() {
+	public Genero() {
 		this.tipo = "generic";
 		this.numOcurrencias = 1;
 	}
 	
-	public GeneroMusical(String tipo, int numOcurrencias) {
+	public Genero(String tipo, int numOcurrencias) {
 		this.tipo = tipo;
 		this.numOcurrencias = numOcurrencias;
 	}

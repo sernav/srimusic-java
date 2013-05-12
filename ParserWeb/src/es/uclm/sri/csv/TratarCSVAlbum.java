@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
-import es.uclm.sri.entidades.Album;
+import es.uclm.sri.sis.entidades.Album;
 
 public final class TratarCSVAlbum {
 	

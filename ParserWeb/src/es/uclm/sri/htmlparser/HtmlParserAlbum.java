@@ -11,7 +11,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import es.uclm.sri.csv.TratarCSVAlbum;
-import es.uclm.sri.entidades.Album;
+import es.uclm.sri.sis.entidades.Album;
 
 public class HtmlParserAlbum {
 	

@@ -12,9 +12,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import es.uclm.sri.csv.TratarCSVAlbum;
-import es.uclm.sri.entidades.Album;
-import es.uclm.sri.entidades.Artista;
-import es.uclm.sri.utilidades.Utils;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.Artista;
+import es.uclm.sri.sis.util.Utils;
 
 public class ScrapeLastfm {
 	

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import es.uclm.sri.csv.TratarCSVAlbum;
-import es.uclm.sri.entidades.Album;
-import es.uclm.sri.utilidades.UtilArchivoPropiedades;
-import es.uclm.sri.utilidades.Utils;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.util.UtilArchivoPropiedades;
+import es.uclm.sri.sis.util.Utils;
 
 public class EstandarizarAlbum {
 	
