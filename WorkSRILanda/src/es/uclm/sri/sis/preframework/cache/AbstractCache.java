@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.arqtecn.cache;
+package es.uclm.sri.sis.preframework.cache;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

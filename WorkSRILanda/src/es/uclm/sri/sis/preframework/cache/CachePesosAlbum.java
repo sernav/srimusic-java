@@ -1,9 +1,9 @@
-package es.uclm.sri.sis.arqtecn.cache;
+package es.uclm.sri.sis.preframework.cache;
 
 import net.sf.ehcache.Element;
 import es.uclm.sri.persistencia.postgre.dao.VpesosalbumMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Vpesosalbum;
-import es.uclm.sri.sis.arqtecn.KConstantes;
+import es.uclm.sri.sis.preframework.KConstantes;
 
 public class CachePesosAlbum extends AbstractCache {
 	

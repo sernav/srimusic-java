@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.arqtecn;
+package es.uclm.sri.sis.preframework;
 
 public class KConstantes {
 	

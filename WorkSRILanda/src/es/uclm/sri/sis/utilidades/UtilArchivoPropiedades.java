@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.util;
+package es.uclm.sri.sis.utilidades;
 
 import java.io.FileInputStream;
 import java.io.IOException;

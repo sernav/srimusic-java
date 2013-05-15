@@ -5,8 +5,8 @@ import java.util.StringTokenizer;
 
 import es.uclm.sri.csv.TratarCSVAlbum;
 import es.uclm.sri.sis.entidades.Album;
-import es.uclm.sri.sis.util.UtilArchivoPropiedades;
-import es.uclm.sri.sis.util.Utils;
+import es.uclm.sri.sis.utilidades.UtilArchivoPropiedades;
+import es.uclm.sri.sis.utilidades.Utils;
 
 public class EstandarizarAlbum {
 	

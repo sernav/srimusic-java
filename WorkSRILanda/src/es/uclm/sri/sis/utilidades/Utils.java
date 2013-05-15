@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.util;
+package es.uclm.sri.sis.utilidades;
 
 
 public class Utils {

@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.arqtecn.controladores;
+package es.uclm.sri.sis.preframework.controladores;
 
 import java.sql.Connection;
 

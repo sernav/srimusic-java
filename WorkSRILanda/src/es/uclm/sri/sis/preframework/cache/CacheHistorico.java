@@ -1,9 +1,9 @@
-package es.uclm.sri.sis.arqtecn.cache;
+package es.uclm.sri.sis.preframework.cache;
 
 import net.sf.ehcache.Element;
 import es.uclm.sri.persistencia.postgre.dao.HistuserMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Histuser;
-import es.uclm.sri.sis.arqtecn.KConstantes;
+import es.uclm.sri.sis.preframework.KConstantes;
 
 public class CacheHistorico extends AbstractCache {
 	

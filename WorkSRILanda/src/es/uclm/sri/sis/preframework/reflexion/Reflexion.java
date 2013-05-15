@@ -1,12 +1,12 @@
-package es.uclm.sri.sis.arqtecn.reflexion;
+package es.uclm.sri.sis.preframework.reflexion;
 
 import java.util.ArrayList;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import es.uclm.sri.sis.arqtecn.KConstantes;
-import es.uclm.sri.sis.util.XMLUtil;
+import es.uclm.sri.sis.preframework.KConstantes;
+import es.uclm.sri.sis.utilidades.XMLUtil;
 
 /**
  * @author sernav
