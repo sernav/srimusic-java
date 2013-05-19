@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
 import es.uclm.sri.csv.TratarCSVAlbum;
 import es.uclm.sri.sis.entidades.Album;
 
-public class HtmlParserMondosonoro {
+public class HtmlScrapeMondosonoro implements IHtmlScrape {
 
 	private final static String URL_MONDOSONORO = "http://www.mondosonoro.com/Cr%C3%ADticas/Discos.aspx";
 	private final static String SUBURL_MONDOSONORO = "http://www.mondosonoro.com/Critica-Discos/";
@@ -29,19 +29,22 @@ public class HtmlParserMondosonoro {
 	private final static String DESTINY_PATH = "/Users/sergionavarro/PFC/CSV_Albums_Mondosonoro";
 
 	private static final Logger logger = Logger
-			.getLogger(HtmlParserAlbum.class);
+			.getLogger(HtmlScrapeRockdeluxe.class);
+	
+	private HtmlScrapeMondosonoro() {
+		super();
+	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	public void scrappingWeb(String url, String subUrl, int numPages,
+			String destinyPath) {
 		String[] elements = { ID_ELEMENT_TITULO, ID_ELEMENT_ARTISTA,
 				ID_ELEMENT_GENERO, ID_ELEMENT_PAIS, ID_ELEMENT_FECHA };
 		scrappingMondosonoro(URL_MONDOSONORO, SUBURL_MONDOSONORO, NUMPAGES,
 				elements, DESTINY_PATH);
+		
 	}
 
-	protected static void scrappingMondosonoro(String url, String subUrl,
+	protected void scrappingMondosonoro(String url, String subUrl,
 			int numPages, String[] idElements, String destinyPath) {
 		String numPage = "";
 		String urlAnalyze = "";
@@ -83,7 +86,7 @@ public class HtmlParserMondosonoro {
 		}
 	}
 
-	private static String procesarElementoHtml(Element linkAlbum,
+	private String procesarElementoHtml(Element linkAlbum,
 			String idElement) throws IOException {
 		Document doc = Jsoup.connect(linkAlbum.attr("abs:href")).get();
 		Element element = doc.getElementById(idElement);
@@ -92,7 +95,7 @@ public class HtmlParserMondosonoro {
 		return node.attr("text");
 	}
 
-	private static Album procesarElementosAlbum(Document docAlbum, Album album,
+	private Album procesarElementosAlbum(Document docAlbum, Album album,
 			String[] elementos) {
 		for (int index = 0; index < elementos.length; index++) {
 			try {

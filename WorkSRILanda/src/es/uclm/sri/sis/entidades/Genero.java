@@ -4,15 +4,18 @@ public class Genero {
 	
 	private String tipo;
 	private int numOcurrencias;
+	private double valorPonderado;
 	
 	public Genero() {
 		this.tipo = "generic";
-		this.numOcurrencias = 1;
+		this.numOcurrencias = 0;
+		this.valorPonderado = 0;
 	}
 	
-	public Genero(String tipo, int numOcurrencias) {
+	public Genero(String tipo, int numOcurrencias, double valorPonderado) {
 		this.tipo = tipo;
 		this.numOcurrencias = numOcurrencias;
+		this.valorPonderado = valorPonderado;
 	}
 
 	public String getTipo() {
@@ -29,6 +32,14 @@ public class Genero {
 
 	public void setNumOcurrencias(int numOcurrencias) {
 		this.numOcurrencias = numOcurrencias;
+	}
+	
+	public double getValorPonderado() {
+		return valorPonderado;
+	}
+
+	public void setValorPonderado(double valorPonderado) {
+		this.valorPonderado = valorPonderado;
 	}
 	
 	public String toString() {

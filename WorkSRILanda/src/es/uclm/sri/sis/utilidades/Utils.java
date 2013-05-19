@@ -1,5 +1,11 @@
 package es.uclm.sri.sis.utilidades;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
 
 public class Utils {
 
@@ -36,7 +42,15 @@ public class Utils {
 			return true;
 		}
 		
-		if (etiqueta.contains("-") && !etiqueta.equals("hip-hop")) {
+		if (etiqueta.contains("-") && !etiqueta.equals("hip-hop")
+				&& !etiqueta.equals("singer-songwriter")) {
+			return true;
+		}
+		
+		if (etiqueta.contains(" ") && !etiqueta.equals("hip hop")
+				&& !etiqueta.equals("trip hop") && !etiqueta.equals("trip hop")
+				&& !etiqueta.equals("female vocalist") && !etiqueta.equals("male vocalist") 
+				&& !etiqueta.equals("drum and bass")) {
 			return true;
 		}
 		
@@ -53,10 +67,25 @@ public class Utils {
 			etiquetas[1] = "pop";
 		} else if (etiqueta.contains("-") && 
 				!etiqueta.equals("hip-hop") && !etiqueta.equals("singer-songwriter")) {
-			if (etiqueta.split("-").length == 2)
+			//if (etiqueta.split("-").length == 2)
 				etiquetas = etiqueta.split("-");
+		} else if (etiqueta.contains(" ") && !etiqueta.equals("hip hop")
+				&& !etiqueta.equals("trip hop") && !etiqueta.equals("trip hop")
+				&& !etiqueta.equals("female vocalist") && !etiqueta.equals("male vocalist") 
+				&& !etiqueta.equals("drum and bass")) {
+			etiquetas = etiqueta.split(" ");
 		}
 		return etiquetas;
+	}
+	
+	public static ArrayList<Object> convertirHashMapEnArrayList(HashMap<String, Object> hash) {
+		ArrayList<Object> arrayList = new ArrayList<Object>();
+		Iterator<Entry<String, Object>> it = hash.entrySet().iterator();
+		while(it.hasNext()) {
+			Map.Entry<String, Object> e = (Map.Entry<String, Object>) it.next();
+			arrayList.add(e.getValue());
+		}
+		return arrayList;
 	}
 
 }

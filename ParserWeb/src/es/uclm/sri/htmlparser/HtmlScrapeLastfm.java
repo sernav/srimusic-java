@@ -16,28 +16,24 @@ import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.Artista;
 import es.uclm.sri.sis.utilidades.Utils;
 
-public class ScrapeLastfm {
+public class HtmlScrapeLastfm implements IHtmlScrape {
 	
-	public static final String URL_LASTFM = "http://www.lastfm.es/music/+geo/spain";
+	private static final String URL_LASTFM = "http://www.lastfm.es/music/+geo/spain";
 	
-	public static final String DESTINY_PATH = "/Users/sergionavarro/PFC/CSV_Albums_Lastfm_Spain.csv";
-	public static final String DESTINY_PATH_ARTISTAS = "/Users/sergionavarro/PFC/CSV_Artistas_Lastfm.csv";
+	private static final String DESTINY_PATH = "/Users/sergionavarro/PFC/CSV_Albums_Lastfm_Spain.csv";
+	private static final String DESTINY_PATH_ARTISTAS = "/Users/sergionavarro/PFC/CSV_Artistas_Lastfm.csv";
 	
 	private static ArrayList<Album> listaAlbums = new ArrayList<Album>();
 	
 	private static final Logger logger = Logger
-			.getLogger(HtmlParserAlbum.class);
+			.getLogger(HtmlScrapeRockdeluxe.class);
 	
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		scrappingLastfm(URL_LASTFM, "", 50, DESTINY_PATH);
+	
+	private HtmlScrapeLastfm() {
+		super();
 	}
 	
-	protected static void scrappingLastfm(String url, String subUrl, int numPages, String destinyPath) {
+	public void scrappingWeb(String url, String subUrl, int numPages, String destinyPath) {
 		String numPage = "";
 		String urlAnalyze = "";
 

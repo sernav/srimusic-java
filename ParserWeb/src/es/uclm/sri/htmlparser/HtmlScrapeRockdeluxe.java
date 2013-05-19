@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
 import es.uclm.sri.csv.TratarCSVAlbum;
 import es.uclm.sri.sis.entidades.Album;
 
-public class HtmlParserAlbum {
+public class HtmlScrapeRockdeluxe implements IHtmlScrape {
 	
 	private final static String URL_ROCKDELUXE = "http://www.rockdelux.com/discos/albumes/page";
 	private final static String SUBURL_ROCKDELUXE = "http://www.rockdelux.com/discos/p/";
@@ -21,17 +21,13 @@ public class HtmlParserAlbum {
 	
 	private final static String DESTINY_PATH = "/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Rockdeluxe";
 	
-	private static final Logger logger = Logger.getLogger(HtmlParserAlbum.class);
+	private static final Logger logger = Logger.getLogger(HtmlScrapeRockdeluxe.class);
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		scrapingRockdelux(URL_ROCKDELUXE, SUBURL_ROCKDELUXE, NUMPAGES, DESTINY_PATH);
-		
+	private HtmlScrapeRockdeluxe() {
+		super();
 	}
 	
-	protected static void scrapingRockdelux(String url, String subUrl, int numPages, String destinyPath) {
+	public void scrappingWeb(String url, String subUrl, int numPages, String destinyPath) {
 		String[] tipoText = { "Artista", "Disco" };
 		int index = 0;
 		int numMaxEtiquetas = 0;

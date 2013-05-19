@@ -12,6 +12,7 @@ public class UtilArchivoPropiedades {
 	private String archivo;
 	
 	private UtilArchivoPropiedades(){
+		super();
 	}
 	
 	public UtilArchivoPropiedades(String archivo) {

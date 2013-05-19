@@ -1,4 +1,4 @@
-package es.uclm.sri.csv;
+package es.uclm.sri.sis.operaciones.csv;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -13,8 +13,12 @@ import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
 import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
 
 public final class TratarCSVAlbum {
+	
+	private static final Logger logger = Logger
+			.getLogger(TratarCSVAlbum.class);
 
 	private TratarCSVAlbum() {
 		super();
@@ -55,6 +59,42 @@ public final class TratarCSVAlbum {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void generarCSVAlbumPonderado(ArrayList<AlbumPonderado> listAlbums, int numMaxEtiquetas,
+			String destinyPath) {
+		CsvWriter writer = new CsvWriter(destinyPath);
+		System.out.println("Almacenando discos...");
+		int contador = 0;
+		Iterator it = listAlbums.iterator();
+		while (it.hasNext()) {
+			contador++;
+			AlbumPonderado itemAlbum = (AlbumPonderado) it.next();
+			System.out.println("Grabando album #" + contador + " de "
+					+ listAlbums.size() + " - " + itemAlbum.getTitulo());
+			try {
+				writer.write(itemAlbum.getTitulo());
+				writer.write(itemAlbum.getArtista());
+				
+				for (int index = 0; index < numMaxEtiquetas; index++) {
+					writer.write(itemAlbum.getPesosGeneros()[index].toString());
+				}
+				
+				writer.write(itemAlbum.getPais());
+				writer.endRecord();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Error! " + e.getMessage());
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				System.out.println("Error! " + e.getMessage());
+			} finally {
+			}
+		}
+		System.out.println("Proceso concluido");
+		writer.close();
 	}
 
 	public static void generarCSVAlbums(ArrayList<Album> listAlbums,
