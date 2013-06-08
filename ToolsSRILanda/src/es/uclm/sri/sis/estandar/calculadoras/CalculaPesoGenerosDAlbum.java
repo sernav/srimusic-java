@@ -11,7 +11,7 @@ import es.uclm.sri.sis.utilidades.UtilArchivoPropiedades;
 
 public class CalculaPesoGenerosDAlbum {
 	
-	private static String origProperties = "/Users/sergionavarro/git/SRILanda-Local/ParserWeb/src/es/uclm/sri/generoEstandar.properties";
+	private static String origProperties = "src/es/uclm/sri/properties/generoEstandar.properties";
 	private static UtilArchivoPropiedades properties;
 	protected static ArrayList<Genero> generosDAlbum = new ArrayList<Genero>();
 	protected static ArrayList<AlbumPonderado> listAlbumPonderados = new ArrayList<AlbumPonderado>();

@@ -18,7 +18,7 @@ public class EstandarizaGenerosAlbum {
 			.getLogger(EstandarizaGenerosAlbum.class);
 	
 	private static String destinyPath = "/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Norm.csv";
-	private static String origProperties = "src/es/uclm/sri/generoEstandar.properties";
+	private static String origProperties = "src/es/uclm/sri/properties/generoEstandar.properties";
 	
 	public static void main(String[] args) {
 		recogeAlbumsEstandar();
