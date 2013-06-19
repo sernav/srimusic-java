@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
+
 
 public class Utils {
 
@@ -86,6 +89,17 @@ public class Utils {
 			arrayList.add(e.getValue());
 		}
 		return arrayList;
+	}
+	
+	public static void descomponerPesosGeneros(Pesosalbum pesos, AlbumPonderado album) {
+		for(int i = 0; i < album.getPesosGeneros().length; i++) {
+			try {
+			pesos.setROCK(album.getPesosGeneros()[i]);
+			pesos.setINDIE(album.getPesosGeneros()[i]);
+			} catch (Exception e) {
+				
+			}
+		}
 	}
 
 }

@@ -13,6 +13,7 @@ import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
 import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
 
 public final class TratarCSVAlbum {
 
@@ -139,6 +140,36 @@ public final class TratarCSVAlbum {
 						listaEtq.add(reader.get(i));
 				}
 				album.setEtiquetas(listaEtq);
+				listaAlbums.add(album);
+			}
+		} catch (IOException e) {
+			System.out.println("Error de I/O!");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			reader.close();
+		}
+		
+		return listaAlbums;
+	}
+	
+	public static ArrayList<AlbumPonderado> leerCVSAlbumsPonderado(String path) {
+		CsvReader reader = null;
+		ArrayList<AlbumPonderado> listaAlbums = new ArrayList<AlbumPonderado>();
+		try{
+			reader = new CsvReader(path);
+			reader.setDelimiter(',');
+			while (reader.readRecord()) {
+				AlbumPonderado album = new AlbumPonderado();
+				Double[] arrayGeneros = new Double[18];
+				int numColumn = reader.getColumnCount();
+				album.setTitulo(reader.get(0));
+				album.setArtista(reader.get(1));
+				for (int i=2; i < numColumn-1; i++) {
+					arrayGeneros[i-2] = Double.parseDouble(reader.get(i));
+				}
+				album.setGeneros(arrayGeneros);
 				listaAlbums.add(album);
 			}
 		} catch (IOException e) {
