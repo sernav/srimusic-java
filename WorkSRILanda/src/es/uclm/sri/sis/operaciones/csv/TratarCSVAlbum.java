@@ -14,6 +14,7 @@ import com.csvreader.CsvWriter;
 
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.utilidades.Utils;
 
 public final class TratarCSVAlbum {
 	
@@ -179,6 +180,47 @@ public final class TratarCSVAlbum {
 						listaEtq.add(reader.get(i));
 				}
 				album.setEtiquetas(listaEtq);
+				listaAlbums.add(album);
+			}
+		} catch (IOException e) {
+			System.out.println("Error de I/O!");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			reader.close();
+		}
+		
+		return listaAlbums;
+	}
+	
+	public static ArrayList<AlbumPonderado> leerCVSAlbumsPonderado(String path) {
+		CsvReader reader = null;
+		ArrayList<AlbumPonderado> listaAlbums = new ArrayList<AlbumPonderado>();
+		try{
+			reader = new CsvReader(path);
+			reader.setDelimiter(',');
+			while (reader.readRecord()) {
+				AlbumPonderado album = new AlbumPonderado();
+				Double[] arrayGeneros = new Double[18];
+				int numColumn = reader.getColumnCount();
+				album.setTitulo(reader.get(0));
+				album.setArtista(reader.get(1));
+				arrayGeneros = Utils.inicializarArrayDoble(arrayGeneros);
+				for (int i=2; i < numColumn-1; i++) {
+					double vGenero = 0.0;
+					try {
+						if (reader.get(i) != null && reader.get(i) != "")
+							vGenero = Double.parseDouble(reader.get(i));
+					} catch(NumberFormatException numExc) {
+						
+					} catch (Exception e) {
+						
+					}
+					arrayGeneros[i-2] = vGenero;
+				}
+				album.setGeneros(arrayGeneros);
+				System.out.println(album.toString());
 				listaAlbums.add(album);
 			}
 		} catch (IOException e) {

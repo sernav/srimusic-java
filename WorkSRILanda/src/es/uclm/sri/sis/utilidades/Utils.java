@@ -101,5 +101,12 @@ public class Utils {
 			}
 		}
 	}
+	
+	public static Double[] inicializarArrayDoble(Double[] array) {
+		for (int i = 0; i < array.length; i++) {
+			array[i] = 0.0;
+		}
+		return array;
+	}
 
 }

@@ -13,7 +13,7 @@ public class ConnectionFactory {
 
     static{
         try{
-            reader = Resources.getResourceAsReader("/recursos/configurationPostgre.xml");
+            reader = Resources.getResourceAsReader("es/uclm/sri/recursos/configurationPostgre.xml");
             sqlMapper = new SqlSessionFactoryBuilder().build(reader);
         }catch(Exception e){
             e.printStackTrace();

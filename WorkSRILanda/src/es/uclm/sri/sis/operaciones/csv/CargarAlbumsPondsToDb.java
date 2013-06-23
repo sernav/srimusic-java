@@ -1,14 +1,15 @@
-package es.uclm.sri.sis.parches;
+package es.uclm.sri.sis.operaciones.csv;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.ibatis.exceptions.IbatisException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
-import es.uclm.sri.sis.csv.TratarCSVAlbum;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
 
 public class CargarAlbumsPondsToDb {
@@ -16,22 +17,42 @@ public class CargarAlbumsPondsToDb {
 	private static SqlSessionFactory sqlMapper;
 	private static SqlSession session = null;
 	
-	private static String path = "/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Ponderados.csv";
+	private static String path = "/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Ponderados_Sin_Titulos2.csv";
 
 	public static void main(String[] args) {
-		establecerConexion();
-		sqlMapper.openSession();
-		PesosalbumMapper mapper = session.getMapper(PesosalbumMapper.class);
+		PesosalbumMapper mapper = null;
+		try {
+			establecerConexion();
+			session = sqlMapper.openSession();
+			session.getConnection().setAutoCommit(true);
+			
+			mapper = session.getMapper(PesosalbumMapper.class);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		boolean transactionFail = false;
 		
 		ArrayList<Pesosalbum> lPesos = getListaPesosDAlbum(path);
 		for (Pesosalbum pesos : lPesos) {
+			System.out.println(pesos.toString());
 			try {
+				if (transactionFail) {
+					establecerConexion();
+					session = sqlMapper.openSession();
+				}
+				transactionFail = false;
 				mapper.insert(pesos);
-			} catch(Exception e) {
+				
+			} catch(IbatisException e) {
 				e.printStackTrace();
+				transactionFail = true;
+			} catch (Exception e2) {
+				e2.printStackTrace();
+				transactionFail = true;
 			}
 		}
-		
 		session.commit();
 		session.close();
 	}
@@ -44,14 +65,14 @@ public class CargarAlbumsPondsToDb {
 			pesos.setALBUM(album.getTitulo());
 			pesos.setARTISTA(album.getArtista());
 			Double[] pesosAlbum = album.getPesosGeneros();
-			anyadirValorPesos(pesos, pesosAlbum);
+			pesos = anyadirValorPesos(pesos, pesosAlbum);
 			
 			lPesos.add(pesos);
 		}
 		return lPesos;
 	}
 	
-	private static void anyadirValorPesos(Pesosalbum pesos, Double[] pesosAlbum) {
+	private static Pesosalbum anyadirValorPesos(Pesosalbum pesos, Double[] pesosAlbum) {
 		pesos.setROCK(pesosAlbum[0]);
 		pesos.setINDIE(pesosAlbum[1]);
 		pesos.setALTERNATIVE(pesosAlbum[2]);
@@ -70,6 +91,8 @@ public class CargarAlbumsPondsToDb {
 		pesos.setINSTRUMENTAL(pesosAlbum[15]);
 		pesos.setAMBIENT(pesosAlbum[16]);
 		pesos.setREGGAE(pesosAlbum[17]);
+		
+		return pesos;
 	}
 	
 	private static void establecerConexion() {
