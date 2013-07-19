@@ -34,7 +34,7 @@ public class CalculaPesoGenerosDAlbum {
 			}
 			numAlbum++;
 		}
-		TratarCSVAlbum.generarCSVAlbumPonderado(listAlbumPonderados, 18, "/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Ponderados.csv");
+		TratarCSVAlbum.generarCSVAlbumPonderado(listAlbumPonderados, properties.getPropiedades(), 18, "/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Ponderados_v2.csv");
 	}
 	
 	protected static ArrayList<Album> procesarDatosIN(String path) {
