@@ -16,7 +16,5 @@
 	<classpathentry kind="lib" path="/Development/HTMLParser-2.0-SNAPSHOT/lib/htmlparser.jar"/>
 	<classpathentry kind="lib" path="/Development/javacsv-2.0.jar"/>
 	<classpathentry kind="lib" path="/Development/mybatis/mybatis-3.2.0/mybatis-3.2.0.jar"/>
-	<classpathentry kind="lib" path="/Applications/weka-3-7-9/weka-src.jar"/>
-	<classpathentry kind="lib" path="/Applications/weka-3-7-9/weka.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
