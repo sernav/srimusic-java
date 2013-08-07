@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import weka.clusterers.SimpleKMeans;
+import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Remove;
 import es.uclm.sri.clustering.ClusterException;
 import es.uclm.sri.clustering.ISimpleKMeansCluster;
 
@@ -122,15 +125,27 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 
 	public Instance[] getInstancesDCluster(Enumeration<Instance> enumInst,
 			int numCluster) throws Exception {
+		
 		ArrayList<Instance> arrayCluster = new ArrayList<Instance>();
 		while (enumInst.hasMoreElements()) {
 			Instance instance = enumInst.nextElement();
-			if (kmeans.clusterInstance(instance) == numCluster) {
+			Instance aux = new Instance(1.0, WekaUtilities.descartarTituloYArtista(instance).toDoubleArray());
+			if (kmeans.clusterInstance(aux) == numCluster) {
 				arrayCluster.add(instance);
 			}
 		}
 		
 		return arrayCluster.toArray(new Instance[arrayCluster.size()]);
+	}
+	
+	private void descartarTituloYArtista(Instance aux) {
+		ArrayList<Double> list = new ArrayList<Double>();
+		while (aux.enumerateAttributes().hasMoreElements()) {
+			Attribute att = (Attribute)aux.enumerateAttributes().nextElement();
+			if (att.isNumeric()) {
+				System.out.println(att.toString());
+			}
+		}
 	}
 
 }

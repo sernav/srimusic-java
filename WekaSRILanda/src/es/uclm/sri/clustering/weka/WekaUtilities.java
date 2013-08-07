@@ -5,11 +5,13 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
+import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Remove;
 
 public class WekaUtilities {
 
@@ -39,6 +41,47 @@ public class WekaUtilities {
 	        mapResultado.put(mapKeys.get(mapValues.indexOf(arrayOrdenado[i])),(Double)arrayOrdenado[i]);
         }
         return mapResultado;
+	}
+	
+	public static Instance estabilizarAtributosNaN(Instance instance) {
+		double[] attValues = instance.toDoubleArray();
+		for (int i = 0; i < attValues.length; i++) {
+			Double d = new Double(attValues[i]);
+			if (d.isNaN()) {
+				attValues[i] = 0.0;
+			}
+		}
+		return new Instance(1.0, attValues);
+	}
+	
+	public static Instance[] estabilizarAtributosNaN(Instance[] instances) {
+		Instance[] aux = new Instance[instances.length];
+		for (int i = 0; i < instances.length; i++) {
+			aux[i] = estabilizarAtributosNaN(instances[i]);
+		}
+		return aux;
+	}
+	
+	public static Instance descartarTituloYArtista(Instance instance) {
+		Instance aux = instance;
+		if (aux.attribute(0).name().equals("ALBUM")) {
+			if (aux.attribute(1).name().equals("ARTISTA")) {
+				aux.dataset().deleteAttributeAt(0);
+				aux.dataset().deleteAttributeAt(0);
+			}
+		}
+		return aux;
+	}
+	
+	public static Instance _descartarTituloYArtista(Instance instance) {
+		Enumeration<Attribute> enumAtts = instance.enumerateAttributes();
+		while (enumAtts.hasMoreElements()) {
+			Attribute att = enumAtts.nextElement();
+			if (!att.isNumeric()) {
+				instance. setMissing(att);
+			}
+		}
+		return instance;
 	}
 
 }

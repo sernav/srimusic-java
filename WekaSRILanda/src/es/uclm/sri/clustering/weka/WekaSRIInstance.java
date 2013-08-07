@@ -316,26 +316,45 @@ public class WekaSRIInstance {
 	}
 	
 	public String toString() {
-		String cadena = "Pesos nuevo disco \n" +
-				"SINGER: " + SINGER.doubleValue() + "\n" +
-				"RAP: " + RAP.doubleValue() + "\n" +
-				"AMBIENT: " + AMBIENT.doubleValue() + "\n" +
-				"INDIE: " + INDIE.doubleValue() + "\n" +
-				"BLUES: " + BLUES.doubleValue() + "\n" +
-				"REGGAE: " + REGGAE.doubleValue() + "\n" +
-				"PUNK: " + PUNK.doubleValue() + "\n" +
-				"HEAVY: " + HEAVY.doubleValue() + "\n" +
-				"ALTERNATIVE: " + ALTERNATIVE.doubleValue() + "\n" +
-				"CLASSIC: " + CLASSIC.doubleValue() + "\n" +
-				"ELECTRONIC: " + ELECTRONIC.doubleValue() + "\n" +
-				"ROCK: " + ROCK.doubleValue() + "\n" +
-				"POP: " + POP.doubleValue() + "\n" +
-				"BRIT: " + BRIT.doubleValue() + "\n" +
-				"FOLK: " + FOLK.doubleValue() + "\n" +
-				"FUNK: " + FUNK.doubleValue() + "\n" +
-				"INSTRUMENTAL: " + INSTRUMENTAL.doubleValue() + "\n" +
-				"GRUNGE: " + GRUNGE.doubleValue() + "\n";
-		return cadena;
+		StringBuilder strBuilder = new StringBuilder();
+		if (SINGER.doubleValue() > 0)
+			strBuilder.append("Singer       " + SINGER.doubleValue() + "\n");
+		if (RAP.doubleValue() > 0)
+			strBuilder.append("Rap          " + RAP.doubleValue() + "\n");
+		if (AMBIENT.doubleValue() > 0)
+			strBuilder.append("Ambient      " + AMBIENT.doubleValue() + "\n");
+		if (INDIE.doubleValue() > 0)
+			strBuilder.append("Indie        " + INDIE.doubleValue() + "\n");
+		if (BLUES.doubleValue() > 0)
+			strBuilder.append("Blues        " + BLUES.doubleValue() + "\n");
+		if (REGGAE.doubleValue() > 0)
+			strBuilder.append("Reggae       " + REGGAE.doubleValue() + "\n");
+		if (PUNK.doubleValue() > 0)
+			strBuilder.append("Punk         " + PUNK.doubleValue() + "\n");
+		if (HEAVY.doubleValue() > 0)
+			strBuilder.append("Heavy        " + HEAVY.doubleValue() + "\n");
+		if (ALTERNATIVE.doubleValue() > 0)
+			strBuilder.append("Alternative  " + ALTERNATIVE.doubleValue() + "\n");
+		if (CLASSIC.doubleValue() > 0)
+			strBuilder.append("Classic      " + CLASSIC.doubleValue() + "\n");
+		if (ELECTRONIC.doubleValue() > 0)
+			strBuilder.append("Electronic   " + ELECTRONIC.doubleValue() + "\n");
+		if (ROCK.doubleValue() > 0)
+			strBuilder.append("Rock          " + ROCK.doubleValue() + "\n");
+		if (POP.doubleValue() > 0)
+			strBuilder.append("Pop           " + POP.doubleValue() + "\n");
+		if (BRIT.doubleValue() > 0)
+			strBuilder.append("Brit          " + BRIT.doubleValue() + "\n");
+		if (FOLK.doubleValue() > 0)
+			strBuilder.append("Folk          " + FOLK.doubleValue() + "\n");
+		if (FUNK.doubleValue() > 0)
+			strBuilder.append("Funk          " + FUNK.doubleValue() + "\n");
+		if (INSTRUMENTAL.doubleValue() > 0)
+			strBuilder.append("Instrumental  " + INSTRUMENTAL.doubleValue() + "\n");
+		if (GRUNGE.doubleValue() > 0)
+			strBuilder.append("Grunge        " + GRUNGE.doubleValue() + "\n");
+		
+		return strBuilder.toString();
 	}
 
 }
