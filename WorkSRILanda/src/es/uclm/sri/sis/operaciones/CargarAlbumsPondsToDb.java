@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.operaciones.csv;
+package es.uclm.sri.sis.operaciones;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,13 +11,14 @@ import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
 
 public class CargarAlbumsPondsToDb {
 	
 	private static SqlSessionFactory sqlMapper;
 	private static SqlSession session = null;
 	
-	private static String path = "/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Ponderados_Sin_Titulos2.csv";
+	private static String path = "/Users/sergionavarro/PRFC/CSV_Albums/CSV_Albums_Ponderados_Sin_Titulos2.csv";
 
 	public static void main(String[] args) {
 		PesosalbumMapper mapper = null;

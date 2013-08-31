@@ -62,12 +62,32 @@ public final class TratarCSVAlbum {
 		}
 	}
 	
-	public static void generarCSVAlbumPonderado(ArrayList<AlbumPonderado> listAlbums, int numMaxEtiquetas,
+	public static void generarCSVAlbumPonderado(ArrayList<AlbumPonderado> listAlbums, ArrayList<String> generos, int numMaxEtiquetas,
 			String destinyPath) {
 		CsvWriter writer = new CsvWriter(destinyPath);
 		System.out.println("Almacenando discos...");
 		int contador = 0;
 		Iterator it = listAlbums.iterator();
+		
+		//Cabecera
+		try {
+			writer.write("Album");
+			writer.write("Artista");
+			Iterator itGeneros = generos.iterator();
+			while(itGeneros.hasNext()) {
+				writer.write(itGeneros.next().toString());
+			}
+			writer.endRecord();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Error! " + e.getMessage());
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("Error! " + e.getMessage());
+		}
+		
 		while (it.hasNext()) {
 			contador++;
 			AlbumPonderado itemAlbum = (AlbumPonderado) it.next();

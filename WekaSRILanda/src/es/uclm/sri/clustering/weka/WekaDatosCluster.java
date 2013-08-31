@@ -2,7 +2,6 @@ package es.uclm.sri.clustering.weka;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -181,7 +180,32 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 			if(dy.isNaN()) {
 				y[i] = 0.0;
 			}
-			if (x[i] != 0.0 && y[i] != 0.0) {
+			if (x[i] > 0 || y[i] > 0) {
+				sum += Math.pow(x[i] - y[i], 2);
+				isDe = true;
+			}
+		}
+		if (isDe) {
+			return Math.sqrt(sum);
+		} else {
+			return 1.0;
+		}
+		
+	}
+	
+	public double getDistanciaEuclideaCentroide(double[] x, double[] y) {
+		double sum = 0;
+		boolean isDe = false;
+		for (int i = 0; i < Math.min(x.length, y.length); i++) {
+			Double dx = new Double(x[i]);
+			Double dy = new Double(y[i]);
+			if(dx.isNaN()) {
+				x[i] = 0.0;
+			}
+			if(dy.isNaN()) {
+				y[i] = 0.0;
+			}
+			if (x[i] != 0 && y[i] != 0) {
 				sum += Math.pow(x[i] - y[i], 2);
 				isDe = true;
 			}
@@ -435,7 +459,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 		i.setValue(dimensionIndex, value);
 	}
 	
-	public Instance[] getSimiliarInstance (Instance[] instsCluster, Instance instOrig, int numResult) {
+	public Instance[] getSimiliarInstance(Instance[] instsCluster, Instance instOrig, int numResult) {
 		Instance[] instances = new Instance[numResult];
 		HashMap<Instance, Double> mapResult = new HashMap<Instance, Double>();
 		
@@ -454,6 +478,30 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 		}
 		
 		return instances;
+	}
+	
+	public WekaSRIInstance[] getSimiliarWekaSRIInstance(WekaSRIInstance[] instsCluster, Instance instOrig, int numResult) {
+		WekaSRIInstance[] wekaInstances = new WekaSRIInstance[numResult];
+		HashMap<WekaSRIInstance, Double> mapResult = new HashMap<WekaSRIInstance, Double>();
+		
+		for (int i = 0; i < instsCluster.length; i ++) {
+			double dEuclideaAux = getDistanciaEuclidea(instOrig.toDoubleArray(), instsCluster[i].getInstance().toDoubleArray());
+			mapResult.put(instsCluster[i], new Double(dEuclideaAux));
+		}
+		
+		mapResult = WekaUtilities.sortHashWekaIntancesV2(mapResult);
+		
+		Iterator<WekaSRIInstance> it = mapResult.keySet().iterator();
+		int i = 0;
+		while(it.hasNext() && i < numResult) {
+			WekaSRIInstance instance = it.next();
+			if (instance != null) {
+				wekaInstances[i] = instance;
+				i++;
+			}
+		}
+		
+		return wekaInstances;
 	}
 
 }

@@ -3,11 +3,9 @@ package es.uclm.sri.clustering.weka;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Enumeration;
 
 import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
-import weka.core.Attribute;
 import weka.core.EuclideanDistance;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -113,7 +111,7 @@ public class WekaClusteringLauncher {
 		// launcher.generarWekaSimpleKMeans(data);
 
 		double[] attValues = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.666667, 0.333333, 0.0, 0.0, 0.0, 0.0 };
+				0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 
 		WekaSRIInstance inst = new WekaSRIInstance(1.0, attValues);
 
@@ -130,11 +128,11 @@ public class WekaClusteringLauncher {
 
 		Instance centroide = clusterer.getClusterCentroids().instance(iCluster);
 
-		double dEuclidea = wekaDatosCluster.getDistanciaEuclidea(
+		double dEuclidea = wekaDatosCluster.getDistanciaEuclideaCentroide(
 				centroide.toDoubleArray(), attValues);
 		
-		Instance[] instCluster = wekaKMeans.getInstancesDCluster(data.enumerateInstances(), iCluster);
-		Instance[] similares = wekaDatosCluster.getSimiliarInstance(instCluster, inst.getInstance(), 5);
+		WekaSRIInstance[] instCluster = wekaKMeans.getWekaSRIInstancesDCluster(data.enumerateInstances(), iCluster);
+		WekaSRIInstance[] similares = wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance(), 5);
 		
 		ClusterEvaluation eval = new ClusterEvaluation();
 		eval.setClusterer(clusterer);
@@ -152,13 +150,13 @@ public class WekaClusteringLauncher {
 		System.out.println(" > Distancia Euclidea con centroide: " + dEuclidea);
 		System.out.println("\nALBUMS RECOMENDADOS (5):");
 		for(int i = 0; i < similares.length; i++) {
-			WekaSRIInstance similar = new WekaSRIInstance(1.0, similares[i].toDoubleArray());
-			double dEuclideaSimilar = wekaDatosCluster.getDistanciaEuclidea(attValues, similares[i].toDoubleArray());
-			System.out.println(" > Instancia #" + i + ":   (dE: " + dEuclideaSimilar + ")");
+//			WekaSRIInstance similar = new WekaSRIInstance(1.0, similares[i].toDoubleArray());
+//			double dEuclideaSimilar = wekaDatosCluster.getDistanciaEuclidea(attValues, similares[i].toDoubleArray());
+//			System.out.println(" > Instancia #" + i + ":   (dE: " + dEuclideaSimilar + ")");
 			System.out.println();
 			System.out.println("GŽnero         Peso");
 			System.out.println("-------------------");
-			System.out.println(similar.toString());
+			System.out.println(similares[i].toString());
 		}
 		
 

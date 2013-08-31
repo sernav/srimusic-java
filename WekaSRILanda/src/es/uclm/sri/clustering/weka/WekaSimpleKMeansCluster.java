@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import weka.clusterers.SimpleKMeans;
-import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
-import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.Remove;
 import es.uclm.sri.clustering.ClusterException;
 import es.uclm.sri.clustering.ISimpleKMeansCluster;
+import es.uclm.sri.sis.utilidades.Utils;
 
 /**
  * Operaci—n de clustering. Lista de nombre y valores que definen los grupos
@@ -129,7 +127,8 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 		ArrayList<Instance> arrayCluster = new ArrayList<Instance>();
 		while (enumInst.hasMoreElements()) {
 			Instance instance = enumInst.nextElement();
-			Instance aux = new Instance(1.0, WekaUtilities.descartarTituloYArtista(instance).toDoubleArray());
+			instance = WekaUtilities.descartarTituloYArtista(instance);
+			Instance aux = new Instance(1.0, instance.toDoubleArray());
 			if (kmeans.clusterInstance(aux) == numCluster) {
 				arrayCluster.add(instance);
 			}
@@ -138,14 +137,29 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 		return arrayCluster.toArray(new Instance[arrayCluster.size()]);
 	}
 	
-	private void descartarTituloYArtista(Instance aux) {
-		ArrayList<Double> list = new ArrayList<Double>();
-		while (aux.enumerateAttributes().hasMoreElements()) {
-			Attribute att = (Attribute)aux.enumerateAttributes().nextElement();
-			if (att.isNumeric()) {
-				System.out.println(att.toString());
+	public WekaSRIInstance[] getWekaSRIInstancesDCluster(Enumeration<Instance> enumInst,
+			int numCluster) throws Exception {
+		
+		ArrayList<WekaSRIInstance> arrayCluster = new ArrayList<WekaSRIInstance>();
+		while (enumInst.hasMoreElements()) {
+			Instance instance = enumInst.nextElement();
+			WekaSRIInstance sriInstance = null;
+			if(instance.toDoubleArray().length > 18) {
+				double[] arrayInstance = Utils.removeElements(instance.toDoubleArray(), 0, 1);
+				
+				sriInstance = new WekaSRIInstance(1.0, arrayInstance, 
+						instance.stringValue(0), instance.stringValue(1));
+			} else {
+				sriInstance = new WekaSRIInstance(1.0, instance.toDoubleArray(), 
+						instance.stringValue(0), instance.stringValue(1));
+			}
+			
+			if (kmeans.clusterInstance(sriInstance.getInstance()) == numCluster) {
+				arrayCluster.add(sriInstance);
 			}
 		}
+		
+		return arrayCluster.toArray(new WekaSRIInstance[arrayCluster.size()]);
 	}
 
 }

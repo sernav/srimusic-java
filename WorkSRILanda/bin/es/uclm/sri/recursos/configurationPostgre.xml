@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<properties resource="database.properties"/>
+	<properties resource="es/uclm/sri/recursos/database.properties"/>
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC"/>
@@ -13,10 +14,11 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="es.uclm.sri.persistencia.postgre.dao.AlbumsappMapper.xml"/>
-		<mapper resource="es.uclm.sri.persistencia.postgre.dao.HistuserMapper.xml"/>
-		<mapper resource="es.uclm.sri.persistencia.postgre.dao.UsersappMapper.xml"/>
-		<mapper resource="es.uclm.sri.persistencia.postgre.dao.VpesosalbumMapper.xml"/>
-		<mapper resource="es.uclm.sri.persistencia.postgre.dao.VpesosuserMapper.xml"/>
+		<mapper resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/AlbumsappMapper.xml"/>
+		<mapper resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/HistuserMapper.xml"/>
+		<mapper resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/UsersappMapper.xml"/>
+		<mapper resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/VpesosalbumMapper.xml"/>
+		<mapper resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/VpesosuserMapper.xml"/>
+		<mapper resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/PesosalbumMapper.xml"/>
 	</mappers>
 </configuration>

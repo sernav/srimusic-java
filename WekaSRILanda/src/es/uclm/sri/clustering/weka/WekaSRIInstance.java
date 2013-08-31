@@ -2,44 +2,66 @@ package es.uclm.sri.clustering.weka;
 
 import weka.core.Instance;
 
-public class WekaSRIInstance {
+public final class WekaSRIInstance extends Instance {
 
 	Instance instance = null;
-
-	protected Double SINGER = Double.NaN;
-	protected Double RAP = Double.NaN;
-	protected Double AMBIENT = Double.NaN;
-	protected Double INDIE = Double.NaN;
-	protected Double BLUES = Double.NaN;
-	protected Double REGGAE = Double.NaN;
-	protected Double PUNK = Double.NaN;
-	protected Double HEAVY = Double.NaN;
-	protected Double ALTERNATIVE = Double.NaN;
-	protected Double CLASSIC = Double.NaN;
-	protected Double ELECTRONIC = Double.NaN;
-	protected Double ROCK = Double.NaN;
-	protected Double POP = Double.NaN;
-	protected Double BRIT = Double.NaN;
-	protected Double FOLK = Double.NaN;
-	protected Double FUNK = Double.NaN;
-	protected Double INSTRUMENTAL = Double.NaN;
-	protected Double GRUNGE = Double.NaN;
+	
+	protected String titulo;
+	protected String artista;
+	
+	protected Double singer = Double.NaN;
+	protected Double rap = Double.NaN;
+	protected Double ambient = Double.NaN;
+	protected Double indie = Double.NaN;
+	protected Double blues = Double.NaN;
+	protected Double reggae = Double.NaN;
+	protected Double punk = Double.NaN;
+	protected Double heavy = Double.NaN;
+	protected Double alternative = Double.NaN;
+	protected Double classic = Double.NaN;
+	protected Double electronic = Double.NaN;
+	protected Double rock = Double.NaN;
+	protected Double pop = Double.NaN;
+	protected Double brit = Double.NaN;
+	protected Double folk = Double.NaN;
+	protected Double funk = Double.NaN;
+	protected Double instrumental = Double.NaN;
+	protected Double grunge = Double.NaN;
 
 	public WekaSRIInstance() {
 		super();
 		instance = new Instance(1.0, addAttValues());
 	}
-
-	public WekaSRIInstance(double dSinger, double dRap, double dAmbient,
-			double dIndie, double dBlues, double dReggae, double dPunk,
-			double dHeavy, double dAlternative, double dClassic,
-			double dElectronic, double dRock, double dPop, double dBrit,
-			double dFolk, double dFunk, double dInstrumental, double dGrunge) {
+	
+	public WekaSRIInstance(String titulo, String artista) {
 		super();
-		double[] attValues = attInitValues(dSinger, dRap, dAmbient, dIndie,
-				dBlues, dReggae, dPunk, dHeavy, dAlternative, dClassic,
-				dElectronic, dRock, dPop, dBrit, dFolk, dFunk, dInstrumental,
-				dGrunge);
+		this.titulo = titulo;
+		this.artista = artista;
+		instance = new Instance(1.0, addAttValues());
+	}
+	
+	public WekaSRIInstance(Instance instance) {
+		super();
+		this.instance = instance;
+	}
+	
+	public WekaSRIInstance(Instance instance, String titulo, String artista) {
+		super();
+		this.titulo = titulo;
+		this.artista = artista;
+		this.instance = instance;
+	}
+
+	public WekaSRIInstance(double dsinger, double drap, double dambient,
+			double dindie, double dblues, double dreggae, double dpunk,
+			double dheavy, double dalternative, double dclassic,
+			double delectronic, double drock, double dpop, double dbrit,
+			double dfolk, double dfunk, double dinstrumental, double dgrunge) {
+		super();
+		double[] attValues = attInitValues(dsinger, drap, dambient, dindie,
+				dblues, dreggae, dpunk, dheavy, dalternative, dclassic,
+				delectronic, drock, dpop, dbrit, dfolk, dfunk, dinstrumental,
+				dgrunge);
 		instance = new Instance(1.0, attValues);
 	}
 
@@ -48,74 +70,89 @@ public class WekaSRIInstance {
 		attValues = attInitValues(attValues);
 		instance = new Instance(weight, attValues);
 	}
+	
+	public WekaSRIInstance(double weight, double[] attValues, String titulo, String artista) {
+		super();
+		this.titulo = titulo;
+		this.artista = artista;
+		attValues = attInitValues(attValues);
+		instance = new Instance(weight, attValues);
+	}
+	
+//	public WekaSRIInstance(double weight, double[] attValues, String titulo, String artista) {
+//		super();
+//		this.titulo = titulo;
+//		this.artista = artista;
+//		instance = new Instance(weight, attValues);
+//	}
 
 	protected double[] addAttValues() {
 		double[] attValues = new double[18];
 
-		attValues[0] = this.SINGER.doubleValue();
-		attValues[1] = this.RAP.doubleValue();
-		attValues[2] = this.AMBIENT.doubleValue();
-		attValues[3] = this.INDIE.doubleValue();
-		attValues[4] = this.BLUES.doubleValue();
-		attValues[5] = this.REGGAE.doubleValue();
-		attValues[6] = this.PUNK.doubleValue();
-		attValues[7] = this.HEAVY.doubleValue();
-		attValues[8] = this.ALTERNATIVE.doubleValue();
-		attValues[9] = this.CLASSIC.doubleValue();
-		attValues[10] = this.ELECTRONIC.doubleValue();
-		attValues[11] = this.ROCK.doubleValue();
-		attValues[12] = this.POP.doubleValue();
-		attValues[13] = this.BRIT.doubleValue();
-		attValues[14] = this.FOLK.doubleValue();
-		attValues[15] = this.FUNK.doubleValue();
-		attValues[16] = this.INSTRUMENTAL.doubleValue();
-		attValues[17] = this.GRUNGE.doubleValue();
+		attValues[0] = this.singer.doubleValue();
+		attValues[1] = this.rap.doubleValue();
+		attValues[2] = this.ambient.doubleValue();
+		attValues[3] = this.indie.doubleValue();
+		attValues[4] = this.blues.doubleValue();
+		attValues[5] = this.reggae.doubleValue();
+		attValues[6] = this.punk.doubleValue();
+		attValues[7] = this.heavy.doubleValue();
+		attValues[8] = this.alternative.doubleValue();
+		attValues[9] = this.classic.doubleValue();
+		attValues[10] = this.electronic.doubleValue();
+		attValues[11] = this.rock.doubleValue();
+		attValues[12] = this.pop.doubleValue();
+		attValues[13] = this.brit.doubleValue();
+		attValues[14] = this.folk.doubleValue();
+		attValues[15] = this.funk.doubleValue();
+		attValues[16] = this.instrumental.doubleValue();
+		attValues[17] = this.grunge.doubleValue();
 
 		return attValues;
 	}
 
-	protected double[] attInitValues(double dSinger, double dRap,
-			double dAmbient, double dIndie, double dBlues, double dReggae,
-			double dPunk, double dHeavy, double dAlternative, double dClassic,
-			double dElectronic, double dRock, double dPop, double dBrit,
-			double dFolk, double dFunk, double dInstrumental, double dGrunge) {
+	protected double[] attInitValues(double dsinger, double drap,
+			double dambient, double dindie, double dblues, double dreggae,
+			double dpunk, double dheavy, double dalternative, double dclassic,
+			double delectronic, double drock, double dpop, double dbrit,
+			double dfolk, double dfunk, double dinstrumental, double dgrunge) {
 
-		if (dSinger != 0.0)
-			this.SINGER = dSinger;
-		if (dRap != 0.0)
-			this.RAP = dRap;
-		if (dAmbient != 0.0)
-			this.AMBIENT = dAmbient;
-		if (dIndie != 0.0)
-			this.INDIE = dIndie;
-		if (dBlues != 0.0)
-			this.BLUES = dBlues;
-		if (dReggae != 0.0)
-			this.REGGAE = dReggae;
-		if (dPunk != 0.0)
-			this.PUNK = dPunk;
-		if (dHeavy != 0.0)
-			this.HEAVY = dHeavy;
-		if (dAlternative != 0.0)
-			this.ALTERNATIVE = dAlternative;
-		if (dClassic != 0.0)
-			this.CLASSIC = dClassic;
-		if (dElectronic != 0.0)
-			this.ELECTRONIC = dElectronic;
-		if (dRock != 0.0)
-			this.ROCK = dRock;
-		if (dPop != 0.0)
-			this.POP = dPop;
-		if (dBrit != 0.0)
-			this.BRIT = dBrit;
-		if (dFolk != 0.0)
-			this.FOLK = dFolk;
-		if (dFunk != 0.0)
-			this.FUNK = dFunk;
-		if (dInstrumental != 0.0)
-			this.INSTRUMENTAL = dInstrumental;
-		if (dGrunge != 0.0)
-			this.GRUNGE = dGrunge;
+		if (dsinger != 0.0)
+			this.singer = dsinger;
+		if (drap != 0.0)
+			this.rap = drap;
+		if (dambient != 0.0)
+			this.ambient = dambient;
+		if (dindie != 0.0)
+			this.indie = dindie;
+		if (dblues != 0.0)
+			this.blues = dblues;
+		if (dreggae != 0.0)
+			this.reggae = dreggae;
+		if (dpunk != 0.0)
+			this.punk = dpunk;
+		if (dheavy != 0.0)
+			this.heavy = dheavy;
+		if (dalternative != 0.0)
+			this.alternative = dalternative;
+		if (dclassic != 0.0)
+			this.classic = dclassic;
+		if (delectronic != 0.0)
+			this.electronic = delectronic;
+		if (drock != 0.0)
+			this.rock = drock;
+		if (dpop != 0.0)
+			this.pop = dpop;
+		if (dbrit != 0.0)
+			this.brit = dbrit;
+		if (dfolk != 0.0)
+			this.folk = dfolk;
+		if (dfunk != 0.0)
+			this.funk = dfunk;
+		if (dinstrumental != 0.0)
+			this.instrumental = dinstrumental;
+		if (dgrunge != 0.0)
+			this.grunge = dgrunge;
 
 		double[] attValues = addAttValues();
 		return attValues;
@@ -124,235 +161,253 @@ public class WekaSRIInstance {
 	protected double[] attInitValues(double[] attValues) {
 
 		if (attValues[0] != 0.0)
-			this.SINGER = attValues[0];
+			this.singer = attValues[0];
 		if (attValues[1] != 0.0)
-			this.RAP = attValues[1];
+			this.rap = attValues[1];
 		if (attValues[2] != 0.0)
-			this.AMBIENT = attValues[2];
+			this.ambient = attValues[2];
 		if (attValues[3] != 0.0)
-			this.INDIE = attValues[3];
+			this.indie = attValues[3];
 		if (attValues[4] != 0.0)
-			this.BLUES = attValues[4];
+			this.blues = attValues[4];
 		if (attValues[5] != 0.0)
-			this.REGGAE = attValues[5];
+			this.reggae = attValues[5];
 		if (attValues[6] != 0.0)
-			this.PUNK = attValues[6];
+			this.punk = attValues[6];
 		if (attValues[7] != 0.0)
-			this.HEAVY = attValues[7];
+			this.heavy = attValues[7];
 		if (attValues[8] != 0.0)
-			this.ALTERNATIVE = attValues[8];
+			this.alternative = attValues[8];
 		if (attValues[9] != 0.0)
-			this.CLASSIC = attValues[9];
+			this.classic = attValues[9];
 		if (attValues[10] != 0.0)
-			this.ELECTRONIC = attValues[10];
+			this.electronic = attValues[10];
 		if (attValues[11] != 0.0)
-			this.ROCK = attValues[11];
+			this.rock = attValues[11];
 		if (attValues[12] != 0.0)
-			this.POP = attValues[12];
+			this.pop = attValues[12];
 		if (attValues[13] != 0.0)
-			this.BRIT = attValues[13];
+			this.brit = attValues[13];
 		if (attValues[14] != 0.0)
-			this.FOLK = attValues[14];
+			this.folk = attValues[14];
 		if (attValues[15] != 0.0)
-			this.FUNK = attValues[15];
+			this.funk = attValues[15];
 		if (attValues[16] != 0.0)
-			this.INSTRUMENTAL = attValues[16];
+			this.instrumental = attValues[16];
 		if (attValues[17] != 0.0)
-			this.GRUNGE = attValues[17];
+			this.grunge = attValues[17];
 
 		return addAttValues();
 	}
-
+	
 	public Instance getInstance() {
-		return this.instance;
-	}
-
-	public Double getSINGER() {
-		return SINGER;
-	}
-
-	public void setSINGER(Double sINGER) {
-		SINGER = sINGER;
-	}
-
-	public Double getRAP() {
-		return RAP;
-	}
-
-	public void setRAP(Double rAP) {
-		RAP = rAP;
-	}
-
-	public Double getAMBIENT() {
-		return AMBIENT;
-	}
-
-	public void setAMBIENT(Double aMBIENT) {
-		AMBIENT = aMBIENT;
-	}
-
-	public Double getINDIE() {
-		return INDIE;
-	}
-
-	public void setINDIE(Double iNDIE) {
-		INDIE = iNDIE;
-	}
-
-	public Double getBLUES() {
-		return BLUES;
-	}
-
-	public void setBLUES(Double bLUES) {
-		BLUES = bLUES;
-	}
-
-	public Double getREGGAE() {
-		return REGGAE;
-	}
-
-	public void setREGGAE(Double rEGGAE) {
-		REGGAE = rEGGAE;
-	}
-
-	public Double getPUNK() {
-		return PUNK;
-	}
-
-	public void setPUNK(Double pUNK) {
-		PUNK = pUNK;
-	}
-
-	public Double getHEAVY() {
-		return HEAVY;
-	}
-
-	public void setHEAVY(Double hEAVY) {
-		HEAVY = hEAVY;
-	}
-
-	public Double getALTERNATIVE() {
-		return ALTERNATIVE;
-	}
-
-	public void setALTERNATIVE(Double aLTERNATIVE) {
-		ALTERNATIVE = aLTERNATIVE;
-	}
-
-	public Double getCLASSIC() {
-		return CLASSIC;
-	}
-
-	public void setCLASSIC(Double cLASSIC) {
-		CLASSIC = cLASSIC;
-	}
-
-	public Double getELECTRONIC() {
-		return ELECTRONIC;
-	}
-
-	public void setELECTRONIC(Double eLECTRONIC) {
-		ELECTRONIC = eLECTRONIC;
-	}
-
-	public Double getROCK() {
-		return ROCK;
-	}
-
-	public void setROCK(Double rOCK) {
-		ROCK = rOCK;
-	}
-
-	public Double getPOP() {
-		return POP;
-	}
-
-	public void setPOP(Double pOP) {
-		POP = pOP;
-	}
-
-	public Double getBRIT() {
-		return BRIT;
-	}
-
-	public void setBRIT(Double bRIT) {
-		BRIT = bRIT;
-	}
-
-	public Double getFOLK() {
-		return FOLK;
-	}
-
-	public void setFOLK(Double fOLK) {
-		FOLK = fOLK;
-	}
-
-	public Double getFUNK() {
-		return FUNK;
-	}
-
-	public void setFUNK(Double fUNK) {
-		FUNK = fUNK;
-	}
-
-	public Double getINSTRUMENTAL() {
-		return INSTRUMENTAL;
-	}
-
-	public void setINSTRUMENTAL(Double iNSTRUMENTAL) {
-		INSTRUMENTAL = iNSTRUMENTAL;
-	}
-
-	public Double getGRUNGE() {
-		return GRUNGE;
-	}
-
-	public void setGRUNGE(Double gRUNGE) {
-		GRUNGE = gRUNGE;
+		return instance;
 	}
 
 	public void setInstance(Instance instance) {
 		this.instance = instance;
 	}
-	
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getArtita() {
+		return artista;
+	}
+
+	public void setArtita(String artita) {
+		this.artista = artita;
+	}
+
+	public Double getSinger() {
+		return singer;
+	}
+
+	public void setSinger(Double singer) {
+		this.singer = singer;
+	}
+
+	public Double getRap() {
+		return rap;
+	}
+
+	public void setRap(Double rap) {
+		this.rap = rap;
+	}
+
+	public Double getAmbient() {
+		return ambient;
+	}
+
+	public void setAmbient(Double ambient) {
+		this.ambient = ambient;
+	}
+
+	public Double getIndie() {
+		return indie;
+	}
+
+	public void setIndie(Double indie) {
+		this.indie = indie;
+	}
+
+	public Double getBlues() {
+		return blues;
+	}
+
+	public void setBlues(Double blues) {
+		this.blues = blues;
+	}
+
+	public Double getReggae() {
+		return reggae;
+	}
+
+	public void setReggae(Double reggae) {
+		this.reggae = reggae;
+	}
+
+	public Double getPunk() {
+		return punk;
+	}
+
+	public void setPunk(Double punk) {
+		this.punk = punk;
+	}
+
+	public Double getHeavy() {
+		return heavy;
+	}
+
+	public void setHeavy(Double heavy) {
+		this.heavy = heavy;
+	}
+
+	public Double getAlternative() {
+		return alternative;
+	}
+
+	public void setAlternative(Double alternative) {
+		this.alternative = alternative;
+	}
+
+	public Double getClassic() {
+		return classic;
+	}
+
+	public void setClassic(Double classic) {
+		this.classic = classic;
+	}
+
+	public Double getElectronic() {
+		return electronic;
+	}
+
+	public void setElectronic(Double electronic) {
+		this.electronic = electronic;
+	}
+
+	public Double getRock() {
+		return rock;
+	}
+
+	public void setRock(Double rock) {
+		this.rock = rock;
+	}
+
+	public Double getPop() {
+		return pop;
+	}
+
+	public void setPop(Double pop) {
+		this.pop = pop;
+	}
+
+	public Double getBrit() {
+		return brit;
+	}
+
+	public void setBrit(Double brit) {
+		this.brit = brit;
+	}
+
+	public Double getFolk() {
+		return folk;
+	}
+
+	public void setFolk(Double folk) {
+		this.folk = folk;
+	}
+
+	public Double getFunk() {
+		return funk;
+	}
+
+	public void setFunk(Double funk) {
+		this.funk = funk;
+	}
+
+	public Double getInstrumental() {
+		return instrumental;
+	}
+
+	public void setInstrumental(Double instrumental) {
+		this.instrumental = instrumental;
+	}
+
+	public Double getGrunge() {
+		return grunge;
+	}
+
+	public void setGrunge(Double grunge) {
+		this.grunge = grunge;
+	}
+
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder();
-		if (SINGER.doubleValue() > 0)
-			strBuilder.append("Singer       " + SINGER.doubleValue() + "\n");
-		if (RAP.doubleValue() > 0)
-			strBuilder.append("Rap          " + RAP.doubleValue() + "\n");
-		if (AMBIENT.doubleValue() > 0)
-			strBuilder.append("Ambient      " + AMBIENT.doubleValue() + "\n");
-		if (INDIE.doubleValue() > 0)
-			strBuilder.append("Indie        " + INDIE.doubleValue() + "\n");
-		if (BLUES.doubleValue() > 0)
-			strBuilder.append("Blues        " + BLUES.doubleValue() + "\n");
-		if (REGGAE.doubleValue() > 0)
-			strBuilder.append("Reggae       " + REGGAE.doubleValue() + "\n");
-		if (PUNK.doubleValue() > 0)
-			strBuilder.append("Punk         " + PUNK.doubleValue() + "\n");
-		if (HEAVY.doubleValue() > 0)
-			strBuilder.append("Heavy        " + HEAVY.doubleValue() + "\n");
-		if (ALTERNATIVE.doubleValue() > 0)
-			strBuilder.append("Alternative  " + ALTERNATIVE.doubleValue() + "\n");
-		if (CLASSIC.doubleValue() > 0)
-			strBuilder.append("Classic      " + CLASSIC.doubleValue() + "\n");
-		if (ELECTRONIC.doubleValue() > 0)
-			strBuilder.append("Electronic   " + ELECTRONIC.doubleValue() + "\n");
-		if (ROCK.doubleValue() > 0)
-			strBuilder.append("Rock          " + ROCK.doubleValue() + "\n");
-		if (POP.doubleValue() > 0)
-			strBuilder.append("Pop           " + POP.doubleValue() + "\n");
-		if (BRIT.doubleValue() > 0)
-			strBuilder.append("Brit          " + BRIT.doubleValue() + "\n");
-		if (FOLK.doubleValue() > 0)
-			strBuilder.append("Folk          " + FOLK.doubleValue() + "\n");
-		if (FUNK.doubleValue() > 0)
-			strBuilder.append("Funk          " + FUNK.doubleValue() + "\n");
-		if (INSTRUMENTAL.doubleValue() > 0)
-			strBuilder.append("Instrumental  " + INSTRUMENTAL.doubleValue() + "\n");
-		if (GRUNGE.doubleValue() > 0)
-			strBuilder.append("Grunge        " + GRUNGE.doubleValue() + "\n");
+		strBuilder.append("T’tulo: " + titulo + "\n");
+		strBuilder.append("Artista: " + artista + "\n");
+		if (singer.doubleValue() > 0)
+			strBuilder.append("singer       " + singer.doubleValue() + "\n");
+		if (rap.doubleValue() > 0)
+			strBuilder.append("rap          " + rap.doubleValue() + "\n");
+		if (ambient.doubleValue() > 0)
+			strBuilder.append("ambient      " + ambient.doubleValue() + "\n");
+		if (indie.doubleValue() > 0)
+			strBuilder.append("indie        " + indie.doubleValue() + "\n");
+		if (blues.doubleValue() > 0)
+			strBuilder.append("blues        " + blues.doubleValue() + "\n");
+		if (reggae.doubleValue() > 0)
+			strBuilder.append("reggae       " + reggae.doubleValue() + "\n");
+		if (punk.doubleValue() > 0)
+			strBuilder.append("punk         " + punk.doubleValue() + "\n");
+		if (heavy.doubleValue() > 0)
+			strBuilder.append("heavy        " + heavy.doubleValue() + "\n");
+		if (alternative.doubleValue() > 0)
+			strBuilder.append("alternative  " + alternative.doubleValue() + "\n");
+		if (classic.doubleValue() > 0)
+			strBuilder.append("classic      " + classic.doubleValue() + "\n");
+		if (electronic.doubleValue() > 0)
+			strBuilder.append("electronic   " + electronic.doubleValue() + "\n");
+		if (rock.doubleValue() > 0)
+			strBuilder.append("rock          " + rock.doubleValue() + "\n");
+		if (pop.doubleValue() > 0)
+			strBuilder.append("pop           " + pop.doubleValue() + "\n");
+		if (brit.doubleValue() > 0)
+			strBuilder.append("brit          " + brit.doubleValue() + "\n");
+		if (folk.doubleValue() > 0)
+			strBuilder.append("folk          " + folk.doubleValue() + "\n");
+		if (funk.doubleValue() > 0)
+			strBuilder.append("funk          " + funk.doubleValue() + "\n");
+		if (instrumental.doubleValue() > 0)
+			strBuilder.append("instrumental  " + instrumental.doubleValue() + "\n");
+		if (grunge.doubleValue() > 0)
+			strBuilder.append("grunge        " + grunge.doubleValue() + "\n");
 		
 		return strBuilder.toString();
 	}

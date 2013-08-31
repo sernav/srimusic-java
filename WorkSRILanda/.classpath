@@ -2,23 +2,34 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="/Development/drools-distribution-5.5.0.Final.zip"/>
-	<classpathentry kind="lib" path="/Development/postgresql/postgresql-9.2-1002.jdbc3.jar"/>
-	<classpathentry kind="lib" path="/Development/mysql/mysql-connector-java-5.1.5-bin.jar"/>
-	<classpathentry kind="lib" path="/Development/mybatis/mybatis-3.2.0/mybatis-3.2.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="/Development/mybatis/mybatis-3.2.0/mybatis-3.2.0-sources.jar"/>
-	<classpathentry kind="lib" path="/Development/mybatis/mybatis-3.2.0/mybatis-3.2.0.jar"/>
-	<classpathentry kind="lib" path="/Development/ehcache/ehcache-2.6.3/lib/ehcache-core-2.6.3.jar"/>
-	<classpathentry kind="lib" path="/Development/ehcache/ehcache-2.6.3/lib/ehcache-terracotta-2.6.3.jar"/>
-	<classpathentry kind="lib" path="/Development/ehcache/ehcache-2.6.3/lib/slf4j-api-1.6.1.jar"/>
-	<classpathentry kind="lib" path="/Development/ehcache/ehcache-2.6.3/lib/slf4j-jdk14-1.6.1.jar"/>
-	<classpathentry kind="lib" path="/Development/ehcache/ehcache-2.6.3/lib/terracotta-toolkit-1.6-runtime-5.3.0.jar"/>
-	<classpathentry kind="lib" path="/Development/mybatis/mybatis-3.2.0/lib/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="/Development/dom4j-1.5.1.jar"/>
-	<classpathentry kind="lib" path="/Development/xercesSamples.jar"/>
-	<classpathentry kind="lib" path="/Development/xercesImpl.jar"/>
-	<classpathentry kind="lib" path="/Development/xerces-1.4.4.jar"/>
-	<classpathentry kind="lib" path="/Development/xmlParserAPIs-2.6.2.jar"/>
-	<classpathentry kind="lib" path="/Development/xmlparserv2.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-clips-5.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-compiler-5.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-core-5.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-decisiontables-5.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-jsr94-5.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-persistence-jpa-5.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-templates-5.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-verifier-5.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/knowledge-api-5.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/ehcache-core-2.6.3.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/ehcache-terracotta-2.6.3.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/slf4j-jdk14-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/jsoup-1.7.2/jsoup-1.7.2.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/mybatis-3.2.0/mybatis-3.2.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/mybatis-3.2.0/mybatis-3.2.0-sources.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/mybatis-3.2.0/mybatis-3.2.0.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/postgresql/postgresql-9.2-1002.jdbc3.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/xerces-1.4.4/xerces-1.4.4.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/xerces-1.4.4/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/xerces-1.4.4/xercesSamples.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/dom4j-1.5.1.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/javacsv-2.0.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/log4j-1.2.12.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/org.apache.servicemix.bundles.commons-csv-1.0-r706899_1.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/xmlParserAPIs-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/xmlparserv2.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/weka-3-6-9/weka-src.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/weka-3-6-9/weka.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

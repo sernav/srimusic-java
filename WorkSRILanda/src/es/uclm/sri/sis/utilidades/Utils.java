@@ -3,6 +3,8 @@ package es.uclm.sri.sis.utilidades;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -107,6 +109,35 @@ public class Utils {
 			array[i] = 0.0;
 		}
 		return array;
+	}
+	
+	public static String[] removeElements(String[] input, String deleteMe) {
+	    List<String> result = new LinkedList<String>();
+
+	    for(String item : input)
+	        if(!deleteMe.equals(item))
+	            result.add(item);
+
+	    return result.toArray(input);
+	}
+	
+	public static double[] removeElements(double[] input, int pos1, int pos2) {
+		
+		List<Double> result = new ArrayList<Double>();
+		for (int i = 0; i < input.length; i++) {
+			if (i != pos1 && i != pos2) {
+				result.add(new Double(input[i]));
+			}
+		}
+		double[] d = new double[result.size()];
+		int index = 0;
+		Iterator<Double> it = result.iterator();
+		while(it.hasNext()) {
+			d[index] = it.next().doubleValue();
+			index++;
+		}
+		
+		return d;
 	}
 
 }
