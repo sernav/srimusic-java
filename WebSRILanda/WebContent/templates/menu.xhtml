@@ -1,0 +1,33 @@
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<h:form>
+	
+	 <p:growl id="messages" autoUpdate="true"/>  
+     <p:panelMenu style="width:195px">  
+        <p:submenu label="Albums" style="font-size:11px">  
+            <p:menuitem value="Incluir albums" actionListener="#{buttonBean.save}" icon="ui-icon-disk" style="font-size:12px" />  
+            <p:menuitem value="Ver albums" actionListener="#{buttonBean.update}"  icon="ui-icon-search" style="font-size:12px"/>
+            <p:menuitem value="Recomendaciones" actionListener="#{buttonBean.update}"  icon="ui-icon-extlink" style="font-size:12px"/>  
+        </p:submenu>  
+        <p:submenu label="Clustering" style="font-size:11px">  
+            <p:menuitem value="Ver agrupaciones" actionListener="#{buttonBean.delete}" icon="ui-icon-search" style="font-size:12px"/>
+            <p:menuitem value="Actualizar clustering" actionListener="#{buttonBean.delete}" icon="ui-icon-arrowrefresh-1-w" style="font-size:12px"/> 
+            <p:menuitem value="Guardar agrupaciones" actionListener="#{buttonBean.delete}" icon="ui-icon-disk" style="font-size:12px"/>
+        </p:submenu> 
+        <p:submenu label="Analisis" style="font-size:11px">  
+            <p:menuitem value="Ver estadisticas" actionListener="#{buttonBean.delete}" icon="ui-icon-gear" style="font-size:12px"/>  
+        </p:submenu> 
+        <p:separator />
+    </p:panelMenu>
+
+	</h:form>
+</ui:composition>
+
+
