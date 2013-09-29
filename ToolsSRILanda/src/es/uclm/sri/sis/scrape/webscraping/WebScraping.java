@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.parser.webscraping;
+package es.uclm.sri.sis.scrape.webscraping;
 
 import java.io.File;
 import java.io.FileOutputStream;

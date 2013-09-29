@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.parser.html;
+package es.uclm.sri.sis.scrape.webscraping;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,39 +12,32 @@ import org.jsoup.select.Elements;
 
 import es.uclm.sri.sis.csv.TratarCSVAlbum;
 import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.scrape.AbstractWebScraping;
 
-public class HtmlScrapeMondosonoro implements IHtmlScrape {
+public class ScrapingMondosonoro extends AbstractWebScraping {
 
-	private final static String URL_MONDOSONORO = "http://www.mondosonoro.com/Cr%C3%ADticas/Discos.aspx";
-	private final static String SUBURL_MONDOSONORO = "http://www.mondosonoro.com/Critica-Discos/";
-
-	private final static String ID_ELEMENT_TITULO = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_titularLabel";
-	private final static String ID_ELEMENT_ARTISTA = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_grupoLabel";
-	private final static String ID_ELEMENT_GENERO = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_generoLabel";
-	private final static String ID_ELEMENT_PAIS = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_paisEdicionLabel";
-	private final static String ID_ELEMENT_FECHA = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_horaFechaPublicacionLabel";
-
-	private final static int NUMPAGES = 140;
-
-	private final static String DESTINY_PATH = "/Users/sergionavarro/PFC/CSV_Albums_Mondosonoro";
-
-	private static final Logger logger = Logger
-			.getLogger(HtmlScrapeRockdeluxe.class);
+	private final String ID_ELEMENT_TITULO = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_titularLabel";
+	private final String ID_ELEMENT_ARTISTA = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_grupoLabel";
+	private final String ID_ELEMENT_GENERO = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_generoLabel";
+	private final String ID_ELEMENT_PAIS = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_paisEdicionLabel";
+	private final String ID_ELEMENT_FECHA = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_horaFechaPublicacionLabel";
 	
-	private HtmlScrapeMondosonoro() {
-		super();
+	public ScrapingMondosonoro(String rutaDestino) {
+	    super("Mondosonoro", "http://www.mondosonoro.com/Cr%C3%ADticas/Discos.aspx\"",
+                "http://www.mondosonoro.com/Critica-Discos/", 140, rutaDestino);
+        logger = Logger.getLogger(ScrapingMondosonoro.class);
 	}
 
 	public void scrappingWeb(String url, String subUrl, int numPages,
 			String destinyPath) {
 		String[] elements = { ID_ELEMENT_TITULO, ID_ELEMENT_ARTISTA,
 				ID_ELEMENT_GENERO, ID_ELEMENT_PAIS, ID_ELEMENT_FECHA };
-		scrappingMondosonoro(URL_MONDOSONORO, SUBURL_MONDOSONORO, NUMPAGES,
-				elements, DESTINY_PATH);
+		scrappingMondosonoro(this.url, this.subUrl, this.numPaginas,
+				elements, this.rutaDestino);
 		
 	}
 
-	protected void scrappingMondosonoro(String url, String subUrl,
+    protected void scrappingMondosonoro(String url, String subUrl,
 			int numPages, String[] idElements, String destinyPath) {
 		String numPage = "";
 		String urlAnalyze = "";
@@ -86,15 +79,6 @@ public class HtmlScrapeMondosonoro implements IHtmlScrape {
 		}
 	}
 
-	private String procesarElementoHtml(Element linkAlbum,
-			String idElement) throws IOException {
-		Document doc = Jsoup.connect(linkAlbum.attr("abs:href")).get();
-		Element element = doc.getElementById(idElement);
-		Node node = element.childNode(0);
-
-		return node.attr("text");
-	}
-
 	private Album procesarElementosAlbum(Document docAlbum, Album album,
 			String[] elementos) {
 		for (int index = 0; index < elementos.length; index++) {
@@ -131,5 +115,11 @@ public class HtmlScrapeMondosonoro implements IHtmlScrape {
 		}
 		return album;
 	}
+
+    @Override
+    public void generarCSV() {
+        // TODO Auto-generated method stub
+        
+    }
 
 }
