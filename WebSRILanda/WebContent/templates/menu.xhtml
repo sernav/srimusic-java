@@ -21,6 +21,18 @@
             <p:menuitem value="Actualizar clustering" actionListener="#{buttonBean.delete}" icon="ui-icon-arrowrefresh-1-w" style="font-size:12px"/> 
             <p:menuitem value="Guardar agrupaciones" actionListener="#{buttonBean.delete}" icon="ui-icon-disk" style="font-size:12px"/>
         </p:submenu> 
+        <p:submenu label="Herramientas" style="font-size:11px">
+        	<p:submenu label="Web scraping" style="font-size:12px">
+        		<p:menuitem value="Last.fm" actionListener="#{buttonBean.delete}" icon="ui-icon-search" style="font-size:12px" url="../pages/scrape_lastfm.xhtml"/>
+        		<p:menuitem value="Mondosonoro" actionListener="#{buttonBean.delete}" icon="ui-icon-search" style="font-size:12px"/>
+        		<p:menuitem value="Rockdelux" actionListener="#{buttonBean.delete}" icon="ui-icon-search" style="font-size:12px"/>
+        	</p:submenu>
+        	<p:submenu label="Datos" style="font-size:12px">
+        		<p:menuitem value="Importar csv" actionListener="#{buttonBean.delete}" icon="ui-icon-circle-arrow-n" style="font-size:12px"/>
+        		<p:menuitem value="Exportar csv" actionListener="#{buttonBean.delete}" icon="ui-icon-circle-arrow-s" style="font-size:12px"/>
+        		<p:menuitem value="Estandarizar datos" actionListener="#{buttonBean.delete}" icon="ui-icon-wrench" style="font-size:12px"/>
+        	</p:submenu>
+        </p:submenu>
         <p:submenu label="Analisis" style="font-size:11px">  
             <p:menuitem value="Ver estadisticas" actionListener="#{buttonBean.delete}" icon="ui-icon-gear" style="font-size:12px"/>  
         </p:submenu> 

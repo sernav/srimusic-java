@@ -9,21 +9,42 @@
 <style type="text/css">
 	.header-main {
 		border: 1px solid #000000;
-		border-radius: 10px 10px 10px 10px;
-		-moz-border-radius: 10px 10px 10px 10px;
-		-webkit-border-radius: 10px 10px 10px 10px;
+		border-radius: 5px 5px 5px 5px;
+		-moz-border-radius: 5px 5px 5px 5px;
+		-webkit-border-radius: 5px 5px 5px 5px;
 		background: #2E2E2E;
 		width: auto;
-		height: 110px;
-		color: #FF0080; 
+		height: 220px;
+		color: #FE2E9A; 
 		font-weight: bold;
 		text-align: left;
 		vertical-align: middle;
 	}
+	.subheader-main {
+		font-size: 16px;
+		color: #FAFAFA
+	}
 </style>
 	
 	<div class="ui-widget header-main">
-		<br></br>
-		<h1>Sri.play - Dev Home</h1>
+		<table>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><h1>Sri.play - Dev Home</h1></td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td>
+					<p class="subheader-main">
+					Sistema inteligente de recomendaciones musicales.
+					<br/>Recogemos tus escuchas y te recomendamos lo que te puede interesar.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><p:commandButton value="Saber mas &raquo;" id="saberMas" actionListener="#" /> </td>
+			</tr>
+		</table>
 	</div>
 </ui:composition>

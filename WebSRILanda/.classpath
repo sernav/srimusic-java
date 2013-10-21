@@ -13,14 +13,14 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/WekaSRILanda"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/WorkSRILanda"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/WekaSRILanda"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ToolsSRILanda"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JSF 2.0 (Mojarra 2.0.3-FCS)">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 			<attribute name="owner.project.facets" value="jst.jsf"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/ToolsSRILanda"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
