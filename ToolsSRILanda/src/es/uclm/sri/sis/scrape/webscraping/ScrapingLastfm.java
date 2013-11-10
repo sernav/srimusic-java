@@ -21,6 +21,8 @@ public class ScrapingLastfm extends AbstractWebScraping {
     public ScrapingLastfm(String rutaDestino) {
         super("Last.fm", "http://www.lastfm.es/music/+geo/spain", "", 30,
                 rutaDestino);
+        scrappingWeb("http://www.lastfm.es/music/+geo/spain", "", 30,
+                rutaDestino);
     }
 
     public void scrappingWeb(String url, String subUrl, int numPages,

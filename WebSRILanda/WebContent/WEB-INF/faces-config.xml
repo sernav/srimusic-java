@@ -6,9 +6,9 @@
 	version="2.0">
 	
 	<managed-bean>
-  		<managed-bean-name>scrapeLastfm</managed-bean-name>
-  		<managed-bean-class>scrape.ScrapeLastfm</managed-bean-class>
-  		<managed-bean-scope>session</managed-bean-scope>
+  		<managed-bean-name>scrapeBean</managed-bean-name>
+  		<managed-bean-class>beans.ScrapeBean</managed-bean-class>
+  		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 
 </faces-config>

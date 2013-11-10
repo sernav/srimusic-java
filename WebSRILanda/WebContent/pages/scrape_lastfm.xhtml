@@ -19,14 +19,14 @@
 		<h:panelGrid columns="3">
 		<h:outputLabel for="rutaDirectorio" value="Directorio: *" style="font-size:12px;" />  
             <p:inputText id="rutaDirectorio"   
-                value="#" required="true" label="Directorio" style="font-size:12px; width:200%;" >  
+                value="#{scrapeBean.rutaDirectorio}" required="true" label="Directorio" style="font-size:12px; width:200%;" >  
                 <f:validateLength minimum="5" />  
             </p:inputText>  
             <p:message for="rutaDirectorio" />  
             
             <h:outputLabel for="" value="Nombre fichero: *" style="font-size:12px;" />  
             <p:inputText id="nombreCsv"   
-                value="#" required="true" label="Nombre del fichero" style="font-size:12px;" >  
+                value="#{scrapeBean.nombreCsv}" required="true" label="Nombre del fichero" style="font-size:12px;" >  
                 <f:validateLength minimum="5" />  
             </p:inputText>
             <h:outputLabel for="" value=".csv" style="font-size:12px;" />
@@ -34,6 +34,6 @@
 		</h:panelGrid>
 		</p:panel>
 		<p:commandButton value="Reset" type="reset" style="margin-right:20px;" />  
-        <p:commandButton value="Scraping!" update="" oncomplete="PF('dlg').show()" actionListener="#{scrapeLastfm.lanzarScraping}" style="margin-right:20px;" />   
+        <p:commandButton value="Scraping!" update="" oncomplete="PF('dlg').show()" action="#{scrapeBean.lanzarScraping()}" style="margin-right:20px;" />   
 	</ui:define>
 </ui:composition>
