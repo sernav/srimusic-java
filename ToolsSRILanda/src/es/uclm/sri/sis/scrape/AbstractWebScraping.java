@@ -1,12 +1,13 @@
 package es.uclm.sri.sis.scrape;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
 import es.uclm.sri.sis.entidades.Album;
 
-public abstract class AbstractWebScraping implements IHtmlScraping {
+public abstract class AbstractWebScraping implements IHtmlScraping, Serializable {
 
     public String sitioWeb;
 

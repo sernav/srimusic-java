@@ -4,43 +4,48 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-	<!-- Ubicación del JAR JDBC del gestor de Base de datos a usar, en este caso PostgreSql  -->
-  <classPathEntry location="postgresql-9.2-1002.jdbc3.jar" />
+	<!-- Ubicación del JAR JDBC del gestor de Base de datos a usar, en este 
+		caso PostgreSql -->
+	<classPathEntry location="postgresql-9.2-1002.jdbc3.jar" />
 
-  <!--  Generaremos para MyBatis versión 3 -->
-  <context id="sribdatosctx" targetRuntime="MyBatis3">
-    
-    <!-- No generamos los comentarios -->
-    <commentGenerator>
-      <property name="suppressAllComments" value="true"/>
-    </commentGenerator>
-    
-      <!--  Parámetros de conexión a la bd -->
-    <jdbcConnection driverClass="org.postgresql.Driver"
-        connectionURL="jdbc:postgresql://localhost:5432/SRIBDATOS"
-        userId="postgres"
-        password="root">
-    </jdbcConnection>
+	<!-- Generaremos para MyBatis versión 3 -->
+	<context id="sribdatosctx" targetRuntime="MyBatis3">
 
-    <javaModelGenerator targetPackage="es.uclm.sri.persistencia.postgre.dao.model" targetProject="../src">
-      <property name="enableSubPackages" value="true" />
-    </javaModelGenerator>
+		<!-- No generamos los comentarios -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
 
-    <sqlMapGenerator targetPackage="es.uclm.sri.persistencia.postgre.dao.sqlmap"  targetProject="../src">
-      <property name="enableSubPackages" value="true" />
-    </sqlMapGenerator>
-    
-	<!-- También podríamos indicar el tipo ANNOTATEDMAPPER -->
-    <javaClientGenerator type="XMLMAPPER" targetPackage="es.uclm.sri.persistencia.postgre.dao"  targetProject="../src">
-      <property name="enableSubPackages" value="true" />
-    </javaClientGenerator>
+		<!-- Parámetros de conexión a la bd -->
+		<jdbcConnection driverClass="org.postgresql.Driver"
+			connectionURL="jdbc:postgresql://localhost:5432/SRIBDATOS" userId="postgres"
+			password="root">
+		</jdbcConnection>
 
-	<!-- Generamos el código fuente de todas las tablas evitando la generación varios métodos -->
-    <table tableName="%" enableCountByExample="false" enableDeleteByExample="false" 
-    	   enableUpdateByExample="false" selectByPrimaryKeyQueryId="false" 
-           selectByExampleQueryId="false" enableSelectByExample="false" modelType="flat">
-      <property name="useActualColumnNames" value="true"/>
-    </table>
-  </context>
+		<javaModelGenerator targetPackage="es.uclm.sri.persistencia.postgre.dao.model"
+			targetProject="../src">
+			<property name="enableSubPackages" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="es.uclm.sri.persistencia.postgre.dao.sqlmap"
+			targetProject="../src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- También podríamos indicar el tipo ANNOTATEDMAPPER -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="es.uclm.sri.persistencia.postgre.dao" targetProject="../src">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- Generamos el código fuente de todas las tablas evitando la generación 
+			varios métodos -->
+		<table tableName="%" enableCountByExample="false"
+			enableDeleteByExample="false" enableUpdateByExample="false"
+			selectByPrimaryKeyQueryId="false" selectByExampleQueryId="false"
+			enableSelectByExample="false" modelType="flat">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+	</context>
 </generatorConfiguration>
 		

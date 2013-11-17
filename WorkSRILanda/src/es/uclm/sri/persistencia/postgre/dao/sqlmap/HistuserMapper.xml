@@ -1,93 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="es.uclm.sri.persistencia.postgre.dao.HistuserMapper" >
-  <resultMap id="BaseResultMap" type="es.uclm.sri.persistencia.postgre.dao.model.Histuser" >
-    <id column="ID_HISTUSER" property="ID_HISTUSER" jdbcType="INTEGER" />
-    <result column="ID_USERAPP_FK" property="ID_USERAPP_FK" jdbcType="INTEGER" />
-    <result column="ID_ALBUMAPP_FK" property="ID_ALBUMAPP_FK" jdbcType="INTEGER" />
-    <result column="NUMREPRD" property="NUMREPRD" jdbcType="INTEGER" />
-    <result column="FULTREPR" property="FULTREPR" jdbcType="DATE" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    ID_HISTUSER, ID_USERAPP_FK, ID_ALBUMAPP_FK, NUMREPRD, FULTREPR
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 'false' as QUERYID,
-    <include refid="Base_Column_List" />
-    from HISTUSER
-    where ID_HISTUSER = #{ID_HISTUSER,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from HISTUSER
-    where ID_HISTUSER = #{ID_HISTUSER,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Histuser" >
-    insert into HISTUSER (ID_HISTUSER, ID_USERAPP_FK, ID_ALBUMAPP_FK, 
-      NUMREPRD, FULTREPR)
-    values (#{ID_HISTUSER,jdbcType=INTEGER}, #{ID_USERAPP_FK,jdbcType=INTEGER}, #{ID_ALBUMAPP_FK,jdbcType=INTEGER}, 
-      #{NUMREPRD,jdbcType=INTEGER}, #{FULTREPR,jdbcType=DATE})
-  </insert>
-  <insert id="insertSelective" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Histuser" >
-    insert into HISTUSER
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="ID_HISTUSER != null" >
-        ID_HISTUSER,
-      </if>
-      <if test="ID_USERAPP_FK != null" >
-        ID_USERAPP_FK,
-      </if>
-      <if test="ID_ALBUMAPP_FK != null" >
-        ID_ALBUMAPP_FK,
-      </if>
-      <if test="NUMREPRD != null" >
-        NUMREPRD,
-      </if>
-      <if test="FULTREPR != null" >
-        FULTREPR,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="ID_HISTUSER != null" >
-        #{ID_HISTUSER,jdbcType=INTEGER},
-      </if>
-      <if test="ID_USERAPP_FK != null" >
-        #{ID_USERAPP_FK,jdbcType=INTEGER},
-      </if>
-      <if test="ID_ALBUMAPP_FK != null" >
-        #{ID_ALBUMAPP_FK,jdbcType=INTEGER},
-      </if>
-      <if test="NUMREPRD != null" >
-        #{NUMREPRD,jdbcType=INTEGER},
-      </if>
-      <if test="FULTREPR != null" >
-        #{FULTREPR,jdbcType=DATE},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Histuser" >
-    update HISTUSER
-    <set >
-      <if test="ID_USERAPP_FK != null" >
-        ID_USERAPP_FK = #{ID_USERAPP_FK,jdbcType=INTEGER},
-      </if>
-      <if test="ID_ALBUMAPP_FK != null" >
-        ID_ALBUMAPP_FK = #{ID_ALBUMAPP_FK,jdbcType=INTEGER},
-      </if>
-      <if test="NUMREPRD != null" >
-        NUMREPRD = #{NUMREPRD,jdbcType=INTEGER},
-      </if>
-      <if test="FULTREPR != null" >
-        FULTREPR = #{FULTREPR,jdbcType=DATE},
-      </if>
-    </set>
-    where ID_HISTUSER = #{ID_HISTUSER,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Histuser" >
-    update HISTUSER
-    set ID_USERAPP_FK = #{ID_USERAPP_FK,jdbcType=INTEGER},
-      ID_ALBUMAPP_FK = #{ID_ALBUMAPP_FK,jdbcType=INTEGER},
-      NUMREPRD = #{NUMREPRD,jdbcType=INTEGER},
-      FULTREPR = #{FULTREPR,jdbcType=DATE}
-    where ID_HISTUSER = #{ID_HISTUSER,jdbcType=INTEGER}
-  </update>
+<mapper namespace="es.uclm.sri.persistencia.postgre.dao.HistuserMapper">
+	<resultMap id="BaseResultMap"
+		type="es.uclm.sri.persistencia.postgre.dao.model.Histuser">
+		<id column="ID_HISTUSER" property="ID_HISTUSER" jdbcType="INTEGER" />
+		<result column="ID_USERAPP_FK" property="ID_USERAPP_FK"
+			jdbcType="INTEGER" />
+		<result column="ID_ALBUMAPP_FK" property="ID_ALBUMAPP_FK"
+			jdbcType="INTEGER" />
+		<result column="NUMREPRD" property="NUMREPRD" jdbcType="INTEGER" />
+		<result column="FULTREPR" property="FULTREPR" jdbcType="DATE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID_HISTUSER, ID_USERAPP_FK, ID_ALBUMAPP_FK, NUMREPRD, FULTREPR
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from HISTUSER
+		where ID_HISTUSER = #{ID_HISTUSER,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from HISTUSER
+		where ID_HISTUSER = #{ID_HISTUSER,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Histuser">
+		insert into HISTUSER (ID_HISTUSER, ID_USERAPP_FK, ID_ALBUMAPP_FK,
+		NUMREPRD, FULTREPR)
+		values (#{ID_HISTUSER,jdbcType=INTEGER}, #{ID_USERAPP_FK,jdbcType=INTEGER},
+		#{ID_ALBUMAPP_FK,jdbcType=INTEGER},
+		#{NUMREPRD,jdbcType=INTEGER}, #{FULTREPR,jdbcType=DATE})
+	</insert>
+	<insert id="insertSelective" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Histuser">
+		insert into HISTUSER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ID_HISTUSER != null">
+				ID_HISTUSER,
+			</if>
+			<if test="ID_USERAPP_FK != null">
+				ID_USERAPP_FK,
+			</if>
+			<if test="ID_ALBUMAPP_FK != null">
+				ID_ALBUMAPP_FK,
+			</if>
+			<if test="NUMREPRD != null">
+				NUMREPRD,
+			</if>
+			<if test="FULTREPR != null">
+				FULTREPR,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="ID_HISTUSER != null">
+				#{ID_HISTUSER,jdbcType=INTEGER},
+			</if>
+			<if test="ID_USERAPP_FK != null">
+				#{ID_USERAPP_FK,jdbcType=INTEGER},
+			</if>
+			<if test="ID_ALBUMAPP_FK != null">
+				#{ID_ALBUMAPP_FK,jdbcType=INTEGER},
+			</if>
+			<if test="NUMREPRD != null">
+				#{NUMREPRD,jdbcType=INTEGER},
+			</if>
+			<if test="FULTREPR != null">
+				#{FULTREPR,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Histuser">
+		update HISTUSER
+		<set>
+			<if test="ID_USERAPP_FK != null">
+				ID_USERAPP_FK = #{ID_USERAPP_FK,jdbcType=INTEGER},
+			</if>
+			<if test="ID_ALBUMAPP_FK != null">
+				ID_ALBUMAPP_FK = #{ID_ALBUMAPP_FK,jdbcType=INTEGER},
+			</if>
+			<if test="NUMREPRD != null">
+				NUMREPRD = #{NUMREPRD,jdbcType=INTEGER},
+			</if>
+			<if test="FULTREPR != null">
+				FULTREPR = #{FULTREPR,jdbcType=DATE},
+			</if>
+		</set>
+		where ID_HISTUSER = #{ID_HISTUSER,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Histuser">
+		update HISTUSER
+		set ID_USERAPP_FK = #{ID_USERAPP_FK,jdbcType=INTEGER},
+		ID_ALBUMAPP_FK = #{ID_ALBUMAPP_FK,jdbcType=INTEGER},
+		NUMREPRD = #{NUMREPRD,jdbcType=INTEGER},
+		FULTREPR = #{FULTREPR,jdbcType=DATE}
+		where ID_HISTUSER = #{ID_HISTUSER,jdbcType=INTEGER}
+	</update>
 </mapper>

@@ -1,6 +1,7 @@
 package es.uclm.sri.sis.scrape.webscraping;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import es.uclm.sri.sis.entidades.Artista;
 import es.uclm.sri.sis.scrape.AbstractWebScraping;
 import es.uclm.sri.sis.utilidades.Utils;
 
-public class ScrapingLastfm extends AbstractWebScraping {
+public class ScrapingLastfm extends AbstractWebScraping implements Serializable {
 
     public ScrapingLastfm(String rutaDestino) {
         super("Last.fm", "http://www.lastfm.es/music/+geo/spain", "", 30,
