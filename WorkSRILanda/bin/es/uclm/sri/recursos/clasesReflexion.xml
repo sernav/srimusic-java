@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<crawlers>
-	<crawler class="es.uclm.sri.arqtecn.caches.CacheHistorico"
-		isEnabled="true" />
-	<crawler class="es.uclm.sri.arqtecn.caches.CachePesosAlbum"
-		isEnabled="true" />
-	<crawler class="es.uclm.sri.arqtecn.caches.CachePesosUsuario"
-		isEnabled="true" />
-</crawlers>
