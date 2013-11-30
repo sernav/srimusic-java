@@ -2,6 +2,12 @@ package es.uclm.sri.sis.entidades;
 
 import java.util.ArrayList;
 
+/**
+ * <code>AlbumPonderado</code> clase que extiende de la clase de entidad Album con la
+ * particularidad de que tiene sus pesos ponderados para realizar el clustering.
+ * 
+ * @author Sergio Navarro
+ * */
 public class AlbumPonderado extends Album {
 	
 	private Double[] pesosGeneros;

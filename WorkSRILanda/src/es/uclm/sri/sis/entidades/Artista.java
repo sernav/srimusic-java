@@ -2,6 +2,12 @@ package es.uclm.sri.sis.entidades;
 
 import java.util.ArrayList;
 
+/**
+ * <code>Artista</code> es la clase que representa la entidad artista para Sri.Landa</br>
+ * Diferenciamos esta entidad de la entidad Artist para la aplicaci—n de Lastfm.
+ * 
+ * @author Sergio Navarro
+ * */
 public class Artista {
 
 	private String nombre;

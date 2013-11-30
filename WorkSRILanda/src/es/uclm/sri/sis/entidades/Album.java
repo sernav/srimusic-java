@@ -2,6 +2,11 @@ package es.uclm.sri.sis.entidades;
 
 import java.util.ArrayList;
 
+/**
+ * <code>Album</code> es la clase que representa la entidad disco para Sri.Landa
+ * 
+ * @author Sergio Navarro
+ * */
 public class Album {
 	
 	private String titulo;
