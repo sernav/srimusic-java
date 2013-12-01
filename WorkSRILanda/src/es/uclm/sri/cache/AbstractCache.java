@@ -1,12 +1,13 @@
-package es.uclm.sri.sis.preframework.cache;
+package es.uclm.sri.cache;
+
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.Element;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import es.uclm.sri.cache.EhcacheFactory;
+import es.uclm.sri.cache.ehcache.EhcacheFactory;
 import es.uclm.sri.persistencia.ConnectionFactory;
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.Element;
 
 public abstract class AbstractCache {
 

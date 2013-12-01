@@ -1,17 +1,17 @@
-package es.uclm.sri.sis.preframework.cache;
+package es.uclm.sri.cache;
 
 import net.sf.ehcache.Element;
 import es.uclm.sri.persistencia.postgre.dao.HistuserMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Histuser;
-import es.uclm.sri.sis.preframework.KConstantes;
+import es.uclm.sri.sis.reflexion.KCtesReflexion;
 
 public class CacheHistorico extends AbstractCache {
 	
 	private static CacheHistorico instance = null;
 	
 	private CacheHistorico() {
-		nombreCache = KConstantes.Cache.cacheHistUser;
-		tablaDCache = KConstantes.Tablas.historico;
+		nombreCache = KCtesReflexion.Cache.cacheHistUser;
+		tablaDCache = KCtesReflexion.Tablas.historico;
 		cache = getCache();
 	}
 	

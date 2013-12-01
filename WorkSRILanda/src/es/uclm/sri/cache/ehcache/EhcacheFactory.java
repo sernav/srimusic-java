@@ -1,4 +1,4 @@
-package es.uclm.sri.cache;
+package es.uclm.sri.cache.ehcache;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;

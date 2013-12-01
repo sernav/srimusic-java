@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.preframework.cache;
+package es.uclm.sri.cache;
 
 import org.w3c.dom.Element;
 

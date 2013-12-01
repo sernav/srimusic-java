@@ -1,8 +1,8 @@
-package es.uclm.sri.sis.preframework.cache;
+package es.uclm.sri.cache;
 
 import net.sf.ehcache.Cache;
 
-public interface ICacheApp {
+public interface ICache {
 	
 	public void getElementosTablaById(Integer identificador);
 	

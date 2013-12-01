@@ -1,15 +1,14 @@
-package es.uclm.sri.sis.preframework.reflexion;
+package es.uclm.sri.sis.reflexion;
 
 import java.util.ArrayList;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import es.uclm.sri.sis.preframework.KConstantes;
 import es.uclm.sri.sis.utilidades.XMLUtil;
 
 /**
- * @author sernav
+ * @author Sergio Navarro
  * 
  * */
 public class Reflexion {
@@ -34,13 +33,13 @@ public class Reflexion {
 	public Class reflexionCacheByXML() {
 		Class classReflection = null;
 		try{
-			Document xmlDocument = XMLUtil.loadFicheroByDOM(KConstantes.Reflexion.pathXmlClasesReflexion);
-			Element rootElement = XMLUtil.getRootElement(xmlDocument, KConstantes.Reflexion.rootElement);
-			ArrayList<Element> elements = XMLUtil.getElements(rootElement, KConstantes.Reflexion.rootElement);
+			Document xmlDocument = XMLUtil.loadFicheroByDOM(KCtesReflexion.Reflexion.pathXmlClasesReflexion);
+			Element rootElement = XMLUtil.getRootElement(xmlDocument, KCtesReflexion.Reflexion.rootElement);
+			ArrayList<Element> elements = XMLUtil.getElements(rootElement, KCtesReflexion.Reflexion.rootElement);
 			for (Element element : elements) {
-				boolean isEnabled = Boolean.parseBoolean(element.getAttribute(KConstantes.Reflexion.attrbIsEnable));
+				boolean isEnabled = Boolean.parseBoolean(element.getAttribute(KCtesReflexion.Reflexion.attrbIsEnable));
 				if (isEnabled) {
-					classReflection = Class.forName(element.getAttribute(KConstantes.Reflexion.attrbClass));
+					classReflection = Class.forName(element.getAttribute(KCtesReflexion.Reflexion.attrbClass));
 					
 				}
 			}

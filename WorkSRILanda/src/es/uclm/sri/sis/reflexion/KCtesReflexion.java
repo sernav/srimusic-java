@@ -1,6 +1,6 @@
-package es.uclm.sri.sis.preframework;
+package es.uclm.sri.sis.reflexion;
 
-public class KConstantes {
+public class KCtesReflexion {
 	
 	public class Cache {
 		public static final String cacheHistUser = "HISTUSER";

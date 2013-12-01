@@ -1,17 +1,17 @@
-package es.uclm.sri.sis.preframework.cache;
+package es.uclm.sri.cache;
 
 import net.sf.ehcache.Element;
 import es.uclm.sri.persistencia.postgre.dao.VpesosuserMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Vpesosuser;
-import es.uclm.sri.sis.preframework.KConstantes;
+import es.uclm.sri.sis.reflexion.KCtesReflexion;
 
 public class CachePesosUsuario extends AbstractCache {
 	
 	private static CachePesosUsuario instance = null;
 	
 	private CachePesosUsuario() {
-		nombreCache = KConstantes.Cache.cacheVPesosAlbum;
-		tablaDCache = KConstantes.Tablas.albums;
+		nombreCache = KCtesReflexion.Cache.cacheVPesosAlbum;
+		tablaDCache = KCtesReflexion.Tablas.albums;
 		cache = getCache();
 	}
 	

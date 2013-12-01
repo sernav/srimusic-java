@@ -13,7 +13,7 @@ import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
 
-public class CargarAlbumsPondsToDb {
+public class PersisteAlbumPonderado {
 	
 	private static SqlSessionFactory sqlMapper;
 	private static SqlSession session = null;
