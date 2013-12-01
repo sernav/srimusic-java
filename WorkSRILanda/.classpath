@@ -19,15 +19,9 @@
 	<classpathentry kind="lib" path="/SRILanda.Lib/mybatis-3.2.0/mybatis-3.2.0-sources.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/mybatis-3.2.0/mybatis-3.2.0.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/postgresql/postgresql-9.2-1002.jdbc3.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/xerces-1.4.4/xerces-1.4.4.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/xerces-1.4.4/xercesImpl.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/xerces-1.4.4/xercesSamples.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/dom4j-1.5.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/javacsv-2.0.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/log4j-1.2.12.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/org.apache.servicemix.bundles.commons-csv-1.0-r706899_1.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/xmlParserAPIs-2.6.2.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/xmlparserv2.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/weka-3-6-9/weka-src.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/weka-3-6-9/weka.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
@@ -41,5 +35,9 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/SRILanda.Lib/lastfm-java-0.1.2.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/jersey-bundle-1.17.1.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/dom4j-1.5.1.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/xerces-1.4.4/xerces-1.4.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
