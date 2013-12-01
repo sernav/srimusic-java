@@ -3,6 +3,10 @@
 	<name>WebSRILanda</name>
 	<comment></comment>
 	<projects>
+		<project>WorkSRILanda</project>
+		<project>WekaSRILanda</project>
+		<project>ToolsSRILanda</project>
+		<project>SRILanda.Lib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

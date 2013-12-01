@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+	<wb-module deploy-name="WebSRILanda">
+		<wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="WorkSRILanda.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/WorkSRILanda/WorkSRILanda">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="WekaSRILanda.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/WekaSRILanda/WekaSRILanda">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ToolsSRILanda.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ToolsSRILanda/ToolsSRILanda">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SRILanda.Lib.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SRILanda.Lib/SRILanda.Lib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+		<property name="context-root" value="WebSRILanda"/>
+		<property name="java-output-path" value="/WebSRILanda/build/classes"/>
+	</wb-module>
+</project-modules>
