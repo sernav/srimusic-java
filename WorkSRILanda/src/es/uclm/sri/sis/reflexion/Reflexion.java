@@ -33,13 +33,13 @@ public class Reflexion {
 	public Class reflexionCacheByXML() {
 		Class classReflection = null;
 		try{
-			Document xmlDocument = XMLUtil.loadFicheroByDOM(KCtesReflexion.Reflexion.pathXmlClasesReflexion);
-			Element rootElement = XMLUtil.getRootElement(xmlDocument, KCtesReflexion.Reflexion.rootElement);
-			ArrayList<Element> elements = XMLUtil.getElements(rootElement, KCtesReflexion.Reflexion.rootElement);
+			Document xmlDocument = XMLUtil.loadFicheroByDOM(KReflexion.Reflexion.pathXmlClasesReflexion);
+			Element rootElement = XMLUtil.getRootElement(xmlDocument, KReflexion.Reflexion.rootElement);
+			ArrayList<Element> elements = XMLUtil.getElements(rootElement, KReflexion.Reflexion.rootElement);
 			for (Element element : elements) {
-				boolean isEnabled = Boolean.parseBoolean(element.getAttribute(KCtesReflexion.Reflexion.attrbIsEnable));
+				boolean isEnabled = Boolean.parseBoolean(element.getAttribute(KReflexion.Reflexion.attrbIsEnable));
 				if (isEnabled) {
-					classReflection = Class.forName(element.getAttribute(KCtesReflexion.Reflexion.attrbClass));
+					classReflection = Class.forName(element.getAttribute(KReflexion.Reflexion.attrbClass));
 					
 				}
 			}

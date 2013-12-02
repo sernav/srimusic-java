@@ -3,7 +3,7 @@ package es.uclm.sri.cache;
 import net.sf.ehcache.Element;
 import es.uclm.sri.persistencia.postgre.dao.VpesosalbumMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Vpesosalbum;
-import es.uclm.sri.sis.reflexion.KCtesReflexion;
+import es.uclm.sri.sis.KSistema;
 
 public class CachePesosAlbum extends AbstractCache {
 	
@@ -11,8 +11,8 @@ public class CachePesosAlbum extends AbstractCache {
 	public Element[] elements;
 	
 	private CachePesosAlbum() {
-		nombreCache = KCtesReflexion.Cache.cacheVPesosAlbum;
-		tablaDCache = KCtesReflexion.Tablas.albums;
+		nombreCache = KSistema.Cache.cacheVPesosAlbum;
+		tablaDCache = KSistema.Tablas.albums;
 		cache = getCache();
 	}
 	

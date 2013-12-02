@@ -9,6 +9,12 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import es.uclm.sri.cache.ehcache.EhcacheFactory;
 import es.uclm.sri.persistencia.ConnectionFactory;
 
+/**
+ * <code>AbstractCache</code> clase abstracta que define las funcionalidades
+ * y la conexión de la caché basada en el framework EHCache.
+ * 
+ * @author Sergio Navarro
+ * */
 public abstract class AbstractCache {
 
 	public String nombreCache;

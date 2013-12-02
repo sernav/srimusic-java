@@ -1,4 +1,9 @@
-#folders
+## generic files to ignore
+\.DS_Store
+\.project
+\.metadata/
+Servers/
+target/
 /bin
 
 #java specific
