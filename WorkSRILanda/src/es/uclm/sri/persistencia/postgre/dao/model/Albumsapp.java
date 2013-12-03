@@ -1,16 +1,12 @@
 package es.uclm.sri.persistencia.postgre.dao.model;
 
 public class Albumsapp {
+    
     private Integer ID_ALBUMAPP;
-
     private String TITUALBM;
-
     private String AUTALBM;
-
     private String GENRALBM;
-
     private Integer NUMEPIST;
-
     private Integer ANYIOPUB;
 
     public Integer getID_ALBUMAPP() {

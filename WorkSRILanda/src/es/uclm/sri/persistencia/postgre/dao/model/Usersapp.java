@@ -3,16 +3,12 @@ package es.uclm.sri.persistencia.postgre.dao.model;
 import java.util.Date;
 
 public class Usersapp {
+    
     private Integer ID_USERAPP;
-
     private String NICKUSER;
-
     private String MAILREGS;
-
     private Date FECHREGS;
-
     private String NOMBUSER;
-
     private String APLLUSER;
 
     public Integer getID_USERAPP() {

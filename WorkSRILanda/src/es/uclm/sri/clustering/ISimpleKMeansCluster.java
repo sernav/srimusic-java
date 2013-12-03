@@ -1,12 +1,10 @@
 package es.uclm.sri.clustering;
 
 /**
- * Intefaz para definir las funciones b‡sicas del algor’tmo Simple K Means
+ * <code>ISimpleKMeansCluster</code> Intefaz para definir las funciones 
+ * b‡sicas del algor’tmo Simple K Means
  * 
- * @author sernav
- * @version 0.1
- * @since 0.1
- * 
+ * @author Sergio Navarro
  * */
 public interface ISimpleKMeansCluster {
 

@@ -5,7 +5,6 @@ public class Pesosalbum {
 	//private Integer ID_PESOSALBUM;
 	private String ALBUM;
 	private String ARTISTA;
-	
 	private Double ROCK;
 	private Double INDIE;
 	private Double ALTERNATIVE;

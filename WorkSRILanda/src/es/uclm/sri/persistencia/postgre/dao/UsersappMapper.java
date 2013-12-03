@@ -3,6 +3,7 @@ package es.uclm.sri.persistencia.postgre.dao;
 import es.uclm.sri.persistencia.postgre.dao.model.Usersapp;
 
 public interface UsersappMapper {
+    
     int deleteByPrimaryKey(Integer ID_USERAPP);
 
     int insert(Usersapp record);

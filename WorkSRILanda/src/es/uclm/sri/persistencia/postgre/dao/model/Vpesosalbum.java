@@ -3,26 +3,17 @@ package es.uclm.sri.persistencia.postgre.dao.model;
 import java.util.Date;
 
 public class Vpesosalbum {
+    
     private Integer ID_VPESOSA;
-
     private Integer ID_ALBUMAPP_FK;
-
     private Date FECHACTU;
-
     private Short VPESO1;
-
     private Short VPESO2;
-
     private Short VPESO3;
-
     private Short VPESO4;
-
     private Short VPESO5;
-
     private Short VPESO6;
-
     private Short VPESO7;
-
     private Short VPESO8;
 
     public Integer getID_VPESOSA() {

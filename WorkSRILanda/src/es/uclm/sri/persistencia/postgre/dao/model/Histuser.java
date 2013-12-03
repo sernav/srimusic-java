@@ -3,14 +3,11 @@ package es.uclm.sri.persistencia.postgre.dao.model;
 import java.util.Date;
 
 public class Histuser {
+    
     private Integer ID_HISTUSER;
-
     private Integer ID_USERAPP_FK;
-
     private Integer ID_ALBUMAPP_FK;
-
     private Integer NUMREPRD;
-
     private Date FULTREPR;
 
     public Integer getID_HISTUSER() {

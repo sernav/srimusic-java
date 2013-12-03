@@ -3,23 +3,19 @@ package es.uclm.sri.clustering;
 import java.util.List;
 
 /**
- * Interfaz que define los métodos para manejar los datos de los clusters.
+ * <code>IDatosCluster</code> Interfaz que define los métodos para manejar los datos de clusters.
  * 
- * @author sernav
- * @version 0.1
- * @since 0.1
- * 
+ * @author Sergio Navarro
  * */
-
 public interface IDatosCluster {
 
 	/**
 	 * Add the value to the object, at the specified indices.
+	 * Añade
 	 * 
 	 * @param vectorIndex
 	 * @param dimensionIndex
 	 * @param value
-	 *            @
 	 */
 	public void addValue(int vectorIndex, int dimensionIndex, double value);
 

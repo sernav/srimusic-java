@@ -3,6 +3,7 @@ package es.uclm.sri.persistencia.postgre.dao;
 import es.uclm.sri.persistencia.postgre.dao.model.Albumsapp;
 
 public interface AlbumsappMapper {
+    
     int deleteByPrimaryKey(Integer ID_ALBUMAPP);
 
     int insert(Albumsapp record);
