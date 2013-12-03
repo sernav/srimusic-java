@@ -5,6 +5,13 @@ import es.uclm.sri.persistencia.postgre.dao.HistuserMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Histuser;
 import es.uclm.sri.sis.KSistema;
 
+/**
+ * Crea y recupera instancias de <code>CacheHistorico</code>. Utiliza el patrón
+ * Singleton. Recoge elementos de la caché y actualiza la misma.
+ * Si el elemento no está, se recupera de la tabla de base de datos.
+ * 
+ * @author Sergio Navarro
+ * */
 public class CacheHistorico extends AbstractCache {
 	
 	private static CacheHistorico instance = null;

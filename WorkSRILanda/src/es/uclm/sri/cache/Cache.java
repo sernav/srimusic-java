@@ -2,6 +2,11 @@ package es.uclm.sri.cache;
 
 import org.w3c.dom.Element;
 
+/**
+ * <code>Cache</code>
+ * 
+ * @author Sergio Navarro
+ * */
 public class Cache {
 
 	private static Cache instance = null;
