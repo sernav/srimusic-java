@@ -46,7 +46,7 @@ public class PlaybackDUsuario implements IAnalisisLastfm {
      * @return
      * 
      * */
-    protected void run() {
+    public void run() {
         String token = Authenticator.getToken(API_KEY);
         this.sesion = Session.createSession(API_KEY, SECRET, token);
         

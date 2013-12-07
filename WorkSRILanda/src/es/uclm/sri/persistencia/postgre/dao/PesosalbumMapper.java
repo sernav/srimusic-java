@@ -11,8 +11,15 @@ public interface PesosalbumMapper {
     int insertSelective(Pesosalbum record);
 
     Pesosalbum selectByPrimaryKey(Integer ID_PESOSALBUM);
+    
+    Pesosalbum[] selectByAlbum(String ALBUM);
+    
+    Pesosalbum[] selectByArtista(String ARTISTA);
+    
+    Pesosalbum[] selectByAlbumYArtista(String ALBUM, String ARTISTA);
 
     int updateByPrimaryKeySelective(Pesosalbum record);
 
     int updateByPrimaryKey(Pesosalbum record);
+    
 }

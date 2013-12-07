@@ -38,6 +38,27 @@
 		from "PESOSALBUM"
 		where ID_PESOSALBUM = #{ID_PESOSALBUM,jdbcType=INTEGER}
 	</select>
+	<select id="selectByAlbum" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "PESOSALBUM"
+		where ALBUM = #{ALBUM,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByArtista" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "PESOSALBUM"
+		where ARTISTA = #{ARTISTA,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByAlbumYArtista" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "PESOSALBUM"
+		where ALBUM = #{ALBUM,jdbcType=VARCHAR} and ARTISTA = #{ARTISTA,jdbcType=VARCHAR}
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from "PESOSALBUM"
 		where ID_PESOSALBUM = #{ID_PESOSALBUM,jdbcType=INTEGER}

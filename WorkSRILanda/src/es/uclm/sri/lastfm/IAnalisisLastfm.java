@@ -4,12 +4,14 @@ import de.umass.lastfm.Album;
 
 
 /**
- * @author sernav
+ * @author Sergio Navarro
  * 
  * */
 public interface IAnalisisLastfm {
     
     public void setNickUsuario(String nick);
+    
+    public void run();
     
     public String autenticarUsuario();
     
