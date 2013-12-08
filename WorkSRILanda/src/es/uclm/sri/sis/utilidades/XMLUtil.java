@@ -15,6 +15,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+/**
+ * <code>XMLUtil</code> clase de utilidades para tratar XMLs
+ * 
+ * @author Sergio Navarro
+ * */
 public class XMLUtil {
 
 	private XMLUtil() {

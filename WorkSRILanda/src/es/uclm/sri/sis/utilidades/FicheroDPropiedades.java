@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
 
-public class UtilArchivoPropiedades {
+public class FicheroDPropiedades {
 	
 	private Properties propiedades;
 	private String archivo;
 	
-	private UtilArchivoPropiedades(){
+	private FicheroDPropiedades(){
 		super();
 	}
 	
-	public UtilArchivoPropiedades(String archivo) {
+	public FicheroDPropiedades(String archivo) {
 		propiedades = new Properties();
 		this.archivo = archivo;
 	}

@@ -11,6 +11,12 @@ public interface AlbumsappMapper {
     int insertSelective(Albumsapp record);
 
     Albumsapp selectByPrimaryKey(Integer ID_ALBUMAPP);
+    
+    Albumsapp[] selectByAlbum(String TITUALBM);
+    
+    Albumsapp[] selectByArtista(String AUTALBM);
+    
+    Albumsapp[] selectByAlbumYArtista(String ALBUM, String ARTISTA);
 
     int updateByPrimaryKeySelective(Albumsapp record);
 

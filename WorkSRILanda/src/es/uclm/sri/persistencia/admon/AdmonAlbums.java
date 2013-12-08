@@ -38,5 +38,13 @@ public class AdmonAlbums extends AbstractAdmon {
         
         mapper.insert(record);
     }
+    
+    public Albumsapp[] devolverAlbums(Album album) {
+        return mapper.selectByAlbumYArtista(album.getTitulo().trim(), album.getArtista().trim());
+    }
+    
+    public Albumsapp[] devolverAlbums(de.umass.lastfm.Album album) {
+        return mapper.selectByAlbumYArtista(album.getName().trim(), album.getArtist().trim());
+    }
 
 }

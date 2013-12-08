@@ -20,6 +20,27 @@
 		from ALBUMSAPP
 		where ID_ALBUMAPP = #{ID_ALBUMAPP,jdbcType=INTEGER}
 	</select>
+	<select id="selectByAlbum" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ALBUMSAPP
+		where TITUALBM = #{TITUALBM,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByArtista" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ALBUMSAPP
+		where AUTALBM = #{AUTALBM,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByAlbumYArtista" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ALBUMSAPP
+		where TITUALBM = #{TITUALBM,jdbcType=VARCHAR} and AUTALBM = #{AUTALBM,jdbcType=VARCHAR}
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from ALBUMSAPP
 		where ID_ALBUMAPP = #{ID_ALBUMAPP,jdbcType=INTEGER}

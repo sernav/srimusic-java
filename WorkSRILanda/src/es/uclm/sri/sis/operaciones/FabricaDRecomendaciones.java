@@ -1,25 +1,24 @@
 package es.uclm.sri.sis.operaciones;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import es.uclm.sri.clustering.weka.WekaDatosCluster;
-import es.uclm.sri.lastfm.IAnalisisLastfm;
 import es.uclm.sri.lastfm.PlaybackDUsuario;
 import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.admon.AdmonAlbums;
 import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
-import es.uclm.sri.persistencia.postgre.dao.AlbumsappMapper;
 import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Albumsapp;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
 
+/**
+ * @author Sergio Navarro
+ * */
 public class FabricaDRecomendaciones 
         implements IFabricaDRecomendaciones {
     
@@ -49,56 +48,56 @@ public class FabricaDRecomendaciones
     }
     
     public void procesarDatos() {
-        try {
-            establecerConexion();
-            session = sqlMapper.openSession();
-            session.getConnection().setAutoCommit(true);
+        this.mapper = session.getMapper(PesosalbumMapper.class);
+        
+        AdmonAlbums admonAlbums = new AdmonAlbums();
+        AdmonPesosAlbum admonPesos = new AdmonPesosAlbum();
+        
+        if (this.playback != null) {
             
-            this.mapper = session.getMapper(PesosalbumMapper.class);
-            
-            AdmonAlbums admonAlbums = new AdmonAlbums();
-            AdmonPesosAlbum admonPesos = new AdmonPesosAlbum();
-            
-            if (this.playback != null) {
-                de.umass.lastfm.Album[] albumsLastfm = this.playback.getTopAlbumsUsuario();
-                for (int i = 0; i < albumsLastfm.length; i++) {
-                    
-                    Album a = new Album(albumsLastfm[i].getName(), 
-                            albumsLastfm[i].getArtist(), null, 
-                            albumsLastfm[i].getReleaseDate().toString(), "",
-                            albumsLastfm[i].getTracks().size());
-                    albums.put(a.getTitulo() + "#" + a.getArtista(), a);
-                    
-                    Pesosalbum[] pesosAlbum = admonPesos.
-                            devolverPesosAlbum(albumsLastfm[i].getName(), albumsLastfm[i].getArtist());
-                    if (pesosAlbum.length > 0) {
-                        /*
-                         * El album ya est‡ ponderado.
-                         * 1. Insertar en ALBUMSAPP
-                         * */
-                        admonAlbums.insertarAlbum(albumsLastfm[i]);
-                    } else {
-                        /*
-                         * 0. Insertar album para la aplicaci—n
-                         * */
-                        admonAlbums.insertarAlbum(albumsLastfm[i]);
-                        
-                        /*
-                         * 1. Ponderar album
-                         * */
-                        
-                        // 2. Insertar en la tabla PESOSALBUM
-                        // 3. Insertar en la tabla ALBUMSAPP
-                        
-                        // Algoritmo de recomendaci—n
-                    }
+            de.umass.lastfm.Album[] albumsLastfm = this.playback.getTopAlbumsUsuario();
+            for (int i = 0; i < albumsLastfm.length; i++) {
+                /*
+                 * Creamos una nueva instancia de Album con la que se ir‡ trabajando
+                 * en el proceso.
+                 * */
+                Album a = new Album(albumsLastfm[i].getName(), 
+                        albumsLastfm[i].getArtist(), null, 
+                        albumsLastfm[i].getReleaseDate().toString(), "",
+                        albumsLastfm[i].getTracks().size());
+                albums.put(a.getTitulo() + "#" + a.getArtista(), a);
+                
+                Pesosalbum[] pesosAlbum = admonPesos.
+                        devolverPesosAlbum(albumsLastfm[i].getName(), albumsLastfm[i].getArtist());
+                
+                Albumsapp[] albumsApp = admonAlbums.devolverAlbums(albumsLastfm[i]);
+                if (albumsApp.length == 0) {
+                    admonAlbums.insertarAlbum(albumsLastfm[i]);
                 }
-            } else {
-                avisosDSistema.put(new Integer(avisosDSistema.size() + 1), 
-                        "No hay escuchas de usuario de Last.fm");
+                
+                /*
+                 * Buscamos en la tabla de albums ponderados.
+                 * > Si est‡, buscamos en la tabla de albums de la aplicaci—n.
+                 * > Si no est‡ lo insertamos.
+                 * 
+                 * */
+                if (pesosAlbum.length > 0) {
+                    /*
+                     * El album ya est‡ ponderado.
+                     * Lo buscamos en la tabla de albums de la apliaci—n
+                     * */
+                } else {
+                    /*
+                     * 1. Ponderar album
+                     * 2. Insertar en la tabla PESOSALBUM
+                     * 3. Algoritmo de recomendaci—n
+                     * */
+                    
+                }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } else {
+            avisosDSistema.put(new Integer(avisosDSistema.size() + 1), 
+                    "No hay escuchas de usuario de Last.fm");
         }
         
     }
