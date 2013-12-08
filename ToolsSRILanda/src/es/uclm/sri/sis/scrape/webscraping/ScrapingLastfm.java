@@ -15,7 +15,7 @@ import es.uclm.sri.sis.csv.TratarCSVAlbum;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.Artista;
 import es.uclm.sri.sis.scrape.AbstractWebScraping;
-import es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
 public class ScrapingLastfm extends AbstractWebScraping implements Serializable {
 
@@ -181,7 +181,7 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
                             System.out
                                     .println("FECHA PUBLICACIÓN: " + strFecha);
                             album.setArtista(artista.getNombre());
-                            album.setTitulo(Utils.tratarTituloAlbum(link.text()));
+                            album.setTitulo(UtilsDAlbum.tratarTituloAlbum(link.text()));
                             album.setFecha(strFecha);
                             try {
                                 numEtiquetas = procesarEtiquetasAlbum(link,

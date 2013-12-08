@@ -7,12 +7,12 @@ import org.apache.log4j.Logger;
 
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
-import es.uclm.sri.sis.utilidades.UtilArchivoPropiedades;
-import es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
+import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
 public class EstandarizaGenerosAlbum {
 	
-	private static UtilArchivoPropiedades properties;
+	private static FicheroDPropiedades properties;
 	
 	private static final Logger logger = Logger
 			.getLogger(EstandarizaGenerosAlbum.class);
@@ -28,7 +28,7 @@ public class EstandarizaGenerosAlbum {
 		ArrayList<Album> listaAlbums = TratarCSVAlbum.leerCVSAlbums("/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Lastfm_Sabado4.csv");
 		ArrayList<Album> listaAlbumsNormalizado = new ArrayList<Album>();
 		try {
-			properties = new UtilArchivoPropiedades(origProperties);
+			properties = new FicheroDPropiedades(origProperties);
 			properties.cargarPropiedades();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,8 +48,8 @@ public class EstandarizaGenerosAlbum {
 		ArrayList<String> listaEtq = album.getEtiquetas();
 		ArrayList<String> listaEtqSimple = new ArrayList<String>();
 		for (int i=0; i < listaEtq.size(); i++) {
-			if(Utils.isEtiquetaCompuesta(listaEtq.get(i))) {
-				String[] etqSimples = Utils.descomponerEtiquetaCompuesta(listaEtq.get(i));
+			if(UtilsDAlbum.isEtiquetaCompuesta(listaEtq.get(i))) {
+				String[] etqSimples = UtilsDAlbum.descomponerEtiquetaCompuesta(listaEtq.get(i));
 				for (int j=0; j < etqSimples.length; j++) {
 					String etqStandar = estandarizaGeneroSimple(etqSimples[j]);
 					if (etqStandar != "")

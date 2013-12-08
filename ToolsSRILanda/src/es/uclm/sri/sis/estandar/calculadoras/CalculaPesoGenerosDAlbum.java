@@ -7,12 +7,12 @@ import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.entidades.Genero;
 import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
-import es.uclm.sri.sis.utilidades.UtilArchivoPropiedades;
+import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
 
 public class CalculaPesoGenerosDAlbum {
 	
 	private static String origProperties = "src/es/uclm/sri/properties/generoEstandar.properties";
-	private static UtilArchivoPropiedades properties;
+	private static FicheroDPropiedades properties;
 	protected static ArrayList<Genero> generosDAlbum = new ArrayList<Genero>();
 	protected static ArrayList<AlbumPonderado> listAlbumPonderados = new ArrayList<AlbumPonderado>();
 	
@@ -80,7 +80,7 @@ public class CalculaPesoGenerosDAlbum {
 	}
 	
 	private static Double[] construirVectorDGeneros() {
-		properties = new UtilArchivoPropiedades(origProperties);
+		properties = new FicheroDPropiedades(origProperties);
 		properties.cargarPropiedades();
 		ArrayList<String> listKeyProp = properties.getPropiedades();
 		
