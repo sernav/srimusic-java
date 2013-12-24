@@ -56,8 +56,14 @@ public class PlaybackDUsuario implements IAnalisisLastfm {
         Iterator<Track> it = tracks.iterator();
         while(it.hasNext()) {
             Track track = it.next(); 
-            Album albumDTrack = Album.getInfo(track.getArtist(), track.getAlbumMbid(), API_KEY);
-            this.hashAlbums.put(albumDTrack.getName(), albumDTrack);
+            String albumOrMbid = track.getAlbumMbid();
+            if (albumOrMbid == null || albumOrMbid.length() == 0) {
+                albumOrMbid = track.getAlbum();
+            }
+            Album albumDTrack = Album.getInfo(track.getArtist(), albumOrMbid, API_KEY);
+            if (albumDTrack != null) {
+                this.hashAlbums.put(albumDTrack.getName(), albumDTrack);
+            }
         }
 
     }

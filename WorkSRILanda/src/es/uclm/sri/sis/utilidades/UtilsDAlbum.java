@@ -1,7 +1,5 @@
 package es.uclm.sri.sis.utilidades;
 
-import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
-import es.uclm.sri.sis.entidades.AlbumPonderado;
 
 public class UtilsDAlbum {
     
@@ -61,17 +59,6 @@ public class UtilsDAlbum {
             etiquetas = etiqueta.split(" ");
         }
         return etiquetas;
-    }
-    
-    public static void descomponerPesosGeneros(Pesosalbum pesos, AlbumPonderado album) {
-        for(int i = 0; i < album.getPesosGeneros().length; i++) {
-            try {
-            pesos.setROCK(album.getPesosGeneros()[i]);
-            pesos.setINDIE(album.getPesosGeneros()[i]);
-            } catch (Exception e) {
-                
-            }
-        }
     }
 
 }

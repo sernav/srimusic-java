@@ -15,8 +15,14 @@ import es.uclm.sri.persistencia.postgre.dao.model.Albumsapp;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.ponderacion.PonderacionDAlbum;
 
 /**
+ * <code>FabricaDRecomendaciones</code> es la clase que se encarga de crear recomendaciones
+ * para un usuario concreto. Recoge las escuchas del usuario y genera los resultados, si las
+ * esuchas del usuario no est‡n en el sistema, se ponderan y se incluyen para futuras
+ * recomendaciones.
+ * 
  * @author Sergio Navarro
  * */
 public class FabricaDRecomendaciones 
@@ -34,7 +40,7 @@ public class FabricaDRecomendaciones
     PesosalbumMapper mapper = null;
 
     public FabricaDRecomendaciones(PlaybackDUsuario playback) {
-        this.albums = new HashMap<String, Album>();;
+        this.albums = new HashMap<String, Album>();
         this.playback = playback;
         
         avisosDSistema = new HashMap<Integer, String>();
@@ -47,6 +53,14 @@ public class FabricaDRecomendaciones
         avisosDSistema = new HashMap<Integer, String>();
     }
     
+    /**
+     * Recoge el objeto <code>PlaybackDUsuario</code> con las escuchas de usuario
+     * para comprobar, primero si est‡n en el modelo de datos, ponderar el album
+     * si no est‡ en la base de datos e invocar el algoritmo de recomendaciones.
+     * 
+     * @param
+     * @return
+     * */
     public void procesarDatos() {
         this.mapper = session.getMapper(PesosalbumMapper.class);
         
@@ -54,12 +68,11 @@ public class FabricaDRecomendaciones
         AdmonPesosAlbum admonPesos = new AdmonPesosAlbum();
         
         if (this.playback != null) {
-            
             de.umass.lastfm.Album[] albumsLastfm = this.playback.getTopAlbumsUsuario();
+            
             for (int i = 0; i < albumsLastfm.length; i++) {
                 /*
-                 * Creamos una nueva instancia de Album con la que se ir‡ trabajando
-                 * en el proceso.
+                 * Creamos una nueva instancia de Album para procesar
                  * */
                 Album a = new Album(albumsLastfm[i].getName(), 
                         albumsLastfm[i].getArtist(), null, 
@@ -67,9 +80,10 @@ public class FabricaDRecomendaciones
                         albumsLastfm[i].getTracks().size());
                 albums.put(a.getTitulo() + "#" + a.getArtista(), a);
                 
-                Pesosalbum[] pesosAlbum = admonPesos.
-                        devolverPesosAlbum(albumsLastfm[i].getName(), albumsLastfm[i].getArtist());
-                
+                /*
+                 * Se buscar el album en la base de datos. Si no se encuentra, se
+                 * inserta en la tabla de Albums.
+                 * */
                 Albumsapp[] albumsApp = admonAlbums.devolverAlbums(albumsLastfm[i]);
                 if (albumsApp.length == 0) {
                     admonAlbums.insertarAlbum(albumsLastfm[i]);
@@ -77,14 +91,12 @@ public class FabricaDRecomendaciones
                 
                 /*
                  * Buscamos en la tabla de albums ponderados.
-                 * > Si est‡, buscamos en la tabla de albums de la aplicaci—n.
-                 * > Si no est‡ lo insertamos.
-                 * 
                  * */
+                Pesosalbum[] pesosAlbum = admonPesos.
+                        devolverPesosAlbum(albumsLastfm[i].getName(), albumsLastfm[i].getArtist());
                 if (pesosAlbum.length > 0) {
                     /*
-                     * El album ya est‡ ponderado.
-                     * Lo buscamos en la tabla de albums de la apliaci—n
+                     * El album ya est‡ ponderado. Invocar el algoritmo de recomendaci—n.
                      * */
                 } else {
                     /*
@@ -92,6 +104,8 @@ public class FabricaDRecomendaciones
                      * 2. Insertar en la tabla PESOSALBUM
                      * 3. Algoritmo de recomendaci—n
                      * */
+                    PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
+                    pondera.procesar();
                     
                 }
             }

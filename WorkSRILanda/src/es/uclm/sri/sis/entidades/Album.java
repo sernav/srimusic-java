@@ -79,7 +79,7 @@ public class Album {
 		return numTemas;
 	}
 
-	public void setFecha(int numTemas) {
+	public void setNumTemas(int numTemas) {
 		this.numTemas = numTemas;
 	}
 

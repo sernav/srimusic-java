@@ -3,6 +3,7 @@ package es.uclm.sri.persistencia.admon;
 import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
 
 public class AdmonPesosAlbum extends AbstractAdmon {
 
@@ -39,6 +40,10 @@ public class AdmonPesosAlbum extends AbstractAdmon {
     
     public Pesosalbum[] devolverPesosAlbum(String album, String artista) {
         return mapper.selectByAlbumYArtista(album, artista);
+    }
+    
+    public void insetarPesosAlbum(AlbumPonderado record) {
+        
     }
     
 }

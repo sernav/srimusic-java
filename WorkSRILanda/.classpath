@@ -38,6 +38,5 @@
 	<classpathentry kind="lib" path="/SRILanda.Lib/lastfm-java-0.1.2.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/jersey-bundle-1.17.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/dom4j-1.5.1.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/xerces-1.4.4/xerces-1.4.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
