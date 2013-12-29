@@ -33,7 +33,7 @@ public class AdmonAlbums extends AbstractAdmon {
         record.setTITUALBM(album.getName());
         record.setAUTALBM(album.getArtist());
         record.setNUMEPIST(new Integer(album.getTracks().size()));
-        record.setANYIOPUB(null);
+        record.setANYIOPUB(new Integer(1900));
         record.setGENRALBM(null);
         
         mapper.insert(record);

@@ -11,71 +11,71 @@
 		<result column="ANYIOPUB" property="ANYIOPUB" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		ID_ALBUMAPP, TITUALBM, AUTALBM, GENRALBM, NUMEPIST, ANYIOPUB
+		"ID_ALBUMAPP", "TITUALBM", "AUTALBM", "GENRALBM", "NUMEPIST", "ANYIOPUB"
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
-		from ALBUMSAPP
-		where ID_ALBUMAPP = #{ID_ALBUMAPP,jdbcType=INTEGER}
+		from "ALBUMSAPP"
+		where "ID_ALBUMAPP" = #{ID_ALBUMAPP,jdbcType=INTEGER}
 	</select>
 	<select id="selectByAlbum" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
-		from ALBUMSAPP
-		where TITUALBM = #{TITUALBM,jdbcType=VARCHAR}
+		from "ALBUMSAPP"
+		where "TITUALBM" = #{TITUALBM,jdbcType=VARCHAR}
 	</select>
 	<select id="selectByArtista" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
-		from ALBUMSAPP
-		where AUTALBM = #{AUTALBM,jdbcType=VARCHAR}
+		from "ALBUMSAPP"
+		where "AUTALBM" = #{AUTALBM,jdbcType=VARCHAR}
 	</select>
 	<select id="selectByAlbumYArtista" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
-		from ALBUMSAPP
-		where TITUALBM = #{TITUALBM,jdbcType=VARCHAR} and AUTALBM = #{AUTALBM,jdbcType=VARCHAR}
+		from "ALBUMSAPP"
+		where "TITUALBM" = #{TITUALBM,jdbcType=VARCHAR} and "AUTALBM" = #{AUTALBM,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from ALBUMSAPP
-		where ID_ALBUMAPP = #{ID_ALBUMAPP,jdbcType=INTEGER}
+		delete from "ALBUMSAPP"
+		where "ID_ALBUMAPP" = #{ID_ALBUMAPP,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert"
-		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Albumsapp">
-		insert into ALBUMSAPP (ID_ALBUMAPP, TITUALBM, AUTALBM,
-		GENRALBM, NUMEPIST, ANYIOPUB
+		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Albumsapp"
+		useGeneratedKeys="true" keyProperty="ID_ALBUMAPP">
+		insert into "ALBUMSAPP" ("TITUALBM", "AUTALBM",
+		"GENRALBM", "NUMEPIST", "ANYIOPUB"
 		)
-		values (#{ID_ALBUMAPP,jdbcType=INTEGER}, #{TITUALBM,jdbcType=VARCHAR},
-		#{AUTALBM,jdbcType=VARCHAR},
+		values (#{TITUALBM,jdbcType=VARCHAR}, #{AUTALBM,jdbcType=VARCHAR},
 		#{GENRALBM,jdbcType=VARCHAR}, #{NUMEPIST,jdbcType=INTEGER}, #{ANYIOPUB,jdbcType=INTEGER}
 		)
 	</insert>
 	<insert id="insertSelective"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Albumsapp">
-		insert into ALBUMSAPP
+		insert into "ALBUMSAPP"
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="ID_ALBUMAPP != null">
-				ID_ALBUMAPP,
+				"ID_ALBUMAPP",
 			</if>
 			<if test="TITUALBM != null">
-				TITUALBM,
+				"TITUALBM",
 			</if>
 			<if test="AUTALBM != null">
-				AUTALBM,
+				"AUTALBM",
 			</if>
 			<if test="GENRALBM != null">
-				GENRALBM,
+				"GENRALBM",
 			</if>
 			<if test="NUMEPIST != null">
-				NUMEPIST,
+				"NUMEPIST",
 			</if>
 			<if test="ANYIOPUB != null">
-				ANYIOPUB,
+				"ANYIOPUB",
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -101,34 +101,34 @@
 	</insert>
 	<update id="updateByPrimaryKeySelective"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Albumsapp">
-		update ALBUMSAPP
+		update "ALBUMSAPP"
 		<set>
 			<if test="TITUALBM != null">
-				TITUALBM = #{TITUALBM,jdbcType=VARCHAR},
+				"TITUALBM" = #{TITUALBM,jdbcType=VARCHAR},
 			</if>
 			<if test="AUTALBM != null">
-				AUTALBM = #{AUTALBM,jdbcType=VARCHAR},
+				"AUTALBM" = #{AUTALBM,jdbcType=VARCHAR},
 			</if>
 			<if test="GENRALBM != null">
-				GENRALBM = #{GENRALBM,jdbcType=VARCHAR},
+				"GENRALBM" = #{GENRALBM,jdbcType=VARCHAR},
 			</if>
 			<if test="NUMEPIST != null">
-				NUMEPIST = #{NUMEPIST,jdbcType=INTEGER},
+				"NUMEPIST" = #{NUMEPIST,jdbcType=INTEGER},
 			</if>
 			<if test="ANYIOPUB != null">
-				ANYIOPUB = #{ANYIOPUB,jdbcType=INTEGER},
+				"ANYIOPUB" = #{ANYIOPUB,jdbcType=INTEGER},
 			</if>
 		</set>
-		where ID_ALBUMAPP = #{ID_ALBUMAPP,jdbcType=INTEGER}
+		where "ID_ALBUMAPP" = #{ID_ALBUMAPP,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Albumsapp">
-		update ALBUMSAPP
-		set TITUALBM = #{TITUALBM,jdbcType=VARCHAR},
+		update "ALBUMSAPP"
+		set "TITUALBM" = #{TITUALBM,jdbcType=VARCHAR},
 		AUTALBM = #{AUTALBM,jdbcType=VARCHAR},
 		GENRALBM = #{GENRALBM,jdbcType=VARCHAR},
 		NUMEPIST = #{NUMEPIST,jdbcType=INTEGER},
 		ANYIOPUB = #{ANYIOPUB,jdbcType=INTEGER}
-		where ID_ALBUMAPP = #{ID_ALBUMAPP,jdbcType=INTEGER}
+		where "ID_ALBUMAPP" = #{ID_ALBUMAPP,jdbcType=INTEGER}
 	</update>
 </mapper>

@@ -1,5 +1,7 @@
 package es.uclm.sri.persistencia.postgre.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import es.uclm.sri.persistencia.postgre.dao.model.Albumsapp;
 
 public interface AlbumsappMapper {
@@ -16,7 +18,7 @@ public interface AlbumsappMapper {
     
     Albumsapp[] selectByArtista(String AUTALBM);
     
-    Albumsapp[] selectByAlbumYArtista(String ALBUM, String ARTISTA);
+    Albumsapp[] selectByAlbumYArtista(@Param("TITUALBM") String TITUALBM, @Param("AUTALBM") String AUTALBM);
 
     int updateByPrimaryKeySelective(Albumsapp record);
 

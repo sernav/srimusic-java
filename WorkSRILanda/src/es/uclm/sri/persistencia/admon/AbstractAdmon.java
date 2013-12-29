@@ -14,9 +14,11 @@ public abstract class AbstractAdmon {
     
     public AbstractAdmon() {
         try {
-            establecerConexion();
-            session = sqlMapper.openSession();
-            session.getConnection().setAutoCommit(true);
+            if (session == null) {
+                establecerConexion();
+                session = sqlMapper.openSession();
+                session.getConnection().setAutoCommit(true);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

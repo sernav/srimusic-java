@@ -34,10 +34,6 @@ public class FabricaDRecomendaciones
     private PlaybackDUsuario playback;
     
     private HashMap<Integer, String> avisosDSistema;
-    
-    private static SqlSessionFactory sqlMapper;
-    private static SqlSession session = null;
-    PesosalbumMapper mapper = null;
 
     public FabricaDRecomendaciones(PlaybackDUsuario playback) {
         this.albums = new HashMap<String, Album>();
@@ -62,7 +58,6 @@ public class FabricaDRecomendaciones
      * @return
      * */
     public void procesarDatos() {
-        this.mapper = session.getMapper(PesosalbumMapper.class);
         
         AdmonAlbums admonAlbums = new AdmonAlbums();
         AdmonPesosAlbum admonPesos = new AdmonPesosAlbum();
@@ -76,7 +71,7 @@ public class FabricaDRecomendaciones
                  * */
                 Album a = new Album(albumsLastfm[i].getName(), 
                         albumsLastfm[i].getArtist(), null, 
-                        albumsLastfm[i].getReleaseDate().toString(), "",
+                        albumsLastfm[i].getReleaseDate() != null ? albumsLastfm[i].getReleaseDate().toString() : "", "",
                         albumsLastfm[i].getTracks().size());
                 albums.put(a.getTitulo() + "#" + a.getArtista(), a);
                 
@@ -105,7 +100,8 @@ public class FabricaDRecomendaciones
                      * 3. Algoritmo de recomendaci—n
                      * */
                     PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
-                    pondera.procesar();
+                    AlbumPonderado albumPonderado = pondera.procesar();
+                    admonPesos.insertarPesosAlbum(albumPonderado);
                     
                 }
             }
@@ -140,10 +136,6 @@ public class FabricaDRecomendaciones
     public void aplicarSistemaDReglas() {
         // TODO Auto-generated method stub
         
-    }
-    
-    private static void establecerConexion() {
-        sqlMapper = ConnectionFactory.getSession();
     }
 }
 

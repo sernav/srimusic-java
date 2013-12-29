@@ -5,6 +5,7 @@
 Servers/
 target/
 /bin
+/PesosalbumMapper_deprecated.xml
 
 #java specific
 *.class

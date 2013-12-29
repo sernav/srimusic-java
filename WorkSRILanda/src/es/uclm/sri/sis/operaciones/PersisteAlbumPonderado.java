@@ -83,7 +83,7 @@ public class PersisteAlbumPonderado {
 		pesos.setFUNK(pesosAlbum[6]);
 		pesos.setRAP(pesosAlbum[7]);
 		pesos.setFOLK(pesosAlbum[8]);
-		pesos.setSINGLE(pesosAlbum[9]);
+		pesos.setSINGER(pesosAlbum[9]);
 		pesos.setHEAVY(pesosAlbum[10]);
 		pesos.setBLUES(pesosAlbum[11]);
 		pesos.setGRUNGE(pesosAlbum[12]);

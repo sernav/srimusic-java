@@ -66,9 +66,9 @@ public class PonderacionDAlbum implements IPonderacion {
      * un album. Primero se estandariza y después calcula sus pesos.
      * 
      * @param
-     * @return
+     * @return AlbumPonderado
      * */
-    public void procesar() {
+    public AlbumPonderado procesar() {
         this.listaTags = estandarizarTags();
         this.listaGeneros = convertirTags();
         
@@ -85,6 +85,7 @@ public class PonderacionDAlbum implements IPonderacion {
         
         crearAlbumPonderado();
         
+        return this.albumPonderado;
     }
     
     protected void crearAlbumPonderado() {
@@ -281,7 +282,7 @@ public class PonderacionDAlbum implements IPonderacion {
     }
     
     public Album getAlbum() {
-        return album;
+        return this.album;
     }
 
     public void setAlbum(Album album) {
@@ -289,11 +290,15 @@ public class PonderacionDAlbum implements IPonderacion {
     }
 
     public de.umass.lastfm.Album getAlbumLastfm() {
-        return albumLastfm;
+        return this.albumLastfm;
     }
 
     public void setAlbumLastfm(de.umass.lastfm.Album albumLastfm) {
         this.albumLastfm = albumLastfm;
+    }
+    
+    public AlbumPonderado getAlbumPonderado() {
+        return this.albumPonderado;
     }
 
     public boolean isAlbumLastfm() {

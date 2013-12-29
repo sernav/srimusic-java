@@ -2,11 +2,12 @@ package es.uclm.sri.sis.ponderacion;
 
 import java.util.ArrayList;
 
+import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.entidades.Genero;
 
 public interface IPonderacion {
     
-    public void procesar();
+    public AlbumPonderado procesar();
     
     public void calcularPesos();
     

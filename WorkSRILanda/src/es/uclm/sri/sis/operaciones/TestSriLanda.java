@@ -13,6 +13,9 @@ public class TestSriLanda {
         PlaybackDUsuario playback = new PlaybackDUsuario("djAguadilla");
         playback.run();
         
+        FabricaDRecomendaciones fabrica = new FabricaDRecomendaciones(playback);
+        fabrica.procesarDatos();
+        
         PonderacionDAlbum pondera = null;
         
         for (int i = 0; i < playback.getTopAlbumsUsuario().length; i++) {

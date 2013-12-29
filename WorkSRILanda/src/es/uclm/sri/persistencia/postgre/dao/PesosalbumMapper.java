@@ -1,5 +1,7 @@
 package es.uclm.sri.persistencia.postgre.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 
 public interface PesosalbumMapper {
@@ -16,7 +18,7 @@ public interface PesosalbumMapper {
     
     Pesosalbum[] selectByArtista(String ARTISTA);
     
-    Pesosalbum[] selectByAlbumYArtista(String ALBUM, String ARTISTA);
+    Pesosalbum[] selectByAlbumYArtista(@Param("ALBUM") String ALBUM, @Param("ARTISTA") String ARTISTA);
 
     int updateByPrimaryKeySelective(Pesosalbum record);
 
