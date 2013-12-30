@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.xerces.parsers.DOMParser;
+//import org.apache.xerces.parsers.DOMParser;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 import org.w3c.dom.Document;
@@ -116,15 +116,16 @@ public class XMLUtil {
 	 * @return Document
 	 * */
 	public static Document getDocumentoXML(final String cadenaXML) {
-		Document document = null;
-		try {
-			DOMParser domParser = new DOMParser();
-			domParser.parse(new InputSource(new StringReader(cadenaXML)));
-			document = (Document) domParser.getDocument();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return document;
+//		Document document = null;
+//		try {
+//			DOMParser domParser = new DOMParser();
+//			domParser.parse(new InputSource(new StringReader(cadenaXML)));
+//			document = (Document) domParser.getDocument();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return document;
+	    return null;
 	}
 	
 	/**

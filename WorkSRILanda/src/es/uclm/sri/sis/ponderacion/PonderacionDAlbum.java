@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
+import es.uclm.sri.sis.KSistema;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.entidades.Genero;
@@ -38,8 +39,6 @@ public class PonderacionDAlbum implements IPonderacion {
     
     private static FicheroDPropiedades properties;
     private static final Logger logger = Logger.getLogger(PonderacionDAlbum.class);
-    
-    private final String PATH_GENEROS_STD = "src/es/uclm/sri/properties/generoEstandar.properties";
     
     public PonderacionDAlbum(Album album) {
         this.album = album;
@@ -88,11 +87,28 @@ public class PonderacionDAlbum implements IPonderacion {
         return this.albumPonderado;
     }
     
+    /**
+     * Las instancias de <code>AlbumPonderado</code> extienden de la clase
+     * <code>Album</code> y le agrega el vector de pesos ponderados.
+     * El vector se costruye con los géneros estandarizados.
+     * 
+     * Da valor al atributo <code>albumPonderado</code> de this.
+     * 
+     * @param
+     * @return
+     * */
     protected void crearAlbumPonderado() {
         Double[] pesosAlbum = null;
         this.albumPonderado = new AlbumPonderado(this.album, construirVectorDGeneros());
     }
     
+    /**
+     * Con la lista de géneros de estandarizados, la cual tiene el valor
+     * crea un vector de valores.
+     * 
+     * @param
+     * @return Double[]
+     * */
     private Double[] construirVectorDGeneros() {
         ArrayList<String> listKeyProp = properties.getPropiedades();
         Double[] generos = new Double[18];
@@ -109,6 +125,12 @@ public class PonderacionDAlbum implements IPonderacion {
         return generos;
     }
     
+    /**
+     * Inicializa el vector de doble presición a cero.
+     * 
+     * @param Double[]
+     * @return Double[]
+     * */
     private Double[] iniciarVectorGeneros(Double[] generos) {
         for(int i=0; i < generos.length; i++) {
             Double cero = new Double(0);
@@ -315,7 +337,7 @@ public class PonderacionDAlbum implements IPonderacion {
     
     private void cargarGenerosEstandar() {
         try {
-            properties = new FicheroDPropiedades(PATH_GENEROS_STD);
+            properties = new FicheroDPropiedades(KSistema.Recursos.PATH_GENEROS_ESTANDAR_PROPERTIES);
             properties.cargarPropiedades();
         } catch (Exception e) {
             e.printStackTrace();

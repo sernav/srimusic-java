@@ -3,14 +3,9 @@ package es.uclm.sri.sis.operaciones;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import es.uclm.sri.lastfm.PlaybackDUsuario;
-import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.admon.AdmonAlbums;
 import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
-import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Albumsapp;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.Album;
