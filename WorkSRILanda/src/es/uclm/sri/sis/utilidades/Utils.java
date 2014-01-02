@@ -1,12 +1,16 @@
 package es.uclm.sri.sis.utilidades;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.apache.commons.lang.ArrayUtils;
 
 
 public class Utils {
@@ -68,6 +72,12 @@ public class Utils {
 			index++;
 		}
 		return d;
+	}
+	
+	public static double[] toDoubleArray(Double[] arr) {
+	    List<Double> list = new ArrayList<Double>(Arrays.asList(arr));
+	    list.removeAll(Collections.singleton(null));
+	    return ArrayUtils.toPrimitive(list.toArray(new Double[list.size()]));
 	}
 
 }

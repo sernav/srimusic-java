@@ -87,7 +87,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	 * 
 	 * @param instances
 	 */
-	WekaDatosCluster(Instances instances) {
+	public WekaDatosCluster(Instances instances) {
 		this.instances = instances;
 		this.vectors = instances.numInstances();
 		if (this.vectors > 0)

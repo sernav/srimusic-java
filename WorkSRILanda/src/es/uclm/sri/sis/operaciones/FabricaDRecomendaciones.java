@@ -3,6 +3,8 @@ package es.uclm.sri.sis.operaciones;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import es.uclm.sri.clustering.ClustererSri;
+import es.uclm.sri.clustering.weka.WekaSRIInstance;
 import es.uclm.sri.lastfm.PlaybackDUsuario;
 import es.uclm.sri.persistencia.admon.AdmonAlbums;
 import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
@@ -52,7 +54,7 @@ public class FabricaDRecomendaciones
      * @param
      * @return
      * */
-    public void procesarDatos() {
+    public void run() {
         
         AdmonAlbums admonAlbums = new AdmonAlbums();
         AdmonPesosAlbum admonPesos = new AdmonPesosAlbum();
@@ -84,11 +86,7 @@ public class FabricaDRecomendaciones
                  * */
                 Pesosalbum[] pesosAlbum = admonPesos.
                         devolverPesosAlbum(albumsLastfm[i].getName(), albumsLastfm[i].getArtist());
-                if (pesosAlbum.length > 0) {
-                    /*
-                     * El album ya est‡ ponderado. Invocar el algoritmo de recomendaci—n.
-                     * */
-                } else {
+                if (pesosAlbum.length == 0) {
                     /*
                      * 1. Ponderar album
                      * 2. Insertar en la tabla PESOSALBUM
@@ -98,6 +96,17 @@ public class FabricaDRecomendaciones
                     AlbumPonderado albumPonderado = pondera.procesar();
                     admonPesos.insertarPesosAlbum(albumPonderado);
                     
+                    /*
+                     * Invocar clusterer (Singleton)
+                     * */
+                    ClustererSri clusterer = ClustererSri.getInstance();
+                    try {
+                        WekaSRIInstance[] recomendaciones = clusterer.generarRecomendacionesWeka(albumPonderado.getPesosGeneros());
+                    } catch (Exception e) {
+                        avisosDSistema.put(new Integer(avisosDSistema.size() + 1), 
+                                "Error al generar recomendaciones de clusterer");
+                        e.printStackTrace();
+                    }
                 }
             }
         } else {

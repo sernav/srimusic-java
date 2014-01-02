@@ -31,7 +31,7 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 	/**
 	 * Default constructor - package protected
 	 */
-	WekaSimpleKMeansCluster() {
+	public WekaSimpleKMeansCluster() {
 		super();
 	}
 

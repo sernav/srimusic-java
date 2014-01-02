@@ -1,5 +1,6 @@
 package es.uclm.sri.clustering.weka;
 
+import es.uclm.sri.sis.utilidades.Utils;
 import weka.core.Instance;
 
 public final class WekaSRIInstance extends Instance {
@@ -71,7 +72,13 @@ public final class WekaSRIInstance extends Instance {
 		instance = new Instance(weight, attValues);
 	}
 	
-	public WekaSRIInstance(double weight, double[] attValues, String titulo, String artista) {
+	public WekaSRIInstance(double weight, Double[] attValues) {
+	    super();
+        double[] auxAttValues = attInitValues(Utils.toDoubleArray(attValues));
+        instance = new Instance(weight, auxAttValues);
+    }
+
+    public WekaSRIInstance(double weight, double[] attValues, String titulo, String artista) {
 		super();
 		this.titulo = titulo;
 		this.artista = artista;

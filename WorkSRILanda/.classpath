@@ -37,5 +37,6 @@
 	<classpathentry kind="lib" path="/SRILanda.Lib/jersey-bundle-1.17.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/dom4j-1.5.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/weka-3-6-9/weka.zip"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/commons-lang-2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

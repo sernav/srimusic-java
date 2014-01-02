@@ -9,7 +9,7 @@ import es.uclm.sri.sis.entidades.AlbumPonderado;
  * */
 public interface IFabricaDRecomendaciones {
     
-    public void procesarDatos();
+    public void run();
     
     public void guardarDatos();
     

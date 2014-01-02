@@ -14,7 +14,7 @@ public class TestSriLanda {
         playback.run();
         
         FabricaDRecomendaciones fabrica = new FabricaDRecomendaciones(playback);
-        fabrica.procesarDatos();
+        fabrica.run();
         
         PonderacionDAlbum pondera = null;
         

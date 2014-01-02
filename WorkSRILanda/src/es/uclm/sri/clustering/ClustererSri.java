@@ -1,13 +1,20 @@
 package es.uclm.sri.clustering;
 
+import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
 import weka.core.EuclideanDistance;
+import weka.core.Instance;
 import weka.core.Instances;
 import weka.experiment.InstanceQuery;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
+import es.uclm.sri.clustering.weka.AnalysisFactory;
+import es.uclm.sri.clustering.weka.WekaDatosCluster;
+import es.uclm.sri.clustering.weka.WekaSRIInstance;
+import es.uclm.sri.clustering.weka.WekaSimpleKMeansCluster;
 import es.uclm.sri.sis.KSistema;
 import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
+import es.uclm.sri.sis.utilidades.Utils;
 
 /**
  * 
@@ -18,6 +25,7 @@ public class ClustererSri {
     
     private static Instances data = null;
     private static SimpleKMeans clusterer = null;
+    private static WekaSimpleKMeansCluster wekaKMeans = null;
     
     private static FicheroDPropiedades properties = null;
     
@@ -70,7 +78,7 @@ public class ClustererSri {
         clusterer.setSeed(10);
         
         /*
-         * Filtro para los atributos de çlbum y Artista
+         * Filtro para los atributos nombre de album y artista
          * 
          * */
         int[] attributes = {0,1};
@@ -90,7 +98,55 @@ public class ClustererSri {
 
         // Construcci—n del clusterer con las instancias traidas
         clusterer.buildClusterer(data);
+        
+        ClusterEvaluation eval = new ClusterEvaluation();
+        eval.setClusterer(clusterer);
+    }
+    
+    public WekaSRIInstance[] generarRecomendacionesWeka(Double[] attValues) throws Exception {
 
+        WekaSRIInstance inst = new WekaSRIInstance(1.0, attValues);
+
+        AnalysisFactory.buildFactory();
+
+        WekaDatosCluster wekaDatosCluster = (WekaDatosCluster) AnalysisFactory
+                .createRawData(data);
+        wekaKMeans = new WekaSimpleKMeansCluster();
+        wekaKMeans.setInputData(wekaDatosCluster);
+        wekaKMeans.setK(clusterer.numberOfClusters());
+        wekaKMeans.setSimpleKMeans(clusterer);
+
+        int iCluster = clasificarInstanciaWeka(inst);
+
+        Instance centroide = clusterer.getClusterCentroids().instance(iCluster);
+
+        double dEuclidea = wekaDatosCluster.getDistanciaEuclideaCentroide(
+                centroide.toDoubleArray(), Utils.toDoubleArray(attValues));
+        
+        WekaSRIInstance[] instCluster = wekaKMeans.getWekaSRIInstancesDCluster(data.enumerateInstances(), iCluster);
+        return wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance(), 10);
+        
+    }
+    
+    protected void generarWekaSimpleKMeans(Instances data) {
+        WekaDatosCluster wekaDatosCluster = new WekaDatosCluster(data);
+        wekaKMeans = new WekaSimpleKMeansCluster();
+        wekaKMeans.setInputData(wekaDatosCluster);
+    }
+
+    protected int clasificarInstanciaWeka(WekaSRIInstance wekaInst)
+            throws Exception {
+        int cluster = wekaKMeans.clusterInstance(wekaInst.getInstance());
+
+        return cluster;
+    }
+
+    protected String evaluadorClusterer() {
+        ClusterEvaluation eval = new ClusterEvaluation();
+        if (this.clusterer != null)
+            eval.setClusterer(this.clusterer);
+
+        return eval.clusterResultsToString();
     }
     
     private void cargarPropiedadesBD() {
