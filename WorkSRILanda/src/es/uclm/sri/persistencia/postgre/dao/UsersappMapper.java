@@ -1,5 +1,7 @@
 package es.uclm.sri.persistencia.postgre.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import es.uclm.sri.persistencia.postgre.dao.model.Usersapp;
 
 public interface UsersappMapper {
@@ -11,6 +13,8 @@ public interface UsersappMapper {
     int insertSelective(Usersapp record);
 
     Usersapp selectByPrimaryKey(Integer ID_USERAPP);
+    
+    Usersapp selectByNick(@Param("NICKUSER") String NICKUSER);
 
     int updateByPrimaryKeySelective(Usersapp record);
 

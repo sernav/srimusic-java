@@ -10,6 +10,7 @@ public class Usersapp {
     private Date FECHREGS;
     private String NOMBUSER;
     private String APLLUSER;
+    private String ORIGEN;
 
     public Integer getID_USERAPP() {
         return ID_USERAPP;
@@ -57,5 +58,13 @@ public class Usersapp {
 
     public void setAPLLUSER(String APLLUSER) {
         this.APLLUSER = APLLUSER;
+    }
+    
+    public String getORIGEN() {
+        return ORIGEN;
+    }
+
+    public void setORIGEN(String oRIGEN) {
+        ORIGEN = oRIGEN;
     }
 }
