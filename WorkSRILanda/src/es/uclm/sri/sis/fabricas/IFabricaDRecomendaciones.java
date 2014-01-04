@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.operaciones;
+package es.uclm.sri.sis.fabricas;
 
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
@@ -9,16 +9,8 @@ import es.uclm.sri.sis.entidades.AlbumPonderado;
  * */
 public interface IFabricaDRecomendaciones {
     
-    public void run();
-    
-    public void guardarDatos();
-    
-    public void aplicarSistemaDReglas();
-    
     public AlbumPonderado ponderarAlbum(Album album);
     
     public AlbumPonderado ponderarAlbum(de.umass.lastfm.Album albumLastFm);
-    
-    public String[] getAvisosDSistema();
 
 }

@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.ponderacion;
+package es.uclm.sri.sis.operaciones;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,7 +27,7 @@ import es.uclm.sri.sis.utilidades.UtilsDLastfm;
  * @author Sergio Navarro
  * @date Dic, 2013
  * */
-public class PonderacionDAlbum implements IPonderacion {
+public class PonderacionDAlbum implements IPonderacion, IOperacion {
     
     private Album album;
     private de.umass.lastfm.Album albumLastfm;
@@ -346,6 +346,12 @@ public class PonderacionDAlbum implements IPonderacion {
 
     public void ordenar(String tipoOrden) {
         
+    }
+
+    @Override
+    public HashMap<Integer, String> getAvisosDSistema() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

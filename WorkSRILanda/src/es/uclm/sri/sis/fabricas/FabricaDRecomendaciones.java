@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.operaciones;
+package es.uclm.sri.sis.fabricas;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
-import es.uclm.sri.sis.ponderacion.PonderacionDAlbum;
+import es.uclm.sri.sis.operaciones.PonderacionDAlbum;
 
 /**
  * <code>FabricaDRecomendaciones</code> es la clase que se encarga de crear recomendaciones
@@ -23,7 +23,7 @@ import es.uclm.sri.sis.ponderacion.PonderacionDAlbum;
  * @author Sergio Navarro
  * */
 public class FabricaDRecomendaciones 
-        implements IFabricaDRecomendaciones {
+        implements IFabricaDRecomendaciones, IFabrica {
     
     private HashMap<String, Album> albums;
     private de.umass.lastfm.Album[] albumsLastFm;
@@ -132,7 +132,7 @@ public class FabricaDRecomendaciones
         return null;
     }
 
-    public String[] getAvisosDSistema() {
+    public HashMap<Integer, String> getAvisosDSistema() {
         return null;
     }
 
@@ -141,5 +141,6 @@ public class FabricaDRecomendaciones
         // TODO Auto-generated method stub
         
     }
+
 }
 

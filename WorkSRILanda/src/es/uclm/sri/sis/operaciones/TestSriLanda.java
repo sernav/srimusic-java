@@ -3,7 +3,7 @@ package es.uclm.sri.sis.operaciones;
 import de.umass.lastfm.Album;
 import deezer.j2me.DZMidlet;
 import es.uclm.sri.lastfm.PlaybackDUsuario;
-import es.uclm.sri.sis.ponderacion.PonderacionDAlbum;
+import es.uclm.sri.sis.fabricas.FabricaDRecomendaciones;
 
 public class TestSriLanda {
 

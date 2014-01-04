@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.ponderacion;
+package es.uclm.sri.sis.operaciones;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,5 @@ public interface IPonderacion {
     public void calcularPesos();
     
     public ArrayList<Genero> convertirTags();
-    
-    public void ordenar(String tipoOrden);
 
 }
