@@ -1,8 +1,8 @@
 package es.uclm.sri.cache;
 
 import net.sf.ehcache.Element;
-import es.uclm.sri.persistencia.postgre.dao.VpesosuserMapper;
-import es.uclm.sri.persistencia.postgre.dao.model.Vpesosuser;
+import es.uclm.sri.persistencia.postgre.dao.PesosusuarioMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
 import es.uclm.sri.sis.KSistema;
 
 /**
@@ -51,9 +51,9 @@ public class CachePesosUsuario extends AbstractCache {
 	public Element getElementosDTablaById(Integer id) {
 		try{
 			sqlMapper.openSession();
-			VpesosuserMapper mapper = session.getMapper(VpesosuserMapper.class);
-			Vpesosuser vPesosUser = mapper.selectByPrimaryKey(id);
-			element = new Element(vPesosUser.getID_VPESOSU(), vPesosUser);
+			PesosusuarioMapper mapper = session.getMapper(PesosusuarioMapper.class);
+			Pesosusuario vPesosUser = mapper.selectByPrimaryKey(id);
+			element = new Element(vPesosUser.getID_PESOSALBUM(), vPesosUser);
 			return element;
 		} finally {
 			session.close();
@@ -64,11 +64,11 @@ public class CachePesosUsuario extends AbstractCache {
 	public Element[] getElementosDTablaByUsuario(Integer idUsuario){
 		try{
 			sqlMapper.openSession();
-			VpesosuserMapper mapper = session.getMapper(VpesosuserMapper.class);
-			Vpesosuser[] vpesosuser = mapper.selectByIdUser(idUsuario);
+			PesosusuarioMapper mapper = session.getMapper(PesosusuarioMapper.class);
+			Pesosusuario[] vpesosuser = mapper.selectByIdUser(idUsuario);
 			Element[] elementos = new Element[vpesosuser.length];
 			for (int i = 0; i < vpesosuser.length; i++) {
-				elementos[i] = new Element(vpesosuser[i].getID_VPESOSU(), vpesosuser[i]);
+				elementos[i] = new Element(vpesosuser[i].getID_PESOSALBUM(), vpesosuser[i]);
 			}
 			return elementos;
 		} finally {

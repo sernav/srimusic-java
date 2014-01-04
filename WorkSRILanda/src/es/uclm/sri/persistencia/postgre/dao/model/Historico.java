@@ -2,11 +2,11 @@ package es.uclm.sri.persistencia.postgre.dao.model;
 
 import java.util.Date;
 
-public class Histuser {
+public class Historico {
     
     private Integer ID_HISTUSER;
-    private Integer ID_USERAPP_FK;
-    private Integer ID_ALBUMAPP_FK;
+    private Integer ID_DUSUARIO_FK;
+    private Integer ID_DALBUM_FK;
     private Integer NUMREPRD;
     private Date FULTREPR;
 
@@ -18,20 +18,20 @@ public class Histuser {
         this.ID_HISTUSER = ID_HISTUSER;
     }
 
-    public Integer getID_USERAPP_FK() {
-        return ID_USERAPP_FK;
+    public Integer getID_DUSUARIO_FK() {
+        return ID_DUSUARIO_FK;
     }
 
-    public void setID_USERAPP_FK(Integer ID_USERAPP_FK) {
-        this.ID_USERAPP_FK = ID_USERAPP_FK;
+    public void setID_DUSUARIO_FK(Integer ID_DUSUARIO_FK) {
+        this.ID_DUSUARIO_FK = ID_DUSUARIO_FK;
     }
 
-    public Integer getID_ALBUMAPP_FK() {
-        return ID_ALBUMAPP_FK;
+    public Integer getID_DALBUM_FK() {
+        return ID_DALBUM_FK;
     }
 
-    public void setID_ALBUMAPP_FK(Integer ID_ALBUMAPP_FK) {
-        this.ID_ALBUMAPP_FK = ID_ALBUMAPP_FK;
+    public void setID_DALBUM_FK(Integer ID_DALBUM_FK) {
+        this.ID_DALBUM_FK = ID_DALBUM_FK;
     }
 
     public Integer getNUMREPRD() {

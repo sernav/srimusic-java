@@ -24,11 +24,12 @@
 		<result column="FUNK" property="FUNK" jdbcType="DOUBLE" />
 		<result column="INSTRUMENTAL" property="INSTRUMENTAL" jdbcType="DOUBLE" />
 		<result column="GRUNGE" property="GRUNGE" jdbcType="DOUBLE" />
+		<result column="ID_DALBUM_FK" property="ID_DALBUM_FK" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		"ID_PESOSALBUM", "ALBUM", "ARTISTA", "SINGER", "RAP", "AMBIENT", "INDIE", "BLUES", "REGGAE",
 		"PUNK", "HEAVY", "ALTERNATIVE", "CLASSIC", "ELECTRONIC", "ROCK", "POP", "BRIT", "FOLK",
-		"FUNK", "INSTRUMENTAL", "GRUNGE"
+		"FUNK", "INSTRUMENTAL", "GRUNGE", "ID_DALBUM_FK"
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -142,6 +143,9 @@
 			<if test="GRUNGE != null">
 				"GRUNGE"
 			</if>
+			<if test="GRUNGE != null">
+				"ID_DALBUM_FK"
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="ALBUM != null">
@@ -203,6 +207,9 @@
 			</if>
 			<if test="GRUNGE != null">
 				#{GRUNGE,jdbcType=DOUBLE}
+			</if>
+			<if test="GRUNGE != null">
+				#{"ID_DALBUM_FK",jdbcType=DOUBLE}
 			</if>
 		</trim>
 	</insert>

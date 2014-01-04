@@ -1,8 +1,8 @@
 package es.uclm.sri.cache;
 
 import net.sf.ehcache.Element;
-import es.uclm.sri.persistencia.postgre.dao.HistuserMapper;
-import es.uclm.sri.persistencia.postgre.dao.model.Histuser;
+import es.uclm.sri.persistencia.postgre.dao.HistoricoMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Historico;
 import es.uclm.sri.sis.KSistema;
 
 /**
@@ -51,8 +51,8 @@ public class CacheHistorico extends AbstractCache {
 	public Element getElementosDTablaById(Integer id) {
 		try{
 			sqlMapper.openSession();
-			HistuserMapper mapper = session.getMapper(HistuserMapper.class);
-			Histuser histuser = mapper.selectByPrimaryKey(id);
+			HistoricoMapper mapper = session.getMapper(HistoricoMapper.class);
+			Historico histuser = mapper.selectByPrimaryKey(id);
 			element = new Element(histuser.getID_HISTUSER(), histuser);
 			return element;
 		} finally {
@@ -63,8 +63,8 @@ public class CacheHistorico extends AbstractCache {
 	public Element[] getElementosDTablaByUsuario(Integer idUsuario){
 		try{
 			sqlMapper.openSession();
-			HistuserMapper mapper = session.getMapper(HistuserMapper.class);
-			Histuser[] histusers = mapper.selectByIdUser(idUsuario);
+			HistoricoMapper mapper = session.getMapper(HistoricoMapper.class);
+			Historico[] histusers = mapper.selectByIdUser(idUsuario);
 			Element[] elementos = new Element[histusers.length];
 			for (int i = 0; i < histusers.length; i++) {
 				elementos[i] = new Element(histusers[i].getID_HISTUSER(), histusers[i]);

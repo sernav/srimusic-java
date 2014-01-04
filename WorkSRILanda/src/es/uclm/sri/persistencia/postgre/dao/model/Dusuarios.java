@@ -2,9 +2,9 @@ package es.uclm.sri.persistencia.postgre.dao.model;
 
 import java.util.Date;
 
-public class Usersapp {
+public class Dusuarios {
     
-    private Integer ID_USERAPP;
+    private Integer ID_DUSUARIO;
     private String NICKUSER;
     private String MAILREGS;
     private Date FECHREGS;
@@ -12,12 +12,12 @@ public class Usersapp {
     private String APLLUSER;
     private String ORIGEN;
 
-    public Integer getID_USERAPP() {
-        return ID_USERAPP;
+    public Integer getID_DUSUARIO() {
+        return ID_DUSUARIO;
     }
 
-    public void setID_USERAPP(Integer ID_USERAPP) {
-        this.ID_USERAPP = ID_USERAPP;
+    public void setID_DUSUARIO(Integer ID_DUSUARIO) {
+        this.ID_DUSUARIO = ID_DUSUARIO;
     }
 
     public String getNICKUSER() {
@@ -64,7 +64,7 @@ public class Usersapp {
         return ORIGEN;
     }
 
-    public void setORIGEN(String oRIGEN) {
-        ORIGEN = oRIGEN;
+    public void setORIGEN(String ORIGEN) {
+        this.ORIGEN = ORIGEN;
     }
 }

@@ -1,6 +1,7 @@
 package es.uclm.sri.sis.operaciones;
 
 import de.umass.lastfm.Album;
+import deezer.j2me.DZMidlet;
 import es.uclm.sri.lastfm.PlaybackDUsuario;
 import es.uclm.sri.sis.ponderacion.PonderacionDAlbum;
 
@@ -15,6 +16,11 @@ public class TestSriLanda {
         
         FabricaDRecomendaciones fabrica = new FabricaDRecomendaciones(playback);
         fabrica.run();
+        
+        DZMidlet dz = deezer.j2me.DZMidlet.instance;
+        
+        
+        
         
         PonderacionDAlbum pondera = null;
         

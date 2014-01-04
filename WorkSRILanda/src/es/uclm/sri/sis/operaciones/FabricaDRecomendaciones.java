@@ -8,7 +8,7 @@ import es.uclm.sri.clustering.weka.WekaSRIInstance;
 import es.uclm.sri.lastfm.PlaybackDUsuario;
 import es.uclm.sri.persistencia.admon.AdmonAlbums;
 import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
-import es.uclm.sri.persistencia.postgre.dao.model.Albumsapp;
+import es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
@@ -76,7 +76,7 @@ public class FabricaDRecomendaciones
                  * Se buscar el album en la base de datos. Si no se encuentra, se
                  * inserta en la tabla de Albums.
                  * */
-                Albumsapp[] albumsApp = admonAlbums.devolverAlbums(albumsLastfm[i]);
+                Dalbums[] albumsApp = admonAlbums.devolverAlbums(albumsLastfm[i]);
                 if (albumsApp.length == 0) {
                     admonAlbums.insertarAlbum(albumsLastfm[i]);
                 }

@@ -15,15 +15,15 @@
 	</environments>
 	<mappers>
 		<mapper
-			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/AlbumsappMapper.xml" />
+			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/DalbumsMapper.xml" />
 		<mapper
-			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/HistuserMapper.xml" />
+			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/HistoricoMapper.xml" />
 		<mapper
-			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/UsersappMapper.xml" />
+			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/DusuariosMapper.xml" />
 		<mapper
 			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/VpesosalbumMapper.xml" />
 		<mapper
-			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/VpesosuserMapper.xml" />
+			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/PesosusuarioMapper.xml" />
 		<mapper
 			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/PesosalbumMapper.xml" />
 	</mappers>

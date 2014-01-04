@@ -24,44 +24,44 @@
 		<result column="INSTRUMENTAL" property="INSTRUMENTAL" jdbcType="DOUBLE" />
 		<result column="AMBIENT" property="AMBIENT" jdbcType="DOUBLE" />
 		<result column="REGGAE" property="REGGAE" jdbcType="DOUBLE" />
+		<result column="ID_DALBUM_FK" property="ID_DALBUM_FK" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		ID_PESOSALBUM, ALBUM, ARTISTA, ROCK, INDIE, ALTERNATIVE, POP, ELECTRONIC, BRIT,
-		FUNK,
-		RAP, FOLK, SINGLE, HEAVY, BLUES, GRUNGE, CLASSIC, PUNK, INSTRUMENTAL,
-		AMBIENT, REGGAE
+		"ID_PESOSALBUM", "ALBUM", "ARTISTA", "ROCK", "INDIE", "ALTERNATIVE", "POP", "ELECTRONIC", "BRIT",
+		"FUNK", "RAP", "FOLK", "SINGLE", "HEAVY", "BLUES", "GRUNGE", "CLASSIC", "PUNK", "INSTRUMENTAL",
+		"AMBIENT", "REGGAE", "ID_DALBUM_FK"
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
 		from "PESOSALBUM"
-		where ID_PESOSALBUM = #{ID_PESOSALBUM,jdbcType=INTEGER}
+		where "ID_PESOSALBUM" = #{ID_PESOSALBUM,jdbcType=INTEGER}
 	</select>
 	<select id="selectByAlbum" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
 		from "PESOSALBUM"
-		where ALBUM = #{ALBUM,jdbcType=VARCHAR}
+		where "ALBUM" = #{ALBUM,jdbcType=VARCHAR}
 	</select>
 	<select id="selectByArtista" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
 		from "PESOSALBUM"
-		where ARTISTA = #{ARTISTA,jdbcType=VARCHAR}
+		where "ARTISTA" = #{ARTISTA,jdbcType=VARCHAR}
 	</select>
 	<select id="selectByAlbumYArtista" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
 		from "PESOSALBUM"
-		where ALBUM = #{ALBUM,jdbcType=VARCHAR} and ARTISTA = #{ARTISTA,jdbcType=VARCHAR}
+		where "ALBUM" = #{ALBUM,jdbcType=VARCHAR} and ARTISTA = #{ARTISTA,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from "PESOSALBUM"
-		where ID_PESOSALBUM = #{ID_PESOSALBUM,jdbcType=INTEGER}
+		where "ID_PESOSALBUM" = #{ID_PESOSALBUM,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum"
@@ -76,10 +76,10 @@
 		#{ALTERNATIVE,jdbcType=DOUBLE}, #{POP,jdbcType=DOUBLE},
 		#{ELECTRONIC,jdbcType=DOUBLE}, #{BRIT,jdbcType=DOUBLE},
 		#{FUNK,jdbcType=DOUBLE}, #{RAP,jdbcType=DOUBLE},
-		#{FOLK,jdbcType=DOUBLE},#{SINGLE,jdbcType=DOUBLE},#{HEAVY,jdbcType=DOUBLE},#{BLUES,jdbcType=DOUBLE},
-		#{GRUNGE,jdbcType=DOUBLE}, #{CLASSIC,jdbcType=DOUBLE},
-		#{PUNK,jdbcType=DOUBLE},
-		#{INSTRUMENTAL,jdbcType=DOUBLE}, #{AMBIENT,jdbcType=DOUBLE}, #{REGGAE,jdbcType=DOUBLE})
+		#{FOLK,jdbcType=DOUBLE},#{SINGLE,jdbcType=DOUBLE},#{HEAVY,jdbcType=DOUBLE},
+		#{BLUES,jdbcType=DOUBLE}, #{GRUNGE,jdbcType=DOUBLE}, #{CLASSIC,jdbcType=DOUBLE},
+		#{PUNK,jdbcType=DOUBLE}, #{INSTRUMENTAL,jdbcType=DOUBLE}, 
+		#{AMBIENT,jdbcType=DOUBLE}, #{REGGAE,jdbcType=DOUBLE})
 	</insert>
 	<insert id="insertSelective"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum">

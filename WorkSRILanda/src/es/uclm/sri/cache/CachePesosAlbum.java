@@ -1,8 +1,8 @@
 package es.uclm.sri.cache;
 
 import net.sf.ehcache.Element;
-import es.uclm.sri.persistencia.postgre.dao.VpesosalbumMapper;
-import es.uclm.sri.persistencia.postgre.dao.model.Vpesosalbum;
+import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.KSistema;
 
 /**
@@ -55,9 +55,9 @@ public class CachePesosAlbum extends AbstractCache {
 	public Element getElementosDTablaById(Integer id) {
 		try{
 			sqlMapper.openSession();
-			VpesosalbumMapper mapper = session.getMapper(VpesosalbumMapper.class);
-			Vpesosalbum vPesosAlbum = mapper.selectByPrimaryKey(id);
-			element = new Element(vPesosAlbum.getID_VPESOSA(), vPesosAlbum);
+			PesosalbumMapper mapper = session.getMapper(PesosalbumMapper.class);
+			Pesosalbum pesosAlbum = mapper.selectByPrimaryKey(id);
+			element = new Element(pesosAlbum.getID_PESOSALBUM(), pesosAlbum);
 			return element;
 		} finally {
 			session.close();

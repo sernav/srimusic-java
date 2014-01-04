@@ -1,20 +1,20 @@
 package es.uclm.sri.persistencia.postgre.dao.model;
 
-public class Albumsapp {
+public class Dalbums {
     
-    private Integer ID_ALBUMAPP;
+    private Integer ID_DALBUM;
     private String TITUALBM;
     private String AUTALBM;
     private String GENRALBM;
     private Integer NUMEPIST;
     private Integer ANYIOPUB;
 
-    public Integer getID_ALBUMAPP() {
-        return ID_ALBUMAPP;
+    public Integer getID_DALBUM() {
+        return ID_DALBUM;
     }
 
-    public void setID_ALBUMAPP(Integer ID_ALBUMAPP) {
-        this.ID_ALBUMAPP = ID_ALBUMAPP;
+    public void setID_DALBUM(Integer ID_DALBUM) {
+        this.ID_DALBUM = ID_DALBUM;
     }
 
     public String getTITUALBM() {
