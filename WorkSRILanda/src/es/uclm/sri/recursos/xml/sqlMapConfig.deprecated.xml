@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig
+PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+	<properties resource="database.properties" />
+
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		lazyLoadingEnabled="true" maxRequests="32" maxSessions="10"
+		maxTransactions="5" useStatementNamespaces="false" />
+
+	<transactionManager type="JDBC">
+		<dataSource type="SIMPLE">
+			<property name="JDBC.Driver" value="${database.driver}" />
+			<property name="JDBC.ConnectionURL" value="${database.url}" />
+			<property name="JDBC.Username" value="${database.username}" />
+			<property name="JDBC.Password" value="${database.password}" />
+		</dataSource>
+	</transactionManager>
+
+	<sqlMap resource="es.uclm.sri.persistencia.postgre.dao.PesosusuarioMapper.xml" />
+	<sqlMap resource="es.uclm.sri.persistencia.postgre.dao.UserappMapper.xml" />
+	<sqlMap resource="es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper.xml" />
+	<sqlMap resource="es.uclm.sri.persistencia.postgre.dao.HistoricoMapper.xml" />
+	<sqlMap resource="es.uclm.sri.persistencia.postgre.dao.DalbumsMapper.xml" />
+
+</sqlMapConfig>

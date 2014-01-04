@@ -37,7 +37,7 @@ public class KSistema {
         public static final String PATH_LOG4J_PROPERTIES = "src/es/uclm/sri/recursos/log4j.properties";
         
         // XML
-        public static final String PATH_MAPPING_POSTGRE = "src/es/uclm/sri/recursos/xml/configurationPostgre.xml";
+        public static final String PATH_MAPPING_POSTGRE = "src/es/uclm/sri/recursos/xml/sqlMapConfig.xml";
         
     }
 
