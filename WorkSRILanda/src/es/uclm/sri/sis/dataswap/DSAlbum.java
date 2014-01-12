@@ -9,25 +9,26 @@ import es.uclm.sri.sis.entidades.Album;
 /**
  * @author Sergio Navarro
  * */
-public class DSAlbum extends AbstractDataSwap implements IDataSwap, IDSAlbum {
+public class DSAlbum extends AbstractDataSwap {
 
     private Album album;
     private de.umass.lastfm.Album albumLastfm;
     
-    private final String ORIGEN_ALBUM = "Lastfm";
-    
     public DSAlbum(de.umass.lastfm.Album albumLastfm) {
         super();
         this.album = new Album();
+        this.albumLastfm = albumLastfm;
     }
     
-    public Album generarDSAlbum(de.umass.lastfm.Album album) {
+    public Object generarDataSwap() {
         this.album.setTitulo(this.albumLastfm.getName());
         this.album.setArtista(this.albumLastfm.getArtist());
         this.album.setNumTemas(this.albumLastfm.getTracks().size());
         this.album.setFecha(null);
+        
         incluirTagsDAlbum();
-        return null;
+        
+        return this.album;
     }
     
     private void incluirTagsDAlbum() {
@@ -41,10 +42,6 @@ public class DSAlbum extends AbstractDataSwap implements IDataSwap, IDSAlbum {
         
         this.album.setEtiquetas(etiquetas);
     }
-    
-    public void generarDataSwap() {
-        
-    }
 
     public Album getAlbum() {
         return this.album;
@@ -56,10 +53,6 @@ public class DSAlbum extends AbstractDataSwap implements IDataSwap, IDSAlbum {
     
     public void setAlbumDs(de.umass.lastfm.Album albumLastfm) {
         this.albumLastfm = albumLastfm;
-    }
-
-    public String getOrigenAlbum() {
-        return ORIGEN_ALBUM;
     }
 
 }

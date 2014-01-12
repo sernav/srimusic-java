@@ -2,7 +2,7 @@ package es.uclm.sri.sis.dataswap;
 
 public interface IDataSwap {
     
-    public void generarDataSwap();
+    public Object generarDataSwap();
     
     public void setDataSwap(IDataSwap dataSwap);
     

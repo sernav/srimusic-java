@@ -12,6 +12,7 @@ import es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.entidades.Recomendacion;
 import es.uclm.sri.sis.operaciones.PonderacionDAlbum;
 
 /**
@@ -101,7 +102,11 @@ public class FabricaDRecomendaciones
                      * */
                     ClustererSri clusterer = ClustererSri.getInstance();
                     try {
-                        WekaSRIInstance[] recomendaciones = clusterer.generarRecomendacionesWeka(albumPonderado.getPesosGeneros());
+                        WekaSRIInstance[] wekaInst = clusterer.generarRecomendacionesWeka(albumPonderado.getPesosGeneros());
+                        /*
+                         * Aqu’ las recomendaciones
+                         * */
+                        Recomendacion recomendaciones = new Recomendacion(wekaInst, usuario);
                     } catch (Exception e) {
                         avisosDSistema.put(new Integer(avisosDSistema.size() + 1), 
                                 "Error al generar recomendaciones de clusterer");

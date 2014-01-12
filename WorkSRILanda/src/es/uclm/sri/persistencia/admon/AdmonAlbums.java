@@ -39,6 +39,10 @@ public class AdmonAlbums extends AbstractAdmon {
         mapper.insert(record);
     }
     
+    public Dalbums[] devolverAlbums(String titulo, String artista) {
+        return mapper.selectByAlbumYArtista(titulo.trim(), artista.trim());
+    }
+    
     public Dalbums[] devolverAlbums(Album album) {
         return mapper.selectByAlbumYArtista(album.getTitulo().trim(), album.getArtista().trim());
     }

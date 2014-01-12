@@ -8,7 +8,7 @@ public abstract class AbstractDataSwap implements IDataSwap {
     
     private IDataSwap dataSwap;
 
-    public void generarDataSwap() {
+    public AbstractDataSwap() {
         
     }
     

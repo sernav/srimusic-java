@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-clips-5.5.0.Final-sources.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-compiler-5.5.0.Final-sources.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-core-5.5.0.Final-sources.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-decisiontables-5.5.0.Final-sources.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-jsr94-5.5.0.Final-sources.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-persistence-jpa-5.5.0.Final-sources.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-templates-5.5.0.Final-sources.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/drools-verifier-5.5.0.Final-sources.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/drools-5.5.0/knowledge-api-5.5.0.Final-sources.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/ehcache-core-2.6.3.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/ehcache-terracotta-2.6.3.jar"/>
@@ -39,5 +31,25 @@
 	<classpathentry kind="lib" path="/SRILanda.Lib/weka-3-6-9/weka.zip"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/commons-lang-2.3.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/Deezer.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/deezer-api-client.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/antlr-runtime.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/drools-compiler.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/drools-core.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/drools-decisiontables.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/drools-jsr94.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/drools-templates.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/droolsjbpm-ide-common.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/jbpm-bpmn2.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/jbpm-flow-builder.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/jbpm-flow.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/jsr94.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/junit.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/jxl.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/knowledge-api.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/knowledge-internal-api.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/mvel2.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xmlpull.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xpp3_min.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xstream.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
