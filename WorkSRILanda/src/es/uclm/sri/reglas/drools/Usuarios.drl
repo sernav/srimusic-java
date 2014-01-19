@@ -1,20 +1,19 @@
-//created on: 06-ene-2014
 package es.uclm.sri.reglas.drools
 
 //list any import classes here.
 import es.uclm.sri.entidades.Album;
 import es.uclm.sri.entidades.Recomendacion;
 
-
 //declare any global variables here
 
 
 
-
-rule ""
+rule "Es recomendaci—n reiterativa"
 
     when
-        Recomendacion(  )
+    	
+        recomendacion : Recomendacion( fecha <  );
+        
     then
         //actions
 

@@ -96,7 +96,6 @@ public class FabricaDRecomendaciones
                     PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
                     AlbumPonderado albumPonderado = pondera.procesar();
                     admonPesos.insertarPesosAlbum(albumPonderado);
-                    
                     /*
                      * Invocar clusterer (Singleton)
                      * */
@@ -106,7 +105,7 @@ public class FabricaDRecomendaciones
                         /*
                          * Aqu’ las recomendaciones
                          * */
-                        Recomendacion recomendaciones = new Recomendacion(wekaInst, usuario);
+                        Recomendacion recomendacion = new Recomendacion(wekaInst[0], usuario);
                     } catch (Exception e) {
                         avisosDSistema.put(new Integer(avisosDSistema.size() + 1), 
                                 "Error al generar recomendaciones de clusterer");

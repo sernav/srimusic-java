@@ -137,7 +137,7 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 		return arrayCluster.toArray(new Instance[arrayCluster.size()]);
 	}
 	
-	public WekaSRIInstance[] getWekaSRIInstancesDCluster(Enumeration<Instance> enumInst,
+    public WekaSRIInstance[] getWekaSRIInstancesDCluster(Enumeration<Instance> enumInst,
 			int numCluster) throws Exception {
 		
 		ArrayList<WekaSRIInstance> arrayCluster = new ArrayList<WekaSRIInstance>();
