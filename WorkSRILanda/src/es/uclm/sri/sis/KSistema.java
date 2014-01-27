@@ -40,5 +40,30 @@ public class KSistema {
         public static final String PATH_MAPPING_POSTGRE = "src/es/uclm/sri/recursos/xml/sqlMapConfig.xml";
         
     }
+    
+    public final class Generos {
+        
+        private Generos() {
+        }
+        
+        public static final String ALTERNATIVE = "alternative";
+        public static final String AMBIENT = "ambient";
+        public static final String BLUES = "blues";
+        public static final String BRIT = "brit";
+        public static final String CLASSIC = "classic";
+        public static final String ELECTRONIC = "electronic";
+        public static final String FOLK = "folk";
+        public static final String FUNK = "funk";
+        public static final String GRUNGE = "grunge";
+        public static final String HEAVY = "heavy";
+        public static final String INDIE = "indie";
+        public static final String INSTRUMENTAL = "instrumental";
+        public static final String POP = "pop";
+        public static final String PUNK = "punk";
+        public static final String RAP = "rap";
+        public static final String REGGAE = "reggae";
+        public static final String ROCK = "rock";
+        public static final String SINGER = "singer";
+    }
 
 }
