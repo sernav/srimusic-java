@@ -1,0 +1,126 @@
+/* 
+	Definiciones de variables lingüisticas, antecedentes, 
+	consecuentes y reglas.
+	Cálculos basados en las escuchas de entrada e históricas.
+
+	Sergio Navarro
+*/
+
+FUNCTION_BLOCK definiciones
+
+// Variables de entrada:
+VAR_INPUT				
+	escuchas_historico : REAL;
+	escuchas_actuales : REAL;
+END_VAR
+
+//Variable de entrada:
+VAR_OUTPUT				
+	salida : REAL;
+END_VAR
+
+/*
+ * Borrosificación variable de entrada 'escuchas_historico':
+ * 
+ * MB: Muy Bajo
+ * B:  Bajo
+ * S:  Suficiente
+ * A:  Alto
+ * MA: Muy Alto
+ */
+FUZZIFY escuchas_historico	
+
+	TERM MB := (0, 1) (6.25, 1) (12.5, 0) ;
+	TERM B  := (6.25, 0) (12.5, 1) (25, 1) (31.25, 0) ;
+	TERM S  := (25, 0) (37.5, 1) (62.5, 1) (75, 0) ;
+	TERM A  := (68.75, 0) (75, 1) (87.5, 1) (93.75, 0) ;
+	TERM MA := (87.5, 0) (93.75, 1) (100, 1);
+
+END_FUZZIFY
+
+/*
+ * Borrosificación variable de entrada 'escuchas_actuales':
+ * 
+ * MB: Muy Bajo
+ * B:  Bajo
+ * S:  Suficiente
+ * A:  Alto
+ * MA: Muy Alto
+ */
+FUZZIFY escuchas_actuales	
+
+	TERM MB := (0, 1) (6.25, 1) (12.5, 0) ;
+	TERM B  := (6.25, 0) (12.5, 1) (25, 1) (31.25, 0) ;
+	TERM S  := (25, 0) (37.5, 1) (62.5, 1) (75, 0) ;
+	TERM A  := (68.75, 0) (75, 1) (87.5, 1) (93.75, 0) ;
+	TERM MA := (87.5, 0) (93.75, 1) (100, 1);
+
+END_FUZZIFY
+
+/*
+ * Desborrisificación variable de control 'salida':
+ * 
+ * BG: Bajada Grande
+ * BR: Bajada Reseñable
+ * BP: Bajada Pequeña
+ * M:  Mantiene
+ * SP: Subida Pequeña
+ * SR: Subida Reseñable
+ * SG: Subida Grande
+ */
+ 
+ DEFUZZIFY salida
+ 
+ 	TERM BG := (0, 0) (12.5, 1) (25, 0) ;
+ 	TERM BR := (12.5, 0) (37.5, 1) (43.75, 0) ;
+ 	TERM BP := (25, 0) (43.75, 1) (50, 0) ;
+ 	TERM M := (43.75, 0) (50, 1) (56.25, 0) ;
+ 	TERM SP := (50, 0) (56.25, 1) (75, 0) ;
+ 	TERM SR := (56.25, 0) (62.5, 1) (87.5, 0);
+ 	TERM SG := (75, 0) (87.5, 1) (100, 0) ;
+ 	METHOD : COG;		// Se usa 'Center Of Gravity' como método de desborrosificación
+	DEFAULT := 0;		// Valor por defecto si no se puede desborrificar
+	RANGE := (0.0 .. 100.0); // Rango de valores
+ 
+ END_DEFUZZIFY
+ 
+ RULEBLOCK Escuchas_Usuario
+ 
+ 	AND : MIN;	// MIN para el operador AND
+ 	ACT : MIN;	// MIN para activar función
+ 	ACCU : MAX;
+ 	
+ 	RULE 01 : IF escuchas_historico IS MB AND escuchas_actuales IS MB THEN salida IS M;
+ 	RULE 02 : IF escuchas_historico IS MB AND escuchas_actuales IS B THEN salida IS SP;
+ 	RULE 03 : IF escuchas_historico IS MB AND escuchas_actuales IS S THEN salida IS SR;
+ 	RULE 04 : IF escuchas_historico IS MB AND escuchas_actuales IS A THEN salida IS SG;
+ 	RULE 05 : IF escuchas_historico IS MB AND escuchas_actuales IS MB THEN salida IS SG;
+ 	
+ 	RULE 06 : IF escuchas_historico IS B AND escuchas_actuales IS MB THEN salida IS BP;
+ 	RULE 07 : IF escuchas_historico IS B AND escuchas_actuales IS B THEN salida IS M;
+ 	RULE 08 : IF escuchas_historico IS B AND escuchas_actuales IS S THEN salida IS SP;
+ 	RULE 09 : IF escuchas_historico IS B AND escuchas_actuales IS A THEN salida IS SR;
+ 	RULE 10 : IF escuchas_historico IS B AND escuchas_actuales IS MB THEN salida IS BP;
+ 	
+ 	RULE 11 : IF escuchas_historico IS S AND escuchas_actuales IS MB THEN salida IS BR;
+ 	RULE 12 : IF escuchas_historico IS S AND escuchas_actuales IS B THEN salida IS BP;
+ 	RULE 13 : IF escuchas_historico IS S AND escuchas_actuales IS S THEN salida IS M;
+ 	RULE 14 : IF escuchas_historico IS S AND escuchas_actuales IS A THEN salida IS SP;
+ 	RULE 15 : IF escuchas_historico IS S AND escuchas_actuales IS MB THEN salida IS SR;
+ 	
+ 	RULE 16 : IF escuchas_historico IS A AND escuchas_actuales IS MB THEN salida IS BG;
+ 	RULE 17 : IF escuchas_historico IS A AND escuchas_actuales IS B THEN salida IS BR;
+ 	RULE 18 : IF escuchas_historico IS A AND escuchas_actuales IS S THEN salida IS BP;
+ 	RULE 19 : IF escuchas_historico IS A AND escuchas_actuales IS A THEN salida IS M;
+ 	RULE 20 : IF escuchas_historico IS A AND escuchas_actuales IS MB THEN salida IS BP;
+ 	
+ 	RULE 21 : IF escuchas_historico IS MA AND escuchas_actuales IS MB THEN salida IS BG;
+ 	RULE 22 : IF escuchas_historico IS MA AND escuchas_actuales IS B THEN salida IS BG;
+ 	RULE 23 : IF escuchas_historico IS MA AND escuchas_actuales IS S THEN salida IS BR;
+ 	RULE 24 : IF escuchas_historico IS MA AND escuchas_actuales IS A THEN salida IS BP;
+ 	RULE 25 : IF escuchas_historico IS MA AND escuchas_actuales IS MA THEN salida IS M;
+ 
+ END_RULEBLOCK
+
+
+END_FUNCTION_BLOCK

@@ -10,5 +10,10 @@
   		<managed-bean-class>beans.ScrapeBean</managed-bean-class>
   		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+  		<managed-bean-name>lastfmBean</managed-bean-name>
+  		<managed-bean-class>beans.LastfmBean</managed-bean-class>
+  		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>

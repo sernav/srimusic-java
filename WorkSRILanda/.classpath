@@ -51,5 +51,6 @@
 	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xmlpull.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xpp3_min.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xstream.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/jFuzzyLogic.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
