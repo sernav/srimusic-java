@@ -78,7 +78,7 @@ END_FUZZIFY
  	TERM SP := (50, 0) (56.25, 1) (75, 0) ;
  	TERM SR := (56.25, 0) (62.5, 1) (87.5, 0);
  	TERM SG := (75, 0) (87.5, 1) (100, 0) ;
- 	METHOD : COG;		// Se usa 'Center Of Gravity' como método de desborrosificación
+ 	METHOD : COG;		// Se usa la función Singleton como método de desborrosificación
 	DEFAULT := 0;		// Valor por defecto si no se puede desborrificar
 	RANGE := (0.0 .. 100.0); // Rango de valores
  
@@ -87,8 +87,9 @@ END_FUZZIFY
  RULEBLOCK Escuchas_Usuario
  
  	AND : MIN;	// MIN para el operador AND
+ 	OR : MAX;   // MAX para el operador OR
  	ACT : MIN;	// MIN para activar función
- 	ACCU : MAX;
+ 	ACCU : MAX; // Función de acumulación MAX (Agregación de las salidas)
  	
  	RULE 01 : IF escuchas_historico IS MB AND escuchas_actuales IS MB THEN salida IS M;
  	RULE 02 : IF escuchas_historico IS MB AND escuchas_actuales IS B THEN salida IS SP;
