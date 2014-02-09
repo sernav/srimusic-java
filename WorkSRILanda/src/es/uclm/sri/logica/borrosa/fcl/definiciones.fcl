@@ -35,6 +35,7 @@ FUZZIFY escuchas_historico
 	TERM S  := (25, 0) (37.5, 1) (62.5, 1) (75, 0) ;
 	TERM A  := (68.75, 0) (75, 1) (87.5, 1) (93.75, 0) ;
 	TERM MA := (87.5, 0) (93.75, 1) (100, 1);
+	
 
 END_FUZZIFY
 
@@ -101,7 +102,7 @@ END_FUZZIFY
  	RULE 07 : IF escuchas_historico IS B AND escuchas_actuales IS B THEN salida IS M;
  	RULE 08 : IF escuchas_historico IS B AND escuchas_actuales IS S THEN salida IS SP;
  	RULE 09 : IF escuchas_historico IS B AND escuchas_actuales IS A THEN salida IS SR;
- 	RULE 10 : IF escuchas_historico IS B AND escuchas_actuales IS MB THEN salida IS BP;
+ 	RULE 10 : IF escuchas_historico IS B AND escuchas_actuales IS MB THEN salida IS SG;
  	
  	RULE 11 : IF escuchas_historico IS S AND escuchas_actuales IS MB THEN salida IS BR;
  	RULE 12 : IF escuchas_historico IS S AND escuchas_actuales IS B THEN salida IS BP;
@@ -113,7 +114,7 @@ END_FUZZIFY
  	RULE 17 : IF escuchas_historico IS A AND escuchas_actuales IS B THEN salida IS BR;
  	RULE 18 : IF escuchas_historico IS A AND escuchas_actuales IS S THEN salida IS BP;
  	RULE 19 : IF escuchas_historico IS A AND escuchas_actuales IS A THEN salida IS M;
- 	RULE 20 : IF escuchas_historico IS A AND escuchas_actuales IS MB THEN salida IS BP;
+ 	RULE 20 : IF escuchas_historico IS A AND escuchas_actuales IS MA THEN salida IS SR;
  	
  	RULE 21 : IF escuchas_historico IS MA AND escuchas_actuales IS MB THEN salida IS BG;
  	RULE 22 : IF escuchas_historico IS MA AND escuchas_actuales IS B THEN salida IS BG;

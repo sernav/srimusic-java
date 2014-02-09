@@ -26,8 +26,8 @@ public class TestFuzzyLogic {
         FunctionBlock fb = fis.getFunctionBlock(null);
 
         // Set inputs
-        fb.setVariable("escuchas_historico", 33.3333);
-        fb.setVariable("escuchas_actuales", 25);
+        fb.setVariable("escuchas_historico", 49.600);
+        fb.setVariable("escuchas_actuales", 71.200);
 
         // Evaluate
         fb.evaluate();
