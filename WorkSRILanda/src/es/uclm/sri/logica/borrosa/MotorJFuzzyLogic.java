@@ -24,10 +24,10 @@ public class MotorJFuzzyLogic {
         }
     }
     
-    public Object run(String[] variablesIn, double[] valoresIn, String variableOut) {
+    public double run(String[] variablesIn, double[] valoresIn, String variableOut) {
         if (variablesIn.length != valoresIn.length) {
             System.err.println("El nœmero de variales y de valores no se corresponden");
-            return null;
+            return 9999;
         }
         this.variablesIn = variablesIn;
         this.valoresIn = valoresIn;
@@ -51,7 +51,27 @@ public class MotorJFuzzyLogic {
         System.out.println(fb);
         System.out.println("Tip: " + fb.getVariable(variableOut).getValue());
         
-        return null;
+        return fb.getVariable(variableOut).getValue();
+    }
+    
+    public FIS getFis() {
+        return fis;
+    }
+    
+    public String[] getVariablesIn() {
+        return variablesIn;
+    }
+    
+    public double[] getValoresIn() {
+        return valoresIn;
+    }
+    
+    public String getVariableOut() {
+        return variableOut;
+    }
+    
+    public double getValorOut() {
+        return valorOut;
     }
     
 }

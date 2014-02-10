@@ -72,16 +72,16 @@ END_FUZZIFY
  
  DEFUZZIFY salida
  
- 	TERM BG := (0, 0) (12.5, 1) (25, 0) ;
- 	TERM BR := (12.5, 0) (37.5, 1) (43.75, 0) ;
- 	TERM BP := (25, 0) (43.75, 1) (50, 0) ;
- 	TERM M := (43.75, 0) (50, 1) (56.25, 0) ;
- 	TERM SP := (50, 0) (56.25, 1) (75, 0) ;
- 	TERM SR := (56.25, 0) (62.5, 1) (87.5, 0);
- 	TERM SG := (75, 0) (87.5, 1) (100, 0) ;
+ 	TERM BG := (-100, 0) (-62.5, 1) (-50, 0) ;
+ 	TERM BR := (-75, 0) (-37.5, 1) (-25, 0) ;
+ 	TERM BP := (-50, 0) (-12.5, 1) (0, 0) ;
+ 	TERM M := (-12.5, 0) (0, 1) (12.5, 0) ;
+ 	TERM SP := (0, 0) (12.5, 1) (50, 0) ;
+ 	TERM SR := (25, 0) (37.5, 1) (75, 0);
+ 	TERM SG := (50, 0) (62.5, 1) (100, 0) ;
  	METHOD : COG;		// Se usa la función Singleton como método de desborrosificación
 	DEFAULT := 0;		// Valor por defecto si no se puede desborrificar
-	RANGE := (0.0 .. 100.0); // Rango de valores
+	RANGE := (-100.0 .. 100.0); // Rango de valores
  
  END_DEFUZZIFY
  

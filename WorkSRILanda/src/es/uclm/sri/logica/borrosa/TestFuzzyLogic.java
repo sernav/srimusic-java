@@ -27,7 +27,7 @@ public class TestFuzzyLogic {
 
         // Set inputs
         fb.setVariable("escuchas_historico", 49.600);
-        fb.setVariable("escuchas_actuales", 71.200);
+        fb.setVariable("escuchas_actuales", 20.200);
 
         // Evaluate
         fb.evaluate();

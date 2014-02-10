@@ -96,23 +96,33 @@ public class FabricaDRecomendaciones
                     PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
                     AlbumPonderado albumPonderado = pondera.procesar();
                     admonPesos.insertarPesosAlbum(albumPonderado);
-                    /*
-                     * Invocar clusterer (Singleton)
-                     * */
-                    ClustererSri clusterer = ClustererSri.getInstance();
-                    try {
-                        WekaSRIInstance[] wekaInst = clusterer.generarRecomendacionesWeka(albumPonderado.getPesosGeneros());
-                        /*
-                         * Aquí las recomendaciones
-                         * */
-                        Recomendacion recomendacion = new Recomendacion(wekaInst[0], usuario);
-                    } catch (Exception e) {
-                        avisosDSistema.put(new Integer(avisosDSistema.size() + 1), 
-                                "Error al generar recomendaciones de clusterer");
-                        e.printStackTrace();
-                    }
+                    
                 }
             }
+            /*
+             * FALTA ACTUALIZAR PERFIL DE USUARIO CON LAS REGLAS.
+             * */
+            
+            /*
+             * Invocar clusterer (Singleton)
+             * */
+            ClustererSri clusterer = ClustererSri.getInstance();
+            try {
+                /*
+                 * Aquí el vector de géneros del usuario, una vez se ha actualizado con las escuchas
+                 * recientes
+                 * */
+                WekaSRIInstance[] wekaInst = clusterer.generarRecomendacionesWeka(null);
+                /*
+                 * Aquí las recomendaciones
+                 * */
+                Recomendacion recomendacion = new Recomendacion(wekaInst[0], usuario);
+            } catch (Exception e) {
+                avisosDSistema.put(new Integer(avisosDSistema.size() + 1), 
+                        "Error al generar recomendaciones de clusterer");
+                e.printStackTrace();
+            }
+            
         } else {
             avisosDSistema.put(new Integer(avisosDSistema.size() + 1), 
                     "No hay escuchas de usuario de Last.fm");
