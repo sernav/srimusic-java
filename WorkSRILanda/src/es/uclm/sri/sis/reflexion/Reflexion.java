@@ -108,6 +108,23 @@ public final class Reflexion {
 		}
 		return method;
 	}
+	
+	public static Object ejecutarMetodoDObject(Object object, String metodo) {
+	    Object result = null;
+	    if (object != null) {
+	        try {
+                Method method =  object.getClass().getMethod(metodo, new Class<?>[0]);
+                result = method.invoke(object, new Object[0]);
+            } catch (SecurityException e1) {
+                throw getError(e1, "Excepción de seguridad en  " + object.getClass().getName());
+            } catch (NoSuchMethodException e1) {
+                throw getError(e1, "No existe método " + metodo + " en " + object.getClass().getName());
+            } catch (Throwable e1) {
+                getError((Exception) e1, "Excepción al invocar el método " + metodo + " del objeto de la clase " + object.getClass().getName());
+            }
+	    }
+        return result;
+	}
 
 	public static Object newInstace(String nameClass, Class[] tiposArgumentos, Object[] argumentos) throws ExcepcionGeneral {
 		Class clase = getClass(nameClass);

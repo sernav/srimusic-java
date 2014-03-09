@@ -10,6 +10,7 @@ import es.uclm.sri.persistencia.admon.AdmonAlbums;
 import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
 import es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.entidades.Recomendacion;
@@ -104,12 +105,9 @@ public class FabricaDRecomendaciones
                     hashAlbums.put(pesosAlbum[0].getALBUM().trim() + "#" + pesosAlbum[0].getARTISTA().trim(), pesosAlbum[0]);
                 }
             }
-            /*
-             * FALTA ACTUALIZAR PERFIL DE USUARIO CON LAS REGLAS.
-             * */
             FabricaDUsuarios makeupUser = new FabricaDUsuarios(usuario, hashAlbums, true);
             makeupUser.run();
-            makeupUser.aplicarSistemaDReglas();
+            Pesosusuario pesosUser = makeupUser.getPesosManufactura();
             /*
              * Invocar clusterer (Singleton)
              * */
@@ -119,7 +117,12 @@ public class FabricaDRecomendaciones
                  * Aquí el vector de géneros del usuario, una vez se ha actualizado con las escuchas
                  * recientes
                  * */
-                WekaSRIInstance[] wekaInst = clusterer.generarRecomendacionesWeka(null);
+                WekaSRIInstance inst = new WekaSRIInstance(pesosUser.getSINGER(), pesosUser.getRAP(), pesosUser.getAMBIENT(),
+                        pesosUser.getINDIE(), pesosUser.getBLUES(), pesosUser.getREGGAE(), pesosUser.getPUNK(),
+                        pesosUser.getHEAVY(), pesosUser.getALTERNATIVE(), pesosUser.getCLASSIC(), pesosUser.getELECTRONIC(),
+                        pesosUser.getROCK(), pesosUser.getPOP(), pesosUser.getBRIT(), pesosUser.getFOLK(), pesosUser.getFUNK(),
+                        pesosUser.getINSTRUMENTAL(), pesosUser.getGRUNGE());
+                WekaSRIInstance[] wekaInst = clusterer.generarRecomendacionesWeka(inst);
                 /*
                  * Aquí las recomendaciones
                  * */
@@ -159,12 +162,6 @@ public class FabricaDRecomendaciones
 
     @Override
     public void aplicarSistemaDReglas() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void aplicarSistemaDReglas(String[] variablesIn, double[] valoresIn, String variableOut) {
         // TODO Auto-generated method stub
         
     }

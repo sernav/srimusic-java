@@ -1,12 +1,9 @@
 package es.uclm.sri.sis.fabricas;
 
-import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
-
-import org.drools.rule.builder.dialect.asm.GeneratorHelper.GetMethodBytecodeMethod;
 
 import de.umass.lastfm.User;
 import es.uclm.sri.logica.borrosa.MotorJFuzzyLogic;
@@ -15,6 +12,7 @@ import es.uclm.sri.persistencia.admon.AdmonUsuarios;
 import es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
+import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.utilidades.UtilsDLastfm;
 
 public class FabricaDUsuarios implements IFabrica {
@@ -76,48 +74,112 @@ public class FabricaDUsuarios implements IFabrica {
         } else {
             idUsuario = uapp.getID_DUSUARIO();
             /**
-             * Se actualizan los pesos del usuario.
-             * Pasar el sistema de reglas.
+             * 1. Recoger el hist—rico de pesos del usuario
+             * 2. Calcular los pesos actuales
+             * 3. Pasar el sistema de reglas
+             * 4. Actualizar hist—rico de pesos
              * */
             historico = admonPesos.devolverPesosUsuario(idUsuario)[0];
             actuales = generarPesosUsuario();
+            this.pusuario.setID_DUSUARIO_FK(idUsuario);
+            this.pusuario.setFECHSESI(Calendar.getInstance().getTime());
+            aplicarSistemaDReglas();
+            admonPesos.actualizarPesosUsuario(this.pusuario);
         }
 
     }
     
-    public void aplicarSistemaDReglas(String[] variablesIn, double[] valoresIn, String variableOut) {
-        
-    }
-    
     public void aplicarSistemaDReglas() {
-        MotorJFuzzyLogic motor = new MotorJFuzzyLogic("");
+        MotorJFuzzyLogic motor = new MotorJFuzzyLogic("src/es/uclm/sri/logica/borrosa/fcl/definiciones.fcl");
         String[] varsInput = {"escuchas_historico" , "escuchas_actuales"};
         
-        double[] inSinger = {this.historico.getSINGER() , this.actuales.getSINGER()};
-        double outSinger = motor.evaluar(varsInput, inSinger, new String());
+//        Method[] metodos = Pesosusuario.class.getMethods();
+//        for (int i = 0; i < metodos.length; i++) {
+//            if (metodos[i].getName().contains("get")) {
+//                Reflexion.ejecutarMetodoDObject(this.historico, metodos[i].getName());
+//            }
+//        }
         
-        double[] inRap = {this.historico.getRAP() , this.actuales.getRAP()};
-        double outRap = motor.evaluar(varsInput, inRap, new String());
-        
-        double[] inAmbient = {this.historico.getAMBIENT() , this.actuales.getAMBIENT()};
-        double outAmbient = motor.evaluar(varsInput, inAmbient, new String());
-        
-        double[] inIndie = {this.historico.getINDIE() , this.actuales.getINDIE()};
-        double outIndie = motor.evaluar(varsInput, inIndie, new String());
-        
-        double[] inBlues = {this.historico.getBLUES() , this.actuales.getBLUES()};
-        double outBlues = motor.evaluar(varsInput, inBlues, new String());
-        
-        double[] inReggae = {this.historico.getREGGAE() , this.actuales.getREGGAE()};
-        double outReggae = motor.evaluar(varsInput, inReggae, new String());
-        
-        Method[] metodos = Pesosusuario.class.getMethods();
-        for (int i = 0; i < metodos.length; i++) {
-            if (metodos.toString().startsWith("get")) {
-                Pesosusuario.class.
-            }
+        if (this.historico == null || this.actuales == null) {
+            Log.log("No es posible aplicar el sistema de reglas para los pesos del usuario " + this.usuario);
+        } else {
+            double[] inSinger = {this.historico.getSINGER() , this.actuales.getSINGER()};
+            double outSinger = motor.evaluar(varsInput, inSinger, new String());
+            
+            double[] inRap = {this.historico.getRAP() , this.actuales.getRAP()};
+            double outRap = motor.evaluar(varsInput, inRap, new String());
+            
+            double[] inAmbient = {this.historico.getAMBIENT() , this.actuales.getAMBIENT()};
+            double outAmbient = motor.evaluar(varsInput, inAmbient, new String());
+            
+            double[] inIndie = {this.historico.getINDIE() , this.actuales.getINDIE()};
+            double outIndie = motor.evaluar(varsInput, inIndie, new String());
+            
+            double[] inBlues = {this.historico.getBLUES() , this.actuales.getBLUES()};
+            double outBlues = motor.evaluar(varsInput, inBlues, new String());
+            
+            double[] inReggae = {this.historico.getREGGAE() , this.actuales.getREGGAE()};
+            double outReggae = motor.evaluar(varsInput, inReggae, new String());
+            
+            double[] inPunk = {this.historico.getPUNK() , this.actuales.getPUNK()};
+            double outPunk = motor.evaluar(varsInput, inPunk, new String());
+            
+            double[] inHeavy = {this.historico.getHEAVY() , this.actuales.getHEAVY()};
+            double outHeavy = motor.evaluar(varsInput, inHeavy, new String());
+            
+            double[] inAlternative = {this.historico.getALTERNATIVE() , this.actuales.getALTERNATIVE()};
+            double outAlternative = motor.evaluar(varsInput, inAlternative, new String());
+            
+            double[] inClassic = {this.historico.getCLASSIC() , this.actuales.getCLASSIC()};
+            double outClassic = motor.evaluar(varsInput, inClassic, new String());
+            
+            double[] inElectronic = {this.historico.getELECTRONIC() , this.actuales.getELECTRONIC()};
+            double outElectronic = motor.evaluar(varsInput, inElectronic, new String());
+            
+            double[] inRock = {this.historico.getROCK() , this.actuales.getROCK()};
+            double outRock = motor.evaluar(varsInput, inRock, new String());
+            
+            double[] inPop = {this.historico.getPOP() , this.actuales.getPOP()};
+            double outPop = motor.evaluar(varsInput, inPop, new String());
+            
+            double[] inBrit = {this.historico.getBRIT() , this.actuales.getBRIT()};
+            double outBrit = motor.evaluar(varsInput, inBrit, new String());
+            
+            double[] inFolk = {this.historico.getFOLK() , this.actuales.getFOLK()};
+            double outFolk = motor.evaluar(varsInput, inFolk, new String());
+            
+            double[] inFunk = {this.historico.getFUNK() , this.actuales.getFUNK()};
+            double outFunk = motor.evaluar(varsInput, inFunk, new String());
+            
+            double[] inInstrumental = {this.historico.getINSTRUMENTAL() , this.actuales.getINSTRUMENTAL()};
+            double outInstrumental = motor.evaluar(varsInput, inInstrumental, new String());
+            
+            double[] inGrunge = {this.historico.getGRUNGE() , this.actuales.getGRUNGE()};
+            double outGrunge = motor.evaluar(varsInput, inGrunge, new String());
+            
+            Double ptotal = outSinger + outRap + outAmbient + outIndie + outBlues + outReggae + outPunk + outHeavy + 
+                    outAlternative + outClassic + outElectronic + outRock + outPop + outBrit + outFolk + outFunk + 
+                    outInstrumental + outGrunge;
+            
+            this.pusuario.setSINGER((outSinger*100)/ptotal);
+            this.pusuario.setRAP((outRap*100)/ptotal);
+            this.pusuario.setAMBIENT((outAmbient*100)/ptotal);
+            this.pusuario.setINDIE((outIndie*100)/ptotal);
+            this.pusuario.setBLUES((outBlues*100)/ptotal);
+            this.pusuario.setREGGAE((outReggae*100)/ptotal);
+            this.pusuario.setPUNK((outPunk*100)/ptotal);
+            this.pusuario.setHEAVY((outHeavy*100)/ptotal);
+            this.pusuario.setALTERNATIVE((outAlternative*100)/ptotal);
+            this.pusuario.setCLASSIC((outClassic*100)/ptotal);
+            this.pusuario.setELECTRONIC((outElectronic*100)/ptotal);
+            this.pusuario.setROCK((outRock*100)/ptotal);
+            this.pusuario.setPOP((outPop*100)/ptotal);
+            this.pusuario.setBRIT((outBrit*100)/ptotal);
+            this.pusuario.setFOLK((outFolk*100)/ptotal);
+            this.pusuario.setFUNK((outFunk*100)/ptotal);
+            this.pusuario.setINSTRUMENTAL((outInstrumental*100)/ptotal);
+            this.pusuario.setGRUNGE((outGrunge*100)/ptotal);
         }
-        
     }
 
     protected Pesosusuario generarPesosUsuario() {
@@ -234,6 +296,10 @@ public class FabricaDUsuarios implements IFabrica {
 
     public HashMap<String, Pesosalbum> getHashPesosAlbums() {
         return hashPesosAlbums;
+    }
+    
+    protected Pesosusuario getPesosManufactura() {
+        return this.pusuario;
     }
 
     public HashMap<Integer, String> getAvisosDSistema() {

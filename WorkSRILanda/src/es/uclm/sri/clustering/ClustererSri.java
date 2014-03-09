@@ -103,6 +103,26 @@ public class ClustererSri {
         eval.setClusterer(clusterer);
     }
     
+    public WekaSRIInstance[] generarRecomendacionesWeka(WekaSRIInstance inst) throws Exception {
+
+        AnalysisFactory.buildFactory();
+
+        WekaDatosCluster wekaDatosCluster = (WekaDatosCluster) AnalysisFactory
+                .createRawData(data);
+        wekaKMeans = new WekaSimpleKMeansCluster();
+        wekaKMeans.setInputData(wekaDatosCluster);
+        wekaKMeans.setK(clusterer.numberOfClusters());
+        wekaKMeans.setSimpleKMeans(clusterer);
+
+        int iCluster = clasificarInstanciaWeka(inst);
+
+        Instance centroide = clusterer.getClusterCentroids().instance(iCluster);
+        
+        WekaSRIInstance[] instCluster = wekaKMeans.getWekaSRIInstancesDCluster(data.enumerateInstances(), iCluster);
+        return wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance(), 10);
+        
+    }
+    
     public WekaSRIInstance[] generarRecomendacionesWeka(Double[] attValues) throws Exception {
 
         WekaSRIInstance inst = new WekaSRIInstance(1.0, attValues);
