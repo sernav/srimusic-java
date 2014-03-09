@@ -60,6 +60,8 @@ public class FabricaDRecomendaciones
         AdmonAlbums admonAlbums = new AdmonAlbums();
         AdmonPesosAlbum admonPesos = new AdmonPesosAlbum();
         
+        HashMap<String, Pesosalbum> hashAlbums = new HashMap<String, Pesosalbum>();
+        
         if (this.playback != null) {
             de.umass.lastfm.Album[] albumsLastfm = this.playback.getTopAlbumsUsuario();
             
@@ -95,14 +97,19 @@ public class FabricaDRecomendaciones
                      * */
                     PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
                     AlbumPonderado albumPonderado = pondera.procesar();
-                    admonPesos.insertarPesosAlbum(albumPonderado);
+                    Pesosalbum record = admonPesos.insertarPesosAlbum(albumPonderado);
                     
+                    hashAlbums.put(albumPonderado.getTitulo().trim() + "#" + albumPonderado.getArtista().trim(), record);
+                } else {
+                    hashAlbums.put(pesosAlbum[0].getALBUM().trim() + "#" + pesosAlbum[0].getARTISTA().trim(), pesosAlbum[0]);
                 }
             }
             /*
              * FALTA ACTUALIZAR PERFIL DE USUARIO CON LAS REGLAS.
              * */
-            
+            FabricaDUsuarios makeupUser = new FabricaDUsuarios(usuario, hashAlbums, true);
+            makeupUser.run();
+            makeupUser.aplicarSistemaDReglas();
             /*
              * Invocar clusterer (Singleton)
              * */
@@ -152,6 +159,12 @@ public class FabricaDRecomendaciones
 
     @Override
     public void aplicarSistemaDReglas() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void aplicarSistemaDReglas(String[] variablesIn, double[] valoresIn, String variableOut) {
         // TODO Auto-generated method stub
         
     }

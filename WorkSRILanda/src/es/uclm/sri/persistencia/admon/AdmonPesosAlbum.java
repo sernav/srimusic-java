@@ -126,7 +126,7 @@ public class AdmonPesosAlbum extends AbstractAdmon {
         return generos;
     }
     
-    public void insertarPesosAlbum(AlbumPonderado albumPonderado) {
+    public Pesosalbum insertarPesosAlbum(AlbumPonderado albumPonderado) {
         Pesosalbum record = new Pesosalbum();
         record.setALBUM(albumPonderado.getTitulo());
         record.setARTISTA(albumPonderado.getArtista());
@@ -204,6 +204,8 @@ public class AdmonPesosAlbum extends AbstractAdmon {
         }
         
         mapper.insertSelective(record);
+        
+        return record;
         
     }
     

@@ -32,7 +32,7 @@ public class AdmonUsuarios extends AbstractAdmon {
         mapper.insert(record);
     }
     
-    public void insertarUsuario(User user) {
+    public int insertarUsuario(User user) {
         Dusuarios record = new Dusuarios();
         record.setNICKUSER(user.getName());
         record.setNOMBUSER(user.getRealname());
@@ -41,7 +41,7 @@ public class AdmonUsuarios extends AbstractAdmon {
         record.setFECHREGS(Calendar.getInstance().getTime());
         record.setORIGEN("Lastfm");
         
-        mapper.insert(record);
+        return mapper.insert(record);
     }
 
 }
