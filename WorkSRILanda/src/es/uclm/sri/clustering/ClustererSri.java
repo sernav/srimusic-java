@@ -88,7 +88,7 @@ public class ClustererSri {
         rm.setInputFormat(data);
         data = Filter.useFilter(data, rm);
 
-        // Función de cálculo de distancias: Euclidea
+        // Funci—n de c‡lculo de distancias: Euclidea
         EuclideanDistance df = new EuclideanDistance(data);
         df.setAttributeIndices("first-last");
         df.setDontNormalize(false);
@@ -96,7 +96,7 @@ public class ClustererSri {
 
         clusterer.setDistanceFunction(df);
 
-        // Construcción del clusterer con las instancias traidas
+        // Construcci—n del clusterer con las instancias traidas
         clusterer.buildClusterer(data);
         
         ClusterEvaluation eval = new ClusterEvaluation();

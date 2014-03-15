@@ -32,12 +32,13 @@ public class KSistema {
         }
         
         // Properties
-        public static final String PATH_DATABASE_PROPERTIES = "src/es/uclm/sri/recursos/database.properties";
-        public static final String PATH_GENEROS_ESTANDAR_PROPERTIES = "src/es/uclm/sri/recursos/generoEstandar.properties";
-        public static final String PATH_LOG4J_PROPERTIES = "src/es/uclm/sri/recursos/log4j.properties";
+        public static final String PATH_DATABASE_PROPERTIES = "/WorkSRILanda/src/es/uclm/sri/recursos/database.properties";
+        public static final String PATH_GENEROS_ESTANDAR_PROPERTIES = "/WorkSRILanda/src/es/uclm/sri/recursos/generoEstandar.properties";
+        public static final String PATH_LOG4J_PROPERTIES = "/WorkSRILanda/src/es/uclm/sri/recursos/log4j.properties";
         
         // XML
-        public static final String PATH_MAPPING_POSTGRE = "src/es/uclm/sri/recursos/xml/sqlMapConfig.xml";
+        //public static final String PATH_MAPPING_POSTGRE = "/WorkSRILanda/src/es/uclm/sri/recursos/xml/sqlMapConfig.xml";
+        public static final String PATH_MAPPING_POSTGRE = "/WorkSRILanda/recursos/sqlMapConfig.xml";
         
     }
     

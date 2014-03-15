@@ -200,5 +200,45 @@ public class Pesosalbum {
     public void setID_DALBUM_FK(Integer ID_DALBUM_FK) {
         this.ID_DALBUM_FK = ID_DALBUM_FK;
     }
+    
+    public boolean tienePesosValidos() {
+        if (getSINGER() != null && !getSINGER().isNaN() && getSINGER().doubleValue() > 0.0)
+            return true;
+        if (getRAP() != null && !getRAP().isNaN() && getRAP().doubleValue() > 0.0)
+            return true;
+        if (getAMBIENT() != null && !getAMBIENT().isNaN() && getAMBIENT().doubleValue() > 0.0)
+            return true;
+        if (getINDIE() != null && !getINDIE().isNaN() && getINDIE().doubleValue() > 0.0)
+            return true;
+        if (getBLUES() != null && !getBLUES().isNaN() && getBLUES().doubleValue() > 0.0)
+            return true;
+        if (getREGGAE() != null && !getREGGAE().isNaN() && getREGGAE().doubleValue() > 0.0)
+            return true;
+        if (getPUNK() != null && !getPUNK().isNaN() && getPUNK().doubleValue() > 0.0)
+            return true;
+        if (getHEAVY() != null && !getHEAVY().isNaN() && getHEAVY().doubleValue() > 0.0)
+            return true;
+        if (getALTERNATIVE() != null && !getALTERNATIVE().isNaN() && getALTERNATIVE().doubleValue() > 0.0)
+            return true;
+        if (getCLASSIC() != null && !getCLASSIC().isNaN() && getCLASSIC().doubleValue() > 0.0)
+            return true;
+        if (getELECTRONIC() != null && !getELECTRONIC().isNaN() && getELECTRONIC().doubleValue() > 0.0)
+            return true;
+        if (getROCK() != null && !getROCK().isNaN() && getROCK().doubleValue() > 0.0)
+            return true;
+        if (getPOP() != null && !getPOP().isNaN() && getPOP().doubleValue() > 0.0)
+            return true;
+        if (getBRIT() != null && !getBRIT().isNaN() && getBRIT().doubleValue() > 0.0)
+            return true;
+        if (getFOLK() != null && !getFOLK().isNaN() && getFOLK().doubleValue() > 0.0)
+            return true;
+        if (getFUNK() != null && !getFUNK().isNaN() && getFUNK().doubleValue() > 0.0)
+            return true;
+        if (getINSTRUMENTAL() != null && !getINSTRUMENTAL().isNaN() && getINSTRUMENTAL().doubleValue() > 0.0)
+            return true;
+        if (getGRUNGE() != null && !getGRUNGE().isNaN() && getGRUNGE().doubleValue() > 0.0)
+            return true;
+        return false;
+    }
 	
 }

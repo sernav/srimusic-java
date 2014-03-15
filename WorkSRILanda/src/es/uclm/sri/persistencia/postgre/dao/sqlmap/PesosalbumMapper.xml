@@ -278,31 +278,31 @@
 				"GRUNGE"
 			</if>
 		</set>
-		where ID_PESOSALBUM = #{ID_PESOSALBUM,jdbcType=INTEGER}
+		where "ID_PESOSALBUM" = #{ID_PESOSALBUM,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum">
 		update "PESOSALBUM"
-		set ALBUM = #{ALBUM,jdbcType=VARCHAR},
-		ARTISTA = #{ARTISTA,jdbcType=VARCHAR},
-		SINGER = #{SINGER,jdbcType=DOUBLE},
-		RAP = #{RAP,jdbcType=DOUBLE},
-		AMBIENT = #{AMBIENT,jdbcType=DOUBLE},
-		INDIE = #{INDIE,jdbcType=DOUBLE},
-		BLUES = #{BLUES,jdbcType=DOUBLE},
-		REGGAE = #{REGGAE,jdbcType=DOUBLE},
-		HEAVY = #{HEAVY,jdbcType=DOUBLE},
-		ALTERNATIVE = #{ALTERNATIVE,jdbcType=DOUBLE},
-		CLASSIC = #{CLASSIC,jdbcType=DOUBLE},
-		ELECTRONIC = #{ELECTRONIC,jdbcType=DOUBLE},
-		ROCK = #{ROCK,jdbcType=DOUBLE},
-		POP = #{POP,jdbcType=DOUBLE},
-		BRIT = #{BRIT,jdbcType=SMALLINT},
-		FOLK = #{FOLK,jdbcType=DOUBLE},
-		FUNK = #{FUNK,jdbcType=DOUBLE},
-		GRUNGE = #{GRUNGE,jdbcType=DOUBLE},
-		INSTRUMENTAL = #{INTRUMENTAL,jdbcType=DOUBLE},
-		PUNK = #{PUNK,jdbcType=DOUBLE}
-		where ID_PESOSALBUM = #{ID_PESOSALBUM,jdbcType=INTEGER}
+		set "ALBUM" = #{ALBUM,jdbcType=VARCHAR},
+		"ARTISTA" = #{ARTISTA,jdbcType=VARCHAR},
+		"SINGER" = #{SINGER,jdbcType=DOUBLE},
+		"RAP" = #{RAP,jdbcType=DOUBLE},
+		"AMBIENT" = #{AMBIENT,jdbcType=DOUBLE},
+		"INDIE" = #{INDIE,jdbcType=DOUBLE},
+		"BLUES" = #{BLUES,jdbcType=DOUBLE},
+		"REGGAE" = #{REGGAE,jdbcType=DOUBLE},
+		"HEAVY" = #{HEAVY,jdbcType=DOUBLE},
+		"ALTERNATIVE" = #{ALTERNATIVE,jdbcType=DOUBLE},
+		"CLASSIC" = #{CLASSIC,jdbcType=DOUBLE},
+		"ELECTRONIC" = #{ELECTRONIC,jdbcType=DOUBLE},
+		"ROCK" = #{ROCK,jdbcType=DOUBLE},
+		"POP" = #{POP,jdbcType=DOUBLE},
+		"BRIT" = #{BRIT,jdbcType=SMALLINT},
+		"FOLK" = #{FOLK,jdbcType=DOUBLE},
+		"FUNK" = #{FUNK,jdbcType=DOUBLE},
+		"GRUNGE" = #{GRUNGE,jdbcType=DOUBLE},
+		"INSTRUMENTAL" = #{INSTRUMENTAL,jdbcType=DOUBLE},
+		"PUNK" = #{PUNK,jdbcType=DOUBLE}
+		where "ID_PESOSALBUM" = #{ID_PESOSALBUM,jdbcType=INTEGER}
 	</update>
 </mapper>

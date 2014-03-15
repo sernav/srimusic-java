@@ -22,7 +22,7 @@ public class FicheroDPropiedades {
 	
 	public boolean cargarPropiedades() {
 		try {
-			propiedades.load(new FileInputStream(archivo));
+			propiedades.load(new FileInputStream("/Users/sergionavarro/git/SRILanda-Local/WorkSRILanda/src/es/uclm/sri/recursos/generoEstandar.properties"));
 			return true;
 		} catch (IOException e) {
 			e.printStackTrace();

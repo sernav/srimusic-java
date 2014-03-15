@@ -1,5 +1,6 @@
 package es.uclm.sri.persistencia;
 
+import java.io.IOException;
 import java.io.Reader;
 
 import org.apache.ibatis.io.Resources;
@@ -15,8 +16,10 @@ public class ConnectionFactory {
 
     static{
         try{
-            reader = Resources.getResourceAsReader(KSistema.Recursos.PATH_MAPPING_POSTGRE);
+            reader = Resources.getResourceAsReader("es/uclm/sri/recursos/xml/sqlMapConfig.xml");
             sqlMapper = new SqlSessionFactoryBuilder().build(reader);
+        } catch (IOException e) {
+            e.printStackTrace();
         }catch(Exception e){
             e.printStackTrace();
         }

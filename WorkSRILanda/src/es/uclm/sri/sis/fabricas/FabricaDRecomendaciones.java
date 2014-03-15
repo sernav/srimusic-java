@@ -101,11 +101,17 @@ public class FabricaDRecomendaciones
                     Pesosalbum record = admonPesos.insertarPesosAlbum(albumPonderado);
                     
                     hashAlbums.put(albumPonderado.getTitulo().trim() + "#" + albumPonderado.getArtista().trim(), record);
+                } else if (!pesosAlbum[0].tienePesosValidos()) {
+                    PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
+                    AlbumPonderado albumPonderado = pondera.procesar();
+                    Pesosalbum record = admonPesos.actualizarPesosAlbum(albumPonderado);
+                    
+                    hashAlbums.put(albumPonderado.getTitulo().trim() + "#" + albumPonderado.getArtista().trim(), record);
                 } else {
                     hashAlbums.put(pesosAlbum[0].getALBUM().trim() + "#" + pesosAlbum[0].getARTISTA().trim(), pesosAlbum[0]);
                 }
             }
-            FabricaDUsuarios makeupUser = new FabricaDUsuarios(usuario, hashAlbums, true);
+            FabricaDUsuarios makeupUser = new FabricaDUsuarios(playback.getNickUsuario(), hashAlbums, true);
             makeupUser.run();
             Pesosusuario pesosUser = makeupUser.getPesosManufactura();
             /*

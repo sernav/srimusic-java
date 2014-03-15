@@ -17,38 +17,38 @@
 		parameterType="java.lang.Integer">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
-		from "ALBUMSAPP"
+		from "DALBUMS"
 		where "ID_DALBUM" = #{ID_DALBUM,jdbcType=INTEGER}
 	</select>
 	<select id="selectByAlbum" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
-		from "ALBUMSAPP"
+		from "DALBUMS"
 		where "TITUALBM" = #{TITUALBM,jdbcType=VARCHAR}
 	</select>
 	<select id="selectByArtista" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
-		from "ALBUMSAPP"
+		from "DALBUMS"
 		where "AUTALBM" = #{AUTALBM,jdbcType=VARCHAR}
 	</select>
 	<select id="selectByAlbumYArtista" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
-		from "ALBUMSAPP"
+		from "DALBUMS"
 		where "TITUALBM" = #{TITUALBM,jdbcType=VARCHAR} and "AUTALBM" = #{AUTALBM,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from "ALBUMSAPP"
+		delete from "DALBUMS"
 		where "ID_DALBUM" = #{ID_DALBUM,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Dalbums"
 		useGeneratedKeys="true" keyProperty="ID_DALBUM">
-		insert into "ALBUMSAPP" ("TITUALBM", "AUTALBM",
+		insert into "DALBUMS" ("TITUALBM", "AUTALBM",
 		"GENRALBM", "NUMEPIST", "ANYIOPUB"
 		)
 		values (#{TITUALBM,jdbcType=VARCHAR}, #{AUTALBM,jdbcType=VARCHAR},
@@ -57,7 +57,7 @@
 	</insert>
 	<insert id="insertSelective"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
-		insert into "ALBUMSAPP"
+		insert into "DALBUMS"
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="ID_DALBUM != null">
 				"ID_DALBUM",
@@ -101,7 +101,7 @@
 	</insert>
 	<update id="updateByPrimaryKeySelective"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
-		update "ALBUMSAPP"
+		update "DALBUMS"
 		<set>
 			<if test="TITUALBM != null">
 				"TITUALBM" = #{TITUALBM,jdbcType=VARCHAR},
@@ -123,7 +123,7 @@
 	</update>
 	<update id="updateByPrimaryKey"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
-		update "ALBUMSAPP"
+		update "DALBUMS"
 		set "TITUALBM" = #{TITUALBM,jdbcType=VARCHAR},
 		AUTALBM = #{AUTALBM,jdbcType=VARCHAR},
 		GENRALBM = #{GENRALBM,jdbcType=VARCHAR},

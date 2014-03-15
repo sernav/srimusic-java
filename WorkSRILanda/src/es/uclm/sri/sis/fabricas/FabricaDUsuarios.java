@@ -40,8 +40,23 @@ public class FabricaDUsuarios implements IFabrica {
     }
 
     public FabricaDUsuarios(String usuario, HashMap<String, Pesosalbum> hashPesosAlbums, boolean isUserLfm) {
-        new FabricaDUsuarios(usuario, isUserLfm);
+        this.usuario = usuario;
+        if (isUserLfm)
+            this.usuarioLfm = User.getInfo(usuario, UtilsDLastfm.getApiKey());
+
+        this.avisosDSistema = new HashMap<Integer, String>();
+
+        if (usuario == null || usuario.equals("")) {
+            this.avisosDSistema.put(new Integer(avisosDSistema.size() + 1), "No hay usuario");
+        }
         this.hashPesosAlbums = hashPesosAlbums;
+    }
+    
+    public FabricaDUsuarios(User usuario, HashMap<String, Pesosalbum> hashPesosAlbums) {
+        this.usuario = usuario.getName();
+        this.usuarioLfm = usuario;
+        this.hashPesosAlbums = hashPesosAlbums;
+        this.avisosDSistema = new HashMap<Integer, String>();
     }
 
     public void run() {

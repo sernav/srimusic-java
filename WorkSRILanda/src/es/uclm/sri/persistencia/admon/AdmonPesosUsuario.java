@@ -18,7 +18,7 @@ public class AdmonPesosUsuario extends AbstractAdmon {
     }
     
     public Pesosusuario[] devolverPesosUsuario(int id_usuario) {
-        return mapper.selectByIdUser(id_usuario);
+        return mapper.selectByUsuario(id_usuario);
     }
     
     public Pesosusuario devolverPesosUsuarioById(int id_pesosusuario) {

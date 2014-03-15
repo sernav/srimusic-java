@@ -12,7 +12,7 @@ public interface PesosusuarioMapper {
 
     Pesosusuario selectByPrimaryKey(Integer ID_PESOSALBUM);
     
-    Pesosusuario[] selectByIdUser(Integer ID_DUSUARIO_FK);
+    Pesosusuario[] selectByUsuario(Integer ID_DUSUARIO_FK);
 
     int updateByPrimaryKeySelective(Pesosusuario record);
 

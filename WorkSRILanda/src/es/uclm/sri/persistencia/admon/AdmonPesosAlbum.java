@@ -127,6 +127,27 @@ public class AdmonPesosAlbum extends AbstractAdmon {
     }
     
     public Pesosalbum insertarPesosAlbum(AlbumPonderado albumPonderado) {
+        Pesosalbum record = convertirAlbumPonderado(albumPonderado);
+        mapper.insertSelective(record);
+        return record;
+        
+    }
+    
+    public void insertarPesosAlbum(Pesosalbum record) {
+        mapper.insert(record);
+    }
+    
+    public Pesosalbum actualizarPesosAlbum(AlbumPonderado albumPonderado) {
+        Pesosalbum record = convertirAlbumPonderado(albumPonderado);
+        mapper.updateByPrimaryKey(record);
+        return record;
+    }
+    
+    public int actualizarPesosAlbum(Pesosalbum record) {
+        return mapper.updateByPrimaryKey(record);
+    }
+    
+    private Pesosalbum convertirAlbumPonderado(AlbumPonderado albumPonderado) {
         Pesosalbum record = new Pesosalbum();
         record.setALBUM(albumPonderado.getTitulo());
         record.setARTISTA(albumPonderado.getArtista());
@@ -203,14 +224,7 @@ public class AdmonPesosAlbum extends AbstractAdmon {
             record.setGRUNGE(albumPonderado.getPesosGeneros()[17]);
         }
         
-        mapper.insertSelective(record);
-        
         return record;
-        
-    }
-    
-    public void insertarPesosAlbum(Pesosalbum record) {
-        mapper.insert(record);
     }
     
 }

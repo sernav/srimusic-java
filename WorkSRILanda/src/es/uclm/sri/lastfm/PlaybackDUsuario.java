@@ -49,7 +49,7 @@ public class PlaybackDUsuario implements IAnalisisLastfm {
     public void run() {
         String token = Authenticator.getToken(API_KEY);
         this.sesion = Session.createSession(API_KEY, SECRET, token);
-        
+
         PaginatedResult<Track> tracksResult = usuario.getRecentTracks(nickUser, API_KEY);
         Collection<Track> tracks = tracksResult.getPageResults();
         
@@ -88,6 +88,18 @@ public class PlaybackDUsuario implements IAnalisisLastfm {
     
     public Session getSession() {
         return this.sesion;
+    }
+    
+    public User getUsuarioLastfm() {
+        return this.usuario;
+    }
+    
+    public String getUsuario() {
+        return this.usuario.getName();
+    }
+    
+    public String getNickUsuario() {
+        return this.nickUser;
     }
 
     public String getDatosUsuario() {

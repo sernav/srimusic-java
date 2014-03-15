@@ -152,7 +152,7 @@
 		FOLK = #{FOLK,jdbcType=DOUBLE},
 		FUNK = #{FUNK,jdbcType=DOUBLE},
 		GRUNGE = #{GRUNGE,jdbcType=DOUBLE},
-		INSTRUMENTAL = #{INTRUMENTAL,jdbcType=DOUBLE},
+		INSTRUMENTAL = #{INSTRUMENTAL,jdbcType=DOUBLE},
 		PUNK = #{PUNK,jdbcType=DOUBLE}
 		where ID_PESOSUSUARIO = #{ID_PESOSUSUARIO,jdbcType=INTEGER}
 	</update>

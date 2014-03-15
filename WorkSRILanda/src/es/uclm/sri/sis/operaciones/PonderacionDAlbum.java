@@ -337,7 +337,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     
     private void cargarGenerosEstandar() {
         try {
-            properties = new FicheroDPropiedades(KSistema.Recursos.PATH_GENEROS_ESTANDAR_PROPERTIES);
+            properties = new FicheroDPropiedades("es/uclm/sri/recursos/generoEstandar.properties");
             properties.cargarPropiedades();
         } catch (Exception e) {
             e.printStackTrace();
