@@ -4,7 +4,7 @@
 	<resultMap id="BaseResultMap"
 		type="es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
 		<id column="ID_PESOSUSUARIO" property="ID_PESOSUSUARIO" jdbcType="INTEGER" />
-		<result column="ID_DUSUARIO_FK" property="ID_DALBUM_FK" jdbcType="INTEGER" />
+		<result column="ID_DUSUARIO_FK" property="ID_DUSUARIO_FK" jdbcType="INTEGER" />
 		<result column="FECHSESI" property="FECHSESI" jdbcType="DATE" />
 		<result column="SINGLE" property="SINGLE" jdbcType="DOUBLE" />
 		<result column="RAP" property="RAP" jdbcType="DOUBLE" />
@@ -51,7 +51,7 @@
 	<insert id="insert"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario"
 		useGeneratedKeys="true" keyProperty="ID_PESOSUSUARIO">
-		insert into "PESOSUSUARIOS" ("ID_DUSUARIO_FK","FECHSESI", "SINGER", "RAP", "AMBIENT",
+		insert into "PESOSUSUARIO" ("ID_DUSUARIO_FK","FECHSESI", "SINGER", "RAP", "AMBIENT",
 		"INDIE", "BLUES", "REGGAE", "PUNK", "HEAVY", "ALTERNATIVE", "CLASSIC", "ELECTRONIC",
 		"ROCK", "POP", "BRIT", "FOLK", "FUNK", "INSTRUMENTAL", "GRUNGE")
 		values (#{ID_DUSUARIO_FK,jdbcType=INTEGER}, #{FECHSESI,jdbcType=DATE},
@@ -133,27 +133,27 @@
 	</update>
 	<update id="updateByPrimaryKey"
 		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
-		update "PESOSALBUM"
-		set ID_DUSUARIO_FK = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
-		FECHSESI = #{FECHSESI,jdbcType=DATE},
-		SINGER = #{SINGER,jdbcType=DOUBLE},
-		RAP = #{RAP,jdbcType=DOUBLE},
-		AMBIENT = #{AMBIENT,jdbcType=DOUBLE},
-		INDIE = #{INDIE,jdbcType=DOUBLE},
-		BLUES = #{BLUES,jdbcType=DOUBLE},
-		REGGAE = #{REGGAE,jdbcType=DOUBLE},
-		HEAVY = #{HEAVY,jdbcType=DOUBLE},
-		ALTERNATIVE = #{ALTERNATIVE,jdbcType=DOUBLE},
-		CLASSIC = #{CLASSIC,jdbcType=DOUBLE},
-		ELECTRONIC = #{ELECTRONIC,jdbcType=DOUBLE},
-		ROCK = #{ROCK,jdbcType=DOUBLE},
-		POP = #{POP,jdbcType=DOUBLE},
-		BRIT = #{BRIT,jdbcType=SMALLINT},
-		FOLK = #{FOLK,jdbcType=DOUBLE},
-		FUNK = #{FUNK,jdbcType=DOUBLE},
-		GRUNGE = #{GRUNGE,jdbcType=DOUBLE},
-		INSTRUMENTAL = #{INSTRUMENTAL,jdbcType=DOUBLE},
-		PUNK = #{PUNK,jdbcType=DOUBLE}
-		where ID_PESOSUSUARIO = #{ID_PESOSUSUARIO,jdbcType=INTEGER}
+		update "PESOSUSUARIO"
+		set "ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
+		"FECHSESI" = #{FECHSESI,jdbcType=DATE},
+		"SINGER" = #{SINGER,jdbcType=DOUBLE},
+		"RAP" = #{RAP,jdbcType=DOUBLE},
+		"AMBIENT" = #{AMBIENT,jdbcType=DOUBLE},
+		"INDIE" = #{INDIE,jdbcType=DOUBLE},
+		"BLUES" = #{BLUES,jdbcType=DOUBLE},
+		"REGGAE" = #{REGGAE,jdbcType=DOUBLE},
+		"HEAVY" = #{HEAVY,jdbcType=DOUBLE},
+		"ALTERNATIVE" = #{ALTERNATIVE,jdbcType=DOUBLE},
+		"CLASSIC" = #{CLASSIC,jdbcType=DOUBLE},
+		"ELECTRONIC" = #{ELECTRONIC,jdbcType=DOUBLE},
+		"ROCK" = #{ROCK,jdbcType=DOUBLE},
+		"POP" = #{POP,jdbcType=DOUBLE},
+		"BRIT" = #{BRIT,jdbcType=SMALLINT},
+		"FOLK" = #{FOLK,jdbcType=DOUBLE},
+		"FUNK" = #{FUNK,jdbcType=DOUBLE},
+		"GRUNGE" = #{GRUNGE,jdbcType=DOUBLE},
+		"INSTRUMENTAL" = #{INSTRUMENTAL,jdbcType=DOUBLE},
+		"PUNK" = #{PUNK,jdbcType=DOUBLE}
+		where "ID_PESOSUSUARIO" = #{ID_PESOSUSUARIO,jdbcType=INTEGER}
 	</update>
 </mapper>

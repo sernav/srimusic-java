@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Pesosusuario {
     
-    private Integer ID_PESOSALBUM;
+    private Integer ID_PESOSUSUARIO;
     private Integer ID_DUSUARIO_FK;
     private Date FECHSESI;
     private Double SINGER;
@@ -26,12 +26,12 @@ public class Pesosusuario {
     private Double INSTRUMENTAL;
     private Double GRUNGE;
 
-    public Integer getID_PESOSALBUM() {
-        return ID_PESOSALBUM;
+    public Integer getID_PESOSUSUARIO() {
+        return ID_PESOSUSUARIO;
     }
 
-    public void setID_PESOSALBUM(Integer ID_PESOSALBUM) {
-        this.ID_PESOSALBUM = ID_PESOSALBUM;
+    public void setID_PESOSUSUARIO(Integer ID_PESOSUSUARIO) {
+        this.ID_PESOSUSUARIO = ID_PESOSUSUARIO;
     }
 
     public Integer getID_DUSUARIO_FK() {

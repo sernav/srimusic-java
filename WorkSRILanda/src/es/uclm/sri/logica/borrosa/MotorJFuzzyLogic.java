@@ -37,20 +37,26 @@ public final class MotorJFuzzyLogic {
             return 9999;
         }
         
-        inicializarVariablesInOut(variablesIn, variableOut);
+        if (!variablesValidas(valoresIn)) {
+            return 0;
+        }
         
         // Get default function block
         FunctionBlock fb = fis.getFunctionBlock(null);
         
         // Establecer variables de entrada
         for (int i = 0; i < variablesIn.length; i++) {
-            fb.setVariable(variablesIn[i], valoresIn[i]);
+            Double varInput = valoresIn[i];
+            if (varInput.isNaN()) {
+                varInput = 0.01;
+            }
+            fb.setVariable(variablesIn[i], varInput * 100);
             System.out.println(variablesIn[i] + " = " + valoresIn[i]);
         }
         
         // Evaluar
         fb.evaluate();
-        
+
         // Desborrosificar variable de salida
         fb.getVariable(variableOut).defuzzify();
         
@@ -58,7 +64,11 @@ public final class MotorJFuzzyLogic {
         System.out.println(fb);
         System.out.println("Tip: " + fb.getVariable(variableOut).getValue());
         
-        return fb.getVariable(variableOut).getValue();
+        double resultado = fb.getVariable(variableOut).getValue() / 100;
+        if (resultado < 0.001)
+            return 0;
+        else
+            return resultado;
     }
     
     private void inicializarVariablesInOut(String[] variablesIn, String variableOut) {
@@ -74,6 +84,19 @@ public final class MotorJFuzzyLogic {
         } else {
             this.variableOut = variableOut;
         }
+    }
+    
+    private boolean variablesValidas(double[] varIn) {
+        boolean allNaN = true;
+        int cont = 0;
+        for (int i = 0; i < varIn.length; i++) {
+            Double d = varIn[i];
+            if (d.isNaN())
+                cont++;
+        }
+        if (cont == varIn.length)
+            allNaN = false;
+        return allNaN;
     }
     
     public FIS getFis() {

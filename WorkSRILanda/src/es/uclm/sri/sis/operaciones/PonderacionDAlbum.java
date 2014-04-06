@@ -152,7 +152,9 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     public ArrayList<String> estandarizarTags() {
         Collection<String> tags = null;
         if (this.isAlbumLastfm) {
-            tags = UtilsDLastfm.extraerTagsLastfm(this.albumLastfm);
+            tags = UtilsDLastfm.extraerTagsDAlbum(this.albumLastfm);
+            tags.addAll(UtilsDLastfm.extraerTagsDTracks(this.albumLastfm));
+            tags.addAll(UtilsDLastfm.extraerTagsDArtista(this.albumLastfm));
         } else {
             tags = this.album.getEtiquetas();
         }

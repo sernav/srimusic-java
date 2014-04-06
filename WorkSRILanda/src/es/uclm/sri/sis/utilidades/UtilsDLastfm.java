@@ -60,6 +60,40 @@ public class UtilsDLastfm {
         return tags.values();
     }
     
+    public static Collection<String> extraerTagsDAlbum(Album album) {
+        return album.getTags();
+    }
+    
+    public static Collection<String> extraerTagsDTracks(Album album) {
+        HashMap<String, String> tags = new HashMap<String, String>();
+        Collection<Track> tracks = album.getTracks();
+        Iterator<Track> it = tracks.iterator();
+        
+        while (it.hasNext()) {
+            Track track = it.next();
+            String trackOrMbid = track.getMbid();
+            if (trackOrMbid.length() == 0) {
+                trackOrMbid = track.getName();
+            }
+            
+            Track trackAux = Track.getInfo(album.getArtist(), trackOrMbid, API_KEY);
+            
+            if (trackAux.getTags().size() > 0) {
+                Iterator<String> itTags = trackAux.getTags().iterator();
+                while (itTags.hasNext()) {
+                    String tag = itTags.next();
+                    tags.put(tag.trim(), tag);
+                }
+            }
+        }
+        return tags.values();
+    }
+    
+    public static Collection<String> extraerTagsDArtista(Album album) {
+        Artist artista = Artist.getInfo(album.getArtist(), API_KEY);
+        return artista.getTags();
+    }
+    
     public static String getApiKey() {
         return API_KEY;
     }

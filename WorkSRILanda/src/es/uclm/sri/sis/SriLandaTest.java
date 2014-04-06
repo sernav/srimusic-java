@@ -11,6 +11,8 @@ public class SriLandaTest {
      * @param args
      */
     public static void main(String[] args) {
+        
+//        ClustererSri analisisClustering = ClustererSri.getInstance();
 
         PlaybackDUsuario playback = new PlaybackDUsuario("djAguadilla");
         playback.run();

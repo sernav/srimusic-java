@@ -53,7 +53,7 @@ public class CachePesosUsuario extends AbstractCache {
 			sqlMapper.openSession();
 			PesosusuarioMapper mapper = session.getMapper(PesosusuarioMapper.class);
 			Pesosusuario vPesosUser = mapper.selectByPrimaryKey(id);
-			element = new Element(vPesosUser.getID_PESOSALBUM(), vPesosUser);
+			element = new Element(vPesosUser.getID_PESOSUSUARIO(), vPesosUser);
 			return element;
 		} finally {
 			session.close();
@@ -68,7 +68,7 @@ public class CachePesosUsuario extends AbstractCache {
 			Pesosusuario[] vpesosuser = mapper.selectByUsuario(idUsuario);
 			Element[] elementos = new Element[vpesosuser.length];
 			for (int i = 0; i < vpesosuser.length; i++) {
-				elementos[i] = new Element(vpesosuser[i].getID_PESOSALBUM(), vpesosuser[i]);
+				elementos[i] = new Element(vpesosuser[i].getID_PESOSUSUARIO(), vpesosuser[i]);
 			}
 			return elementos;
 		} finally {

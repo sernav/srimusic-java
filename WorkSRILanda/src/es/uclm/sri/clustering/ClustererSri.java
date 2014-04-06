@@ -1,10 +1,13 @@
 package es.uclm.sri.clustering;
 
+import java.io.IOException;
+
 import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
 import weka.core.EuclideanDistance;
 import weka.core.Instance;
 import weka.core.Instances;
+import weka.core.WekaException;
 import weka.experiment.InstanceQuery;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
@@ -13,6 +16,7 @@ import es.uclm.sri.clustering.weka.WekaDatosCluster;
 import es.uclm.sri.clustering.weka.WekaSRIInstance;
 import es.uclm.sri.clustering.weka.WekaSimpleKMeansCluster;
 import es.uclm.sri.sis.KSistema;
+import es.uclm.sri.sis.excepciones.ExcepcionGeneral;
 import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
 import es.uclm.sri.sis.utilidades.Utils;
 
@@ -38,14 +42,19 @@ public class ClustererSri {
         try {
             
             query = new InstanceQuery();
-            query.setUsername(properties.getValorPropiedad("username"));
-            query.setPassword(properties.getValorPropiedad("password"));
+//            query.setUsername(properties.getValorPropiedad("username"));
+//            query.setPassword(properties.getValorPropiedad("password"));
+            query.setUsername("postgres");
+            query.setPassword("root");
             query.setQuery("SELECT * FROM \"PESOSALBUM\"");
             
             data = query.retrieveInstances();
             
             construirCluterer(data);
-            
+        } catch (WekaException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

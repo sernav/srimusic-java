@@ -28,7 +28,6 @@
 	<classpathentry kind="lib" path="/SRILanda.Lib/lastfm-java-0.1.2.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/jersey-bundle-1.17.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/dom4j-1.5.1.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/weka-3-6-9/weka.zip"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/commons-lang-2.3.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/Deezer.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/deezer-api-client.jar"/>
@@ -52,5 +51,6 @@
 	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xpp3_min.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xstream.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/jFuzzyLogic.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/weka-3-6-9/weka_postgre.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

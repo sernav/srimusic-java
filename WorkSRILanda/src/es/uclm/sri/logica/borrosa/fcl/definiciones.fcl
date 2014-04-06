@@ -96,19 +96,19 @@ END_FUZZIFY
  	RULE 02 : IF escuchas_historico IS MB AND escuchas_actuales IS B THEN salida IS SP;
  	RULE 03 : IF escuchas_historico IS MB AND escuchas_actuales IS S THEN salida IS SR;
  	RULE 04 : IF escuchas_historico IS MB AND escuchas_actuales IS A THEN salida IS SG;
- 	RULE 05 : IF escuchas_historico IS MB AND escuchas_actuales IS MB THEN salida IS SG;
+ 	RULE 05 : IF escuchas_historico IS MB AND escuchas_actuales IS MA THEN salida IS SG;
  	
  	RULE 06 : IF escuchas_historico IS B AND escuchas_actuales IS MB THEN salida IS BP;
  	RULE 07 : IF escuchas_historico IS B AND escuchas_actuales IS B THEN salida IS M;
  	RULE 08 : IF escuchas_historico IS B AND escuchas_actuales IS S THEN salida IS SP;
  	RULE 09 : IF escuchas_historico IS B AND escuchas_actuales IS A THEN salida IS SR;
- 	RULE 10 : IF escuchas_historico IS B AND escuchas_actuales IS MB THEN salida IS SG;
+ 	RULE 10 : IF escuchas_historico IS B AND escuchas_actuales IS MA THEN salida IS SG;
  	
  	RULE 11 : IF escuchas_historico IS S AND escuchas_actuales IS MB THEN salida IS BR;
  	RULE 12 : IF escuchas_historico IS S AND escuchas_actuales IS B THEN salida IS BP;
  	RULE 13 : IF escuchas_historico IS S AND escuchas_actuales IS S THEN salida IS M;
  	RULE 14 : IF escuchas_historico IS S AND escuchas_actuales IS A THEN salida IS SP;
- 	RULE 15 : IF escuchas_historico IS S AND escuchas_actuales IS MB THEN salida IS SR;
+ 	RULE 15 : IF escuchas_historico IS S AND escuchas_actuales IS MA THEN salida IS SR;
  	
  	RULE 16 : IF escuchas_historico IS A AND escuchas_actuales IS MB THEN salida IS BG;
  	RULE 17 : IF escuchas_historico IS A AND escuchas_actuales IS B THEN salida IS BR;

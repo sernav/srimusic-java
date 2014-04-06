@@ -26,6 +26,10 @@ public class AdmonPesosUsuario extends AbstractAdmon {
     }
     
     public int insertarPesosUsuario(Pesosusuario record) {
+        return mapper.insert(record);
+    }
+    
+    public int insertarPesosUsuarioSelective(Pesosusuario record) {
         return mapper.insertSelective(record);
     }
     
