@@ -77,6 +77,24 @@ public class Utils {
 		return d;
 	}
 	
+public static double[] removeElements(double[] input, int pos1, int pos2, int pos3, int pos4) {
+        
+        List<Double> result = new ArrayList<Double>();
+        for (int i = 0; i < input.length; i++) {
+            if (i != pos1 && i != pos2 && i != pos3 && i != pos4) {
+                result.add(new Double(input[i]));
+            }
+        }
+        double[] d = new double[result.size()];
+        int index = 0;
+        Iterator<Double> it = result.iterator();
+        while(it.hasNext()) {
+            d[index] = it.next().doubleValue();
+            index++;
+        }
+        return d;
+    }
+	
 	public static double[] toDoubleArray(Double[] arr) {
 	    List<Double> list = new ArrayList<Double>(Arrays.asList(arr));
 	    list.removeAll(Collections.singleton(null));
