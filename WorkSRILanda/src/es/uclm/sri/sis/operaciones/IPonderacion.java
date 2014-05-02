@@ -9,8 +9,8 @@ public interface IPonderacion {
     
     public AlbumPonderado procesar();
     
-    public void calcularPesos();
+    public void calcularPesos() throws Exception;
     
-    public ArrayList<Genero> convertirTags();
+    public ArrayList<Genero> convertirTags() throws Exception;
 
 }

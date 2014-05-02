@@ -1,5 +1,6 @@
 package es.uclm.sri.sis.fabricas;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,10 +23,8 @@ public class FabricaDUsuarios implements IFabrica {
     private User usuarioLfm;
     private HashMap<String, Pesosalbum> hashPesosAlbums = new HashMap<String, Pesosalbum>();
     private Pesosusuario pusuario;
-    
     private Pesosusuario historico;
     private Pesosusuario actuales;
-    
     private HashMap<Integer, String> avisosDSistema;
 
     public FabricaDUsuarios(String usuario, boolean isUserLfm) {
@@ -52,7 +51,7 @@ public class FabricaDUsuarios implements IFabrica {
         }
         this.hashPesosAlbums = hashPesosAlbums;
     }
-    
+
     public FabricaDUsuarios(User usuario, HashMap<String, Pesosalbum> hashPesosAlbums) {
         this.usuario = usuario.getName();
         this.usuarioLfm = usuario;
@@ -60,203 +59,223 @@ public class FabricaDUsuarios implements IFabrica {
         this.avisosDSistema = new HashMap<Integer, String>();
     }
 
-    public void run() {
-        /**
-         * 1. Comprobar si el usuario est‡ en el sistema 
-         * 2. Si no est‡ lo insertamos
-         * */
+    public void run() throws SQLException {
+        boolean ok = false;
         AdmonUsuarios admonUsuario = new AdmonUsuarios();
         AdmonPesosUsuario admonPesos = new AdmonPesosUsuario();
         Dusuarios uapp = null;
         int idUsuario = -1;
-        if (this.usuarioLfm != null) {
-            uapp = admonUsuario.devolverUsuario(this.usuarioLfm);
-        } else if (this.usuario != null && this.usuario.length() > 0) {
-            uapp = admonUsuario.devolverUsuario(this.usuario);
-        } else {
-            this.avisosDSistema.put(new Integer(avisosDSistema.size() + 1), "No se puede buscar un usuario sin usuario ÁAs’ no!");
-        }
+        try {
+            if (this.usuarioLfm != null) {
+                uapp = admonUsuario.devolverUsuario(this.usuarioLfm);
+            } else if (this.usuario != null && this.usuario.length() > 0) {
+                uapp = admonUsuario.devolverUsuario(this.usuario);
+            } else {
+                this.avisosDSistema.put(new Integer(avisosDSistema.size() + 1), "No se puede buscar un usuario sin usuario ÁAs’ no!");
+                Log.log("ÁNo hay usuario!", 2);
+            }
 
-        if (uapp == null && this.usuarioLfm != null) {
-            /**
-             * 1. Se inserta el usuario 
-             * 2. Se generan sus pesos iniciales
-             * */
-            admonUsuario.insertarUsuario(this.usuarioLfm);
-            uapp = admonUsuario.devolverUsuario(usuarioLfm);
-            this.pusuario = generarPesosUsuario();
-            this.pusuario.setID_DUSUARIO_FK(uapp.getID_DUSUARIO());
-            this.pusuario.setFECHSESI(Calendar.getInstance().getTime());
-            admonPesos.insertarPesosUsuario(this.pusuario);
-        } else {
-            idUsuario = uapp.getID_DUSUARIO();
-            /**
-             * 1. Recoger el hist—rico de pesos del usuario
-             * 2. Calcular los pesos actuales
-             * 3. Pasar el sistema de reglas
-             * 4. Actualizar hist—rico de pesos
-             * */
-            historico = admonPesos.devolverPesosUsuario(idUsuario)[0];
-            this.pusuario = actuales = generarPesosUsuario();
-            this.pusuario.setID_DUSUARIO_FK(idUsuario);
-            this.pusuario.setID_PESOSUSUARIO(historico.getID_PESOSUSUARIO());
-            this.pusuario.setFECHSESI(Calendar.getInstance().getTime());
-            aplicarSistemaDReglas();
-            admonPesos.actualizarPesosUsuario(this.pusuario);
+            if (uapp == null && this.usuarioLfm != null) {
+                /**
+                 * 1. Se inserta el usuario 
+                 * 2. Se generan sus pesos iniciales
+                 * */
+                Log.log("New User! El usuario " + usuarioLfm.getName().toUpperCase() + " es nuevo usuario en el sistema", 1);
+                admonUsuario.insertarUsuario(this.usuarioLfm);
+                uapp = admonUsuario.devolverUsuario(usuarioLfm);
+                Log.log("Nuevo usuario registrado en la BD. Identificador: " + uapp.getID_DUSUARIO(), 1);
+                this.pusuario = generarPesosUsuario();
+                this.pusuario.setID_DUSUARIO_FK(uapp.getID_DUSUARIO());
+                this.pusuario.setFECHSESI(Calendar.getInstance().getTime());
+                admonPesos.insertarPesosUsuario(this.pusuario);
+                Log.log("Pesos de usuario generados:", 1);
+                Log.log(pusuario.toString());
+            } else {
+                Log.log("El usuario " + usuarioLfm.getName().toUpperCase() + " es un viejo conocido", 1);
+                idUsuario = uapp.getID_DUSUARIO();
+                /**
+                 * 1. Recoger el hist—rico de pesos del usuario 
+                 * 2. Calcular los pesos actuales 
+                 * 3. Pasar el sistema de reglas 
+                 * 4. Actualizar hist—rico de pesos
+                 * */
+                Log.log("Recuperando hist—rico de pesos del usuario");
+                historico = admonPesos.devolverPesosUsuario(idUsuario)[0];
+                Log.log("H¼ de pesos de " + usuarioLfm.getName().toUpperCase() + ":", 1);
+                Log.log(historico.toString(), 1);
+                this.pusuario = actuales = generarPesosUsuario();
+                this.pusuario.setID_DUSUARIO_FK(idUsuario);
+                this.pusuario.setID_PESOSUSUARIO(historico.getID_PESOSUSUARIO());
+                this.pusuario.setFECHSESI(Calendar.getInstance().getTime());
+                Log.log("ÁLANZANDO SISTEMA DE REGLAS!", 2);
+                aplicarSistemaDReglas();
+                Log.log("Actualizar pesos de usuario segœn sistema de reglas", 1);
+                admonPesos.actualizarPesosUsuario(this.pusuario);
+                Log.log("Nuevos pesos de usuario:", 1);
+                Log.log(pusuario.toString(), 1);
+            }
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.log(e, "(" + FabricaDUsuarios.class.getSimpleName() + ") Excepci—n! " + e.getMessage());
+        } finally {
+            if (ok) {
+                Log.log("Proceso de F‡brica de Usuarios finalizado con Žxito", 1);
+            } else {
+                Log.log("Proceso de F‡brica de Usuarios finalizado con errores", 3);
+            }
         }
-
     }
-    
-    public void aplicarSistemaDReglas() {
+
+    public void aplicarSistemaDReglas() throws Exception {
+        Log.log("Fichero FCL (Fuzzy control language) localizado en 'src/es/uclm/sri/logica/borrosa/fcl/definiciones.fcl'", 1);
         MotorJFuzzyLogic motor = new MotorJFuzzyLogic("src/es/uclm/sri/logica/borrosa/fcl/definiciones.fcl");
-        String[] varsInput = {"escuchas_historico" , "escuchas_actuales"};
-        
+        String[] varsInput = { "escuchas_historico", "escuchas_actuales" };
+
         if (this.historico == null || this.actuales == null) {
-            Log.log("No es posible aplicar el sistema de reglas para los pesos del usuario " + this.usuario);
+            Log.log("No es posible aplicar el sistema de reglas para los pesos del usuario " + this.usuario, 2);
         } else {
-            double[] inSinger = {this.historico.getSINGER() , this.actuales.getSINGER()};
+            double[] inSinger = { this.historico.getSINGER(), this.actuales.getSINGER() };
             double outSinger = motor.evaluar(varsInput, inSinger, new String("salida"));
-            
-            double[] inRap = {this.historico.getRAP() , this.actuales.getRAP()};
+
+            double[] inRap = { this.historico.getRAP(), this.actuales.getRAP() };
             double outRap = motor.evaluar(varsInput, inRap, new String("salida"));
-            
-            double[] inAmbient = {this.historico.getAMBIENT() , this.actuales.getAMBIENT()};
+
+            double[] inAmbient = { this.historico.getAMBIENT(), this.actuales.getAMBIENT() };
             double outAmbient = motor.evaluar(varsInput, inAmbient, new String("salida"));
-            
-            double[] inIndie = {this.historico.getINDIE() , this.actuales.getINDIE()};
+
+            double[] inIndie = { this.historico.getINDIE(), this.actuales.getINDIE() };
             double outIndie = motor.evaluar(varsInput, inIndie, new String("salida"));
-            
-            double[] inBlues = {this.historico.getBLUES() , this.actuales.getBLUES()};
+
+            double[] inBlues = { this.historico.getBLUES(), this.actuales.getBLUES() };
             double outBlues = motor.evaluar(varsInput, inBlues, new String("salida"));
-            
-            double[] inReggae = {this.historico.getREGGAE() , this.actuales.getREGGAE()};
+
+            double[] inReggae = { this.historico.getREGGAE(), this.actuales.getREGGAE() };
             double outReggae = motor.evaluar(varsInput, inReggae, new String("salida"));
-            
-            double[] inPunk = {this.historico.getPUNK() , this.actuales.getPUNK()};
+
+            double[] inPunk = { this.historico.getPUNK(), this.actuales.getPUNK() };
             double outPunk = motor.evaluar(varsInput, inPunk, new String("salida"));
-            
-            double[] inHeavy = {this.historico.getHEAVY() , this.actuales.getHEAVY()};
+
+            double[] inHeavy = { this.historico.getHEAVY(), this.actuales.getHEAVY() };
             double outHeavy = motor.evaluar(varsInput, inHeavy, new String("salida"));
-            
-            double[] inAlternative = {this.historico.getALTERNATIVE() , this.actuales.getALTERNATIVE()};
+
+            double[] inAlternative = { this.historico.getALTERNATIVE(), this.actuales.getALTERNATIVE() };
             double outAlternative = motor.evaluar(varsInput, inAlternative, new String("salida"));
-            
-            double[] inClassic = {this.historico.getCLASSIC() , this.actuales.getCLASSIC()};
+
+            double[] inClassic = { this.historico.getCLASSIC(), this.actuales.getCLASSIC() };
             double outClassic = motor.evaluar(varsInput, inClassic, new String("salida"));
-            
-            double[] inElectronic = {this.historico.getELECTRONIC() , this.actuales.getELECTRONIC()};
+
+            double[] inElectronic = { this.historico.getELECTRONIC(), this.actuales.getELECTRONIC() };
             double outElectronic = motor.evaluar(varsInput, inElectronic, new String("salida"));
-            
-            double[] inRock = {this.historico.getROCK() , this.actuales.getROCK()};
+
+            double[] inRock = { this.historico.getROCK(), this.actuales.getROCK() };
             double outRock = motor.evaluar(varsInput, inRock, new String("salida"));
-            
-            double[] inPop = {this.historico.getPOP() , this.actuales.getPOP()};
+
+            double[] inPop = { this.historico.getPOP(), this.actuales.getPOP() };
             double outPop = motor.evaluar(varsInput, inPop, new String("salida"));
-            
-            double[] inBrit = {this.historico.getBRIT() , this.actuales.getBRIT()};
+
+            double[] inBrit = { this.historico.getBRIT(), this.actuales.getBRIT() };
             double outBrit = motor.evaluar(varsInput, inBrit, new String("salida"));
-            
-            double[] inFolk = {this.historico.getFOLK() , this.actuales.getFOLK()};
+
+            double[] inFolk = { this.historico.getFOLK(), this.actuales.getFOLK() };
             double outFolk = motor.evaluar(varsInput, inFolk, new String("salida"));
-            
-            double[] inFunk = {this.historico.getFUNK() , this.actuales.getFUNK()};
+
+            double[] inFunk = { this.historico.getFUNK(), this.actuales.getFUNK() };
             double outFunk = motor.evaluar(varsInput, inFunk, new String("salida"));
-            
-            double[] inInstrumental = {this.historico.getINSTRUMENTAL() , this.actuales.getINSTRUMENTAL()};
+
+            double[] inInstrumental = { this.historico.getINSTRUMENTAL(), this.actuales.getINSTRUMENTAL() };
             double outInstrumental = motor.evaluar(varsInput, inInstrumental, new String("salida"));
-            
-            double[] inGrunge = {this.historico.getGRUNGE() , this.actuales.getGRUNGE()};
+
+            double[] inGrunge = { this.historico.getGRUNGE(), this.actuales.getGRUNGE() };
             double outGrunge = motor.evaluar(varsInput, inGrunge, new String("salida"));
-            
-            Double ptotal = outSinger + outRap + outAmbient + outIndie + outBlues + outReggae + outPunk + outHeavy + 
-                    outAlternative + outClassic + outElectronic + outRock + outPop + outBrit + outFolk + outFunk + 
-                    outInstrumental + outGrunge;
-            if (outSinger > 0) 
-                this.pusuario.setSINGER(outSinger/ptotal);
+
+            Double ptotal = outSinger + outRap + outAmbient + outIndie + outBlues + outReggae + outPunk + outHeavy + outAlternative + outClassic + outElectronic
+                    + outRock + outPop + outBrit + outFolk + outFunk + outInstrumental + outGrunge;
+            if (outSinger > 0)
+                this.pusuario.setSINGER(outSinger / ptotal);
             else
                 this.pusuario.setSINGER(Double.NaN);
             if (outRap > 0)
-                this.pusuario.setRAP(outRap/ptotal);
+                this.pusuario.setRAP(outRap / ptotal);
             else
                 this.pusuario.setRAP(Double.NaN);
             if (outAmbient > 0)
-                this.pusuario.setAMBIENT(outAmbient/ptotal);
+                this.pusuario.setAMBIENT(outAmbient / ptotal);
             else
                 this.pusuario.setAMBIENT(Double.NaN);
-            if (outIndie > 0) 
-                this.pusuario.setINDIE(outIndie/ptotal);
+            if (outIndie > 0)
+                this.pusuario.setINDIE(outIndie / ptotal);
             else
                 this.pusuario.setINDIE(Double.NaN);
             if (outBlues > 0)
-                this.pusuario.setBLUES(outBlues/ptotal);
+                this.pusuario.setBLUES(outBlues / ptotal);
             else
                 this.pusuario.setBLUES(Double.NaN);
             if (outReggae > 0)
-                this.pusuario.setREGGAE(outReggae/ptotal);
+                this.pusuario.setREGGAE(outReggae / ptotal);
             else
                 this.pusuario.setREGGAE(Double.NaN);
             if (outPunk > 0)
-                this.pusuario.setPUNK(outPunk/ptotal);
+                this.pusuario.setPUNK(outPunk / ptotal);
             else
                 this.pusuario.setPUNK(Double.NaN);
             if (outHeavy > 0)
-                this.pusuario.setHEAVY(outHeavy/ptotal);
+                this.pusuario.setHEAVY(outHeavy / ptotal);
             else
                 this.pusuario.setHEAVY(Double.NaN);
             if (outAlternative > 0)
-                this.pusuario.setALTERNATIVE(outAlternative/ptotal);
-            else 
+                this.pusuario.setALTERNATIVE(outAlternative / ptotal);
+            else
                 this.pusuario.setALTERNATIVE(Double.NaN);
             if (outClassic > 0)
-                this.pusuario.setCLASSIC(outClassic/ptotal);
+                this.pusuario.setCLASSIC(outClassic / ptotal);
             else
                 this.pusuario.setCLASSIC(Double.NaN);
             if (outElectronic > 0)
-                this.pusuario.setELECTRONIC(outElectronic/ptotal);
+                this.pusuario.setELECTRONIC(outElectronic / ptotal);
             else
                 this.pusuario.setELECTRONIC(Double.NaN);
-            if (outRock > 0 )
-                this.pusuario.setROCK(outRock/ptotal);
+            if (outRock > 0)
+                this.pusuario.setROCK(outRock / ptotal);
             else
                 this.pusuario.setROCK(Double.NaN);
-            if (outPop > 0)   
-                this.pusuario.setPOP(outPop/ptotal);
+            if (outPop > 0)
+                this.pusuario.setPOP(outPop / ptotal);
             else
                 this.pusuario.setPOP(Double.NaN);
             if (outBrit > 0)
-                this.pusuario.setBRIT(outBrit/ptotal);
+                this.pusuario.setBRIT(outBrit / ptotal);
             else
                 this.pusuario.setBRIT(Double.NaN);
             if (outFolk > 0)
-                this.pusuario.setFOLK(outFolk/ptotal);
+                this.pusuario.setFOLK(outFolk / ptotal);
             else
                 this.pusuario.setFOLK(Double.NaN);
             if (outFunk > 0)
-                this.pusuario.setFUNK(outFunk/ptotal);
+                this.pusuario.setFUNK(outFunk / ptotal);
             else
                 this.pusuario.setFUNK(Double.NaN);
             if (outInstrumental > 0)
-                this.pusuario.setINSTRUMENTAL(outInstrumental/ptotal);
+                this.pusuario.setINSTRUMENTAL(outInstrumental / ptotal);
             else
                 this.pusuario.setINSTRUMENTAL(Double.NaN);
             if (outGrunge > 0)
-                this.pusuario.setGRUNGE(outGrunge/ptotal);
+                this.pusuario.setGRUNGE(outGrunge / ptotal);
             else
                 this.pusuario.setGRUNGE(Double.NaN);
         }
     }
 
-    protected Pesosusuario generarPesosUsuario() {
+    protected Pesosusuario generarPesosUsuario() throws Exception {
         AdmonPesosUsuario admon = new AdmonPesosUsuario();
         Pesosusuario puser = new Pesosusuario();
+
         if (hashPesosAlbums.size() > 0) {
             if (hashPesosAlbums.size() > 1) {
                 Iterator<Entry<String, Pesosalbum>> it = hashPesosAlbums.entrySet().iterator();
-                Double singer = 0.0, rap = 0.0, ambient = 0.0, indie = 0.0, blues = 0.0, reggae = 0.0, punk = 0.0, 
-                        heavy = 0.0, alternative = 0.0, classic = 0.0, electronic = 0.0, rock = 0.0, pop = 0.0, 
-                        brit = 0.0, folk = 0.0, funk = 0.0, instrumental = 0.0, grunge = 0.0;
+                Double singer = 0.0, rap = 0.0, ambient = 0.0, indie = 0.0, blues = 0.0, reggae = 0.0, punk = 0.0, heavy = 0.0, alternative = 0.0, classic = 0.0, electronic = 0.0, rock = 0.0, pop = 0.0, brit = 0.0, folk = 0.0, funk = 0.0, instrumental = 0.0, grunge = 0.0;
                 while (it.hasNext()) {
-                    Map.Entry pairs = (Map.Entry)it.next();
+                    Map.Entry pairs = (Map.Entry) it.next();
                     Pesosalbum palbum = (Pesosalbum) pairs.getValue();
                     if (palbum.getSINGER() != null)
                         singer += palbum.getSINGER();
@@ -289,85 +308,85 @@ public class FabricaDUsuarios implements IFabrica {
                     if (palbum.getFOLK() != null)
                         folk += palbum.getFOLK();
                     if (palbum.getFUNK() != null)
-                        funk += palbum.getFUNK(); 
+                        funk += palbum.getFUNK();
                     if (palbum.getINSTRUMENTAL() != null)
                         instrumental += palbum.getINSTRUMENTAL();
                     if (palbum.getGRUNGE() != null)
                         grunge += palbum.getGRUNGE();
 
                 }
-                Double ptotal = singer + rap + ambient + indie + blues + reggae + punk + heavy + alternative + classic + 
-                        electronic + rock + pop + brit + folk + funk + instrumental + grunge;
+                Double ptotal = singer + rap + ambient + indie + blues + reggae + punk + heavy + alternative + classic + electronic + rock + pop + brit + folk
+                        + funk + instrumental + grunge;
                 if (singer.doubleValue() > 0.0)
-                    puser.setSINGER(singer/ptotal);
+                    puser.setSINGER(singer / ptotal);
                 else
                     puser.setSINGER(Double.NaN);
                 if (rap.doubleValue() > 0.0)
-                    puser.setRAP(rap/ptotal);
+                    puser.setRAP(rap / ptotal);
                 else
                     puser.setRAP(Double.NaN);
                 if (ambient.doubleValue() > 0.0)
-                    puser.setAMBIENT((ambient)/ptotal);
+                    puser.setAMBIENT((ambient) / ptotal);
                 else
                     puser.setAMBIENT(Double.NaN);
                 if (indie.doubleValue() > 0.0)
-                    puser.setINDIE(indie/ptotal);
+                    puser.setINDIE(indie / ptotal);
                 else
                     puser.setINDIE(Double.NaN);
                 if (blues.doubleValue() > 0.0)
-                    puser.setBLUES(blues/ptotal);
+                    puser.setBLUES(blues / ptotal);
                 else
                     puser.setBLUES(Double.NaN);
                 if (reggae.doubleValue() > 0.0)
-                    puser.setREGGAE(reggae/ptotal);
+                    puser.setREGGAE(reggae / ptotal);
                 else
                     puser.setREGGAE(Double.NaN);
                 if (punk.doubleValue() > 0.0)
-                    puser.setPUNK(punk/ptotal);
+                    puser.setPUNK(punk / ptotal);
                 else
                     puser.setPUNK(Double.NaN);
                 if (heavy.doubleValue() > 0.0)
-                    puser.setHEAVY(heavy/ptotal);
+                    puser.setHEAVY(heavy / ptotal);
                 else
                     puser.setHEAVY(Double.NaN);
                 if (alternative.doubleValue() > 0.0)
-                    puser.setALTERNATIVE(alternative/ptotal);
+                    puser.setALTERNATIVE(alternative / ptotal);
                 else
                     puser.setALTERNATIVE(Double.NaN);
                 if (classic.doubleValue() > 0.0)
-                    puser.setCLASSIC(classic/ptotal);
+                    puser.setCLASSIC(classic / ptotal);
                 else
                     puser.setCLASSIC(Double.NaN);
                 if (electronic.doubleValue() > 0.0)
-                    puser.setELECTRONIC(electronic/ptotal);
+                    puser.setELECTRONIC(electronic / ptotal);
                 else
                     puser.setELECTRONIC(Double.NaN);
                 if (rock.doubleValue() > 0.0)
-                    puser.setROCK(rock/ptotal);
+                    puser.setROCK(rock / ptotal);
                 else
                     puser.setROCK(Double.NaN);
                 if (pop.doubleValue() > 0.0)
-                    puser.setPOP(pop/ptotal);
+                    puser.setPOP(pop / ptotal);
                 else
                     puser.setPOP(Double.NaN);
                 if (brit.doubleValue() > 0.0)
-                    puser.setBRIT(brit/ptotal);
+                    puser.setBRIT(brit / ptotal);
                 else
                     puser.setBRIT(Double.NaN);
                 if (folk.doubleValue() > 0.0)
-                    puser.setFOLK(folk/ptotal);
+                    puser.setFOLK(folk / ptotal);
                 else
                     puser.setFOLK(Double.NaN);
                 if (funk.doubleValue() > 0.0)
-                    puser.setFUNK(funk/ptotal);
+                    puser.setFUNK(funk / ptotal);
                 else
                     puser.setFUNK(Double.NaN);
                 if (instrumental.doubleValue() > 0.0)
-                    puser.setINSTRUMENTAL(instrumental/ptotal);
+                    puser.setINSTRUMENTAL(instrumental / ptotal);
                 else
                     puser.setINSTRUMENTAL(Double.NaN);
                 if (grunge.doubleValue() > 0.0)
-                    puser.setGRUNGE(grunge/ptotal);
+                    puser.setGRUNGE(grunge / ptotal);
                 else
                     puser.setGRUNGE(Double.NaN);
             } else {
@@ -394,10 +413,11 @@ public class FabricaDUsuarios implements IFabrica {
             puser.setINSTRUMENTAL(Double.NaN);
             puser.setGRUNGE(Double.NaN);
         }
+
         return puser;
     }
 
-    private Pesosusuario settearGeneros(Pesosalbum palbum) {
+    private Pesosusuario settearGeneros(Pesosalbum palbum) throws Exception {
         Pesosusuario puser = new Pesosusuario();
 
         puser.setSINGER(palbum.getSINGER());
@@ -433,7 +453,7 @@ public class FabricaDUsuarios implements IFabrica {
     public HashMap<String, Pesosalbum> getHashPesosAlbums() {
         return hashPesosAlbums;
     }
-    
+
     protected Pesosusuario getPesosManufactura() {
         return this.pusuario;
     }

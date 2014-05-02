@@ -7,7 +7,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import es.uclm.sri.sis.KSistema;
+import es.uclm.sri.sis.log.Log;
 
 public class ConnectionFactory {
 	
@@ -20,8 +20,10 @@ public class ConnectionFactory {
             sqlMapper = new SqlSessionFactoryBuilder().build(reader);
         } catch (IOException e) {
             e.printStackTrace();
+            Log.log(e, "Conection Factory KO! IOException. " + e.getMessage());
         }catch(Exception e){
             e.printStackTrace();
+            Log.log(e, "Conection Factory KO! Exception. " + e.getMessage());
         }
     }
 

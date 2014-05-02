@@ -26,6 +26,18 @@ public class KSistema {
         public static final String pesosAlbum = "PESOSALBUM";
     }
     
+    public final class Excepciones {
+        
+        private Excepciones() {
+        }
+        
+        public static final String EXCEPCION_GENERAL = "EXCEGNRL";
+        public static final String EXCEPCION_SQL = "EXCEPSQL";
+        public static final String EXCEPCION_IBATIS = "EXCEBATI";
+        public static final String EXCEPCION_IO = "EXCEINOU";
+        public static final String EXCEPCION_CONEXION = "EXCECONN";
+    }
+    
     public final class Recursos {
         
         private Recursos() {

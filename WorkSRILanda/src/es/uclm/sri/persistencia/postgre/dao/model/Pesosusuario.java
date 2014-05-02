@@ -193,6 +193,30 @@ public class Pesosusuario {
     public void setGRUNGE(Double GRUNGE) {
         this.GRUNGE = GRUNGE;
     }
+    
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        sb.append(" Singer= " + getSINGER());
+        sb.append(" Rap=" + getRAP());
+        sb.append(" Ambient=" + getAMBIENT());
+        sb.append(" Indie=" + getINDIE());
+        sb.append(" Blues=" + getBLUES());
+        sb.append(" Reggae=" + getREGGAE());
+        sb.append(" Punk=" + getPUNK());
+        sb.append(" Heavy=" + getHEAVY());
+        sb.append(" Alternative=" + getALTERNATIVE());
+        sb.append(" Classic=" + getCLASSIC());
+        sb.append(" Electronic=" + getELECTRONIC());
+        sb.append(" Rock=" + getROCK());
+        sb.append("Pop=" + getPOP());
+        sb.append("Brit=" + getBRIT());
+        sb.append("Folk=" + getFOLK());
+        sb.append("Funk=" + getFUNK());
+        sb.append(" Instrumental=" + getINSTRUMENTAL());
+        sb.append(" Grunge=" + getGRUNGE());
+        
+        return sb.toString();
+    }
 
     
 }

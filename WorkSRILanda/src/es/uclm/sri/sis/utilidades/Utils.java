@@ -1,8 +1,11 @@
 package es.uclm.sri.sis.utilidades;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -78,6 +81,17 @@ public class Utils {
 	    List<Double> list = new ArrayList<Double>(Arrays.asList(arr));
 	    list.removeAll(Collections.singleton(null));
 	    return ArrayUtils.toPrimitive(list.toArray(new Double[list.size()]));
+	}
+	
+	public static String convertirFecha(Date date, String formato) {
+	    DateFormat fecha = null;
+	    if (formato == null || formato.length() == 0) {
+	        fecha = new SimpleDateFormat("ddMMyyy");
+	    } else {
+	        fecha = new SimpleDateFormat(formato);
+	    }
+	    
+	    return fecha.format(date);
 	}
 
 }

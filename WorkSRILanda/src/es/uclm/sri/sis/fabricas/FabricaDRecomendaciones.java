@@ -1,5 +1,6 @@
 package es.uclm.sri.sis.fabricas;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,6 +15,7 @@ import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.entidades.Recomendacion;
+import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.operaciones.PonderacionDAlbum;
 
 /**
@@ -57,12 +59,13 @@ public class FabricaDRecomendaciones
      * @return
      * */
     public void run() {
+        Log.log("ÁFabrica de recomendaciones en marcha!", 1);
         
         AdmonAlbums admonAlbums = new AdmonAlbums();
         AdmonPesosAlbum admonPesos = new AdmonPesosAlbum();
         
         HashMap<String, Pesosalbum> hashAlbums = new HashMap<String, Pesosalbum>();
-        
+        try {
         if (this.playback != null) {
             de.umass.lastfm.Album[] albumsLastfm = this.playback.getTopAlbumsUsuario();
             
@@ -75,6 +78,7 @@ public class FabricaDRecomendaciones
                         albumsLastfm[i].getReleaseDate() != null ? albumsLastfm[i].getReleaseDate().toString() : "", "",
                         albumsLastfm[i].getTracks().size());
                 albums.put(a.getTitulo() + "#" + a.getArtista(), a);
+                Log.log("Procesando album recopilado del usuario " + a.getTitulo() + " # " + a.getArtista(), 1);
                 
                 /*
                  * Se buscar el album en la base de datos. Si no se encuentra, se
@@ -91,6 +95,7 @@ public class FabricaDRecomendaciones
                 Pesosalbum[] pesosAlbum = admonPesos.
                         devolverPesosAlbum(albumsLastfm[i].getName(), albumsLastfm[i].getArtist());
                 if (pesosAlbum.length == 0) {
+                    Log.log("New Album! T’tulo: " + a.getTitulo() + " Artista: " + a.getArtista(), 1);
                     /*
                      * 1. Ponderar album
                      * 2. Insertar en la tabla PESOSALBUM
@@ -98,19 +103,28 @@ public class FabricaDRecomendaciones
                      * */
                     PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
                     AlbumPonderado albumPonderado = pondera.procesar();
-                    Pesosalbum record = admonPesos.insertarPesosAlbum(albumPonderado);
-                    
-                    hashAlbums.put(albumPonderado.getTitulo().trim() + "#" + albumPonderado.getArtista().trim(), record);
+                    Pesosalbum record;
+                    try {
+                        record = admonPesos.insertarPesosAlbum(albumPonderado);
+                        hashAlbums.put(albumPonderado.getTitulo().trim() + "#" + albumPonderado.getArtista().trim(), record);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        Log.log(e, "(" + FabricaDRecomendaciones.class.getSimpleName() + ") Excepci—n SQL al insertar nuevo album! " + e.getMessage());
+                    }
                 } else if (!pesosAlbum[0].tienePesosValidos()) {
+                    Log.log("El album (T’tulo: " + a.getTitulo() + " Artista: " + a.getArtista() + ") no tiene pesos v‡lidos", 2);
+                    Log.log("Reprocesando album", 1);
                     PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
                     AlbumPonderado albumPonderado = pondera.procesar();
                     Pesosalbum record = admonPesos.actualizarPesosAlbum(albumPonderado);
                     
                     hashAlbums.put(albumPonderado.getTitulo().trim() + "#" + albumPonderado.getArtista().trim(), record);
                 } else {
+                    Log.log("El album (T’tulo: " + a.getTitulo() + " Artista: " + a.getArtista() + ") ya est‡ ponderado y en la BD: " + pesosAlbum[0].getID_PESOSALBUM(), 1);
                     hashAlbums.put(pesosAlbum[0].getALBUM().trim() + "#" + pesosAlbum[0].getARTISTA().trim(), pesosAlbum[0]);
                 }
             }
+            Log.log("ÁInvocando a la f‡brica de Usuarios!", 1);
             FabricaDUsuarios makeupUser = new FabricaDUsuarios(playback.getNickUsuario(), hashAlbums, true);
             makeupUser.run();
             Pesosusuario pesosUser = makeupUser.getPesosManufactura();
@@ -142,6 +156,10 @@ public class FabricaDRecomendaciones
         } else {
             avisosDSistema.put(new Integer(avisosDSistema.size() + 1), 
                     "No hay escuchas de usuario de Last.fm");
+        }
+        
+        } catch (Exception e) {
+            
         }
         
     }

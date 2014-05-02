@@ -16,7 +16,6 @@ import es.uclm.sri.clustering.weka.WekaDatosCluster;
 import es.uclm.sri.clustering.weka.WekaSRIInstance;
 import es.uclm.sri.clustering.weka.WekaSimpleKMeansCluster;
 import es.uclm.sri.sis.KSistema;
-import es.uclm.sri.sis.excepciones.ExcepcionGeneral;
 import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
 import es.uclm.sri.sis.utilidades.Utils;
 
