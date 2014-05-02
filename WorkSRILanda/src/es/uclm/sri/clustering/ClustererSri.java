@@ -16,6 +16,7 @@ import es.uclm.sri.clustering.weka.WekaDatosCluster;
 import es.uclm.sri.clustering.weka.WekaSRIInstance;
 import es.uclm.sri.clustering.weka.WekaSimpleKMeansCluster;
 import es.uclm.sri.sis.KSistema;
+import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
 import es.uclm.sri.sis.utilidades.Utils;
 
@@ -39,7 +40,7 @@ public class ClustererSri {
         
         InstanceQuery query;
         try {
-            
+            Log.log("Instanciando base de datos", 1);
             query = new InstanceQuery();
 //            query.setUsername(properties.getValorPropiedad("username"));
 //            query.setPassword(properties.getValorPropiedad("password"));
@@ -52,10 +53,13 @@ public class ClustererSri {
             construirCluterer(data);
         } catch (WekaException e) {
             e.printStackTrace();
+            Log.log(e, "(" + ClustererSri.class.getSimpleName() + ") Weka Exception! " + e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
+            Log.log(e, "(" + ClustererSri.class.getSimpleName() + ") IO Exception! " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
+            Log.log(e, "(" + ClustererSri.class.getSimpleName() + ") General Exception! " + e.getMessage());
         }
     }
     
@@ -75,6 +79,8 @@ public class ClustererSri {
     }
     
     protected void construirCluterer(Instances data) throws Exception {
+        Log.log("Construyendo clustering", 1);
+        Instances dataAux = null;
         String[] options = new String[2];
         options[0] = "-I"; // max. iterations
         options[1] = "500";
@@ -89,23 +95,23 @@ public class ClustererSri {
          * Filtro para los atributos nombre de album y artista
          * 
          * */
-        int[] attributes = {0,1};
+        int[] attributes = {0, 1, 2, 21};
         Remove rm = new Remove();
         
         rm.setAttributeIndicesArray(attributes);
         rm.setInputFormat(data);
-        data = Filter.useFilter(data, rm);
+        dataAux = Filter.useFilter(data, rm);
 
-        // Funci—n de c‡lculo de distancias: Euclidea
-        EuclideanDistance df = new EuclideanDistance(data);
+        // Función de cálculo de distancias: Euclidea
+        EuclideanDistance df = new EuclideanDistance(dataAux);
         df.setAttributeIndices("first-last");
         df.setDontNormalize(false);
         df.setInvertSelection(false);
 
         clusterer.setDistanceFunction(df);
 
-        // Construcci—n del clusterer con las instancias traidas
-        clusterer.buildClusterer(data);
+        // Construcción del clusterer con las instancias traidas
+        clusterer.buildClusterer(dataAux);
         
         ClusterEvaluation eval = new ClusterEvaluation();
         eval.setClusterer(clusterer);
