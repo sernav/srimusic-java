@@ -52,7 +52,7 @@ public class PlaybackDUsuario implements IAnalisisLastfm {
     public void run() {
         try {
             boolean ok = false;
-            Log.log("Recopilando escuchas del usuario LastFm" + usuario.getName(), 1);
+            Log.log("Recopilando escuchas del usuario LastFm" + nickUser, 1);
             String token = Authenticator.getToken(API_KEY);
             this.sesion = Session.createSession(API_KEY, SECRET, token);
 

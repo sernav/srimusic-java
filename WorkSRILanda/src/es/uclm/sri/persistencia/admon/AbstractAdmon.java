@@ -20,8 +20,7 @@ public abstract class AbstractAdmon {
                 establecerConexion();
                 session = sqlMapper.openSession();
                 session.getConnection().setAutoCommit(true);
-                Log.log("Conection Factory OK!");
-                Log.log("Nueva sesi—n OK!");
+                Log.log("Conection Factory and new session OK!", 1);
             }
         } catch (ConnectException e) {
             e.printStackTrace();

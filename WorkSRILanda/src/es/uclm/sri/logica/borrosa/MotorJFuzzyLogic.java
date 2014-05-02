@@ -23,11 +23,12 @@ public final class MotorJFuzzyLogic {
 
     public MotorJFuzzyLogic(String filename) {
         /**
-         * Cita por jFuzzyLogic
+         * jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the 
+         * Standard for Fuzzy Control Programming.
+         * 
+         * Cingolani, Pablo, and Jesœs Alcal‡-Fdez.
+         * http://jfuzzylogic.sourceforge.net/
          * */
-        Log.log("jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the Standard for Fuzzy Control Programming", 4);
-        Log.log("Cingolani, Pablo, and Jesœs Alcal‡-Fdez", 4);
-        Log.log("http://jfuzzylogic.sourceforge.net/", 5);
         
         if (filename == null || filename.equals("")) {
             filename = Constantes.FILENAME;
@@ -44,12 +45,10 @@ public final class MotorJFuzzyLogic {
         boolean ok = false;
         double resultado = 0;
         if (variablesIn.length != valoresIn.length) {
-            Log.log("El nœmero de variales y de valores no se corresponden. No se invoca al motor de reglas", 2);
             return 9999;
         }
 
         if (!variablesValidas(valoresIn)) {
-            Log.log("Las variables de entrada no son v‡lidas. No se invoca al motor de reglas", 2);
             return 0;
         }
         try {
@@ -63,21 +62,17 @@ public final class MotorJFuzzyLogic {
                 varInput = 0.01;
             }
             fb.setVariable(variablesIn[i], varInput * 100);
-            Log.log("Variables de entrada:", 1);
-            Log.log(variablesIn[i] + " = " + valoresIn[i], 1);
+            Log.log("Evaluando variables de entrada: " + variablesIn[i] + " = " + valoresIn[i], 1);
         }
 
         // Evaluar
-        Log.log("Motor de reglas invocado. Evaluando sistema para las varialbles", 1);
         fb.evaluate();
 
         // Desborrosificar variable de salida
-        Log.log("Desborrosificaci—n de la variable de salida", 1);
         fb.getVariable(variableOut).defuzzify();
 
         // Resultados
-        Log.log("Resultados:", 1);
-        Log.log("Tip: " + fb.getVariable(variableOut).getValue(), 1);
+        Log.log("Resultados: " + fb.getVariable(variableOut).getValue(), 1);
 
         resultado = fb.getVariable(variableOut).getValue() / 100;
         ok = true;
@@ -86,7 +81,7 @@ public final class MotorJFuzzyLogic {
             Log.log(e, "(" + MotorJFuzzyLogic.class.getSimpleName() + ") Excepci—n Motor de Reglas! " + e.getMessage());
         }
         if (ok) {
-            Log.log("Proceso de evaluaci—n de reglas finalizado con Žxito", 1);
+            Log.log("Proceso de evaluaci—n de reglas para las variables finalizado con Žxito", 1);
         }
         return resultado;
         

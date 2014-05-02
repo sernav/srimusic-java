@@ -64,6 +64,7 @@ public class ClustererSri {
     }
     
     public static ClustererSri getInstance() {
+        Log.log("====== INVOCANDO A SISTEMA DE CLUSTERING WEKA ======", 1);
         createInstance();
         return instance;
     }
@@ -79,7 +80,7 @@ public class ClustererSri {
     }
     
     protected void construirCluterer(Instances data) throws Exception {
-        Log.log("Construyendo clustering", 1);
+        Log.log("Construyendo clustering para los par‡metros configurados", 1);
         Instances dataAux = null;
         String[] options = new String[2];
         options[0] = "-I"; // max. iterations
@@ -118,7 +119,7 @@ public class ClustererSri {
     }
     
     public WekaSRIInstance[] generarRecomendacionesWeka(WekaSRIInstance inst) throws Exception {
-
+        Log.log("Generando recomendaciones del clustering", 1);
         AnalysisFactory.buildFactory();
 
         WekaDatosCluster wekaDatosCluster = (WekaDatosCluster) AnalysisFactory
@@ -129,12 +130,13 @@ public class ClustererSri {
         wekaKMeans.setSimpleKMeans(clusterer);
 
         int iCluster = clasificarInstanciaWeka(inst);
-
+        Log.log("Cluster #" + iCluster, 1);
         Instance centroide = clusterer.getClusterCentroids().instance(iCluster);
         
         WekaSRIInstance[] instCluster = wekaKMeans.getWekaSRIInstancesDCluster(data.enumerateInstances(), iCluster);
-        return wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance(), 10);
-        
+        WekaSRIInstance[] resultados = wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance(), 10);
+        Log.log("Recomendaciones del clustering: ", 1);
+        return resultados;
     }
     
     public WekaSRIInstance[] generarRecomendacionesWeka(Double[] attValues) throws Exception {

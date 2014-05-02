@@ -83,13 +83,11 @@ public class FabricaDUsuarios implements IFabrica {
                 Log.log("New User! El usuario " + usuarioLfm.getName().toUpperCase() + " es nuevo usuario en el sistema", 1);
                 admonUsuario.insertarUsuario(this.usuarioLfm);
                 uapp = admonUsuario.devolverUsuario(usuarioLfm);
-                Log.log("Nuevo usuario registrado en la BD. Identificador: " + uapp.getID_DUSUARIO(), 1);
                 this.pusuario = generarPesosUsuario();
                 this.pusuario.setID_DUSUARIO_FK(uapp.getID_DUSUARIO());
                 this.pusuario.setFECHSESI(Calendar.getInstance().getTime());
                 admonPesos.insertarPesosUsuario(this.pusuario);
-                Log.log("Pesos de usuario generados:", 1);
-                Log.log(pusuario.toString());
+                Log.log("Pesos de usuario generados: " + pusuario.toString(), 1);
             } else {
                 Log.log("El usuario " + usuarioLfm.getName().toUpperCase() + " es un viejo conocido", 1);
                 idUsuario = uapp.getID_DUSUARIO();
@@ -99,20 +97,16 @@ public class FabricaDUsuarios implements IFabrica {
                  * 3. Pasar el sistema de reglas 
                  * 4. Actualizar hist—rico de pesos
                  * */
-                Log.log("Recuperando hist—rico de pesos del usuario");
                 historico = admonPesos.devolverPesosUsuario(idUsuario)[0];
-                Log.log("H¼ de pesos de " + usuarioLfm.getName().toUpperCase() + ":", 1);
-                Log.log(historico.toString(), 1);
+                Log.log("H¼ de pesos de " + usuarioLfm.getName().toUpperCase() + ": " + historico.toString(), 1);
                 this.pusuario = actuales = generarPesosUsuario();
                 this.pusuario.setID_DUSUARIO_FK(idUsuario);
                 this.pusuario.setID_PESOSUSUARIO(historico.getID_PESOSUSUARIO());
                 this.pusuario.setFECHSESI(Calendar.getInstance().getTime());
-                Log.log("ÁLANZANDO SISTEMA DE REGLAS!", 2);
+                Log.log("====== LANZANDO SISTEMA DE REGLAS ======", 2);
                 aplicarSistemaDReglas();
-                Log.log("Actualizar pesos de usuario segœn sistema de reglas", 1);
                 admonPesos.actualizarPesosUsuario(this.pusuario);
-                Log.log("Nuevos pesos de usuario:", 1);
-                Log.log(pusuario.toString(), 1);
+                Log.log("Nuevos pesos de usuario: " + pusuario.toString(), 1);
             }
             ok = true;
         } catch (Exception e) {
@@ -122,13 +116,12 @@ public class FabricaDUsuarios implements IFabrica {
             if (ok) {
                 Log.log("Proceso de F‡brica de Usuarios finalizado con Žxito", 1);
             } else {
-                Log.log("Proceso de F‡brica de Usuarios finalizado con errores", 3);
+                Log.log("Proceso de F‡brica de Usuarios finalizado con errores", 2);
             }
         }
     }
 
     public void aplicarSistemaDReglas() throws Exception {
-        Log.log("Fichero FCL (Fuzzy control language) localizado en 'src/es/uclm/sri/logica/borrosa/fcl/definiciones.fcl'", 1);
         MotorJFuzzyLogic motor = new MotorJFuzzyLogic("src/es/uclm/sri/logica/borrosa/fcl/definiciones.fcl");
         String[] varsInput = { "escuchas_historico", "escuchas_actuales" };
 

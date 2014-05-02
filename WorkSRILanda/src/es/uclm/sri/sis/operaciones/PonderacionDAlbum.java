@@ -74,7 +74,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
      * */
     public AlbumPonderado procesar() {
         try {
-            Log.log("Ponderando tags y pesos de album");
+            Log.log("Ponderando tags y pesos de album", 1);
             this.listaTags = estandarizarTags();
             this.listaGeneros = convertirTags();
 
@@ -249,7 +249,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
         HashMap<String, Genero> hashGeneros = new HashMap<String, Genero>();
 
         ArrayList<String> etiquetas = (ArrayList<String>) listaTags;
-        Log.log("Estandarizando tags de album a tag de SriLanda");
+        Log.log("Estandarizando tags de album", 1);
         for (int i = 0; i < etiquetas.size(); i++) {
             if (!hashGeneros.containsKey(etiquetas.get(i))) {
                 int numOcurGenero = 1;
@@ -265,7 +265,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
                 genero.setNumOcurrencias(numOcurGenero);
                 hashGeneros.put(genero.getTipo(), genero);
                 listGeneros.add(genero);
-                Log.log("-Tag#" + i + "= " + genero.getTipo() + " | " + genero.getNumOcurrencias() + " | " + genero.getValorPonderado());
+                Log.log("-Tag#" + i + "= " + genero.getTipo() + " | " + genero.getNumOcurrencias() + " | " + genero.getValorPonderado(), 1);
             }
         }
         return listGeneros;
