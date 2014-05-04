@@ -1,19 +1,17 @@
 package es.uclm.sri.sis.utilidades;
 
 import java.io.FileInputStream;
-import java.io.StringReader;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-//import org.apache.xerces.parsers.DOMParser;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
+//import org.apache.xerces.parsers.DOMParser;
 
 /**
  * <code>XMLUtil</code> clase de utilidades para tratar XMLs

@@ -14,7 +14,7 @@ public class SriLandaTest {
         
 //        ClustererSri analisisClustering = ClustererSri.getInstance();
 
-        PlaybackDUsuario playback = new PlaybackDUsuario("djAguadilla");
+        PlaybackDUsuario playback = new PlaybackDUsuario("duczen");
         playback.run();
         
         File file = new File("es/uclm/sri/recursos/xml/sqlMapConfig.xml");

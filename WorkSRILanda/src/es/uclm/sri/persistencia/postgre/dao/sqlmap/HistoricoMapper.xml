@@ -12,43 +12,50 @@
 		<result column="FULTREPR" property="FULTREPR" jdbcType="DATE" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		ID_HISTORICO, ID_DUSUARIO_FK, ID_DALBUM_FK, NUMREPRD, FULTREPR
+		"ID_HISTORICO", "ID_DUSUARIO_FK", "ID_DALBUM_FK", "NUMREPRD", "FULTREPR"
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select 'false' as QUERYID,
 		<include refid="Base_Column_List" />
-		from HISTUSER
-		where ID_HISTORICO = #{ID_HISTORICO,jdbcType=INTEGER}
+		from "HISTUSER"
+		where "ID_HISTORICO" = #{ID_HISTORICO,jdbcType=INTEGER}
+	</select>
+	<select id="selectByIdUser" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "HISTUSER"
+		where "ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from HISTUSER
-		where ID_HISTORICO = #{ID_HISTORICO,jdbcType=INTEGER}
+		delete from "HISTUSER"
+		where "ID_HISTORICO" = #{ID_HISTORICO,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Historico">
-		insert into HISTUSER (ID_HISTORICO, ID_DUSUARIO_FK, ID_DALBUM_FK,
-		NUMREPRD, FULTREPR)
+		insert into "HISTUSER" ("ID_HISTORICO", "ID_DUSUARIO_FK", "ID_DALBUM_FK",
+		"NUMREPRD", "FULTREPR")
 		values (#{ID_HISTORICO,jdbcType=INTEGER}, #{ID_DUSUARIO_FK,jdbcType=INTEGER},
 		#{ID_DALBUM_FK,jdbcType=INTEGER},
 		#{NUMREPRD,jdbcType=INTEGER}, #{FULTREPR,jdbcType=DATE})
 	</insert>
 	<insert id="insertSelective" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Historico">
-		insert into HISTUSER
+		insert into "HISTUSER"
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="ID_HISTORICO != null">
-				ID_HISTORICO,
+				"ID_HISTORICO",
 			</if>
 			<if test="ID_DUSUARIO_FK != null">
-				ID_DUSUARIO_FK,
+				"ID_DUSUARIO_FK",
 			</if>
 			<if test="ID_DALBUM_FK != null">
-				ID_DALBUM_FK,
+				"ID_DALBUM_FK",
 			</if>
 			<if test="NUMREPRD != null">
-				NUMREPRD,
+				"NUMREPRD",
 			</if>
 			<if test="FULTREPR != null">
-				FULTREPR,
+				"FULTREPR"
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -70,29 +77,29 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Historico">
-		update HISTUSER
+		update "HISTUSER"
 		<set>
 			<if test="ID_DUSUARIO_FK != null">
-				ID_DUSUARIO_FK = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
+				"ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
 			</if>
 			<if test="ID_DALBUM_FK != null">
-				ID_DALBUM_FK = #{ID_DALBUM_FK,jdbcType=INTEGER},
+				"ID_DALBUM_FK" = #{ID_DALBUM_FK,jdbcType=INTEGER},
 			</if>
 			<if test="NUMREPRD != null">
-				NUMREPRD = #{NUMREPRD,jdbcType=INTEGER},
+				"NUMREPRD" = #{NUMREPRD,jdbcType=INTEGER},
 			</if>
 			<if test="FULTREPR != null">
-				FULTREPR = #{FULTREPR,jdbcType=DATE},
+				"FULTREPR" = #{FULTREPR,jdbcType=DATE},
 			</if>
 		</set>
-		where ID_HISTORICO = #{ID_HISTORICO,jdbcType=INTEGER}
+		where "ID_HISTORICO" = #{ID_HISTORICO,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Historico">
-		update HISTUSER
-		set ID_DUSUARIO_FK = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
-		ID_DALBUM_FK = #{ID_DALBUM_FK,jdbcType=INTEGER},
-		NUMREPRD = #{NUMREPRD,jdbcType=INTEGER},
-		FULTREPR = #{FULTREPR,jdbcType=DATE}
-		where ID_HISTORICO = #{ID_HISTORICO,jdbcType=INTEGER}
+		update "HISTUSER"
+		set "ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
+		"ID_DALBUM_FK" = #{ID_DALBUM_FK,jdbcType=INTEGER},
+		"NUMREPRD" = #{NUMREPRD,jdbcType=INTEGER},
+		"FULTREPR" = #{FULTREPR,jdbcType=DATE}
+		where "ID_HISTORICO" = #{ID_HISTORICO,jdbcType=INTEGER}
 	</update>
 </mapper>

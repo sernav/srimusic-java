@@ -20,6 +20,7 @@ import es.uclm.sri.sis.utilidades.UtilsDLastfm;
 public class FabricaDUsuarios implements IFabrica {
 
     private String usuario;
+    private Dusuarios uapp;
     private User usuarioLfm;
     private HashMap<String, Pesosalbum> hashPesosAlbums = new HashMap<String, Pesosalbum>();
     private Pesosusuario pusuario;
@@ -63,7 +64,6 @@ public class FabricaDUsuarios implements IFabrica {
         boolean ok = false;
         AdmonUsuarios admonUsuario = new AdmonUsuarios();
         AdmonPesosUsuario admonPesos = new AdmonPesosUsuario();
-        Dusuarios uapp = null;
         int idUsuario = -1;
         try {
             if (this.usuarioLfm != null) {
@@ -442,6 +442,10 @@ public class FabricaDUsuarios implements IFabrica {
 
     public User getUsuarioLfm() {
         return usuarioLfm;
+    }
+    
+    public Dusuarios getDUsuario() {
+        return uapp;
     }
 
     public HashMap<String, Pesosalbum> getHashPesosAlbums() {

@@ -8,13 +8,13 @@ import es.uclm.sri.clustering.ClustererSri;
 import es.uclm.sri.clustering.weka.WekaSRIInstance;
 import es.uclm.sri.lastfm.PlaybackDUsuario;
 import es.uclm.sri.persistencia.admon.AdmonAlbums;
+import es.uclm.sri.persistencia.admon.AdmonHistorico;
 import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
 import es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
-import es.uclm.sri.sis.entidades.Recomendacion;
 import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.operaciones.PonderacionDAlbum;
 
@@ -26,16 +26,12 @@ import es.uclm.sri.sis.operaciones.PonderacionDAlbum;
  * 
  * @author Sergio Navarro
  * */
-public class FabricaDRecomendaciones implements IFabricaDRecomendaciones, IFabrica {
+public class FabricaDRecomendaciones implements IFabrica {
 
     private HashMap<String, Album> albums;
-
     private de.umass.lastfm.Album[] albumsLastFm;
-
     private String usuario;
-
     private PlaybackDUsuario playback;
-
     private HashMap<Integer, String> avisosDSistema;
 
     public FabricaDRecomendaciones(PlaybackDUsuario playback) {
@@ -66,6 +62,7 @@ public class FabricaDRecomendaciones implements IFabricaDRecomendaciones, IFabri
         boolean ok = false;
         AdmonAlbums admonAlbums = new AdmonAlbums();
         AdmonPesosAlbum admonPesos = new AdmonPesosAlbum();
+        AdmonHistorico admonHistorico = new AdmonHistorico();
 
         HashMap<String, Pesosalbum> hashAlbums = new HashMap<String, Pesosalbum>();
         try {
@@ -82,8 +79,8 @@ public class FabricaDRecomendaciones implements IFabricaDRecomendaciones, IFabri
                     Log.log("Procesando album recopilado del usuario " + a.getTitulo().toUpperCase() + " # " + a.getArtista().toUpperCase(), 1);
 
                     /*
-                     * Se buscar el album en la base de datos. Si no se
-                     * encuentra, se inserta en la tabla de Albums.
+                     * Se buscar el album en la base de datos. 
+                     * Si no se encuentra, se inserta en la tabla de Albums.
                      */
                     Dalbums[] albumsApp = admonAlbums.devolverAlbums(albumsLastfm[i]);
                     if (albumsApp.length == 0) {
@@ -97,7 +94,8 @@ public class FabricaDRecomendaciones implements IFabricaDRecomendaciones, IFabri
                     if (pesosAlbum.length == 0) {
                         Log.log("New Album! T’tulo: " + a.getTitulo().toUpperCase() + " Artista: " + a.getArtista().toUpperCase(), 1);
                         /*
-                         * 1. Ponderar album 2. Insertar en la tabla PESOSALBUM
+                         * 1. Ponderar album 
+                         * 2. Insertar en la tabla PESOSALBUM
                          * 3. Algoritmo de recomendaci—n
                          */
                         PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
@@ -144,7 +142,12 @@ public class FabricaDRecomendaciones implements IFabricaDRecomendaciones, IFabri
                 /*
                  * Aqu’ las recomendaciones
                  */
-                Recomendacion recomendacion = new Recomendacion(wekaInst[0], usuario);
+//                Dusuarios dusuario = makeupUser.getDUsuario();
+//                Historico[] historicoUser = admonHistorico.devolverHistoricoDUsuario(dusuario.getID_DUSUARIO());
+//                for (int i = 0; i < historicoUser.length; i++) {
+//                    
+//                }
+//                Recomendacion recomendacion = new Recomendacion(wekaInst[0], usuario);
 
             } else {
                 avisosDSistema.put(new Integer(avisosDSistema.size() + 1), "No hay escuchas de usuario de Last.fm");
@@ -166,20 +169,8 @@ public class FabricaDRecomendaciones implements IFabricaDRecomendaciones, IFabri
         return null;
     }
 
-    public void guardarDatos() {
-
-    }
-
-    public AlbumPonderado ponderarAlbum(Album album) {
-        return null;
-    }
-
-    public AlbumPonderado ponderarAlbum(de.umass.lastfm.Album albumLastFm) {
-        return null;
-    }
-
     public HashMap<Integer, String> getAvisosDSistema() {
-        return null;
+        return avisosDSistema;
     }
 
     public void aplicarSistemaDReglas() {
