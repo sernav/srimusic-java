@@ -28,15 +28,17 @@ public class Log {
     }
     
     public static void log(Throwable exception) {
-        if (exception != null)
+        if (exception != null) {
             exception.printStackTrace(exceptionLog);
+        }
     }
     
     public static void log(Throwable exception, String mensaje) {
-        mensaje = "[EXCEPTION] " + mensaje;
+        mensaje = "[EXCEPTION] " + mensaje + ".\n\t" + exception.toString();
         log(exceptionLog, mensaje);
         if (exception != null)
             exception.printStackTrace(exceptionLog);
+        System.out.println(mensaje + "\n\t" + exception.toString());
     }
     
     public static void log(String mensaje) {
@@ -65,6 +67,7 @@ public class Log {
                 break;
         }
         log(log, cabecera + " " + mensaje);
+        System.out.println(cabecera + " " + mensaje);
     }
 
     private static void log(PrintWriter pw, String mensaje) {

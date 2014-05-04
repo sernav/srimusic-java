@@ -1,11 +1,19 @@
 package es.uclm.sri.logica.borrosa;
 
-import java.io.IOException;
-
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
+import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
+import net.sourceforge.jFuzzyLogic.rule.Variable;
 import es.uclm.sri.sis.log.Log;
 
+/**
+ * jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the 
+ * Standard for Fuzzy Control Programming.
+ * 
+ * Cingolani, Pablo, and Jesœs Alcal‡-Fdez.
+ * 
+ * http://jfuzzylogic.sourceforge.net/
+ * */
 public final class MotorJFuzzyLogic {
 
     private FIS fis;
@@ -22,14 +30,6 @@ public final class MotorJFuzzyLogic {
     }
 
     public MotorJFuzzyLogic(String filename) {
-        /**
-         * jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the 
-         * Standard for Fuzzy Control Programming.
-         * 
-         * Cingolani, Pablo, and Jesœs Alcal‡-Fdez.
-         * http://jfuzzylogic.sourceforge.net/
-         * */
-        
         if (filename == null || filename.equals("")) {
             filename = Constantes.FILENAME;
         }
@@ -51,6 +51,7 @@ public final class MotorJFuzzyLogic {
         if (!variablesValidas(valoresIn)) {
             return 0;
         }
+        
         try {
         // Get default function block
         FunctionBlock fb = fis.getFunctionBlock(null);
@@ -59,35 +60,70 @@ public final class MotorJFuzzyLogic {
         for (int i = 0; i < variablesIn.length; i++) {
             Double varInput = valoresIn[i];
             if (varInput.isNaN()) {
-                varInput = 0.01;
+                varInput = 0.0000001;
             }
             fb.setVariable(variablesIn[i], varInput * 100);
             Log.log("Evaluando variables de entrada: " + variablesIn[i] + " = " + valoresIn[i], 1);
         }
-
+        
+        // Pintar gr‡fico con variables de entrada
+        // JFuzzyChart.get().chart(fb);
+        
         // Evaluar
         fb.evaluate();
+        
+        // Pintar gr‡fico con la salida
+        // JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true);
 
         // Desborrosificar variable de salida
         fb.getVariable(variableOut).defuzzify();
-
+        Variable tip = fb.getVariable(variableOut);
+        
+        Log.log(tip.toStringCpp(), 1);
+        
+        // Calcular valor de salida con la variable desborrosificada para actualizar peso hist—rico
+        resultado = calculoResultado(tip.getValue(), valoresIn[0]*100, valoresIn[1]*100);
+        
         // Resultados
-        Log.log("Resultados: " + fb.getVariable(variableOut).getValue(), 1);
-
-        resultado = fb.getVariable(variableOut).getValue() / 100;
+        resultado = resultado / 100;
+        Double dResultado = new Double(resultado);
+        if (dResultado.isNaN()) {
+            resultado = 0;
+        }
+        
+        Log.log("Resultado: " + resultado, 1);
         ok = true;
+        
         } catch (Exception e) {
             e.printStackTrace();
             Log.log(e, "(" + MotorJFuzzyLogic.class.getSimpleName() + ") Excepci—n Motor de Reglas! " + e.getMessage());
+        } finally {
+            if (ok) {
+                Log.log("Proceso de evaluaci—n de reglas para las variables finalizado con Žxito", 1);
+            }
         }
-        if (ok) {
-            Log.log("Proceso de evaluaci—n de reglas para las variables finalizado con Žxito", 1);
-        }
-        return resultado;
-        
+        return resultado;  
     }
-
-    private void inicializarVariablesInOut(String[] variablesIn, String variableOut) {
+    
+    private double calculoResultado(double salida, double historico, double actual) {
+        Log.log("C‡lculo de resultado para actualizar el hist—rico de usuario", 1);
+        double aux = 0;
+        if (salida > 0) {
+            /*
+             * El valor actual supera al guardado en el hist—rico
+             * */
+            aux = actual * (salida / 100);
+        } else {
+            /*
+             * El valor de hist—rico es mayor que el actual
+             * */
+            aux = historico * (salida / 100);
+        }
+        return historico + aux;
+    }
+    
+    @Deprecated
+    protected void inicializarVariablesInOut(String[] variablesIn, String variableOut) {
         if (variablesIn == null || variablesIn.length == 0) {
             String[] varsIn = { Constantes.INPUT_ESCUCHAS_HISTORICO, Constantes.INPUT_ESCUCHAS_ACTUALES };
             this.variablesIn = varsIn;

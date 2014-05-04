@@ -182,9 +182,7 @@ public class FabricaDRecomendaciones implements IFabricaDRecomendaciones, IFabri
         return null;
     }
 
-    @Override
     public void aplicarSistemaDReglas() {
-        // TODO Auto-generated method stub
 
     }
 

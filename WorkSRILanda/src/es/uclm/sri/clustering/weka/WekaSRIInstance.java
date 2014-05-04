@@ -83,10 +83,10 @@ public final class WekaSRIInstance extends Instance {
 		this.titulo = titulo;
 		this.artista = artista;
 		attValues = attInitValues(attValues);
-		for (int i = 0; i < attValues.length; i++) {
-		    System.out.print("[" + i +"] " + attValues[i] + " ");
-		}
-		System.out.println("");
+//		for (int i = 0; i < attValues.length; i++) {
+//		    System.out.print("[" + i +"] " + attValues[i] + " ");
+//		}
+//		System.out.println("");
 		instance = new Instance(weight, attValues);
 	}
 	

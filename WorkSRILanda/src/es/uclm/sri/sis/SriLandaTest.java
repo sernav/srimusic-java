@@ -2,8 +2,6 @@ package es.uclm.sri.sis;
 
 import java.io.File;
 
-import es.uclm.sri.clustering.ClustererSri;
-import es.uclm.sri.clustering.weka.WekaSRIInstance;
 import es.uclm.sri.lastfm.PlaybackDUsuario;
 import es.uclm.sri.sis.fabricas.FabricaDRecomendaciones;
 

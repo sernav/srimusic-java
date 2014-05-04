@@ -184,6 +184,7 @@ public class FabricaDUsuarios implements IFabrica {
 
             Double ptotal = outSinger + outRap + outAmbient + outIndie + outBlues + outReggae + outPunk + outHeavy + outAlternative + outClassic + outElectronic
                     + outRock + outPop + outBrit + outFolk + outFunk + outInstrumental + outGrunge;
+            ptotal = Math.abs(ptotal);
             if (outSinger > 0)
                 this.pusuario.setSINGER(outSinger / ptotal);
             else

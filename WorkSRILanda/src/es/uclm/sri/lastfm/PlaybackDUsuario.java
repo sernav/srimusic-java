@@ -52,7 +52,7 @@ public class PlaybackDUsuario implements IAnalisisLastfm {
     public void run() {
         try {
             boolean ok = false;
-            Log.log("Recopilando escuchas del usuario LastFm" + nickUser, 1);
+            Log.log("Recopilando escuchas del usuario LastFm " + nickUser.toUpperCase(), 1);
             String token = Authenticator.getToken(API_KEY);
             this.sesion = Session.createSession(API_KEY, SECRET, token);
 
@@ -79,8 +79,7 @@ public class PlaybackDUsuario implements IAnalisisLastfm {
             e.printStackTrace();
             Log.log(e, "("+ PlaybackDUsuario.class.getSimpleName() + ") Excepci—n General! " + e.getMessage());
         } finally {
-            Log.log("Escuchas musicales del usuario almacenadas", 1);
-            Log.log("Un total de " + this.hashAlbums.size() + "albums recopilados", 1);
+            Log.log("Un total de " + this.hashAlbums.size() + " albums recopilados", 1);
         }
 
     }

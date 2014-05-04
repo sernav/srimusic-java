@@ -40,7 +40,7 @@ public class ClustererSri {
         
         InstanceQuery query;
         try {
-            Log.log("Instanciando base de datos", 1);
+            Log.log("Instanciando base de datos Postgresql. PESOSALBUM", 1);
             query = new InstanceQuery();
 //            query.setUsername(properties.getValorPropiedad("username"));
 //            query.setPassword(properties.getValorPropiedad("password"));
@@ -48,6 +48,7 @@ public class ClustererSri {
             query.setPassword("root");
             query.setQuery("SELECT * FROM \"PESOSALBUM\"");
             
+            Log.log("Extrayendo instancias de la base de datos", 1);
             data = query.retrieveInstances();
             
             construirCluterer(data);
@@ -64,7 +65,7 @@ public class ClustererSri {
     }
     
     public static ClustererSri getInstance() {
-        Log.log("====== INVOCANDO A SISTEMA DE CLUSTERING WEKA ======", 1);
+        Log.log("====== INVOCANDO A SISTEMA DE CLUSTERING WEKA ======", 2);
         createInstance();
         return instance;
     }
@@ -80,7 +81,7 @@ public class ClustererSri {
     }
     
     protected void construirCluterer(Instances data) throws Exception {
-        Log.log("Construyendo clustering para los par‡metros configurados", 1);
+        Log.log("Construyendo clustering con Weka para los par‡metros configurados", 1);
         Instances dataAux = null;
         String[] options = new String[2];
         options[0] = "-I"; // max. iterations
@@ -110,8 +111,14 @@ public class ClustererSri {
         df.setInvertSelection(false);
 
         clusterer.setDistanceFunction(df);
+        
+        Log.log("-Algoritmo: SimpleKMeans", 1);
+        Log.log("-Funci—n de c‡lculo de distancias: D. Euclidea", 1);
+        Log.log("-Nœmero de clusters: 8", 1);
+        Log.log("-Nœmero de iteraciones: 500", 1);
 
         // Construcci—n del clusterer con las instancias traidas
+        Log.log("Construcci—n del clusterer con las instancias traidas...", 1);
         clusterer.buildClusterer(dataAux);
         
         ClusterEvaluation eval = new ClusterEvaluation();
@@ -136,11 +143,12 @@ public class ClustererSri {
         WekaSRIInstance[] instCluster = wekaKMeans.getWekaSRIInstancesDCluster(data.enumerateInstances(), iCluster);
         WekaSRIInstance[] resultados = wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance(), 10);
         Log.log("Recomendaciones del clustering: ", 1);
+        Log.log(toStringRecomendaciones(resultados), 1);
         return resultados;
     }
     
     public WekaSRIInstance[] generarRecomendacionesWeka(Double[] attValues) throws Exception {
-
+        Log.log("Generando recomendaciones del clustering", 1);
         WekaSRIInstance inst = new WekaSRIInstance(1.0, attValues);
 
         AnalysisFactory.buildFactory();
@@ -192,6 +200,22 @@ public class ClustererSri {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    private String toStringRecomendaciones(WekaSRIInstance[] resultados) {
+        StringBuffer sb = new StringBuffer();
+        int cont = 1;
+        for (int i = 0; i < resultados.length; i++) {
+            String artista = resultados[i].getArtita();
+            String album = resultados[i].getTitulo();
+            sb.append("#" + cont + " ");
+            sb.append(artista);
+            sb.append(" -- ");
+            sb.append(album);
+            sb.append(" | ");
+            cont++;
+        }
+        return sb.toString();
     }
 
 }
