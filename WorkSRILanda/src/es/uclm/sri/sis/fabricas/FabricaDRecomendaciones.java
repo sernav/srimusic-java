@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
 import es.uclm.sri.clustering.ClustererSri;
 import es.uclm.sri.clustering.weka.WekaSRIInstance;
 import es.uclm.sri.lastfm.PlaybackDUsuario;
@@ -11,10 +13,13 @@ import es.uclm.sri.persistencia.admon.AdmonAlbums;
 import es.uclm.sri.persistencia.admon.AdmonHistorico;
 import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
 import es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
+import es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
+import es.uclm.sri.persistencia.postgre.dao.model.Historico;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.entidades.Recomendacion;
 import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.operaciones.PonderacionDAlbum;
 
@@ -138,16 +143,31 @@ public class FabricaDRecomendaciones implements IFabrica {
                         pesosUser.getBLUES(), pesosUser.getREGGAE(), pesosUser.getPUNK(), pesosUser.getHEAVY(), pesosUser.getALTERNATIVE(), pesosUser.getCLASSIC(),
                         pesosUser.getELECTRONIC(), pesosUser.getROCK(), pesosUser.getPOP(), pesosUser.getBRIT(), pesosUser.getFOLK(), pesosUser.getFUNK(),
                         pesosUser.getINSTRUMENTAL(), pesosUser.getGRUNGE());
-                WekaSRIInstance[] wekaInst = clusterer.generarRecomendacionesWeka(inst);
+                WekaSRIInstance[] wekaInst = clusterer.generarRecomendacionesWekaAll(inst);
+                // HashMap<String, WekaSRIInstance> mapWekaIns =
+                // clusterer.generarMapRecomendacionesWeka(inst);
+
                 /*
                  * Aqu’ las recomendaciones
                  */
-//                Dusuarios dusuario = makeupUser.getDUsuario();
-//                Historico[] historicoUser = admonHistorico.devolverHistoricoDUsuario(dusuario.getID_DUSUARIO());
-//                for (int i = 0; i < historicoUser.length; i++) {
-//                    
-//                }
-//                Recomendacion recomendacion = new Recomendacion(wekaInst[0], usuario);
+                HashMap<String, Recomendacion> hashRecomendaciones = new HashMap<String, Recomendacion>();
+
+                Dusuarios dusuario = makeupUser.getDUsuario();
+                Historico[] historicoUser = admonHistorico.devolverHistoricoDUsuario(dusuario.getID_DUSUARIO());
+                HashMap<String, Historico> hashHitos = new HashMap<String, Historico>();
+                for (Historico hito : historicoUser) {
+                    Pesosalbum pesosAux = admonPesos.devolverPesosAlbums(hito.getID_PESOSALBUM_FK());
+                    hashHitos.put(pesosAux.getALBUM().trim() + "#" + pesosAux.getARTISTA().trim(), hito);
+                }
+
+                for (int i = 0; i < wekaInst.length; i++) {
+                    if (!hashHitos.containsKey(wekaInst[i].getTitulo() + "#" + wekaInst[i].getArtita())) {
+                        Recomendacion recomendacion = new Recomendacion(wekaInst[i], usuario);
+                        hashRecomendaciones.put(recomendacion.getAlbum().getTitulo() + "#" + recomendacion.getAlbum().getArtista(), recomendacion);
+                        Historico hito = new Historico();
+                        hito.setID_DUSUARIO_FK(makeupUser.getDUsuario().getID_DUSUARIO());
+                    }
+                }
 
             } else {
                 avisosDSistema.put(new Integer(avisosDSistema.size() + 1), "No hay escuchas de usuario de Last.fm");

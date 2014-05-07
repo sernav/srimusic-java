@@ -503,5 +503,29 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 		
 		return wekaInstances;
 	}
+	
+   public WekaSRIInstance[] getSimiliarWekaSRIInstance(WekaSRIInstance[] instsCluster, Instance instOrig) {
+        WekaSRIInstance[] wekaInstances;
+        HashMap<WekaSRIInstance, Double> mapResult = new HashMap<WekaSRIInstance, Double>();
+        
+        for (int i = 0; i < instsCluster.length; i ++) {
+            double dEuclideaAux = getDistanciaEuclidea(instOrig.toDoubleArray(), instsCluster[i].getInstance().toDoubleArray());
+            mapResult.put(instsCluster[i], new Double(dEuclideaAux));
+        }
+        
+        mapResult = WekaUtilities.sortHashWekaIntancesV2(mapResult);
+        
+        Iterator<WekaSRIInstance> it = mapResult.keySet().iterator();
+        wekaInstances = new WekaSRIInstance[mapResult.size()];
+        int i = 0;
+        while(it.hasNext() && i < mapResult.size()) {
+            WekaSRIInstance instance = it.next();
+            if (instance != null) {
+                wekaInstances[i] = instance;
+                i++;
+            }
+        }
+        return wekaInstances;
+    }
 
 }

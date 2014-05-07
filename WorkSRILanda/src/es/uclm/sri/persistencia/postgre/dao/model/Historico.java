@@ -9,6 +9,7 @@ public class Historico {
     private Integer ID_DALBUM_FK;
     private Integer NUMREPRD;
     private Date FULTREPR;
+    private Integer ID_PESOSALBUM_FK;
 
     public Integer getID_HISTUSER() {
         return ID_HISTUSER;
@@ -48,5 +49,13 @@ public class Historico {
 
     public void setFULTREPR(Date FULTREPR) {
         this.FULTREPR = FULTREPR;
+    }
+    
+    public Integer getID_PESOSALBUM_FK() {
+        return ID_PESOSALBUM_FK;
+    }
+
+    public void setID_PESOSALBUM_FK(Integer ID_PESOSALBUM_FK) {
+        this.ID_PESOSALBUM_FK = ID_PESOSALBUM_FK;
     }
 }

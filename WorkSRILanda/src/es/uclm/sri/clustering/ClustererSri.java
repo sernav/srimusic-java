@@ -1,6 +1,7 @@
 package es.uclm.sri.clustering;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
@@ -145,6 +146,54 @@ public class ClustererSri {
         Log.log("Recomendaciones del clustering: ", 1);
         Log.log(toStringRecomendaciones(resultados), 1);
         return resultados;
+    }
+    
+    public WekaSRIInstance[] generarRecomendacionesWekaAll(WekaSRIInstance inst) throws Exception {
+        Log.log("Generando recomendaciones del clustering", 1);
+        AnalysisFactory.buildFactory();
+
+        WekaDatosCluster wekaDatosCluster = (WekaDatosCluster) AnalysisFactory
+                .createRawData(data);
+        wekaKMeans = new WekaSimpleKMeansCluster();
+        wekaKMeans.setInputData(wekaDatosCluster);
+        wekaKMeans.setK(clusterer.numberOfClusters());
+        wekaKMeans.setSimpleKMeans(clusterer);
+
+        int iCluster = clasificarInstanciaWeka(inst);
+        Log.log("Cluster #" + iCluster, 1);
+        Instance centroide = clusterer.getClusterCentroids().instance(iCluster);
+        
+        WekaSRIInstance[] instCluster = wekaKMeans.getWekaSRIInstancesDCluster(data.enumerateInstances(), iCluster);
+        WekaSRIInstance[] resultados = wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance());
+        Log.log("Se devuelven todas las recomendaciones del cluster ordenadas por afinidad");
+        return resultados;
+    }
+    
+    public HashMap<String, WekaSRIInstance> generarMapRecomendacionesWeka(WekaSRIInstance inst) throws Exception {
+        Log.log("Generando recomendaciones del clustering", 1);
+        AnalysisFactory.buildFactory();
+
+        WekaDatosCluster wekaDatosCluster = (WekaDatosCluster) AnalysisFactory
+                .createRawData(data);
+        wekaKMeans = new WekaSimpleKMeansCluster();
+        wekaKMeans.setInputData(wekaDatosCluster);
+        wekaKMeans.setK(clusterer.numberOfClusters());
+        wekaKMeans.setSimpleKMeans(clusterer);
+
+        int iCluster = clasificarInstanciaWeka(inst);
+        Log.log("Cluster #" + iCluster, 1);
+        Instance centroide = clusterer.getClusterCentroids().instance(iCluster);
+        
+        WekaSRIInstance[] instCluster = wekaKMeans.getWekaSRIInstancesDCluster(data.enumerateInstances(), iCluster);
+        WekaSRIInstance[] resultados = wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance());
+        
+        HashMap<String, WekaSRIInstance> mapWekaInst = new HashMap<String, WekaSRIInstance>();
+        for (int i = 0; i < resultados.length; i++) {
+           mapWekaInst.put(resultados[i].getTitulo() + "#" + resultados[i].getTitulo(), resultados[i]);
+        }
+        
+        Log.log("Se devuelven todas las recomendaciones del cluster ordenadas por afinidad");
+        return mapWekaInst;
     }
     
     public WekaSRIInstance[] generarRecomendacionesWeka(Double[] attValues) throws Exception {

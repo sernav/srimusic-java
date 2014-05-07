@@ -23,6 +23,10 @@ public class AdmonPesosAlbum extends AbstractAdmon {
         super();
         this.mapper = session.getMapper(PesosalbumMapper.class);
     }
+    
+    public Pesosalbum devolverPesosAlbums(Integer idPesosAlbum) {
+        return mapper.selectByPrimaryKey(idPesosAlbum);
+    }
 
     public Pesosalbum[] devolverPesosAlbumsDArtista(String artista) {
         return mapper.selectByArtista(artista.trim());
