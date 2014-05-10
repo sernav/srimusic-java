@@ -384,7 +384,16 @@ public class FabricaDUsuarios implements IFabrica {
                 else
                     puser.setGRUNGE(Double.NaN);
             } else {
-                puser = settearGeneros((Pesosalbum) hashPesosAlbums.values());
+                Pesosalbum paux = null;
+                Iterator<Map.Entry<String, Pesosalbum>> it = hashPesosAlbums.entrySet().iterator();
+                while (it.hasNext()) {
+                    Entry<String, Pesosalbum> aux = it.next();
+                    if (aux.getValue() != null) {
+                        paux = aux.getValue();
+                    }
+                }
+                if (paux != null)
+                    puser = settearGeneros(paux);
             }
         } else {
             // Generar todos los pesos de usuario a NaN.

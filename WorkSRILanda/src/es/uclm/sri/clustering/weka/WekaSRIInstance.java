@@ -9,6 +9,7 @@ public final class WekaSRIInstance extends Instance {
 	
 	protected String titulo;
 	protected String artista;
+	protected int idPesosAlbum;
 	
 	protected Double singer = Double.NaN;
 	protected Double rap = Double.NaN;
@@ -83,19 +84,17 @@ public final class WekaSRIInstance extends Instance {
 		this.titulo = titulo;
 		this.artista = artista;
 		attValues = attInitValues(attValues);
-//		for (int i = 0; i < attValues.length; i++) {
-//		    System.out.print("[" + i +"] " + attValues[i] + " ");
-//		}
-//		System.out.println("");
 		instance = new Instance(weight, attValues);
 	}
-	
-//	public WekaSRIInstance(double weight, double[] attValues, String titulo, String artista) {
-//		super();
-//		this.titulo = titulo;
-//		this.artista = artista;
-//		instance = new Instance(weight, attValues);
-//	}
+    
+    public WekaSRIInstance(double weight, double[] attValues, String titulo, String artista, int idPesosAlbum) {
+        super();
+        this.titulo = titulo;
+        this.artista = artista;
+        this.idPesosAlbum = idPesosAlbum;
+        attValues = attInitValues(attValues);
+        instance = new Instance(weight, attValues);
+    }
 
 	protected double[] addAttValues() {
 		double[] attValues = new double[18];
@@ -233,6 +232,14 @@ public final class WekaSRIInstance extends Instance {
 
 	public void setArtita(String artita) {
 		this.artista = artita;
+	}
+	
+	public int getIdPesosAlbum() {
+	    return idPesosAlbum;
+	}
+	
+	public void setIdPesosAlbum(int idPesosAlbum) {
+	    this.idPesosAlbum = idPesosAlbum;
 	}
 
 	public Double getSinger() {

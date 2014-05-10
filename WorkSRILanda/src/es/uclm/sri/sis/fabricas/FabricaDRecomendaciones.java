@@ -2,9 +2,8 @@ package es.uclm.sri.sis.fabricas;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
-
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import es.uclm.sri.clustering.ClustererSri;
 import es.uclm.sri.clustering.weka.WekaSRIInstance;
@@ -159,16 +158,22 @@ public class FabricaDRecomendaciones implements IFabrica {
                     Pesosalbum pesosAux = admonPesos.devolverPesosAlbums(hito.getID_PESOSALBUM_FK());
                     hashHitos.put(pesosAux.getALBUM().trim() + "#" + pesosAux.getARTISTA().trim(), hito);
                 }
-
-                for (int i = 0; i < wekaInst.length; i++) {
+                Log.log("Recomendaciones: ", 2);
+                for (int i = 0; i < wekaInst.length && hashRecomendaciones.size() < 11; i++) {
                     if (!hashHitos.containsKey(wekaInst[i].getTitulo() + "#" + wekaInst[i].getArtita())) {
                         Recomendacion recomendacion = new Recomendacion(wekaInst[i], usuario);
+                        Log.log(recomendacion.getAlbum().toString(), 1);
                         hashRecomendaciones.put(recomendacion.getAlbum().getTitulo() + "#" + recomendacion.getAlbum().getArtista(), recomendacion);
                         Historico hito = new Historico();
                         hito.setID_DUSUARIO_FK(makeupUser.getDUsuario().getID_DUSUARIO());
+                        hito.setID_DALBUM_FK(null);
+                        hito.setFULTREPR(Calendar.getInstance().getTime());
+                        hito.setID_PESOSALBUM_FK(wekaInst[i].getIdPesosAlbum());
+                        hito.setNUMREPRD(0);
+                        admonHistorico.insertarHistoricoDUsuario(hito);
                     }
                 }
-
+                
             } else {
                 avisosDSistema.put(new Integer(avisosDSistema.size() + 1), "No hay escuchas de usuario de Last.fm");
             }

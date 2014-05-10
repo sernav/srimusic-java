@@ -4,19 +4,19 @@ import java.util.Date;
 
 public class Historico {
     
-    private Integer ID_HISTUSER;
+    private Integer ID_HISTORICO;
     private Integer ID_DUSUARIO_FK;
     private Integer ID_DALBUM_FK;
     private Integer NUMREPRD;
     private Date FULTREPR;
     private Integer ID_PESOSALBUM_FK;
 
-    public Integer getID_HISTUSER() {
-        return ID_HISTUSER;
+    public Integer getID_HISTORICO() {
+        return ID_HISTORICO;
     }
 
-    public void setID_HISTUSER(Integer ID_HISTUSER) {
-        this.ID_HISTUSER = ID_HISTUSER;
+    public void setID_HISTORICO(Integer ID_HISTORICO) {
+        this.ID_HISTORICO = ID_HISTORICO;
     }
 
     public Integer getID_DUSUARIO_FK() {

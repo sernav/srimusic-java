@@ -43,7 +43,7 @@ public class CacheHistorico extends AbstractCache {
 	}
 	
 	public void actualizarElementoDCache(Element element) {
-		String keyOldElement = "ID_USER" + "ID_ALBUM";
+		String keyOldElement = "ID_USER" + "ID_PESOSALBUM";
 		Element oldElement = cache.get(keyOldElement);
 		cache.replace(oldElement, element);
 	}
@@ -53,7 +53,7 @@ public class CacheHistorico extends AbstractCache {
 			sqlMapper.openSession();
 			HistoricoMapper mapper = session.getMapper(HistoricoMapper.class);
 			Historico histuser = mapper.selectByPrimaryKey(id);
-			element = new Element(histuser.getID_HISTUSER(), histuser);
+			element = new Element(histuser.getID_HISTORICO(), histuser);
 			return element;
 		} finally {
 			session.close();
@@ -67,7 +67,7 @@ public class CacheHistorico extends AbstractCache {
 			Historico[] histusers = mapper.selectByIdUser(idUsuario);
 			Element[] elementos = new Element[histusers.length];
 			for (int i = 0; i < histusers.length; i++) {
-				elementos[i] = new Element(histusers[i].getID_HISTUSER(), histusers[i]);
+				elementos[i] = new Element(histusers[i].getID_HISTORICO(), histusers[i]);
 			}
 			return elementos;
 		} finally {

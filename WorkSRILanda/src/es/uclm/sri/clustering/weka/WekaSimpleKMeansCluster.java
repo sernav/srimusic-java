@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import weka.clusterers.SimpleKMeans;
+import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.filters.unsupervised.attribute.Remove;
@@ -147,13 +148,15 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 			WekaSRIInstance sriInstance = null;
 			if(instance.toDoubleArray().length > 18) {
 				double[] arrayInstance = Utils.removeElements(instance.toDoubleArray(), 0, 1, 2, 21);
-				
+				double[] d = instance.toDoubleArray();
 				sriInstance = new WekaSRIInstance(1.0, arrayInstance, 
-						instance.stringValue(1), instance.stringValue(2));
+						instance.stringValue(1), instance.stringValue(2), (int) d[0]);
 			} else {
 				sriInstance = new WekaSRIInstance(1.0, instance.toDoubleArray(), 
 						instance.stringValue(1), instance.stringValue(2));
 			}
+			
+			
 			
 			if (kmeans.clusterInstance(sriInstance.getInstance()) == numCluster) {
 				arrayCluster.add(sriInstance);
