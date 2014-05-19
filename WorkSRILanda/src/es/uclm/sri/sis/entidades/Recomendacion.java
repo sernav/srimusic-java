@@ -19,11 +19,8 @@ import es.uclm.sri.sis.KSistema;
 public class Recomendacion {
 
     private Album album;
-
     private Date fecha;
-
     private String usuario;
-
     private boolean valido;
 
     public Recomendacion(Date fecha, String usuario) {

@@ -14,43 +14,23 @@
 	<classpathentry kind="lib" path="/SRILanda.Lib/javacsv-2.0.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/log4j-1.2.12.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/org.apache.servicemix.bundles.commons-csv-1.0-r706899_1.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
-		<attributes>
-			<attribute name="owner.project.facets" value="jst.utility"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 6 (MacOS X Default)">
-		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="/SRILanda.Lib/lastfm-java-0.1.2.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/jersey-bundle-1.17.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/dom4j-1.5.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/commons-lang-2.3.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/Deezer.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/deezer-api-client.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/antlr-runtime.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/drools-compiler.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/drools-core.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/drools-decisiontables.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/drools-jsr94.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/drools-templates.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/droolsjbpm-ide-common.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/jbpm-bpmn2.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/jbpm-flow-builder.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/jbpm-flow.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/jsr94.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/junit.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/jxl.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/knowledge-api.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/knowledge-internal-api.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/mvel2.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xmlpull.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xpp3_min.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/drools-runtime/xstream.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/jFuzzyLogic.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/weka-3-6-9/weka_postgre.zip"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0 SriMusic">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.utility"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java 7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/SRILanda.Lib/javax.servlet-api-3.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

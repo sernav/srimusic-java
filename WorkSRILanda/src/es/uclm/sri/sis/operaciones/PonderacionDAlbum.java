@@ -86,7 +86,8 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
                 this.album.setTitulo(this.albumLastfm.getName());
                 this.album.setFecha("");
                 this.album.setPais("");
-                this.album.setNumTemas(this.albumLastfm.getTracks().size());
+                //this.album.setNumTemas(this.albumLastfm.getTracks().size());
+                this.album.setNumTemas(0);
             }
 
             crearAlbumPonderado();
@@ -165,7 +166,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
         Collection<String> tags = null;
         if (this.isAlbumLastfm) {
             tags = UtilsDLastfm.extraerTagsDAlbum(this.albumLastfm);
-            tags.addAll(UtilsDLastfm.extraerTagsDTracks(this.albumLastfm));
+            //tags.addAll(UtilsDLastfm.extraerTagsDTracks(this.albumLastfm));
             tags.addAll(UtilsDLastfm.extraerTagsDArtista(this.albumLastfm));
         } else {
             tags = this.album.getEtiquetas();

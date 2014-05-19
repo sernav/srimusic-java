@@ -3,7 +3,12 @@ package es.uclm.sri.sis.fabricas;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+import de.umass.lastfm.Track;
 
 import es.uclm.sri.clustering.ClustererSri;
 import es.uclm.sri.clustering.weka.WekaSRIInstance;
@@ -36,19 +41,20 @@ public class FabricaDRecomendaciones implements IFabrica {
     private de.umass.lastfm.Album[] albumsLastFm;
     private String usuario;
     private PlaybackDUsuario playback;
+    private HashMap<String, Recomendacion> hashRecomendaciones;
     private HashMap<Integer, String> avisosDSistema;
 
     public FabricaDRecomendaciones(PlaybackDUsuario playback) {
         this.albums = new HashMap<String, Album>();
         this.playback = playback;
-
+        hashRecomendaciones = new HashMap<String, Recomendacion>();
         avisosDSistema = new HashMap<Integer, String>();
     }
 
     public FabricaDRecomendaciones() {
         this.albums = new HashMap<String, Album>();
         this.playback = null;
-
+        hashRecomendaciones = new HashMap<String, Recomendacion>();
         avisosDSistema = new HashMap<Integer, String>();
     }
 
@@ -78,7 +84,7 @@ public class FabricaDRecomendaciones implements IFabrica {
                      * Creamos una nueva instancia de Album para procesar
                      */
                     Album a = new Album(albumsLastfm[i].getName(), albumsLastfm[i].getArtist(), null, albumsLastfm[i].getReleaseDate() != null ? albumsLastfm[i]
-                            .getReleaseDate().toString() : "", "", albumsLastfm[i].getTracks().size());
+                            .getReleaseDate().toString() : "", "", 0);
                     albums.put(a.getTitulo() + "#" + a.getArtista(), a);
                     Log.log("Procesando album recopilado del usuario " + a.getTitulo().toUpperCase() + " # " + a.getArtista().toUpperCase(), 1);
 
@@ -149,8 +155,6 @@ public class FabricaDRecomendaciones implements IFabrica {
                 /*
                  * Aqu’ las recomendaciones
                  */
-                HashMap<String, Recomendacion> hashRecomendaciones = new HashMap<String, Recomendacion>();
-
                 Dusuarios dusuario = makeupUser.getDUsuario();
                 Historico[] historicoUser = admonHistorico.devolverHistoricoDUsuario(dusuario.getID_DUSUARIO());
                 HashMap<String, Historico> hashHitos = new HashMap<String, Historico>();
@@ -189,9 +193,21 @@ public class FabricaDRecomendaciones implements IFabrica {
         }
 
     }
+    
+    public void setPlayblak(PlaybackDUsuario playback) {
+        this.playback = playback;
+    }
 
-    public ArrayList<Object> getRecomendaciones() {
-        return null;
+    public Recomendacion[] getRecomendaciones() {
+        int size = hashRecomendaciones.size();
+        int index = 0;
+        Recomendacion[] recomendaciones = new Recomendacion[size];
+        Iterator<Entry<String, Recomendacion>> it = hashRecomendaciones.entrySet().iterator();
+        while(it.hasNext()) {
+            recomendaciones[index] = it.next().getValue();
+            index++;
+        }
+        return recomendaciones;
     }
 
     public HashMap<Integer, String> getAvisosDSistema() {

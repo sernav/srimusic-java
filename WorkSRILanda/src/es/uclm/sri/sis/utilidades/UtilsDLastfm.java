@@ -1,6 +1,7 @@
 package es.uclm.sri.sis.utilidades;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 

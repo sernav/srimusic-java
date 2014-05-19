@@ -122,7 +122,7 @@ public class FabricaDUsuarios implements IFabrica {
     }
 
     public void aplicarSistemaDReglas() throws Exception {
-        MotorJFuzzyLogic motor = new MotorJFuzzyLogic("src/es/uclm/sri/logica/borrosa/fcl/definiciones.fcl");
+        MotorJFuzzyLogic motor = new MotorJFuzzyLogic("/Users/sergionavarro/git/SRILanda-Local/WorkSRILanda/src/es/uclm/sri/logica/borrosa/fcl/definiciones.fcl");
         String[] varsInput = { "escuchas_historico", "escuchas_actuales" };
 
         if (this.historico == null || this.actuales == null) {
