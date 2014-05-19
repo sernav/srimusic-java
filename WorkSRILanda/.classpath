@@ -32,5 +32,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/SRILanda.Lib/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/Tidy.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
