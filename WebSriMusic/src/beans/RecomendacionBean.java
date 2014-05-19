@@ -1,7 +1,6 @@
 package beans;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
