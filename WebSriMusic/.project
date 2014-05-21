@@ -63,7 +63,7 @@
 		<link>
 			<name>WebContent/WEB-INF/lib/javax.servlet-api-3.0.1.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/Downloads/javax.servlet-api-3.0.1.jar</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/javax.servlet-api-3.0.1.jar</locationURI>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/last.fm-apis.jar</name>
@@ -73,7 +73,7 @@
 		<link>
 			<name>WebContent/WEB-INF/lib/lastfm-java-0.1.2.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/git/SRILanda-Local/SRILanda.Lib/lastfm-java-0.1.2.jar</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/lastfm-java-0.1.2.jar</locationURI>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/log4j-1.2.12.jar</name>
