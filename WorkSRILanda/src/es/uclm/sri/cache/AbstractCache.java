@@ -11,7 +11,7 @@ import es.uclm.sri.persistencia.ConnectionFactory;
 
 /**
  * <code>AbstractCache</code> clase abstracta que define las funcionalidades
- * y la conexión de la caché basada en el framework EHCache.
+ * y la conexión de la caché basada en el framework EHCache. 
  * 
  * @author Sergio Navarro
  * */
