@@ -5,10 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import es.uclm.sri.clustering.weka.WekaSRIInstance;
-import es.uclm.sri.persistencia.admon.AdmonAlbums;
-import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
-import es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
-import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.KSistema;
 
 /**
