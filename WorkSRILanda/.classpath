@@ -18,20 +18,12 @@
 	<classpathentry kind="lib" path="/SRILanda.Lib/jersey-bundle-1.17.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/dom4j-1.5.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/commons-lang-2.3.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/jFuzzyLogic.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/weka-3-6-9/weka_postgre.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0 SriMusic">
-		<attributes>
-			<attribute name="owner.project.facets" value="jst.utility"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java 7">
-		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="/SRILanda.Lib/javax.servlet-api-3.0.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/Tidy.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/jFuzzyLogic.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SRILanda.Lib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
