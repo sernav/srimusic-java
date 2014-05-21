@@ -1,59 +1,39 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="../template/template.xhtml">
-	<ui:define name="metadata">
-	</ui:define>
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core"
+template="../template/template.xhtml">
+	<ui:define name="metadata"></ui:define>
 	<ui:define name="content">
 
-	<h:form id="form">
-    <p:dataGrid var="car" value="#{dataGridView.cars}" columns="3"
-        rows="12" paginator="true" id="cars"
-        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="6,12,16">
- 
+		<h:form>
+    <p:dataScroller value="#{dataScrollerView.cars}" var="car" chunkSize="10">
         <f:facet name="header">
-            Cars for Sale
+            Estas son tus recomendaciones
         </f:facet>
  
-        <p:panel header="#{car.id}" style="text-align:center">
-            <h:panelGrid columns="1" style="width:100%">
-                <p:graphicImage name="demo/images/car/#{car.brand}.gif"/>
+        <f:facet name="loader">
+            <p:commandButton type="button" value="Siguientes" icon="ui-icon-circle-triangle-s"/>
+        </f:facet>
  
-                <h:outputText value="#{car.year}" />
+        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+            <p:graphicImage name="resources/images/vynil.gif" />
  
-                <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
-                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
-                    <f:setPropertyActionListener value="#{car}" target="#{dataGridView.selectedCar}" />
-                </p:commandLink>
-            </h:panelGrid>
-        </p:panel>
+            <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Disco:" />
+                    <h:outputText value="#{album.titulo}" style="font-weight: bold"/>
  
-    </p:dataGrid>
+                    <h:outputText value="Artista:" />
+                    <h:outputText value="#{album.artista}" style="font-weight: bold"/>
  
-    <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-        <p:outputPanel id="carDetail" style="text-align:center;">
-            <p:panelGrid  columns="2" rendered="#{not empty dataGridView.selectedCar}" columnClasses="label,value">
-                <f:facet name="header">
-                    <p:graphicImage name="demo/images/car/#{dataGridView.selectedCar.brand}-big.gif"/>
-                </f:facet>
- 
-                <h:outputText value="Id:" />
-                <h:outputText value="#{dataGridView.selectedCar.id}" />
- 
-                <h:outputText value="Year" />
-                <h:outputText value="#{dataGridView.selectedCar.year}" />
- 
-                <h:outputText value="Color:" />
-                <h:outputText value="#{dataGridView.selectedCar.color}" style="color:#{dataGridView.selectedCar.color}"/>
- 
-                <h:outputText value="Price" />
-                <h:outputText value="$#{dataGridView.selectedCar.price}" />
-            </p:panelGrid>
-        </p:outputPanel>
-    </p:dialog>
+                    <h:outputText value="Tags:" />
+                    <h:outputText value="#{recomendacion.tags}" style="font-weight: bold"/>
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+    </p:dataScroller>
 </h:form>
 
 	</ui:define>
