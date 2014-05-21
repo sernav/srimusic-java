@@ -12,6 +12,7 @@ import es.uclm.sri.sis.excepciones.ExcepcionGeneral;
 /**
  * @author Sergio Navarro
  * 
+ * Clase de utilidades para el uso de la reflexi—n metodal
  */
 public final class Reflexion {
 

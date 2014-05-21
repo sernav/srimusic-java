@@ -1,14 +1,10 @@
 package es.uclm.sri.sis.fabricas;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
-
-import de.umass.lastfm.Track;
 
 import es.uclm.sri.clustering.ClustererSri;
 import es.uclm.sri.clustering.weka.WekaSRIInstance;

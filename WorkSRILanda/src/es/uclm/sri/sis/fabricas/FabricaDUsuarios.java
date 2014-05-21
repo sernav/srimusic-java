@@ -15,8 +15,14 @@ import es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
 import es.uclm.sri.sis.log.Log;
-import es.uclm.sri.sis.utilidades.UtilsDLastfm;
+import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
+/**
+ * Construye el usuario, as’ como sus pesos e invoca al sistema de reglas de
+ * c‡lculo de pesos para actualizarlos.
+ * 
+ * @author Sergio Navarro
+ * */
 public class FabricaDUsuarios implements IFabrica {
 
     private String usuario;
@@ -31,7 +37,7 @@ public class FabricaDUsuarios implements IFabrica {
     public FabricaDUsuarios(String usuario, boolean isUserLfm) {
         this.usuario = usuario;
         if (isUserLfm)
-            this.usuarioLfm = User.getInfo(usuario, UtilsDLastfm.getApiKey());
+            this.usuarioLfm = User.getInfo(usuario, UtilsDAlbum.getApiKeyLastfm());
 
         this.avisosDSistema = new HashMap<Integer, String>();
 
@@ -43,7 +49,7 @@ public class FabricaDUsuarios implements IFabrica {
     public FabricaDUsuarios(String usuario, HashMap<String, Pesosalbum> hashPesosAlbums, boolean isUserLfm) {
         this.usuario = usuario;
         if (isUserLfm)
-            this.usuarioLfm = User.getInfo(usuario, UtilsDLastfm.getApiKey());
+            this.usuarioLfm = User.getInfo(usuario, UtilsDAlbum.getApiKeyLastfm());
 
         this.avisosDSistema = new HashMap<Integer, String>();
 
@@ -59,7 +65,18 @@ public class FabricaDUsuarios implements IFabrica {
         this.hashPesosAlbums = hashPesosAlbums;
         this.avisosDSistema = new HashMap<Integer, String>();
     }
-
+    
+    /**
+     * Funci—n principal de las f‡bricas, comœn a todas las fabricas que implementan la 
+     * interface IFabrica.
+     * 
+     * La f‡brica sigue el siguente proceso de construcci—n de usuario:
+     *  1. Busca al usuario en el sistema. De no existir crea el usaurio con los datos b‡sicos.
+     *  2. Si el usuario existe, recoge el hist—rico de pesos del mismo.
+     *  3. Con los pesos del hist—rico y los actuales, invoca al sistema de reglas.
+     *  
+     * @exception SQLException
+     * */
     public void run() throws SQLException {
         boolean ok = false;
         AdmonUsuarios admonUsuario = new AdmonUsuarios();
@@ -120,7 +137,14 @@ public class FabricaDUsuarios implements IFabrica {
             }
         }
     }
-
+    
+    /**
+     * Invoca al motor de reglas con el fichero de reglas FCL indicado.
+     * Para cada uno de los tags aplica el sistema de reglas recalculando Žste.
+     * Toda f‡brica que implementa IFabrica, debe sobreescribir esta funci—n.
+     * 
+     * @exception Exception
+     * */
     public void aplicarSistemaDReglas() throws Exception {
         MotorJFuzzyLogic motor = new MotorJFuzzyLogic("/Users/sergionavarro/git/SRILanda-Local/WorkSRILanda/src/es/uclm/sri/logica/borrosa/fcl/definiciones.fcl");
         String[] varsInput = { "escuchas_historico", "escuchas_actuales" };
@@ -259,7 +283,14 @@ public class FabricaDUsuarios implements IFabrica {
                 this.pusuario.setGRUNGE(Double.NaN);
         }
     }
-
+    
+    /**
+     * Funci—n que genera los pesos ponderados del usuario, bien para usuarios nuevos o
+     * para usuarios que ya tienen un hist—rico de pesos.
+     * 
+     * @return Pesousuario
+     * @exception Exception
+     * */
     protected Pesosusuario generarPesosUsuario() throws Exception {
         AdmonPesosUsuario admon = new AdmonPesosUsuario();
         Pesosusuario puser = new Pesosusuario();

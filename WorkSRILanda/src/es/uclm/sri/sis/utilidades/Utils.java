@@ -1,5 +1,8 @@
 package es.uclm.sri.sis.utilidades;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,7 +18,11 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang.ArrayUtils;
 
-
+/**
+ * @author Sergio Navarro
+ * 
+ * Utilidades generales
+ * */
 public class Utils {
 
 	private Utils() { }
@@ -108,6 +115,21 @@ public class Utils {
 	    }
 	    
 	    return fecha.format(date);
+	}
+	
+	public static String leerLineaComando(String peticion) {
+		InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        
+        System.out.println(peticion + ": ");
+        String dato = "";
+        
+        try {
+            dato = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }    
+        return dato;
 	}
 
 }

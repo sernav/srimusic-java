@@ -1,5 +1,14 @@
 package es.uclm.sri.sis.operaciones;
 
+/**
+ * Operación encargada de almacenar en base de datos los albums capturaros mediante
+ * el scraping y después ponderados.
+ * 
+ * Tiene un método <code>main(String[] args)</code> que recoge la ruta del archivo CSV
+ * donde está almacenada esta información.
+ * 
+ * @author Sergio Navarro
+ * */
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -12,17 +21,19 @@ import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
+import es.uclm.sri.sis.utilidades.Utils;
 
 public class PersisteAlbumPonderado {
 	
 	private static SqlSessionFactory sqlMapper;
 	private static SqlSession session = null;
 	
-	private static String path = "/Users/sergionavarro/PRFC/CSV_Albums/CSV_Albums_Ponderados_Sin_Titulos2.csv";
+	private static String path;
 
 	public static void main(String[] args) {
 		PesosalbumMapper mapper = null;
 		try {
+			path = Utils.leerLineaComando("Introduce la ruta absoluta del archivo csv");
 			establecerConexion();
 			session = sqlMapper.openSession();
 			session.getConnection().setAutoCommit(true);

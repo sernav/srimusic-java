@@ -4,7 +4,6 @@ import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
 
 /**
- * 
  * @author Sergio Navarro
  * */
 public interface IFabricaDRecomendaciones {

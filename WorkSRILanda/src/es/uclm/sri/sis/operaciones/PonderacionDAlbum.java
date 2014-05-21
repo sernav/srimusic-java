@@ -14,10 +14,9 @@ import es.uclm.sri.sis.entidades.Genero;
 import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
 import es.uclm.sri.sis.utilidades.UtilsDAlbum;
-import es.uclm.sri.sis.utilidades.UtilsDLastfm;
 
 /**
- * <code>PonderacionDAlbum</code> recoge los tags de cada uno de los discos y
+ * Recoge los tags de cada uno de los discos y
  * los translada a géneros estandar del sistema. Calcula el peso de cada género
  * estandar para cada disco.
  * 
@@ -30,17 +29,11 @@ import es.uclm.sri.sis.utilidades.UtilsDLastfm;
 public class PonderacionDAlbum implements IPonderacion, IOperacion {
 
     private Album album;
-
     private de.umass.lastfm.Album albumLastfm;
-
     private AlbumPonderado albumPonderado;
-
     private boolean isAlbumLastfm;
-
     private static Collection<String> listaTags;
-
     private static Collection<Genero> listaGeneros;
-
     private static FicheroDPropiedades properties;
 
     private static final Logger logger = Logger.getLogger(PonderacionDAlbum.class);
@@ -140,8 +133,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     /**
      * Inicializa el vector de doble presición a cero.
      * 
-     * @param Double
-     *            []
+     * @param Double[]
      * @return Double[]
      * */
     private Double[] iniciarVectorGeneros(Double[] generos) {
@@ -165,9 +157,9 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     public ArrayList<String> estandarizarTags() throws Exception {
         Collection<String> tags = null;
         if (this.isAlbumLastfm) {
-            tags = UtilsDLastfm.extraerTagsDAlbum(this.albumLastfm);
-            //tags.addAll(UtilsDLastfm.extraerTagsDTracks(this.albumLastfm));
-            tags.addAll(UtilsDLastfm.extraerTagsDArtista(this.albumLastfm));
+            tags = UtilsDAlbum.extraerTagsDAlbum(this.albumLastfm);
+            //tags.addAll(UtilsDAlbum.extraerTagsDTracks(this.albumLastfm));
+            tags.addAll(UtilsDAlbum.extraerTagsDArtista(this.albumLastfm));
         } else {
             tags = this.album.getEtiquetas();
         }
@@ -309,8 +301,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     /**
      * Número de ocurrencias de un género
      * 
-     * @param ArrayList
-     *            <Genero>
+     * @param ArrayList<Genero>
      * @return int
      * */
     private static int numGenerosDAlbumGlobal(ArrayList<Genero> generos) {

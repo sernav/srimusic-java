@@ -8,6 +8,9 @@ import java.util.Calendar;
 
 import es.uclm.sri.sis.utilidades.Utils;
 
+/**
+ * @author Sergio Navarro
+ * */
 public class Log {
 
     private static PrintWriter log;

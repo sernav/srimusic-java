@@ -16,15 +16,22 @@ import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.utilidades.Utils;
 
+/**
+ * Clase espec’fica para el tratamiento del CSV que contiene los albums.
+ * 
+ * @author Sergio Navarro
+ * */
 public final class TratarCSVAlbum {
-	
-	private static final Logger logger = Logger
-			.getLogger(TratarCSVAlbum.class);
+
+	private static final Logger logger = Logger.getLogger(TratarCSVAlbum.class);
 
 	private TratarCSVAlbum() {
 		super();
 	}
 
+	/**
+	 * @deprecated
+	 * */
 	public static void _generarCSVAlbums(ArrayList<Album> listAlbums,
 			int numMaxEtiquetas, String destinyPath, Logger logger) {
 		String[][] values;
@@ -55,39 +62,50 @@ public final class TratarCSVAlbum {
 			}
 			printer.println(values);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Error! " + e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
+			System.out.println("Error! " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
-	public static void generarCSVAlbumPonderado(ArrayList<AlbumPonderado> listAlbums, ArrayList<String> generos, int numMaxEtiquetas,
-			String destinyPath) {
+
+	/**
+	 * Genera el archivo CSV con los albums ya ponderados. Guarda las siguientes
+	 * columnas: Album + Artista + N-Pesos de album
+	 * 
+	 * @parm albums: ArrayList<AlbumPonderado>
+	 * @parm generos: ArrayList<String>
+	 * @parm nœmero etiquetas: Int
+	 * @parm destino CSV: String
+	 * */
+	public static void generarCSVAlbumPonderado(
+			ArrayList<AlbumPonderado> listAlbums, ArrayList<String> generos,
+			int numMaxEtiquetas, String destinyPath) {
 		CsvWriter writer = new CsvWriter(destinyPath);
-		System.out.println("Almacenando discos...");
+		System.out
+				.println("Proceso GENERAR CSV ALBUM PONDERADO.\nAlmacenando discos...");
 		int contador = 0;
 		Iterator it = listAlbums.iterator();
-		
-		//Cabecera
+
+		// Cabecera
 		try {
 			writer.write("Album");
 			writer.write("Artista");
 			Iterator itGeneros = generos.iterator();
-			while(itGeneros.hasNext()) {
+			while (itGeneros.hasNext()) {
 				writer.write(itGeneros.next().toString());
 			}
 			writer.endRecord();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Error! " + e.getMessage());
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			System.out.println("Error! " + e.getMessage());
 		}
-		
+
+		// Datos
 		while (it.hasNext()) {
 			contador++;
 			AlbumPonderado itemAlbum = (AlbumPonderado) it.next();
@@ -96,32 +114,39 @@ public final class TratarCSVAlbum {
 			try {
 				writer.write(itemAlbum.getTitulo());
 				writer.write(itemAlbum.getArtista());
-				
+
 				for (int index = 0; index < numMaxEtiquetas; index++) {
 					writer.write(itemAlbum.getPesosGeneros()[index].toString());
 				}
-				
+
 				writer.write(itemAlbum.getPais());
 				writer.endRecord();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("Error! " + e.getMessage());
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 				System.out.println("Error! " + e.getMessage());
 			} finally {
 			}
 		}
-		System.out.println("Proceso concluido");
+		System.out.println("ÁProceso finalizado!");
 		writer.close();
 	}
 
+	/**
+	 * Genera fichero CSV de album sin ponderar, con las etiquetas literales.
+	 * Las columnas son T’tulo + Artista + Fecha + N-Tags
+	 * 
+	 * @parm albums: ArrayList<Album>
+	 * @parm etiquetas: Int
+	 * @parm destino: String
+	 * @parm Logger
+	 */
 	public static void generarCSVAlbums(ArrayList<Album> listAlbums,
 			int numMaxEtiquetas, String destinyPath, Logger logger) {
 		CsvWriter writer = new CsvWriter(destinyPath);
-		logger.info("Almacenando discos...");
+		logger.info("Proceso GENERAR CSV ALBUMS.\nAlmacenando discos...");
 		/*
 		 * Cabeceras de columnas
 		 */
@@ -167,24 +192,29 @@ public final class TratarCSVAlbum {
 				writer.write(itemAlbum.getPais());
 				writer.endRecord();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				logger.error("Error! " + e.getMessage());
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 				logger.error("Error! " + e.getMessage());
 			} finally {
 			}
 		}
-		logger.info("Proceso concluido");
+		logger.info("Proceso fina");
 		writer.close();
 	}
 	
+	/**
+	 * Leer fichero CSV con los datos de los albums
+	 * 
+	 * @parm path: String
+	 * 
+	 * @return albums: ArrayList<Album> 
+	 * */
 	public static ArrayList<Album> leerCVSAlbums(String originalyPath) {
 		CsvReader reader = null;
 		ArrayList<Album> listaAlbums = new ArrayList<Album>();
-		try{
+		try {
 			reader = new CsvReader(originalyPath);
 			reader.setDelimiter(',');
 			while (reader.readRecord()) {
@@ -195,7 +225,7 @@ public final class TratarCSVAlbum {
 				album.setArtista(reader.get(1));
 				album.setFecha(reader.get(2));
 				album.setPais("");
-				for (int i=3; i < numColumn-1; i++) {
+				for (int i = 3; i < numColumn - 1; i++) {
 					if (!reader.get(i).equals("default"))
 						listaEtq.add(reader.get(i));
 				}
@@ -210,14 +240,21 @@ public final class TratarCSVAlbum {
 		} finally {
 			reader.close();
 		}
-		
+
 		return listaAlbums;
 	}
 	
+	/**
+	 * Leer fichero CSV con los datos de los albums ya ponderados
+	 * 
+	 * @parm path: String
+	 * 
+	 * @return albums: ArrayList<Album> 
+	 * */
 	public static ArrayList<AlbumPonderado> leerCVSAlbumsPonderado(String path) {
 		CsvReader reader = null;
 		ArrayList<AlbumPonderado> listaAlbums = new ArrayList<AlbumPonderado>();
-		try{
+		try {
 			reader = new CsvReader(path);
 			reader.setDelimiter(',');
 			while (reader.readRecord()) {
@@ -227,17 +264,17 @@ public final class TratarCSVAlbum {
 				album.setTitulo(reader.get(0));
 				album.setArtista(reader.get(1));
 				arrayGeneros = Utils.inicializarArrayDoble(arrayGeneros);
-				for (int i=2; i < numColumn-1; i++) {
+				for (int i = 2; i < numColumn - 1; i++) {
 					double vGenero = 0.0;
 					try {
 						if (reader.get(i) != null && reader.get(i) != "")
 							vGenero = Double.parseDouble(reader.get(i));
-					} catch(NumberFormatException numExc) {
-						
+					} catch (NumberFormatException numExc) {
+
 					} catch (Exception e) {
-						
+
 					}
-					arrayGeneros[i-2] = vGenero;
+					arrayGeneros[i - 2] = vGenero;
 				}
 				album.setGeneros(arrayGeneros);
 				System.out.println(album.toString());
@@ -251,7 +288,7 @@ public final class TratarCSVAlbum {
 		} finally {
 			reader.close();
 		}
-		
+
 		return listaAlbums;
 	}
 
