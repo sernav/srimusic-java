@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
+import es.uclm.sri.sis.entidades.Recomendacion;
+
 import logica.RecomendacionesByLastfm;
 
 @ManagedBean(name = "recomendacionesBean")
@@ -26,7 +28,7 @@ public class RecomendacionBean implements Serializable {
     }
     
     public void generarRecomendaciones() {
-        RecomendacionesByLastfm.generarRecomendacionesByLastfm(getUserName());
+        Recomendacion[] recomendaciones = RecomendacionesByLastfm.generarRecomendacionesByLastfm(getUserName());
     }
 
 }

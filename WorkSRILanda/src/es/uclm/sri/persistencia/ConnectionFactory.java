@@ -30,5 +30,4 @@ public class ConnectionFactory {
     public static SqlSessionFactory getSession(){
         return sqlMapper;
     }
-
 }

@@ -7,9 +7,11 @@ public class RecomendacionesByLastfm {
     
     private static Facade facade;
 
-    public static void generarRecomendacionesByLastfm(String usuario) {
+    public static Recomendacion[] generarRecomendacionesByLastfm(String usuario) {
         facade = new Facade(usuario);
         Recomendacion[] recomendaciones = facade.generarRecomendacionesDUsuario();
+        
+        return recomendaciones;
     }
 
 }
