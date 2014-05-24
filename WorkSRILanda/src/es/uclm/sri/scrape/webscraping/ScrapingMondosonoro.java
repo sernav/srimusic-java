@@ -11,11 +11,13 @@ import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
 import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
 import es.uclm.sri.scrape.AbstractWebScraping;
 
 /**
- * Producto Mondosonoro
+ * Producto Mondosonoro.
+ * Se utiliza la librer’a Jsoup.
  * 
  * @author Sergio Navarro
  * */
@@ -35,6 +37,11 @@ public class ScrapingMondosonoro extends AbstractWebScraping {
 
 	public void scrappingWeb(String url, String subUrl, int numPages,
 			String destinyPath) {
+		Log.logScraping("F‡brica de Scraping. Producto Mondosonoro [www.mondosonoro.com].");
+		
+		Log.logScraping("Arrancando parseo web de " + url);
+        Log.logScraping("Nœmero de p‡ginas: " + numPages);
+		
 		String[] elements = { ID_ELEMENT_TITULO, ID_ELEMENT_ARTISTA,
 				ID_ELEMENT_GENERO, ID_ELEMENT_PAIS, ID_ELEMENT_FECHA };
 		scrappingMondosonoro(this.url, this.subUrl, this.numPaginas,
@@ -70,9 +77,13 @@ public class ScrapingMondosonoro extends AbstractWebScraping {
 						if (!link.text().trim().equals("")) {
 							album = procesarElementosAlbum(docAlbum, album,
 									idElements);
+							Log.logScraping("Album: " + album.getTitulo());
+							Log.logScraping(" > Artista: " + album.getArtista());
+                            Log.logScraping(" > Nœmero temas: " + album.getNumTemas());
+                            Log.logScraping(" > Fecha publicaci—n: " + album.getFecha());
+                            Log.logScraping(" > Tags: " + album.getEtiquetas().toString());
 							listaAlbums.add(album);
 						}
-						// }
 					}
 				}
 				TratarCSVAlbum.generarCSVAlbums(listaAlbums, 1, destinyPath,

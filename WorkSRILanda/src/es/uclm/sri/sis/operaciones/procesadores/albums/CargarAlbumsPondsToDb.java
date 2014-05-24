@@ -1,4 +1,4 @@
-package es.uclm.sri.parches;
+package es.uclm.sri.sis.operaciones.procesadores.albums;
 
 import java.util.ArrayList;
 

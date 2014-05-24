@@ -14,11 +14,13 @@ import org.jsoup.select.Elements;
 import es.uclm.sri.scrape.AbstractWebScraping;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.entidades.Artista;
+import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
 import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
 /**
- * Producto Lastfm
+ * Producto Lastfm.
+ * Se utiliza la liber’a Jsoup.
  * 
  * @author Sergio Navarro
  * */
@@ -34,8 +36,14 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
         String urlAnalyze = "";
 
         ArrayList<Artista> listaArtistas = new ArrayList<Artista>();
+        
+        Log.logScraping("F‡brica de Scraping. Producto Lastfm [lastfm.es]");
+        
+        Log.logScraping("Arrancando parseo web de " + url);
+        Log.logScraping("Nœmero de p‡ginas: " + numPages);
 
         for (int iNumPage = 1; iNumPage <= numPages; iNumPage++) {
+        	Log.logScraping("Extrayendo info. P‡gina #" + iNumPage);
             numPage = String.valueOf(iNumPage);
             urlAnalyze = url + "?page=" + numPage;
             Document doc;
@@ -52,7 +60,7 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
                                 && !strLink.contains("http://www.lastfm.es/music/+geo") && !strLink.contains("+events") && !strLink.contains("+free-music")) {
                             // Recogemos a cada uno de los artistas de la p‡gina
                             Artista artista = new Artista();
-                            System.out.println("ARTISTA: " + link.text().trim());
+                            Log.logScraping("Artista: " + link.text().trim());
                             artista.setNombre(link.text().trim());
                             Document docArtista = Jsoup.connect(link.attr("abs:href")).get();
                             procesarLinkAlbums(docArtista, artista);
@@ -64,11 +72,13 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
                     TratarCSVAlbum.generarCSVAlbums(listaAlbums, 4, destinyPath, null);
                 }
             } catch (SocketTimeoutException sto) {
-                System.out.println(" <<<<<< ERROR TIME OUT >>>>>");
+            	Log.logScraping(" >>> ERROR! Time out exception"  + sto.getMessage());
                 sto.printStackTrace();
             } catch (IOException e) {
+            	Log.logScraping(" >>> ERROR! IO Exception" + e.getMessage());
                 e.printStackTrace();
             } catch (Exception e) {
+            	Log.logScraping(" >>> ERROR! General Exception " + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -86,11 +96,13 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
                     docAlbum = Jsoup.connect(link.attr("abs:href")).get();
                     procesarLinkAlbums(docAlbum, artista);
                 } catch (SocketTimeoutException sto) {
-                    System.out.println(" <<<<<< ERROR TIME OUT >>>>>");
+                	Log.logScraping(" >>> ERROR! Time out exception"  + sto.getMessage());
                     sto.printStackTrace();
                 } catch (IOException e) {
+                	Log.logScraping(" >>> ERROR! IO Exception" + e.getMessage());
                     e.printStackTrace();
                 } catch (Exception e) {
+                	Log.logScraping(" >>> ERROR! General Exception " + e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -111,7 +123,7 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
                 if (!link.text().trim().equals("")) {
                     if (!hashAlbums.containsKey(link.text().trim())) {
                         Album album = new Album();
-                        System.out.println("ALBUM: " + link.text().trim());
+                        Log.logScraping("Album " + link.text().trim());
                         album.setArtista(artista.getNombre());
                         album.setTitulo(link.text().trim());
                         album.setPais("");
@@ -133,6 +145,8 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
         Elements lAlbums = docAlbum.select("a[class=g3 album-item-cover link-hook]");
         Elements lFechaAlbums = docAlbum.select("time[datetime]");
         Elements lTracksAlbums = docAlbum.select("span[itemprop=numTracks]");
+        
+        Log.logScraping("Procesando albums de " + artista.getNombre().toUpperCase());
 
         HashMap<String, Album> hashAlbums = new HashMap<String, Album>();
         int numEtiquetas = 0;
@@ -153,19 +167,21 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
                     && !strLink.contains("/music/" + artista.getNombre().replace(' ', '+') + "/_/") && !strLink.contains("oyentes")) {
                 if (!link.text().trim().equals("")) {
                     if (!hashAlbums.containsKey(link.text().trim())) {
-                        // S—lo LPs
+                        /**
+                         * Solo se procesan lo discos largos, LPs.
+                         * */
                         if (Integer.parseInt(lTracks.text()) > 4) {
                             Album album = new Album();
-                            System.out.println("ALBUM: " + link.text().trim());
-                            System.out.println("NòMERO TEMAS: " + lTracks.text());
-                            System.out.println("FECHA PUBLICACIîN: " + strFecha);
                             album.setArtista(artista.getNombre());
                             album.setTitulo(UtilsDAlbum.tratarTituloAlbum(link.text()));
                             album.setFecha(strFecha);
+                            Log.logScraping("Album #" + index + ": " + link.text().trim());
+                            Log.logScraping(" > Nœmero temas: " + lTracks.text());
+                            Log.logScraping(" > Fecha publicaci—n: " + strFecha);
                             try {
                                 numEtiquetas = procesarEtiquetasAlbum(link, album);
                             } catch (Exception e) {
-                                // TODO Auto-generated catch block
+                                
                                 e.printStackTrace();
                             }
                             if (numEtiquetas > 0)
@@ -189,7 +205,7 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
                 String strLink = link.attr("abs:href") + link.text().trim();
                 if (strLink.contains("/tag/")) {
                     if (!link.text().equals("")) {
-                        System.out.println("ETIQUETAS: " + link.text().trim());
+                        Log.logScraping(" >> Tag: " + link.text().trim());
                         if (!link.text().trim().equals("") && !link.text().trim().equals("albums i own") && !Character.isDigit(link.text().charAt(0)))
                             listaEtiquetas.add(link.text().trim());
                     }
@@ -197,11 +213,13 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
             }
             album.setEtiquetas(listaEtiquetas);
         } catch (SocketTimeoutException sto) {
-            System.out.println(" <<<<<< ERROR TIME OUT >>>>>");
+        	Log.logScraping(" >>> ERROR! Time out exception "  + sto.getMessage());
             sto.printStackTrace();
         } catch (IOException e) {
+        	Log.logScraping(" >>> ERROR! IO Exception "  + e.getMessage());
             e.printStackTrace();
         } catch (Exception e) {
+        	Log.logScraping(" >>> ERROR! General Exception "  + e.getMessage());
             e.printStackTrace();
         }
 

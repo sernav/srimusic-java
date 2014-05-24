@@ -14,6 +14,7 @@ import es.uclm.sri.sis.utilidades.Utils;
 public class Log {
 
     private static PrintWriter log;
+    private static PrintWriter scrapingLog;
     private static PrintWriter exceptionLog;
 
     static {
@@ -23,7 +24,8 @@ public class Log {
             try {
                 log = new PrintWriter(new FileWriter(new File(pathLog, mascara + "_SriLanda.log"), true));
                 exceptionLog = new PrintWriter(new FileWriter(new File(pathLog, mascara + "_SriLandaException.log"), true));
-
+                scrapingLog = new PrintWriter(new FileWriter(new File(pathLog, mascara + "_Srapring.log"), true));
+                
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -36,6 +38,11 @@ public class Log {
         }
     }
     
+    /**
+     * Log espec’fico de las excepciones. Carga fichero concreto: XXXXX_SriLandaExeption.log
+     * 
+     * @param mensaje: String
+     * */
     public static void log(Throwable exception, String mensaje) {
         mensaje = "[EXCEPTION] " + mensaje + ".\n\t" + exception.toString();
         log(exceptionLog, mensaje);
@@ -48,6 +55,29 @@ public class Log {
         log(log, mensaje);
     }
     
+    /**
+     * Log espec’fico del scraping. Carga fichero concreto:  XXXXX_Sraping.log
+     * 
+     * @param mensaje: String
+     * */
+    public static void logScraping(String mensaje) {
+    	mensaje = "[SCRAPING] " + mensaje;
+    	log(scrapingLog, mensaje);
+    	System.out.println(mensaje);
+    }
+    
+    /**
+     * Log con opciones de cabecera que se seleccionan como par‡metro
+     *  1. INFO
+     *  2. WARNING
+     *  3. EXCEPTION
+     *  4. CITE
+     *  5. LINK
+     *  6. SCRAPING
+     *  
+     *  @param mensaje: String
+     *  @param tipo: Int
+     * */
     public static void log(String mensaje, int tipo) {
         String cabecera = "";
         switch(tipo) {
@@ -66,6 +96,8 @@ public class Log {
             case 5:
                 cabecera = "[LINK]";
                 break;
+            case 6:
+            	cabecera = "[SCRAPING]";
             default:
                 break;
         }
