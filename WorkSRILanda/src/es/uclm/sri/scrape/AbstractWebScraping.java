@@ -7,6 +7,11 @@ import org.apache.log4j.Logger;
 
 import es.uclm.sri.sis.entidades.Album;
 
+/**
+ * Producto Abstracto
+ * 
+ * @author Sergio Navarro
+ * */
 public abstract class AbstractWebScraping implements IHtmlScraping, Serializable {
 
     public String sitioWeb;

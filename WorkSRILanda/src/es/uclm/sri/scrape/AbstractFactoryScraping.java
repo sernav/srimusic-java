@@ -2,6 +2,11 @@ package es.uclm.sri.scrape;
 
 import java.io.Serializable;
 
+/**
+ * Abstract Factory (Pattern)
+ * 
+ * @author Sergio Navarro
+ * */
 public abstract class AbstractFactoryScraping implements Serializable {
     
     /**

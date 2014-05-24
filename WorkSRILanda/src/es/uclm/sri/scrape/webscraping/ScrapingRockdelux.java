@@ -14,6 +14,11 @@ import es.uclm.sri.scrape.AbstractWebScraping;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
 
+/**
+ * Producto Rockdelux
+ * 
+ * @author Sergio Navarro
+ * */
 public class ScrapingRockdelux extends AbstractWebScraping {
 
     public ScrapingRockdelux(String rutaDestino) {

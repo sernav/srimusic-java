@@ -14,6 +14,11 @@ import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
 import es.uclm.sri.scrape.AbstractWebScraping;
 
+/**
+ * Producto Mondosonoro
+ * 
+ * @author Sergio Navarro
+ * */
 public class ScrapingMondosonoro extends AbstractWebScraping {
 
 	private final String ID_ELEMENT_TITULO = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_titularLabel";

@@ -17,6 +17,11 @@ import es.uclm.sri.sis.entidades.Artista;
 import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
 import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
+/**
+ * Producto Lastfm
+ * 
+ * @author Sergio Navarro
+ * */
 public class ScrapingLastfm extends AbstractWebScraping implements Serializable {
 
     public ScrapingLastfm(String rutaDestino) {
@@ -113,7 +118,6 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
                         try {
                             numEtiquetas = procesarEtiquetasAlbum(link, album);
                         } catch (Exception e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                         if (numEtiquetas > 0)
