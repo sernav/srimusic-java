@@ -7,7 +7,7 @@ template="../template/template.xhtml">
 	<ui:define name="metadata"></ui:define>
 	<ui:define name="content">
 
-		<h:form>
+	<h:form>
     <p:dataScroller value="#{dataScrollerView.cars}" var="car" chunkSize="10">
         <f:facet name="header">
             Estas son tus recomendaciones
@@ -34,7 +34,7 @@ template="../template/template.xhtml">
             </p:outputPanel>
         </h:panelGrid>
     </p:dataScroller>
-</h:form>
+	</h:form>
 
 	</ui:define>
 </ui:composition>
