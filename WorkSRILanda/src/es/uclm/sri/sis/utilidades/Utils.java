@@ -19,9 +19,9 @@ import java.util.Map.Entry;
 import org.apache.commons.lang.ArrayUtils;
 
 /**
- * @author Sergio Navarro
+ * Utilidades generales de la aplicación
  * 
- * Utilidades generales
+ * @author Sergio Navarro
  * */
 public class Utils {
 

@@ -11,9 +11,10 @@ import de.umass.lastfm.Track;
 import es.uclm.sri.sis.log.Log;
 
 /**
- * @author Sergio Navarro
+ * Utilidades espec铆ficas para tratamiendo de la entidad Album de la aplicaci贸n
+ * y de Lastfm.
  * 
- * Utilidades espec抐icas para tratamiendo de la entidad Album
+ * @author Sergio Navarro
  * */
 public class UtilsDAlbum {
 	
@@ -35,6 +36,14 @@ public class UtilsDAlbum {
         return newTitulo;
     }
     
+    /**
+     * Las etiquetas del disco pueden ser compuestas o ser complejas
+     * (indietronica, electropop, hip-hop o hip hop, singer-songwriter, female vocalist,
+     * male vocalist, drum and bass y trip hop)
+     * 
+     * @param etiqueta: String
+     * @return boolean
+     * */
     public static boolean isEtiquetaCompuesta(String etiqueta) {
         if(etiqueta.equals("indietronica") ||
                 etiqueta.equals("electropop")) {
@@ -56,6 +65,13 @@ public class UtilsDAlbum {
         return false;
     }
     
+    /**
+     * Decompone etiqueta complejas en una o varias etiquetas reconocibles por
+     * el sistema.
+     * 
+     * @param etiqueta: String
+     * @return etiquetas del sistema: String[]
+     * */
     public static String[] descomponerEtiquetaCompuesta(String etiqueta) {
         String[] etiquetas = new String[2];
         if(etiqueta.equals("indietronica")) {
@@ -77,6 +93,13 @@ public class UtilsDAlbum {
         return etiquetas;
     }
     
+    /**
+     * Funci贸n para obtener los tag de un album de Lastfm.
+     * Captura las excepciones del uso de Lastfm.
+     * 
+     * @param album de Lastfm
+     * @return colecci贸n de tags: Collection
+     * */
     public static Collection<String> extraerTagsLastfm(Album album) {
         HashMap<String, String> tags = new HashMap<String, String>();
         try {
@@ -120,9 +143,10 @@ public class UtilsDAlbum {
             }
         } catch (CallException e) {
             e.printStackTrace();
-            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci梟 al invocar servicio LastFm! " + e.getMessage());
+            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci贸n al invocar servicio LastFm! " + e.getMessage());
         } catch (Exception e) {
-            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci梟 General! " + e.getMessage());
+        	e.printStackTrace();
+            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci贸n General! " + e.getMessage());
         }
 
         return tags.values();
@@ -131,7 +155,14 @@ public class UtilsDAlbum {
     public static Collection<String> extraerTagsDAlbum(Album album) {
         return album.getTags();
     }
-
+    
+    /**
+     * Obtiene la lista de etiquetas para los track de un album de Lastfm
+     * Captura las excepciones del uso de Lastfm.
+     * 
+     * @param album de Lastfm
+     * @return colecci贸n de tags: Collection
+     * */
     public static Collection<String> extraerTagsDTracks(Album album) {
         HashMap<String, String> tags = new HashMap<String, String>();
         Collection<Track> tracks = album.getTracks();
@@ -156,22 +187,29 @@ public class UtilsDAlbum {
             }
         } catch (CallException e) {
             e.printStackTrace();
-            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci梟 al invocar servicio LastFm! " + e.getMessage());
+            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci贸n al invocar servicio LastFm! " + e.getMessage());
         } catch (Exception e) {
-            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci梟 General! " + e.getMessage());
+            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci贸n General! " + e.getMessage());
         }
         return tags.values();
     }
-
+    
+    /**
+     * Obtiene la lista de etiquetas del artista de un album de Lastfm
+     * Captura las excepciones del uso de Lastfm.
+     * 
+     * @param album de Lastfm
+     * @return colecci贸n de tags: Collection
+     * */
     public static Collection<String> extraerTagsDArtista(Album album) {
         Artist artista = null;
         try {
             artista = Artist.getInfo(album.getArtist(), API_KEY_LASTFM);
         } catch (CallException e) {
             e.printStackTrace();
-            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci梟 al invocar servicio LastFm! " + e.getMessage());
+            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci贸n al invocar servicio LastFm! " + e.getMessage());
         } catch (Exception e) {
-            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci梟 General! " + e.getMessage());
+            Log.log(e, "(" + UtilsDAlbum.class.getSimpleName() + ") Excepci贸n General! " + e.getMessage());
         }
         if (artista != null) {
             return artista.getTags();

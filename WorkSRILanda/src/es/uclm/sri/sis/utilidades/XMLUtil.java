@@ -11,7 +11,6 @@ import org.dom4j.io.SAXReader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-//import org.apache.xerces.parsers.DOMParser;
 
 /**
  * <code>XMLUtil</code> clase de utilidades para tratar XMLs
@@ -24,7 +23,7 @@ public class XMLUtil {
 	}
 
 	/**
-	 * MŽtodo para devolver un archivo tipo Document apartir de un XML con SAX
+	 * MÃ©todo para devolver un archivo tipo Document a partir de un XML con SAX
 	 * 
 	 * @param nombre del XML a cargar
 	 * @return Document
@@ -43,7 +42,7 @@ public class XMLUtil {
 	}
 
 	/**
-	 * MŽtodo para devolver un archivo tipo Document apartir de un XML con DOM
+	 * MÃ©todo para devolver un archivo tipo Document apartir de un XML con DOM
 	 * 
 	 * @param nombre del XML a cargar
 	 * @return Document
@@ -108,21 +107,12 @@ public class XMLUtil {
 	}
 
 	/**
-	 * MŽtodo para devolver un archivo tipo Document apartir de una cadena
+	 * MÃ©todo para devolver un archivo tipo Document apartir de una cadena
 	 * 
 	 * @param nombre de la cargar
 	 * @return Document
 	 * */
 	public static Document getDocumentoXML(final String cadenaXML) {
-//		Document document = null;
-//		try {
-//			DOMParser domParser = new DOMParser();
-//			domParser.parse(new InputSource(new StringReader(cadenaXML)));
-//			document = (Document) domParser.getDocument();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return document;
 	    return null;
 	}
 	
@@ -149,7 +139,7 @@ public class XMLUtil {
 	}
 	
 	/**
-	 * A–adir un nuevo elemento al documento XML
+	 * AÃ±adir un nuevo elemento al documento XML
 	 * 
 	 * @param Documento XML (Document)
 	 * @param Nuevo elemento
