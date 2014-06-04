@@ -43,14 +43,17 @@ public class KSistema {
         private Recursos() {
         }
         
-        // Properties
+        /*
+         * Properties
+         * */
         public static final String PATH_DATABASE_PROPERTIES = "/WorkSRILanda/src/es/uclm/sri/recursos/database.properties";
         public static final String PATH_GENEROS_ESTANDAR_PROPERTIES = "/WorkSRILanda/src/es/uclm/sri/recursos/generoEstandar.properties";
         public static final String PATH_LOG4J_PROPERTIES = "/WorkSRILanda/src/es/uclm/sri/recursos/log4j.properties";
         
-        // XML
-        //public static final String PATH_MAPPING_POSTGRE = "/WorkSRILanda/src/es/uclm/sri/recursos/xml/sqlMapConfig.xml";
-        public static final String PATH_MAPPING_POSTGRE = "/WorkSRILanda/recursos/sqlMapConfig.xml";
+        /*
+         * XML
+         * */
+        public static final String PATH_MAPPING_POSTGRE = "/WorkSRILanda/src/es/uclm/sri/recursos/xml/sqlMapConfig.xml";
         
     }
     
@@ -59,6 +62,9 @@ public class KSistema {
         private Generos() {
         }
         
+        /*
+         * Géneros básicos de aplicación
+         * */
         public static final String ALTERNATIVE = "alternative";
         public static final String AMBIENT = "ambient";
         public static final String BLUES = "blues";

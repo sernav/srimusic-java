@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
 
+import es.uclm.sri.sis.KSistema;
+
 public class FicheroDPropiedades {
 	
 	private Properties propiedades;
@@ -22,7 +24,7 @@ public class FicheroDPropiedades {
 	
 	public boolean cargarPropiedades() {
 		try {
-			propiedades.load(new FileInputStream("/Users/sergionavarro/git/SRILanda-Local/WorkSRILanda/src/es/uclm/sri/recursos/generoEstandar.properties"));
+			propiedades.load(new FileInputStream(KSistema.Recursos.PATH_GENEROS_ESTANDAR_PROPERTIES));
 			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
