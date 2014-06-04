@@ -4,51 +4,46 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 /**
- * Lista de nombres y valores que describen el cluster
+ * Módulo clustering: Lista de nombres y valores que describen el cluster
  * 
- * @author sernav
+ * @author Sergio Navarro
  * @version 1.0
- * @since 1.0
- * 
  */
 public class ClusterDescripcion {
 
 	private LinkedHashMap<String, Double> attributes = null;
-	// set some defaults for the linked hash map - see java doc for details
 	private final int defaultSize = 16;
 	private final float floatFactor = 0.75F;
-	private final boolean accessOrder = false; // insertion order!
+	private final boolean accessOrder = false;
 
 	/**
-	 * Default constructor
+	 * Constructor por defecto
 	 */
 	public ClusterDescripcion() {
-		attributes = new LinkedHashMap<String, Double>(defaultSize,
-				floatFactor, accessOrder);
+		attributes = new LinkedHashMap<String, Double>(defaultSize, floatFactor, accessOrder);
 	}
 
 	/**
-	 * Constructor which specifies the number of attributes in this cluster
+	 * Constructor especificando número de atributos del cluster
 	 */
 	public ClusterDescripcion(int numAttributes) {
-		attributes = new LinkedHashMap<String, Double>(numAttributes,
-				floatFactor, accessOrder);
+		attributes = new LinkedHashMap<String, Double>(numAttributes, floatFactor, accessOrder);
 	}
 
 	/**
-	 * Returns an Iterator of the attribute names.
+	 * Devuelve el nombre de los atributos del cluster
 	 * 
-	 * @return
+	 * @return atributos: Iterator
 	 */
 	public Iterator<String> getAttributeNames() {
 		return attributes.keySet().iterator();
 	}
 
 	/**
-	 * Returns the value of the object identified by the key.
+	 * Devuelve el valor de los atributos del cluster según su key
 	 * 
-	 * @param key
-	 * @return
+	 * @param key: String
+	 * @return valor del atributo: double
 	 */
 	public double getValue(String key) {
 		Double temp = attributes.get(key);

@@ -1,106 +1,98 @@
 package es.uclm.sri.clustering;
 
 /**
- * Interfaz para definir una jerarqu�a de clases de clustering
+ * Interfaz para definir una jerarquía de clases de clustering
  * 
- * @author sernav
+ * @author Sergio Navarro
  * @version 0.1
- * @since 0.1
- * 
  * */
 public interface ICluster {
 
 	/**
-	 * This method performs the K means clustering
+	 * Ejecuta el clustering con el método k-means
 	 * 
 	 * @throws ClusterException
 	 */
 	public void buscarClusters() throws ClusterException;
 
 	/**
-	 * This method gets the ith ClusterDescription object
+	 * Devuelve el objeto ClusterDescription del cluster
 	 * 
-	 * @param i
-	 * @return a ClusterDescription
+	 * @param i: int
+	 * @return obj ClusterDescription
 	 * @throws ClusterException
 	 */
 	public ClusterDescripcion getClusterDescription(int i)
 			throws ClusterException;
 
 	/**
-	 * Sets the input data for the clustering operation.
+	 * Establece los datos en entrada para el clustering
 	 * 
-	 * @param inputData
+	 * @param inputData: IDatosCluster
 	 */
-
 	public void setInputData(IDatosCluster input);
 
 	/**
-	 * Method to get the cluster centroids (averages).
+	 * Devuelve los centroides del cluster
 	 * 
-	 * @return
+	 * @return IDatosCluster
 	 */
 	public IDatosCluster getClusterCentroids();
 
 	/**
-	 * Method to get the cluster minimum values.
+	 * Devuelve el cluster con valores menores
 	 * 
-	 * @return
+	 * @return IDatosCluster
 	 */
 	public IDatosCluster getClusterMinimums();
 
 	/**
-	 * Method to get the cluster maximum values.
+	 * Devuelve el cluster con valores máximos
 	 * 
-	 * @return
+	 * @return IDatosCluster
 	 */
 	public IDatosCluster getClusterMaximums();
 
 	/**
-	 * Method to get the cluster standard deviation values.
+	 * Obtiene la desviación estandar del clustering
 	 * 
-	 * @return
+	 * @return IDatosCluster
 	 */
 	public IDatosCluster getClusterStandardDeviations();
 
 	/**
-	 * Reset method, for resetting the cluster. If a user loads this object with
-	 * data, and then does several clusterings with several K values, then we
-	 * need a reset method.
-	 * 
+	 * Reinicia el clustering.
+	 * Si necesitamos cambiar los parámetros del clustering
 	 */
 	public void reset();
 
 	/**
-	 * Method to get the number of individuals in each cluster.
+	 * Método para obtener el números de elementos de cada cluster
 	 * 
-	 * @return
+	 * @return int[]
 	 */
 	public int[] getClusterSizes();
 
 	/**
-	 * Method to get the cluster ID for the cluster that contains individual
-	 * "i".
+	 * Método para obtener el identificador de los clusters
 	 * 
-	 * @param i
-	 * @return
+	 * @return int[]
 	 */
-
 	public int[] clusterInstances();
 
 	/**
-	 * Method to get the cluster IDs for the cluster that contains each
-	 * individual "i" in the set of individuals.
+	 * Método que devuelve los identificadores de cluster que contienen el 
+	 * individuo "i" del conjunto de individuos.
 	 * 
-	 * @param i
-	 * @return
+	 * @param i: int
+	 * @return int
 	 */
 	public int clusterInstance(int i);
 
 	/**
-	 * Get the number of individuals that we are clustering.
+	 * Número de instancias en el clustering
 	 * 
-	 * @return
+	 * @return int
 	 */
 	public int getNumInstances();
 
