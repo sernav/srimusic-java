@@ -10,30 +10,26 @@ import es.uclm.sri.clustering.ICluster;
 import es.uclm.sri.clustering.IDatosCluster;
 
 /**
- * Descripci�n y valores de un cluster
+ * Módulo clustering:
+ * 		Descripción y valores de un cluster.
  * 
- * @author sernav
+ * @author Sergio Navarro
  * @version 1.0
- * @since 1.0
- * 
  */
 public abstract class WekaAbstractCluster implements ICluster {
 
-	// dimension reduction possibilities
 	protected boolean doPCA = false;
 
-	// the cluster descriptions
 	protected Instances instances = null;
 	protected Instances clusterCentroids = null;
 	protected Instances clusterMaximums = null;
 	protected Instances clusterMinimums = null;
 	protected Instances clusterStandardDeviations = null;
 
-	// the input data
 	protected IDatosCluster inputData = null;
 
 	/**
-	 * Default constructor - package protected
+	 * Constructor por defecto
 	 */
 	WekaAbstractCluster() {
 		super();
@@ -41,9 +37,8 @@ public abstract class WekaAbstractCluster implements ICluster {
 	}
 
 	/**
-	 * Reset method, for resetting the cluster. If a user loads this object with
-	 * data, and then does several clusterings with several K values, then we
-	 * need a reset method.
+	 * Reseteo completo del cluster.
+	 * Debe hacerse cuando se carga el objeto con distintos valores de K.
 	 */
 	public void reset() {
 		this.clusterCentroids = null;
@@ -74,7 +69,7 @@ public abstract class WekaAbstractCluster implements ICluster {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.KMeansCluster#getClusterDescription(int)
+	 * @see clustering.ICluster#getClusterDescription(int)
 	 */
 	public ClusterDescripcion getClusterDescription(int i)
 			throws ClusterException {
@@ -84,7 +79,7 @@ public abstract class WekaAbstractCluster implements ICluster {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.KMeansClusterInterface#getClusterCentroids()
+	 * @see clustering.ICluster#getClusterCentroids()
 	 */
 	public IDatosCluster getClusterCentroids() {
 		WekaDatosCluster centroids = new WekaDatosCluster(clusterCentroids);
@@ -94,7 +89,7 @@ public abstract class WekaAbstractCluster implements ICluster {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.KMeansClusterInterface#getClusterStandardDeviations()
+	 * @see clustering.ICluster#getClusterStandardDeviations()
 	 */
 	public IDatosCluster getClusterStandardDeviations() {
 		if (clusterStandardDeviations == null)
@@ -106,7 +101,7 @@ public abstract class WekaAbstractCluster implements ICluster {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.KMeansClusterInterface#doPCA(boolean)
+	 * @see clustering.ISimpleKMeansCluster#doPCA(boolean)
 	 */
 	public void doPCA(boolean doPCA) {
 		this.doPCA = doPCA;
@@ -115,7 +110,7 @@ public abstract class WekaAbstractCluster implements ICluster {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.KMeansClusterInterface#getNumInstances()
+	 * @see clustering.ICluster#getNumInstances()
 	 */
 	public int getNumInstances() {
 		return instances.numInstances();
@@ -123,26 +118,7 @@ public abstract class WekaAbstractCluster implements ICluster {
 
 	protected abstract double getSquaredError();
 
-	// this method is by Calinski & Harabasz(1974)
-	protected void evaluateCluster() {
-		try {
-			// double betweenError = getBetweenError();
-			// PerfExplorerOutput.println("Between Squared Error: " +
-			// betweenError);
-			// double withinError = getSquaredError();
-			// PerfExplorerOutput.println("Within Squared Error: " +
-			// withinError);
-			// PerfExplorerOutput.println("k-1: " + (k-1));
-			// PerfExplorerOutput.println("n-k: " +
-			// (instances.numInstances()-k));
-			// int nc = clusterCentroids.numInstances();
-			// double maximizeMe = (betweenError * (nc-1)) / (withinError *
-			// (instances.numInstances() - nc));
-			// PerfExplorerOutput.println("Maximize Me: " + maximizeMe);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	protected abstract void evaluateCluster() ;
 
 	public abstract int clusterInstance(int i);
 
@@ -154,7 +130,12 @@ public abstract class WekaAbstractCluster implements ICluster {
 			clusterIDs[i] = clusterInstance(i);
 		return clusterIDs;
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see clustering.ICluster#getClusterMaximums()
+	 */
 	public IDatosCluster getClusterMaximums() {
 		if (this.clusterMaximums == null) {
 			try {
@@ -196,7 +177,12 @@ public abstract class WekaAbstractCluster implements ICluster {
 		WekaDatosCluster maximums = new WekaDatosCluster(clusterMaximums);
 		return maximums;
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see clustering.ICluster#getClusterMinimums()
+	 */
 	public IDatosCluster getClusterMinimums() {
 		if (this.clusterMinimums == null) {
 			try {

@@ -13,7 +13,7 @@ import es.uclm.sri.clustering.ISimpleKMeansCluster;
 import es.uclm.sri.sis.utilidades.Utils;
 
 /**
- * Operaci—n de clustering. Lista de nombre y valores que definen los grupos
+ * Operaciï¿½n de clustering. Lista de nombre y valores que definen los grupos
  * (clusters)
  * 
  * @author sernav
@@ -164,6 +164,12 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 		}
 		
 		return arrayCluster.toArray(new WekaSRIInstance[arrayCluster.size()]);
+	}
+
+	@Override
+	protected void evaluateCluster() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
