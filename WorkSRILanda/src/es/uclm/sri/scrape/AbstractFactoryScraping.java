@@ -3,7 +3,7 @@ package es.uclm.sri.scrape;
 import java.io.Serializable;
 
 /**
- * Abstract Factory (Pattern)
+ * Fábrica abstracta (Patrón) para el scraping de webs
  * 
  * @author Sergio Navarro
  * */

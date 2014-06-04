@@ -19,16 +19,23 @@ import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
 import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
 /**
- * Producto Lastfm.
- * Se utiliza la liber’a Jsoup.
+ * Producto concreto de la web Lastfm.
+ * 
+ * (Se utiliza la librerÃ­a Jsoup)
  * 
  * @author Sergio Navarro
  * */
 public class ScrapingLastfm extends AbstractWebScraping implements Serializable {
+	
+	private final static String SITE = "Last.fm";
+	private final static String URL = "http://www.lastfm.es/music/+geo/spain";
+	private final static String SubURL = "";
+	
+	private final static int NUM_PAGES = 30;
 
     public ScrapingLastfm(String rutaDestino) {
-        super("Last.fm", "http://www.lastfm.es/music/+geo/spain", "", 30, rutaDestino);
-        scrappingWeb("http://www.lastfm.es/music/+geo/spain", "", 30, rutaDestino);
+        super(SITE, URL, SubURL, NUM_PAGES, rutaDestino);
+        scrappingWeb(URL, SubURL, NUM_PAGES, rutaDestino);
     }
 
     public void scrappingWeb(String url, String subUrl, int numPages, String destinyPath) {
@@ -37,13 +44,13 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
 
         ArrayList<Artista> listaArtistas = new ArrayList<Artista>();
         
-        Log.logScraping("F‡brica de Scraping. Producto Lastfm [lastfm.es]");
+        Log.logScraping("FÃ¡brica de Scraping. Producto Lastfm [lastfm.es]");
         
         Log.logScraping("Arrancando parseo web de " + url);
-        Log.logScraping("Nœmero de p‡ginas: " + numPages);
+        Log.logScraping("NÃºmero de pÃ¡ginas: " + numPages);
 
         for (int iNumPage = 1; iNumPage <= numPages; iNumPage++) {
-        	Log.logScraping("Extrayendo info. P‡gina #" + iNumPage);
+        	Log.logScraping("Extrayendo info. PÃ¡gina #" + iNumPage);
             numPage = String.valueOf(iNumPage);
             urlAnalyze = url + "?page=" + numPage;
             Document doc;
@@ -58,7 +65,9 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
                     if (strLink.contains("http://www.lastfm.es/music/")) {
                         if (!strLink.contains("http://www.lastfm.es/music/+tag") && !strLink.contains("http://www.lastfm.es/music/+hype")
                                 && !strLink.contains("http://www.lastfm.es/music/+geo") && !strLink.contains("+events") && !strLink.contains("+free-music")) {
-                            // Recogemos a cada uno de los artistas de la p‡gina
+                            /*
+                             *  Recogemos a cada uno de los artistas de la pÃ¡gina
+                             * */
                             Artista artista = new Artista();
                             Log.logScraping("Artista: " + link.text().trim());
                             artista.setNombre(link.text().trim());
@@ -109,38 +118,6 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
         }
     }
 
-    private void _procesarLinkAlbums(Document docAlbum, Artista artista) {
-        Elements lAlbums = docAlbum.select("a[class=g3 album-item-cover link-hook]");
-
-        HashMap<String, Album> hashAlbums = new HashMap<String, Album>();
-        int numEtiquetas = 0;
-
-        for (Element link : lAlbums) {
-            String strLink = link.attr("abs:href");
-            if (strLink.contains("/music/" + artista.getNombre().replace(' ', '+') + "/")
-                    && !strLink.contains("/music/" + artista.getNombre().replace(' ', '+') + "/+")
-                    && !strLink.contains("/music/" + artista.getNombre().replace(' ', '+') + "/_/") && !strLink.contains("oyentes")) {
-                if (!link.text().trim().equals("")) {
-                    if (!hashAlbums.containsKey(link.text().trim())) {
-                        Album album = new Album();
-                        Log.logScraping("Album " + link.text().trim());
-                        album.setArtista(artista.getNombre());
-                        album.setTitulo(link.text().trim());
-                        album.setPais("");
-                        try {
-                            numEtiquetas = procesarEtiquetasAlbum(link, album);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        if (numEtiquetas > 0)
-                            listaAlbums.add(album);
-                        hashAlbums.put(album.getTitulo().trim(), album);
-                    }
-                }
-            }
-        }
-    }
-
     private void procesarLinkAlbums(Document docAlbum, Artista artista) {
         Elements lAlbums = docAlbum.select("a[class=g3 album-item-cover link-hook]");
         Elements lFechaAlbums = docAlbum.select("time[datetime]");
@@ -167,17 +144,17 @@ public class ScrapingLastfm extends AbstractWebScraping implements Serializable 
                     && !strLink.contains("/music/" + artista.getNombre().replace(' ', '+') + "/_/") && !strLink.contains("oyentes")) {
                 if (!link.text().trim().equals("")) {
                     if (!hashAlbums.containsKey(link.text().trim())) {
-                        /**
-                         * Solo se procesan lo discos largos, LPs.
-                         * */
+                    	/*
+                    	 * Solo se procesan lo discos largos, LPs.
+                    	 * */
                         if (Integer.parseInt(lTracks.text()) > 4) {
                             Album album = new Album();
                             album.setArtista(artista.getNombre());
                             album.setTitulo(UtilsDAlbum.tratarTituloAlbum(link.text()));
                             album.setFecha(strFecha);
                             Log.logScraping("Album #" + index + ": " + link.text().trim());
-                            Log.logScraping(" > Nœmero temas: " + lTracks.text());
-                            Log.logScraping(" > Fecha publicaci—n: " + strFecha);
+                            Log.logScraping(" > NÃºmero temas: " + lTracks.text());
+                            Log.logScraping(" > Fecha publicaciÃ³n: " + strFecha);
                             try {
                                 numEtiquetas = procesarEtiquetasAlbum(link, album);
                             } catch (Exception e) {

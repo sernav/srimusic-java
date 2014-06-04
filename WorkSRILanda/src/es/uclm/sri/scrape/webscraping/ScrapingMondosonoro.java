@@ -16,34 +16,42 @@ import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
 import es.uclm.sri.scrape.AbstractWebScraping;
 
 /**
- * Producto Mondosonoro.
- * Se utiliza la librer’a Jsoup.
+ * Producto concreto de la web Mondosonoro.
+ * 
+ * (Se utiliza la librerÃ­a Jsoup)
  * 
  * @author Sergio Navarro
  * */
 public class ScrapingMondosonoro extends AbstractWebScraping {
-
-	private final String ID_ELEMENT_TITULO = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_titularLabel";
-	private final String ID_ELEMENT_ARTISTA = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_grupoLabel";
-	private final String ID_ELEMENT_GENERO = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_generoLabel";
-	private final String ID_ELEMENT_PAIS = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_paisEdicionLabel";
-	private final String ID_ELEMENT_FECHA = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_horaFechaPublicacionLabel";
+	
+	private final static String SITE = "Mondosonoro";
+	private final static String URL = "http://www.mondosonoro.com/Cr%C3%ADticas/Discos.aspx\"";
+	private final static String SubURL = "http://www.mondosonoro.com/Critica-Discos/";
+	
+	private final static int NUM_PAGES = 140;
+	
+	public static final class ElementosWebCtes {
+		private final static String ID_ELEMENT_TITULO = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_titularLabel";
+		private final static String ID_ELEMENT_ARTISTA = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_grupoLabel";
+		private final static String ID_ELEMENT_GENERO = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_generoLabel";
+		private final static String ID_ELEMENT_PAIS = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_paisEdicionLabel";
+		private final static String ID_ELEMENT_FECHA = "dnn_ctr587_ViewDetalleCriticaObra_detalleCriticaObraFormView_horaFechaPublicacionLabel";
+	}
 	
 	public ScrapingMondosonoro(String rutaDestino) {
-	    super("Mondosonoro", "http://www.mondosonoro.com/Cr%C3%ADticas/Discos.aspx\"",
-                "http://www.mondosonoro.com/Critica-Discos/", 140, rutaDestino);
+	    super(SITE, URL, SubURL, NUM_PAGES, rutaDestino);
         logger = Logger.getLogger(ScrapingMondosonoro.class);
 	}
 
 	public void scrappingWeb(String url, String subUrl, int numPages,
 			String destinyPath) {
-		Log.logScraping("F‡brica de Scraping. Producto Mondosonoro [www.mondosonoro.com].");
+		Log.logScraping("FÃ¡brica de Scraping. Producto Mondosonoro [www.mondosonoro.com].");
 		
 		Log.logScraping("Arrancando parseo web de " + url);
-        Log.logScraping("Nœmero de p‡ginas: " + numPages);
+        Log.logScraping("NÃºmero de pÃ¡ginas: " + numPages);
 		
-		String[] elements = { ID_ELEMENT_TITULO, ID_ELEMENT_ARTISTA,
-				ID_ELEMENT_GENERO, ID_ELEMENT_PAIS, ID_ELEMENT_FECHA };
+		String[] elements = { ElementosWebCtes.ID_ELEMENT_TITULO, ElementosWebCtes.ID_ELEMENT_ARTISTA,
+				ElementosWebCtes.ID_ELEMENT_GENERO, ElementosWebCtes.ID_ELEMENT_PAIS, ElementosWebCtes.ID_ELEMENT_FECHA };
 		scrappingMondosonoro(this.url, this.subUrl, this.numPaginas,
 				elements, this.rutaDestino);
 		
@@ -79,15 +87,14 @@ public class ScrapingMondosonoro extends AbstractWebScraping {
 									idElements);
 							Log.logScraping("Album: " + album.getTitulo());
 							Log.logScraping(" > Artista: " + album.getArtista());
-                            Log.logScraping(" > Nœmero temas: " + album.getNumTemas());
-                            Log.logScraping(" > Fecha publicaci—n: " + album.getFecha());
+                            Log.logScraping(" > NÃºmero temas: " + album.getNumTemas());
+                            Log.logScraping(" > Fecha publicaciÃ³n: " + album.getFecha());
                             Log.logScraping(" > Tags: " + album.getEtiquetas().toString());
 							listaAlbums.add(album);
 						}
 					}
 				}
-				TratarCSVAlbum.generarCSVAlbums(listaAlbums, 1, destinyPath,
-						logger);
+				TratarCSVAlbum.generarCSVAlbums(listaAlbums, 1, destinyPath, logger);
 
 			} catch (IOException e) {
 				e.printStackTrace();

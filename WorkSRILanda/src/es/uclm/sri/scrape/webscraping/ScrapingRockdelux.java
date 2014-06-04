@@ -16,15 +16,22 @@ import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
 
 /**
- * Producto Rockdelux.
- * Se utiliza la librería Jsoup.
+ * Producto concreto de la web Rockdelux.
+ * 
+ * (Se utiliza la librer√≠a Jsoup)
  * 
  * @author Sergio Navarro
  * */
 public class ScrapingRockdelux extends AbstractWebScraping {
+	
+	private final static String SITE = "Rockdelux";
+	private final static String URL = "http://www.rockdelux.com/discos/albumes/page";
+	private final static String SubURL = "http://www.rockdelux.com/discos/p/";
+	
+	private final static int NUM_PAGES = 12;
 
     public ScrapingRockdelux(String rutaDestino) {
-        super("Rockdelux", "http://www.rockdelux.com/discos/albumes/page", "http://www.rockdelux.com/discos/p/", 12, rutaDestino);
+        super(SITE, URL, SubURL, NUM_PAGES, rutaDestino);
         logger = Logger.getLogger(ScrapingRockdelux.class);
     }
 
@@ -37,10 +44,10 @@ public class ScrapingRockdelux extends AbstractWebScraping {
         Album album = null;
         ArrayList<Album> listaAlbums = new ArrayList<Album>();
         
-        Log.logScraping("Fábrica de Scraping. Producto Rockdelux [www.rockdelux.com].");
+        Log.logScraping("F√°brica de Scraping. Producto Rockdelux [www.rockdelux.com].");
 
         Log.logScraping("Arrancando parseo web de " + url);
-        Log.logScraping("Número de páginas: " + numPages);
+        Log.logScraping("N√∫mero de p√°ginas: " + numPages);
 
         for (int iNumPage = 1; iNumPage <= numPages; iNumPage++) {
             numPage = String.valueOf(iNumPage);
@@ -52,7 +59,7 @@ public class ScrapingRockdelux extends AbstractWebScraping {
                 doc = Jsoup.connect(urlAnalyze).get();
                 Elements links = doc.select("a[href]");
 
-                Log.logScraping("\nLinks en página: " + links.size());
+                Log.logScraping("\nLinks en p√°gina: " + links.size());
                 for (Element link : links) {
                     if (index == 0) {
                         album = new Album();
@@ -68,7 +75,7 @@ public class ScrapingRockdelux extends AbstractWebScraping {
 
                             if (index > 0) {
                                 album.setTitulo(link.text().trim());
-                                Log.logScraping("Título album: " + album.getTitulo());
+                                Log.logScraping("T√≠tulo album: " + album.getTitulo());
                                 ArrayList<String> listEtiquetas = procesarLinkAlbum(link);
                                 album.setEtiquetas(listEtiquetas);
                                 Iterator it = listEtiquetas.iterator();
@@ -79,7 +86,7 @@ public class ScrapingRockdelux extends AbstractWebScraping {
                                 }
                                 try {
                                     album.setFecha(listEtiquetas.get(1).substring(0, 4));
-                                    Log.logScraping("Fecha publicación: " + album.getFecha());
+                                    Log.logScraping("Fecha publicaci√≥n: " + album.getFecha());
                                 } catch (Exception excp) {
                                 	Log.logScraping("ERROR! Fecha de album incorrecta");
                                     try {
@@ -108,10 +115,9 @@ public class ScrapingRockdelux extends AbstractWebScraping {
                  */
                 TratarCSVAlbum.generarCSVAlbums(listaAlbums, numMaxEtiquetas, destinyPath, logger);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            Log.logScraping("Nº de discos: " + listaAlbums.size());
+            Log.logScraping("N¬∫ de discos: " + listaAlbums.size());
         }
 
     }
