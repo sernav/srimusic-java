@@ -8,36 +8,39 @@ import es.uclm.sri.clustering.IAnalisisDComponentesPrincipales;
 import es.uclm.sri.clustering.IDatosCluster;
 import es.uclm.sri.clustering.ISimpleKMeansCluster;
 
+/**
+ * Módulo clustering:
+ * 		Fábrica de análisis de datos de clustering
+ * 
+ * @author Sergio Navarro
+ * @version 1.0
+ * */
 public class AnalysisFactory {
 
 	/**
-	 * Method to construct the specified factory. This method is used to
-	 * construct the specified factory.
+	 * Método constructor específico de la fábrica.
 	 * 
-	 * @param factoryType
-	 *            the type of factory to create
-	 * @return an AnalysisFactory
-	 * 
+	 * @return AnalysisFactory
 	 */
 	public static AnalysisFactory buildFactory() {
 		return new AnalysisFactory();
 	};
 
 	/**
-	 * Method to create a IDatosCluster object. Any extention of the
-	 * AnalysisFactory class has to implement this method.
+	 * Genera un objeto que implementa la interface IDatosCluster.
+	 * Toda extensión de la fábrica debe implementar este método.
 	 * 
 	 * @param name
-	 *            The description of the data
+	 * 			Descripción del dato: String
 	 * @param attributes
-	 *            The list of column names
+	 * 			Lista de nombres de columna: List<String>
 	 * @param vectors
-	 *            The number of rows in the data (for initialization)
+	 * 			Número de filas de datos: int
 	 * @param dimensions
-	 *            The number of dimensions to be stored (for initialization)
+	 * 			Dimensiones para ser almacenado
 	 * @param classAttributes
-	 *            TODO
-	 * @return
+	 * 
+	 * @return IDatosCluster
 	 */
 	public static IDatosCluster createRawData(String name,
 			List<String> attributes, int vectors, int dimensions,
@@ -51,30 +54,31 @@ public class AnalysisFactory {
 	}
 
 	/**
-	 * Method to create the KMeansClusterInterface. Any extention of the
-	 * AnalysisFactory class has to implement this method.
+	 * Método para generar un objeto que implementa la interface ISimpleKMeansCluster.
+	 * Cualquier extensión de esta clase debe implementar esta función.
 	 * 
-	 * @return
+	 * @return ISimpleKMeansCluster
 	 */
 	public static ISimpleKMeansCluster createKMeansEngine() {
 		return new WekaSimpleKMeansCluster();
 	}
 
 	/**
-	 * Method to create the KMeansClusterInterface. Any extention of the
-	 * AnalysisFactory class has to implement this method.
+	 * Método que crea el motor de regresión lineal.
+	 * (La función de regresión lineal mide el grado de asociación entre dos variables)
+	 * Cualquier extensión de esta clase debe implementar esta función.
 	 * 
-	 * @return
+	 * @return LinearRegression
 	 */
 	public static LinearRegression createLinearRegressionEngine() {
 		return new WekaRegresionLineal();
 	}
 
 	/**
-	 * Method to create a component to perform PCA analysis on the data.
+	 * Método que crea el componente para realizar el análisis del PCA
 	 * 
 	 * @param IDatosCluster
-	 * @return
+	 * @return IAnalisisDComponentesPrincipales
 	 */
 	public static IAnalisisDComponentesPrincipales createPCAEngine(
 			IDatosCluster rawData) {
@@ -82,48 +86,10 @@ public class AnalysisFactory {
 	}
 
 	/**
-	 * Method for shutting down analysis engines, if necessary.
+	 * Método para finalizar el análisis.
 	 */
 	public void closeFactory() {
-		// do nothing
 		return;
 	}
-
-	// /**
-	// * Method to create a component to normalize the data.
-	// *
-	// * @param inputData
-	// * @return
-	// */
-	// public static DataNormalizer createDataNormalizer(IDatosCluster
-	// inputData) {
-	// return new WekaDataNormalizer(inputData);
-	// }
-
-	// /**
-	// * Method for building Naive Bayes classifier
-	// *
-	// * @param inputData
-	// * @return
-	// */
-	// public static ClassifierInterface createNaiveBayesClassifier(
-	// IDatosCluster inputData) {
-	// return new WekaNaiveBayesClassifier(inputData);
-	// }
-
-	// /**
-	// * Method for building Support Vector Machine classifier
-	// *
-	// * @param inputData
-	// * @return
-	// */
-	// public static Classifier createSupportVectorClassifier(
-	// IDatosCluster inputData) {
-	// return new WekaVectorClasificacion(inputData);
-	// }
-	//
-	// public static HierarchicalCluster createHierarchicalClusteringEngine() {
-	// return new JavaHierarchicalCluster();
-	// }
 
 }
