@@ -3,7 +3,7 @@ package es.uclm.sri.scrape;
 import es.uclm.sri.scrape.webscraping.ScrapingLastfm;
 
 /**
- * Fábrica Scraping Lastfm
+ * Factor√≠a concreta de scraping en plataforma Lastfm
  * 
  * @author Sergio Navarro
  * */

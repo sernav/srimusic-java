@@ -3,7 +3,7 @@ package es.uclm.sri.scrape;
 import es.uclm.sri.scrape.webscraping.ScrapingRockdelux;
 
 /**
- * Fábrica Scraping Rockdelux
+ * Factor√≠a concreta de scraping en la web Rockdelux
  * 
  * @author Sergio Navarro
  * */

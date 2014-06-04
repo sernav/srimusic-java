@@ -7,6 +7,11 @@ import java.util.Iterator;
 import es.uclm.sri.sis.entidades.Album;
 
 /**
+ * El dataswap de album es la herramienta encargada de convertir albums de entidades
+ * externas al sistema (Lastfm, Deezer,..) a una entidad album conocida.
+ * 
+ * Extiende de la clase abstract <code>AbstractDataSwap</code>
+ * 
  * @author Sergio Navarro
  * */
 public class DSAlbum extends AbstractDataSwap {

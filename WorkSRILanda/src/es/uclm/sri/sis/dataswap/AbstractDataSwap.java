@@ -1,6 +1,7 @@
 package es.uclm.sri.sis.dataswap;
 
 /**
+ * Clase de la que deben extender todos los dataswaps del sistema.
  * 
  * @author Sergio Navarro
  * */

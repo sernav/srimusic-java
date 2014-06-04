@@ -12,14 +12,16 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.w3c.tidy.Configuration;
 import org.w3c.tidy.Tidy;
 
 import es.uclm.sri.sis.utilidades.Utils;
 
 /**
  * Para el scraping de cualquier de las web que siga la plantilla indicada.
- * Se utiliza mediante la línea de comando.
- * Necesita la librería Tidy, la cual nos proporciona el parseo de la web.
+ * Se utiliza mediante la l√≠nea de comando.
+ * 
+ * (Necesita la librer√≠a Tidy, la cual nos proporciona el parseo de la web)
  * 
  * @author Sergio Navarro
  * */
@@ -31,9 +33,9 @@ public class WebScraping {
 	public static final String XSLT_TEMPLATE_URL = "WebScrapingTemplate.xsl";
 
 	/**
-	 * Procesando la línea de comandos.
+	 * Procesando la lÔøΩnea de comandos.
 	 * 
-	 * @param args args[0]: URL con la web HTML. args[1] Localización de la plantilla XSLT
+	 * @param args args[0]: URL con la web HTML. args[1] Localizaci√≥n de la plantilla XSLT
 	 * @since 0.1
 	 * @throws Exception
 	 */
@@ -43,7 +45,9 @@ public class WebScraping {
 		OutputStream out = null;
 		StreamSource xsltSource = null;
 		StreamSource source = null;
-		// Se genera el fichero único por usuario
+		/*
+		 * Se genera el fichero √∫nico por usuario
+		 * */
 		File xmlOutFile = new File(System.getProperty("user.home")
 				+ System.getProperty("file.separator")
 				+ System.getProperty("user.name") + "-"
@@ -58,16 +62,20 @@ public class WebScraping {
 			}
 			input = url.openStream();
 			out = new FileOutputStream(xmlOutFile);
-			// Recoge el HTML de la web y le aplica la plantilla XHTML
+			/*
+			 *  Recoge el HTML de la web y le aplica la plantilla XHTML
+			 * */
 			Tidy tidy = new Tidy();
 			/*
-			 * Configuración de los tags para convertir el documento y analizarlo
+			 * Configuraci√≥n de los tags para convertir el documento y analizarlo
 			 * con la plantilla XSLT
 			 */
 			tidy.setTidyMark(false);
 			tidy.setDocType("omit");
-			// Para secuencias de caracteres extraños:
-			// tidy.setCharEncoding(Configuration.UTF8);
+			/*
+			 * Para secuencias de caracteres especiales, la siguiente l√≠nea
+			 * */
+			tidy.setCharEncoding(Configuration.UTF8);
 			tidy.setAltText("");
 			tidy.setFixBackslash(true);
 			tidy.setFixComments(true);
@@ -88,22 +96,25 @@ public class WebScraping {
 
 			tidy.parse(input, out);
 			out.close();
-			// Recoge el XML y lo convierte take the XML y lo convierte usando el sylesheet
+			/*
+			 *  Recoge el XML y lo convierte take the XML y lo convierte usando el sylesheet
+			 * */
 			source = new StreamSource(xmlOutFile);
 			if ((args != null) && (args.length == 2) && (args[1] != null)) {
 				xsltSource = new StreamSource(args[1]);
 			} else {
-				xsltSource = new StreamSource(Class.class
-										.getResourceAsStream(XSLT_TEMPLATE_URL));
+				xsltSource = new StreamSource(Class.class.getResourceAsStream(XSLT_TEMPLATE_URL));
 				
 			}
-			// El resultado se almacena
-			StreamResult reportOut = new StreamResult(System.out); 
+			/*
+			 * El resultado se almacena
+			 * */
+			StreamResult reportOut = new StreamResult(System.out);
+			/*
+			 *  Transformaci√≥n
+			 * */
 			TransformerFactory tFactory = TransformerFactory.newInstance();
-
  			Transformer trans = tFactory.newTransformer(xsltSource);
-
-			// Transformación
 			trans.transform(source, reportOut);
 
 		} catch (Exception exp) {

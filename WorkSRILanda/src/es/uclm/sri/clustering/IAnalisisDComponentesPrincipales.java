@@ -1,71 +1,68 @@
 package es.uclm.sri.clustering;
 
 /**
- * Interface para definir las funciones del ACP (o ACP en ingl�s)
+ * Interface para definir las funciones del PCA
  * 
- * @author sernav
+ * @author Sergio Navarro
  * @version 0.1
- * @since 0.1
  * */
 public interface IAnalisisDComponentesPrincipales {
 
 	/**
-	 * This method performs the Principal Components Analysis
+	 * Método para el análisis de componentes principales
 	 * 
 	 * @throws ClusterException
 	 */
 	public void doPCA() throws ClusterException;
 
 	/**
-	 * This method gets the ith Principal Comonent object
+	 * Obtiene el componente principal
 	 * 
-	 * @param i
-	 * @return a ClusterDescription
+	 * @param i: int
+	 * @return obj ClusterDescription
 	 * @throws ClusterException
 	 */
 	public ClusterDescripcion getComponentDescription(int i)
 			throws ClusterException;
 
 	/**
-	 * Sets the input data for the clustering operation.
+	 * Establece los datos de entrada para el clustering
 	 * 
-	 * @param inputData
+	 * @param inputData: IDatosCluster
 	 */
 	public void setInputData(IDatosCluster inputData);
 
 	/**
-	 * Returns the results of the PCA analysis.
+	 * Devuelve los resultados del análisis
 	 * 
-	 * @return
+	 * @return IDatosCluster
 	 */
 	public IDatosCluster getResults();
 
 	/**
-	 * Specifies the clusterer to use if you wish to perform PCA after the
-	 * clustering has been done. This is used for linear projection of the
-	 * results.
+	 * Especifica el clusterer a utilizar para realizar el PCA
 	 * 
-	 * @param clusterer
+	 * @param clusterer: ICluster
 	 */
 	public void setClusterer(ICluster clusterer);
 
 	/**
-	 * Used to return the PCA reduced data.
+	 * Devuelve los clusterer del PCA
 	 * 
-	 * @return
+	 * @return IDatosCluster[]
 	 */
 	public IDatosCluster[] getClusters();
 
 	/**
-	 * Used to reset the PCA. If the user wishes to rerun the analysis with
-	 * different parameters, they don't have to create a new PCA class to do it.
+	 * Restablece el PCA.
+	 * Ejecutar antes de un nuevo análisis con difrentes parámetros.
 	 */
 	public void reset();
 
 	/**
-	 * Sets the maximum number of components returned.
+	 * Establece el número máximo de componentes del PCA.
 	 * 
-	 * @param maxComponents
+	 * @param maxComponents: int
 	 */
 	public void setMaxComponents(int maxComponents);
 

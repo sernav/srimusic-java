@@ -3,113 +3,112 @@ package es.uclm.sri.clustering;
 import java.util.List;
 
 /**
- * <code>IDatosCluster</code> Interfaz que define los m�todos para manejar los datos de clusters.
+ * Interfaz que define los métodos para manejar los datos de clusters.
  * 
  * @author Sergio Navarro
+ * @version 1.0
  * */
 public interface IDatosCluster {
 
 	/**
-	 * Add the value to the object, at the specified indices.
-	 * A�ade
+	 * Añade valor al objeto en la posición determinada
 	 * 
-	 * @param vectorIndex
-	 * @param dimensionIndex
+	 * @param índice del vector
+	 * @param dimensión del índice
 	 * @param value
 	 */
 	public void addValue(int vectorIndex, int dimensionIndex, double value);
 
 	/**
-	 * Get the value from the object at the specified indices.
+	 * Devuelve el valor del objeto especificado por los índices del parámetro
 	 * 
-	 * @param vectorIndex
-	 * @param dimensionIndex
-	 * @return @
+	 * @param índice del vector
+	 * @param dimensión del índice
+	 * @return double
 	 */
 	public double getValue(int vectorIndex, int dimensionIndex);
 
 	/**
-	 * Get the distance between the two vectors. The distance calculated should
-	 * be a simple Manhattan distance calculation.
+	 * Devuelve la distancia entre dos puntos del vector calculada con el algorítmo
+	 * de distancia Manhattan
 	 * 
-	 * @param firstVector
-	 * @param secondVector
-	 * @return @
+	 * @param Primer elemento del vector
+	 * @param Segundo elemento del vector
+	 * @return double
 	 */
 	public double getManhattanDistance(int firstVector, int secondVector);
 
 	/**
-	 * Get the distance between the two vectors. The distance calculated should
-	 * be a simple Cartesian distance calculation.
+	 * Devuelve la distancia entre dos puntos del vector calculada con el algorítmo
+	 * de distancia Cartesiana
 	 * 
-	 * @param firstVector
-	 * @param secondVector
-	 * @return @
+	 * @param Primer elemento del vector
+	 * @param Segundo elemento del vector
+	 * @return double
 	 */
 	public double getCartesianDistance(int firstVector, int secondVector);
 
 	/**
-	 * Get the data structure which stores the data. This makes doing the
-	 * clustering easier for the respective engines.
+	 * Devuelve el objeto que almacena los datos del cluster.
 	 * 
-	 * @return
+	 * @return Object
 	 */
 	public Object getData();
 
 	/**
-	 * Returns the dimension names in the data.
+	 * Devuelve una lista de nombres del data set.
 	 * 
-	 * @return
+	 * @return List<String>
 	 */
 	public List<String> getEventNames();
 
 	/**
-	 * Returns the number of vectors in this data set.
+	 * Devuelve el numero de vectores en el data set.
 	 * 
-	 * @return
+	 * @return int
 	 */
 	public int numVectors();
 
 	/**
-	 * Returns the number of dimensions in this data set.
+	 * Devuelve el número de dimensiones en el data set.
 	 * 
-	 * @return
+	 * @return int
 	 */
 	public int numDimensions();
 
 	/**
-	 * Returns the relation name from the data set.
+	 * Devuelve el nombre del data set.
 	 * 
-	 * @return
+	 * @return String
 	 */
 	public String getName();
 
 	/**
-	 * Gets the maximum value for the entire data set.
+	 * Devuelve el valor máximo para el data set.
 	 * 
-	 * @return
+	 * @return double
 	 */
 	public double getMaximum();
 
 	/**
-	 * Returns the vector of data at index "i".
+	 * Devuelve el valor de datos del índice
 	 * 
-	 * @param i
-	 * @return
+	 * @param índice
+	 * @return double[]
 	 */
 	public double[] getVector(int i);
 
 	/**
-	 * Returns the correlation coefficient between vectors "x" and "y".
+	 * Devuelve el coeficiente de correlación entre los elementos x e y del vector.
 	 * 
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return double
 	 */
 	public double getCorrelation(int x, int y);
 
 	/**
-	 * Adds the value to the dimension "eventIndex" on vector "threadIndex".
+	 * Añade el valor a la dimensión "eventIndex" del vector "threadIndex".
 	 * 
 	 * @param threadIndex
 	 * @param eventIndex
@@ -118,7 +117,7 @@ public interface IDatosCluster {
 	public void addMainValue(int threadIndex, int eventIndex, double value);
 
 	/**
-	 * Gets the inclusive value of the main function at vector "threadIndex".
+	 * Devuelve el valor indicado por el índice
 	 * 
 	 * @param threadIndex
 	 * @return
@@ -126,18 +125,18 @@ public interface IDatosCluster {
 	public double getMainValue(int threadIndex);
 
 	/**
-	 * Gets the name of the main function.
+	 * Devuelve el nombre de la función principal.
 	 * 
 	 * @return
 	 */
 	public String getMainEventName();
 
 	/**
-	 * Sets an attribute in the instance, where the attribute is a string.
+	 * Establece un atributo en la instancia cuando el atributo es de tipo cadena
 	 * 
-	 * @param thread
-	 * @param i
-	 * @param name
+	 * @param vectorIndex
+	 * @param dimensionIndex
+	 * @param value
 	 */
 	public void addValue(int vectorIndex, int dimensionIndex, String value);
 

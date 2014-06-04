@@ -3,7 +3,7 @@ package es.uclm.sri.scrape;
 import es.uclm.sri.scrape.webscraping.ScrapingMondosonoro;
 
 /**
- * Fábrica Scraping Mondosonoro
+ * Factor√≠a concreta de scraping en la web Mondosonoro
  * 
  * @author Sergio Navarro
  * */

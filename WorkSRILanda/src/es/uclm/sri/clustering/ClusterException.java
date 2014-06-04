@@ -1,13 +1,10 @@
 package es.uclm.sri.clustering;
 
 /**
- * Extensi�n de la clase Exception pesonalizada
- * para el cluster
-
- * @author sernav
+ * Módulo clustering: Clase Exception pesonalizada para el cluster
+ * 
+ * @author Sergio Navarro
  * @version 0.1
- * @since   0.1
- *
  */
 public class ClusterException extends Exception {
 
@@ -17,7 +14,7 @@ public class ClusterException extends Exception {
 	private static final long serialVersionUID = -2353858209996638736L;
 
 	/**
-	 * 
+	 * Constructor vacío
 	 */
 	public ClusterException() {
 		super();
@@ -25,7 +22,9 @@ public class ClusterException extends Exception {
 	}
 
 	/**
-	 * @param arg0
+	 * Constructor con argumento
+	 * 
+	 * @param arg0: String
 	 */
 	public ClusterException(String arg0) {
 		super(arg0);
@@ -33,8 +32,10 @@ public class ClusterException extends Exception {
 	}
 
 	/**
-	 * @param arg0
-	 * @param arg1
+	 * Constructor con argumentos de excepción Throwable.
+	 * 
+	 * @param arg0: String
+	 * @param arg1: Throwable
 	 */
 	public ClusterException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
@@ -42,7 +43,9 @@ public class ClusterException extends Exception {
 	}
 
 	/**
-	 * @param arg0
+	 * Constructor con argumento Throwable
+	 * 
+	 * @param arg0: Throwable
 	 */
 	public ClusterException(Throwable arg0) {
 		super(arg0);
