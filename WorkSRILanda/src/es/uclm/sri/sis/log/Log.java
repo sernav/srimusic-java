@@ -9,6 +9,8 @@ import java.util.Calendar;
 import es.uclm.sri.sis.utilidades.Utils;
 
 /**
+ * CentralizaciÃ³n de los log para funciones del sistema, errores y scraping.
+ * 
  * @author Sergio Navarro
  * */
 public class Log {
@@ -39,7 +41,7 @@ public class Log {
     }
     
     /**
-     * Log espec’fico de las excepciones. Carga fichero concreto: XXXXX_SriLandaExeption.log
+     * Log especï¿½fico de las excepciones. Carga fichero concreto: XXXXX_SriLandaExeption.log
      * 
      * @param mensaje: String
      * */
@@ -56,7 +58,7 @@ public class Log {
     }
     
     /**
-     * Log espec’fico del scraping. Carga fichero concreto:  XXXXX_Sraping.log
+     * Log especï¿½fico del scraping. Carga fichero concreto:  XXXXX_Sraping.log
      * 
      * @param mensaje: String
      * */
@@ -67,7 +69,7 @@ public class Log {
     }
     
     /**
-     * Log con opciones de cabecera que se seleccionan como par‡metro
+     * Log con opciones de cabecera que se seleccionan como parï¿½metro
      *  1. INFO
      *  2. WARNING
      *  3. EXCEPTION
