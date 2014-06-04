@@ -12,7 +12,7 @@ import es.uclm.sri.sis.excepciones.ExcepcionGeneral;
 /**
  * @author Sergio Navarro
  * 
- * Clase de utilidades para el uso de la reflexi梟 metodal
+ * Clase de utilidades para el uso de la reflexi贸n metodal
  */
 public final class Reflexion {
 
@@ -31,19 +31,19 @@ public final class Reflexion {
 		try {
 			method = invokedClass.getMethod(metodo, new Class[0]);
 		} catch (SecurityException e1) {
-			throw getError(e1, "Excepci梟 de seguridad en  " + invokedClass);
+			throw getError(e1, "Excepci贸n de seguridad en  " + invokedClass);
 		} catch (NoSuchMethodException e1) {
-			throw getError(e1, "No existe m巘odo " + metodo + " en " + invokedClass);
+			throw getError(e1, "No existe m茅todo " + metodo + " en " + invokedClass);
 		}
 		try {
 			return method.invoke(null, new Object[0]);
 		} catch (IllegalArgumentException e2) {
-			throw getError(e2, "Argumento ilegal al invocar m巘odo " + metodo + " en " + invokedClass);
+			throw getError(e2, "Argumento ilegal al invocar m茅todo " + metodo + " en " + invokedClass);
 
 		} catch (IllegalAccessException e2) {
-			throw getError(e2, "Acceso ilegal al invocar m巘odo " + metodo + " en " + invokedClass);
+			throw getError(e2, "Acceso ilegal al invocar m茅todo " + metodo + " en " + invokedClass);
 		} catch (InvocationTargetException e2) {
-			throw getError(e2, "Excepci梟 en destino de invocaci梟 para  " + invokedClass);
+			throw getError(e2, "Excepci贸n en destino de invocaci贸n para  " + invokedClass);
 		}
 	}
 
@@ -59,20 +59,20 @@ public final class Reflexion {
 		try {
 			method = invokedClass.getMethod(metodo, tipoArgs);
 		} catch (SecurityException e1) {
-			throw getError(e1, "Excepci梟 de seguridad en  " + invokedClass);
+			throw getError(e1, "Excepci贸n de seguridad en  " + invokedClass);
 		} catch (NoSuchMethodException e1) {
-			throw getError(e1, "No existe m巘odo " + metodo + " en " + invokedClass);
+			throw getError(e1, "No existe m茅todo " + metodo + " en " + invokedClass);
 		}
 		Object[] args = { argumento };
 		try {
 			return method.invoke(null, args);
 		} catch (IllegalArgumentException e2) {
-			throw getError(e2, "Argumento Ilegal al invocar m巘odo " + metodo + " en " + invokedClass);
+			throw getError(e2, "Argumento Ilegal al invocar m茅todo " + metodo + " en " + invokedClass);
 
 		} catch (IllegalAccessException e2) {
-			throw getError(e2, "Acceso Ilegal al invocar m巘odo " + metodo + " en " + invokedClass);
+			throw getError(e2, "Acceso Ilegal al invocar m茅todo " + metodo + " en " + invokedClass);
 		} catch (InvocationTargetException e2) {
-			ExcepcionGeneral eg = new ExcepcionGeneral(e2.getTargetException(), "Excepci梟 en destino de invocaci梟 para  " + invokedClass);
+			ExcepcionGeneral eg = new ExcepcionGeneral(e2.getTargetException(), "Excepci贸n en destino de invocaci贸n para  " + invokedClass);
 		}
 		return method;
 	}
@@ -93,19 +93,19 @@ public final class Reflexion {
 		try {
 			method = invokedClass.getMethod(metodo, tipoArgs);
 		} catch (SecurityException e1) {
-			throw getError(e1, "Excepci梟 de seguridad en  " + invokedClass);
+			throw getError(e1, "Excepci贸n de seguridad en  " + invokedClass);
 		} catch (NoSuchMethodException e1) {
-			throw getError(e1, "No existe m巘odo " + metodo + " en " + invokedClass);
+			throw getError(e1, "No existe m茅todo " + metodo + " en " + invokedClass);
 		}
 		try {
 			return method.invoke(null, args);
 		} catch (IllegalArgumentException e2) {
-			throw getError(e2, "Argumento Ilegal al invocar m巘odo " + metodo + " en " + invokedClass);
+			throw getError(e2, "Argumento Ilegal al invocar m茅todo " + metodo + " en " + invokedClass);
 
 		} catch (IllegalAccessException e2) {
-			throw getError(e2, "Acceso Ilegal al invocar m巘odo " + metodo + " en " + invokedClass);
+			throw getError(e2, "Acceso Ilegal al invocar m茅todo " + metodo + " en " + invokedClass);
 		} catch (InvocationTargetException e2) {
-		    ExcepcionGeneral eg = new ExcepcionGeneral(e2.getTargetException(), "Excepci梟 en destino de invocaci梟 para  " + invokedClass);
+		    ExcepcionGeneral eg = new ExcepcionGeneral(e2.getTargetException(), "Excepci贸n en destino de invocaci贸n para  " + invokedClass);
 		}
 		return method;
 	}
@@ -117,11 +117,11 @@ public final class Reflexion {
                 Method method =  object.getClass().getMethod(metodo, new Class<?>[0]);
                 result = method.invoke(object, new Object[0]);
             } catch (SecurityException e1) {
-                throw getError(e1, "Excepci梟 de seguridad en  " + object.getClass().getName());
+                throw getError(e1, "Excepci贸n de seguridad en  " + object.getClass().getName());
             } catch (NoSuchMethodException e1) {
-                throw getError(e1, "No existe m巘odo " + metodo + " en " + object.getClass().getName());
+                throw getError(e1, "No existe m茅todo " + metodo + " en " + object.getClass().getName());
             } catch (Throwable e1) {
-                getError((Exception) e1, "Excepci梟 al invocar el m巘odo " + metodo + " del objeto de la clase " + object.getClass().getName());
+                getError((Exception) e1, "Excepci贸n al invocar el m茅todo " + metodo + " del objeto de la clase " + object.getClass().getName());
             }
 	    }
         return result;
