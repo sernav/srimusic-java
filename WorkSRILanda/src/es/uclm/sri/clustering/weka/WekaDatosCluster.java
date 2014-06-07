@@ -14,12 +14,10 @@ import weka.core.Instances;
 import es.uclm.sri.clustering.IDatosCluster;
 
 /**
- * Implementaci�n de la interfaz de datos de cluster
+ * Implementación de la interfaz de datos de cluster
  * 
- * @author sernav
+ * @author Sergio Navarro
  * @version 1.0
- * @since 1.0
- * 
  * */
 public class WekaDatosCluster implements IDatosCluster, Serializable {
 
@@ -32,12 +30,18 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	private double ranges[][] = null;
 
 	/**
-	 * Package private constructor.
+	 * Constructor protegido
 	 * 
 	 * @param name
+	 * 			Nombre del cluster
 	 * @param attributes
+	 * 			Lista de atributos como cadena.
 	 * @param vectors
+	 * 			Vector de datos
 	 * @param dimensions
+	 * 			Dimensión del vector
+	 * @param classAttributes
+	 * 			Tipos de atributos (nominales, numéricos,...)
 	 */
 	WekaDatosCluster(String name, List<String> attributes, int vectors,
 			int dimensions, List<String> classAttributes) {
@@ -83,7 +87,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	}
 
 	/**
-	 * Package private constructor - more or less a copy constructor.
+	 * Constructor partiendo de instancias de Weka.
 	 * 
 	 * @param instances
 	 */
@@ -97,11 +101,9 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#addValue(int, int, double)
+	 * @see clustering.IDatosCluster#addValue(int, int, double)
 	 */
 	public void addValue(int vectorIndex, int dimensionIndex, double value) {
-		// System.out.println("RawData: " + vectorIndex + ", " + dimensionIndex
-		// + ", " + value);
 		Instance i = instances.instance(vectorIndex);
 		i.setValue(dimensionIndex, value);
 		if (maximum < value)
@@ -111,14 +113,14 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getValue(int, int)
+	 * @see clustering.IDatosCluster#getValue(int, int)
 	 */
 	public double getValue(int vectorIndex, int dimensionIndex) {
 		if (normalize) {
 			double tmp = instances.instance(vectorIndex).value(dimensionIndex);
-			// subtract the min
+			// restar el valor mínimo
 			tmp = tmp - ranges[dimensionIndex][0];
-			// divide by the range
+			// divide por el rango
 			tmp = tmp / ranges[dimensionIndex][1];
 			return tmp;
 		} else {
@@ -129,12 +131,11 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getManhattanDistance(int, int)
+	 * @see clustering.IDatosCluster#getManhattanDistance(int, int)
 	 */
 	public double getManhattanDistance(int firstVector, int secondVector) {
-		// assert firstVector >= 0 && firstVector < vectors : firstVector;
-		// assert secondVector >= 0 && secondVector < vectors : secondVector;
-
+		// SI firstVector >= 0 && firstVector < vectors : firstVector;
+		// SI secondVector >= 0 && secondVector < vectors : secondVector;
 		double distance = 0.0;
 		for (int i = 0; i < dimensions; i++) {
 			distance += Math.abs(instances.instance(firstVector).value(i)
@@ -146,11 +147,11 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getCartesianDistance(int, int)
+	 * @see clustering.IDatosCluster#getCartesianDistance(int, int)
 	 */
 	public double getCartesianDistance(int firstVector, int secondVector) {
-		// assert firstVector > 0 && firstVector < vectors : firstVector;
-		// assert secondVector > 0 && secondVector < vectors : secondVector;
+		// SI firstVector > 0 && firstVector < vectors : firstVector;
+		// SI secondVector > 0 && secondVector < vectors : secondVector;
 		double distance = 0.0;
 		for (int i = 0; i < dimensions; i++) {
 			double tmp = Math.abs(instances.instance(firstVector).value(i)
@@ -159,7 +160,17 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 		}
 		return Math.sqrt(distance);
 	}
-
+	
+	/**
+	 * Calcula la distancia Euclídea entre dos elementos de un vector:
+	 * 	dE = [(Pi - Qi)^2] ^ 1/2
+	 * 
+	 * @param firstVector
+	 * 			Elemento Pi
+	 * @param secondVector
+	 * 			Elemento Qi
+	 * @return dE
+	 * */
 	public double getDistanciaEuclidea(int firstVector, int secondVector) {
 		Double x = Double.parseDouble(Integer.toString(firstVector));
 		Double y = Double.parseDouble(Integer.toString(secondVector));
@@ -167,13 +178,24 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 
 		return Math.sqrt(sum);
 	}
-
+	
+	/**
+	 * Calcula la distancia Euclídea entre dos vectores:
+	 * 	dE = ∑[(Pi - Qi)^2] ^ 1/2
+	 * 
+	 * @param x
+	 * 			Vector de valores decimales P
+	 * @param y
+	 * 			Vector de valores decimales Q
+	 * @return dE
+	 * */
 	public double getDistanciaEuclidea(double[] x, double[] y) {
 		double sum = 0;
 		boolean isDe = false;
 		for (int i = 0; i < Math.min(x.length, y.length); i++) {
 			Double dx = new Double(x[i]);
 			Double dy = new Double(y[i]);
+			// Si el vector tiene valores double.isNaN, se le atribuye un 0
 			if(dx.isNaN()) {
 				x[i] = 0.0;
 			}
@@ -193,6 +215,16 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 		
 	}
 	
+	/**
+	 * Calcula la distancia Euclídea entre dos vectores con los CENTROIDES del clusterin
+	 * 	dE = ∑[(Pi - Qi)^2] ^ 1/2
+	 * 
+	 * @param x
+	 * 			Vector de valores decimales P
+	 * @param y
+	 * 			Vector de valores decimales Q
+	 * @return dE
+	 * */
 	public double getDistanciaEuclideaCentroide(double[] x, double[] y) {
 		double sum = 0;
 		boolean isDe = false;
@@ -221,7 +253,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getData()
+	 * @see clustering.IDatosCluster#getData()
 	 */
 	public Object getData() {
 		return instances;
@@ -230,9 +262,8 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getEventNames()
+	 * @see clustering.IDatosCluster#getEventNames()
 	 */
-	@SuppressWarnings("unchecked")
 	public List<String> getEventNames() {
 		Enumeration<Attribute> e = instances.enumerateAttributes();
 		List<String> names = new ArrayList<String>(
@@ -247,7 +278,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#numVectors()
+	 * @see clustering.IDatosCluster#numVectors()
 	 */
 	public int numVectors() {
 		return vectors;
@@ -256,7 +287,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#numDimensions()
+	 * @see clustering.IDatosCluster#numDimensions()
 	 */
 	public int numDimensions() {
 		return dimensions;
@@ -265,7 +296,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getName()
+	 * @see clustering.IDatosCluster#getName()
 	 */
 	public String getName() {
 		return this.instances.relationName();
@@ -274,7 +305,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getMaximum()
+	 * @see clustering.IDatosCluster#getMaximum()
 	 */
 	public double getMaximum() {
 		return maximum;
@@ -283,7 +314,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getVector()
+	 * @see clustering.IDatosCluster#getVector()
 	 */
 	public double[] getVector(int i) {
 		double[] data = new double[dimensions];
@@ -296,7 +327,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getCorrelation()
+	 * @see clustering.IDatosCluster#getCorrelation()
 	 */
 	public double getCorrelation(int x, int y) {
 		double r = 0.0;
@@ -311,9 +342,9 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 			yAvg += instances.instance(i).value(y);
 		}
 
-		// find the average for the first vector
+		// Buscar la media del primer vector (parámetro x)
 		xAvg = xAvg / vectors;
-		// find the average for the second vector
+		// Buscar la media del segundo vector (parámetro y)
 		yAvg = yAvg / vectors;
 
 		for (int i = 0; i < vectors; i++) {
@@ -323,14 +354,14 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 					* (instances.instance(i).value(y) - yAvg);
 		}
 
-		// find the standard deviation for the first vector
+		// Buscar la Desviación Estándar del primer vector (parámetro x)
 		xStDev = xStDev / (vectors - 1);
 		xStDev = Math.sqrt(xStDev);
-		// find the standard deviation for the second vector
+		// Buscar la Desviación Estándar del segundo vector (parámetro y)
 		yStDev = yStDev / (vectors - 1);
 		yStDev = Math.sqrt(yStDev);
 
-		// solve for r
+		// Solución:
 		double tmp1 = 0.0;
 		double tmp2 = 0.0;
 		for (int i = 0; i < vectors; i++) {
@@ -340,10 +371,9 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 		}
 		r = r / (vectors - 1);
 
-		// System.out.println("Avg(x) = " + xAvg + ", Avg(y) = " + yAvg);
-		// System.out.println("Stddev(x) = " + xStDev + ", Stddev(y) = " +
-		// yStDev);
-		// System.out.println("r = " + r);
+		 System.out.println("Avg(x) = " + xAvg + ", Avg(y) = " + yAvg);
+		 System.out.println("DesStd(x) = " + xStDev + ", DesStd(y) = " + yStDev);
+		 System.out.println("r = " + r);
 
 		return r;
 	}
@@ -387,8 +417,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	}
 
 	private double difference(int index, double val1, double val2) {
-
-		// If attribute is numeric
+		// Distáncia matemática. Solo atribútos numéricos.
 		if (Instance.isMissingValue(val1) || Instance.isMissingValue(val2)) {
 			if (Instance.isMissingValue(val1) && Instance.isMissingValue(val2)) {
 				return 1;
@@ -409,20 +438,6 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 		}
 	}
 	
-	  /**
-	   * Normalizes a given value of a numeric attribute.
-	   *
-	   * @param x the value to be normalized
-	   * @param i the attribute's index
-	   */
-//	  private double norm(double x, int i) {
-//
-//	    if (Double.isNaN(m_Min[i]) || Utils.eq(m_Max[i],m_Min[i])) {
-//	      return 0;
-//	    } else {
-//	      return (x - m_Min[i]) / (m_Max[i] - m_Min[i]);
-//	    }
-//	  }
 	private double norm(double x, int i) {
 		return 0;
 	}
@@ -430,7 +445,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#addMainValue()
+	 * @see clustering.IDatosCluster#addMainValue()
 	 */
 	public void addMainValue(int threadIndex, int eventIndex, double value) {
 	}
@@ -438,7 +453,7 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getMainValue()
+	 * @see clustering.IDatosCluster#getMainValue()
 	 */
 	public double getMainValue(int threadIndex) {
 		return 0.0;
@@ -447,18 +462,36 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.RawDataInterface#getMainEventName()
+	 * @see clustering.IDatosCluster#getMainEventName()
 	 */
 	public String getMainEventName() {
 		String name = new String("");
 		return name;
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see clustering.IDatosCluster#addValue()
+	 */
 	public void addValue(int vectorIndex, int dimensionIndex, String value) {
 		Instance i = instances.instance(vectorIndex);
 		i.setValue(dimensionIndex, value);
 	}
 	
+	/**
+	 * Devuelve las instancias de cluster similares a una dada por parámetro, se basa en la
+	 * distancia Euclídea entre las instancias de cluster y la instancia original.
+	 * 
+	 * @param instsCluster
+	 * 			Array de instancia de Weka (Instance)
+	 * @param instOrig
+	 * 			Instancia origen sobre la que comparar
+	 * @param numResult
+	 * 			Número de instancias similares a devolver
+	 * @return Instance[]
+	 * 
+	 * */
 	public Instance[] getSimiliarInstance(Instance[] instsCluster, Instance instOrig, int numResult) {
 		Instance[] instances = new Instance[numResult];
 		HashMap<Instance, Double> mapResult = new HashMap<Instance, Double>();
@@ -480,6 +513,16 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 		return instances;
 	}
 	
+	/**
+	 * Genera instancias de Weka adaptadas al sistema (WekaSRIInstance) similares a una dada por parámetro, se basa en la
+	 * distancia Euclídea entre las instancias y la instancia original.
+	 * 
+	 * @param array de objetos WekaSRIInstance
+	 * @param instancia Weka original: Instance
+	 * @param número de resultados a devolver
+	 * 
+	 * @return WekaSRIInstance[]
+	 * */
 	public WekaSRIInstance[] getSimiliarWekaSRIInstance(WekaSRIInstance[] instsCluster, Instance instOrig, int numResult) {
 		WekaSRIInstance[] wekaInstances = new WekaSRIInstance[numResult];
 		HashMap<WekaSRIInstance, Double> mapResult = new HashMap<WekaSRIInstance, Double>();
@@ -504,6 +547,15 @@ public class WekaDatosCluster implements IDatosCluster, Serializable {
 		return wekaInstances;
 	}
 	
+	/**
+	 * Genera todas las instancias de Weka adaptadas al sistema (WekaSRIInstance) similares a una dada por parámetro, 
+	 * se basa en la distancia Euclídea entre las instancias y la instancia original.
+	 * 
+	 * @param array de objetos WekaSRIInstance
+	 * @param instancia Weka original: Instance
+	 * 
+	 * @return WekaSRIInstance[]
+	 * */
    public WekaSRIInstance[] getSimiliarWekaSRIInstance(WekaSRIInstance[] instsCluster, Instance instOrig) {
         WekaSRIInstance[] wekaInstances;
         HashMap<WekaSRIInstance, Double> mapResult = new HashMap<WekaSRIInstance, Double>();

@@ -4,34 +4,27 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import weka.clusterers.SimpleKMeans;
-import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
-import weka.filters.unsupervised.attribute.Remove;
 import es.uclm.sri.clustering.ClusterException;
 import es.uclm.sri.clustering.ISimpleKMeansCluster;
 import es.uclm.sri.sis.utilidades.Utils;
 
 /**
- * Operaci�n de clustering. Lista de nombre y valores que definen los grupos
+ * Operaciones de clustering. Lista de nombre y valores que definen los grupos
  * (clusters)
  * 
- * @author sernav
+ * @author Sergio Navarro
  * @version 1.0
- * @since 1.0
- * 
  */
-
 public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 		ISimpleKMeansCluster {
 
-	// the number of clusters to find
 	private int k = 0;
-
 	private SimpleKMeans kmeans = null;
 
 	/**
-	 * Default constructor - package protected
+	 * Constructor por defecto
 	 */
 	public WekaSimpleKMeansCluster() {
 		super();
@@ -40,10 +33,10 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.KMeansCluster#findClusters()
+	 * @see clustering.ICluster#buscarClusters()
 	 */
 	public void buscarClusters() throws ClusterException {
-		// assert instances != null : instances;
+		// SI instances != null : instances;
 		try {
 			this.kmeans = new SimpleKMeans();
 			kmeans.setNumClusters(k);
@@ -67,7 +60,7 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.KMeansCluster#setK(int)
+	 * @see clustering.ISimpleKMeansCluster#setK(int)
 	 */
 	public void setK(int k) {
 		this.k = k;
@@ -76,7 +69,7 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.KMeansCluster#setK(int)
+	 * @see clustering.ISimpleKMeansCluster#setK(int)
 	 */
 	public void setSimpleKMeans() throws Exception {
 		this.kmeans = new SimpleKMeans();
@@ -90,7 +83,7 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.KMeansCluster#getK()
+	 * @see clustering.ISimpleKMeansCluster#getK()
 	 */
 	public int getK() {
 		return this.k;
@@ -103,7 +96,7 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.KMeansClusterInterface#clusterInstance(int)
+	 * @see clustering.ICluster#clusterInstance(int)
 	 */
 	public int clusterInstance(int i) {
 		// assert kmeans != null : kmeans;
@@ -118,11 +111,25 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 	protected double getSquaredError() {
 		return kmeans.getSquaredError();
 	}
-
+	
+	/**
+	 * Calcula el número de cluster de una instancia Weka.
+	 * 
+	 * @param instance: Instance
+	 * @retun int
+	 * */
 	public int clusterInstance(Instance instance) throws Exception {
 		return kmeans.clusterInstance(instance);
 	}
-
+	
+	/**
+	 * Calcular las instancias que pertenecen a un cluster determinado.
+	 * 
+	 * @param enumInst: Enumeration<Instance>
+	 * @param numCluster
+	 * 			Número del cluster.
+	 * @return Instance[]
+	 * */
 	public Instance[] getInstancesDCluster(Enumeration<Instance> enumInst,
 			int numCluster) throws Exception {
 		
@@ -139,6 +146,16 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 		return arrayCluster.toArray(new Instance[arrayCluster.size()]);
 	}
 	
+	/**
+	 * Calcula las instancias correspondientes a un cluster determinado, y las convierte
+	 * en instancias Weka adaptadas al sistema (WekaSRIInstance)
+	 * 
+	 * @param enumInst: Enumeration<Instance>
+	 * 			La totalidad de las instancias del clustering.
+	 * @param numCluster
+	 * 			Numero de cluster
+	 * @return WekaSRIInstance[]
+	 * */
     public WekaSRIInstance[] getWekaSRIInstancesDCluster(Enumeration<Instance> enumInst,
 			int numCluster) throws Exception {
 		
@@ -155,8 +172,6 @@ public class WekaSimpleKMeansCluster extends WekaAbstractCluster implements
 				sriInstance = new WekaSRIInstance(1.0, instance.toDoubleArray(), 
 						instance.stringValue(1), instance.stringValue(2));
 			}
-			
-			
 			
 			if (kmeans.clusterInstance(sriInstance.getInstance()) == numCluster) {
 				arrayCluster.add(sriInstance);

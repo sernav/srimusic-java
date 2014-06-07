@@ -4,18 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.uclm.sri.clustering.IDatosCluster;
-
+import es.uclm.sri.sis.log.Log;
 import weka.classifiers.functions.LinearRegression;
 import weka.core.Instances;
 import weka.core.SelectedTag;
 
+/**
+ * Determinar la relación entre instancias Weka mediante Regresión Lineal
+ * 
+ * @author Sergio Navarro
+ * @version 1.0
+ * */
 public class WekaRegresionLineal extends LinearRegression {
 
 	private LinearRegression regress;
 	private Instances instances;
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	public WekaRegresionLineal() {
 		regress = new LinearRegression();
@@ -33,11 +39,8 @@ public class WekaRegresionLineal extends LinearRegression {
 	public void findCoefficients() {
 		try {
 			regress.buildClassifier(instances);
-			// System.out.println(regress.toString());
 		} catch (Exception e) {
-			System.err.println("Error performing linear regression");
-			System.err.println(e.getMessage());
-			e.printStackTrace(System.err);
+			Log.log(e, "Error al generar la regresión lineal!" + e.getMessage());
 			System.exit(0);
 		}
 	}
@@ -65,7 +68,6 @@ public class WekaRegresionLineal extends LinearRegression {
 	 */
 	public void setInputData(IDatosCluster inputData) {
 		this.instances = (Instances) inputData.getData();
-		// System.out.println(this.instances.toString());
 		this.instances.setClassIndex(instances.numAttributes() - 1);
 	}
 

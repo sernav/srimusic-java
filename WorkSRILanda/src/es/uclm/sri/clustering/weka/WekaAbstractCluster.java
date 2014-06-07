@@ -153,20 +153,20 @@ public abstract class WekaAbstractCluster implements ICluster {
 								.toDoubleArray()));
 					}
 				}
-				// iterate over the clusters
+				// Iterar los clusters
 				for (int i = 0; i < nc; i++) {
 					double[] vals = new double[instances.numAttributes()];
 					for (int dimension = 1; dimension < temp[i].numAttributes(); dimension++) {
 						vals[dimension] = temp[i].instance(0).value(dimension);
 					}
-					// iterate over the dimensions
+					// Iterar las dimensiones del cluster
 					for (int dimension = 1; dimension < temp[i].numAttributes(); dimension++) {
 						for (int vector = 0; vector < temp[i].numInstances(); vector++) {
 							vals[dimension] = Math.max(vals[dimension], temp[i]
 									.instance(0).value(dimension));
 						}
 					}
-					// assign the new centroid value
+					// Asignar el nuevo valor del centroide
 					this.clusterMaximums.add(new Instance(1.0, vals));
 				}
 			} catch (Exception e) {
@@ -201,21 +201,21 @@ public abstract class WekaAbstractCluster implements ICluster {
 										.toDoubleArray()));
 					}
 				}
-				// iterate over the clusters
+				// Iterar los clusters
 				for (int i = 0; i < nc; i++) {
 					double[] vals = new double[instances.numAttributes()];
 
 					for (int dimension = 1; dimension < temp[i].numAttributes(); dimension++) {
 						vals[dimension] = temp[i].instance(0).value(dimension);
 					}
-					// iterate over the dimensions
+					// Iterar las dimensiones del cluster
 					for (int dimension = 1; dimension < temp[i].numAttributes(); dimension++) {
 						for (int vector = 0; vector < temp[i].numInstances(); vector++) {
 							vals[dimension] = Math.min(vals[dimension], temp[i]
 									.instance(0).value(dimension));
 						}
 					}
-					// assign the new centroid value
+					// Asignar el nuevo valor del centroide
 					this.clusterMinimums.add(new Instance(1.0, vals));
 				}
 			} catch (Exception e) {
@@ -228,7 +228,7 @@ public abstract class WekaAbstractCluster implements ICluster {
 	}
 
 	public double getBetweenError() {
-		// get the mean of the centroids
+		// Obtiene la media de los centroides
 		Instance centroidMean = new Instance(
 				this.clusterCentroids.numAttributes());
 		for (int x = 0; x < this.clusterCentroids.numInstances(); x++) {
@@ -238,7 +238,7 @@ public abstract class WekaAbstractCluster implements ICluster {
 				centroidMean.setValue(y, tmp);
 			}
 		}
-		// get the squared error for the centroids
+		// Saca el error de los centroides
 		double betweenError = 0.0;
 		for (int x = 0; x < this.clusterCentroids.numInstances(); x++) {
 			betweenError += distance(centroidMean,
@@ -248,13 +248,14 @@ public abstract class WekaAbstractCluster implements ICluster {
 	}
 
 	/**
-	 * Calculates the distance between two instances
+	 * Función que calcula la distancia entre dos instancias
 	 * 
 	 * @param test
-	 *            the first instance
+	 * 			Primera instancia
 	 * @param train
-	 *            the second instance
-	 * @return the distance between the two given instances, between 0 and 1
+	 * 			Segunda instancia
+	 * 
+	 * @return distancia entre los parámetros entre 0 y 1
 	 */
 	private double distance(Instance first, Instance second) {
 
@@ -302,14 +303,14 @@ public abstract class WekaAbstractCluster implements ICluster {
 	}
 
 	/**
-	 * Computes the difference between two given attribute values.
+	 * Calcula la diferencia entre dos atributos
 	 */
 	private double difference(int index, double val1, double val2) {
 
 		switch (this.clusterCentroids.attribute(index).type()) {
 		case Attribute.NOMINAL:
 
-			// If attribute is nominal
+			// Si el atributo es nominado
 			if (Instance.isMissingValue(val1) || Instance.isMissingValue(val2)
 					|| ((int) val1 != (int) val2)) {
 				return 1;
@@ -318,7 +319,7 @@ public abstract class WekaAbstractCluster implements ICluster {
 			}
 		case Attribute.NUMERIC:
 
-			// If attribute is numeric
+			// Si el atributo es numérico
 			if (Instance.isMissingValue(val1) || Instance.isMissingValue(val2)) {
 				if (Instance.isMissingValue(val1)
 						&& Instance.isMissingValue(val2)) {

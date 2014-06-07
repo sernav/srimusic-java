@@ -2,6 +2,8 @@ package es.uclm.sri.clustering.weka;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,11 +13,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Calendar;
+import java.util.Properties;
 
 import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
 import weka.core.EuclideanDistance;
-import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.WekaException;
 import weka.core.converters.ArffLoader;
@@ -23,19 +25,29 @@ import weka.core.converters.ArffSaver;
 import weka.experiment.InstanceQuery;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
+import es.uclm.sri.sis.KSistema;
 import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.utilidades.Utils;
 
+/**
+ * Clase principal para lanzar el clustering
+ * 
+ * @author Sergio Navarro
+ * @version 1.0
+ * */
 public class WekaClusteringLauncher {
 
 	private static Instances data = null;
 	private static SimpleKMeans clusterer = null;
 	private static WekaSimpleKMeansCluster wekaKMeans = null;
-
-//	public WekaClusteringLauncher() throws Exception {
-//		new WekaClusteringLauncher(null);
-//	}
-
+	
+	/**
+	 * Constructor partiendo de un archivo ARFF con las instancias
+	 * de clustering formadas.
+	 * 
+	 * @param pathFileARFF
+	 * 			Ruta del fichero ARFF
+	 * */
 	public WekaClusteringLauncher(String pathFileARFF) throws Exception {
 		BufferedReader reader = new BufferedReader(new FileReader(pathFileARFF));
 		this.data = new Instances(reader);
@@ -44,30 +56,26 @@ public class WekaClusteringLauncher {
 
 		executeWekaKMeans();
 	}
-
-	public void WekaClusteringModelLauncher(String pathModelWeka)
-			throws Exception {
-		ArffLoader loader = new ArffLoader();
-		loader.setFile(new File(pathModelWeka));
-		this.data = loader.getStructure();
-
-		data.deleteStringAttributes();
-
-		executeWekaKMeans();
-	}
 	
+	/**
+	 * Constructor base.
+	 * Conecta con la base de datos y trae los datos de la tabla donde se almacenan los pesos de album.
+	 * Ejecuta la funci贸n <code>executeWekaKmeans</code> para obtener el dataset y el clustering.
+	 * */
 	public WekaClusteringLauncher() {
 	    InstanceQuery query;
 	    boolean ok = false;
+	    Properties properties = getPropertiesBD();
         try {
-            /********************************
-             * Instances for Database
-             ********************************/
+        	/*
+        	 * ****************************
+        	 *    Instances for Database
+        	 * ****************************
+        	 * */
             query = new InstanceQuery();
-            //query.setUsername(properties.getValorPropiedad("username"));
-            //query.setPassword(properties.getValorPropiedad("password"));
-            query.setUsername("postgres");
-            query.setPassword("root");
+            query.setUsername(properties.getProperty("username"));
+            query.setPassword(properties.getProperty("password"));
+
             query.setQuery("SELECT * FROM \"PESOSALBUM\"");
             
             Log.log("Todo va bien. Estamos conectando con la base de datos para traer los pesos de los albums...");
@@ -79,34 +87,61 @@ public class WekaClusteringLauncher {
             ok = true;
         } catch (WekaException e) {
             e.printStackTrace();
-            Log.log(e, "Excepci梟 Weka! " + e.getMessage());
+            Log.log(e, "Excepci贸n Weka! " + e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
-            Log.log(e, "Excepci梟 E/S! " + e.getMessage());
+            Log.log(e, "Excepci贸n E/S! " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            Log.log(e, "Excepci梟 General! " + e.getMessage());
+            Log.log(e, "Excepci贸n General! " + e.getMessage());
         } finally {
             if (ok) {
-                Log.log("OK! Construcci梟 weka-clustering terminada");
+                Log.log("OK! Construcci贸n weka-clustering terminada");
             }
         }
 	}
 	
+	/**
+	 * Funci贸n que lanza el clustering partiendo de un fichero con el modelo de datos Weka
+	 * 
+	 * @param pathModelWeka
+	 * 			Ruta del fichero con el modelo
+	 * 
+	 * @exception Exception
+	 * */
+	public void WekaClusteringModelLauncher(String pathModelWeka)
+			throws Exception {
+		ArffLoader loader = new ArffLoader();
+		loader.setFile(new File(pathModelWeka));
+		this.data = loader.getStructure();
+
+		data.deleteStringAttributes();
+
+		executeWekaKMeans();
+	}
+	
+	/**
+	 * Funci贸n para conectar a la base de datos del sistema y recoger los datos de
+	 * la tabla PESOSALBUM para generar el data set.
+	 * 
+	 * @return Data set de datos con los pesos de albums: ResultSet
+	 * */
 	protected ResultSet connectToDataBase() {
+		Properties properties = getPropertiesBD();
 	    ResultSet results = null;
         try {
-            /*******************************
-             * General from Database
-             *******************************/
-            String driverPostgre = "jdbc:postgresql";
-            String database = "//localhost:5432/SRIBDATOS";
-            String username = "postgres";
-            String password = "root";
+        	/*
+        	 * *****************************
+        	 *    Conexi贸n general BD
+        	 * *****************************
+        	 * */
+            String database = properties.getProperty("url");
+            String username = properties.getProperty("username");
+            String password = properties.getProperty("password");
             
-            // Create and Check Connection
-            Class.forName("org.postgresql.Driver");
-            Connection db = DriverManager.getConnection(driverPostgre + ":" + database, username, password);
+            // Conexi贸n
+            Class.forName(properties.getProperty("driver"));
+            Connection db = DriverManager.getConnection(database, username, password);
             DatabaseMetaData dbmd = db.getMetaData();
             
             // Query
@@ -121,7 +156,22 @@ public class WekaClusteringLauncher {
         }
         return results;
 	}
-
+	
+	/**
+	 * Funci贸n que parametriza el proceso para crear el clusterting:
+	 * 
+	 * 	Algoritmo: Simple K Means
+	 * 	Num. Clusters: 8
+	 * 	Max. Iteraciones: 500
+	 * 	Funci贸n de distancia: Euclidea
+	 * 
+	 * Descarta los atributos nominales: 脕lbum, Artista e id de album en BD.
+	 * 
+	 * Da valor al atributo SimpleKMeans.
+	 * Siempre debe invocarse a esta funci贸n una vez tenemos un dataset de datos.
+	 * 
+	 * @exception Exception
+	 * */
 	protected void executeWekaKMeans() throws Exception {
 	    Instances dataAux;
 		String[] options = new String[2];
@@ -135,7 +185,7 @@ public class WekaClusteringLauncher {
 		clusterer.setSeed(10);
 		
 		/*
-		 * Filtro para los atributos de Identificador (0) 鏻bum (1) Artista (2) y Id de Album (21)
+		 * Filtro para los atributos de Identificador (0) 脕lbum (1) Artista (2) y Id de Album (21)
 		 * 
 		 * */
 		int[] attributes = {0, 1, 2, 21};
@@ -145,7 +195,7 @@ public class WekaClusteringLauncher {
 		rm.setInputFormat(data);
 		dataAux = Filter.useFilter(data, rm);
 
-		// Funci梟 de c噇culo de distancias: Euclidea
+		// Funci贸n de c谩lculo de distancias: Euclidea
 		EuclideanDistance df = new EuclideanDistance(dataAux);
 		df.setAttributeIndices("first-last");
 		df.setDontNormalize(false);
@@ -153,29 +203,54 @@ public class WekaClusteringLauncher {
 
 		clusterer.setDistanceFunction(df);
 
-		// Construcci梟 del clusterer con las instancias traidas
+		// Construcci贸n del clusterer con las instancias traidas
 		Log.log("Estamos construyendo el clusterer. Parametros Weka-Clusterer:");
 		Log.log(" -Algoritmo: SimpleKMeans");
 		Log.log(" -Num. Clusters: 8");
 		Log.log(" -Max. Iteraciones: 500");
-		Log.log(" -Funci梟 de distancias: Euclidea");
+		Log.log(" -Funci贸n de distancias: Euclidea");
 		clusterer.buildClusterer(dataAux);
 
 	}
-
+	
+	/**
+	 * Genera los datos para el atributo de la clase WekaSimpleKMeansCluster una vez
+	 * tenemos el dataset de datos y el clustering formado.
+	 * 
+	 * @param data
+	 * 			Objetdo de Instances de weka
+	 * 
+	 * @deprecated
+	 * */
 	protected void generarWekaSimpleKMeans(Instances data) {
 		WekaDatosCluster wekaDatosCluster = new WekaDatosCluster(data);
 		wekaKMeans = new WekaSimpleKMeansCluster();
 		wekaKMeans.setInputData(wekaDatosCluster);
 	}
-
+	
+	/**
+	 * Para una instancia de WekaSRIInstance devuelve el cluster del clustering
+	 * al que pertenece.
+	 * Una vez tenemos el dataset y el clustering formado.
+	 * 
+	 * @param wekaInst
+	 * 			Instancia de la clase WekaSRIInstance
+	 * @return n煤mero de cluster: int
+	 * @exception Exception
+	 * */
 	protected int clasificarInstanciaWeka(WekaSRIInstance wekaInst)
 			throws Exception {
 		int cluster = wekaKMeans.clusterInstance(wekaInst.getInstance());
 
 		return cluster;
 	}
-
+	
+	/**
+	 * Funci贸n que evalua el clustering devolviendo los datos de cada cluster
+	 * as铆 como su centroide y n煤mero de elementos (%) en cada uno de ellos.
+	 * 
+	 * @return Informaci贸n del clustering: String
+	 * */
 	protected String evaluadorClusterer() {
 		ClusterEvaluation eval = new ClusterEvaluation();
 		if (this.clusterer != null)
@@ -184,6 +259,15 @@ public class WekaClusteringLauncher {
 		return eval.clusterResultsToString();
 	}
 	
+	/**
+	 * Almacena las instacias de weka en un archivo ARFF propio de Weka.
+	 * El fichero se guarda con la cabecera de fecha y hora en el directorio del proyecto TEMP.
+	 * 
+	 * @param data
+	 * 			Objeto de Instances
+	 * @return archivo para almacenar: ArffSaver
+	 * @exception IOException
+	 * */
 	protected ArffSaver volcarDatsets(Instances data) throws IOException {        
         ArffSaver guardarARFF = new ArffSaver();        
         String arff = ".arff";
@@ -197,81 +281,17 @@ public class WekaClusteringLauncher {
         
         return guardarARFF;
     }
-
-	public static void main(String[] args) throws Exception {
-//		WekaClusteringLauncher launcher = null;
-//		if (args.length != 1) {
-//			launcher = new WekaClusteringLauncher(
-//					"/Users/sergionavarro/PFC/PesosAlbums_Titulados.arff");
-//		} else {
-//			launcher = new WekaClusteringLauncher(args[0]);
-//		}
-	    
-	    WekaClusteringLauncher launcher = new WekaClusteringLauncher();
-
-		// launcher.generarWekaSimpleKMeans(data);
-
-		double[] attValues = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
-
-		WekaSRIInstance inst = new WekaSRIInstance(1.0, attValues);
-
-		AnalysisFactory.buildFactory();
-
-		WekaDatosCluster wekaDatosCluster = (WekaDatosCluster) AnalysisFactory
-				.createRawData(data);
-		wekaKMeans = new WekaSimpleKMeansCluster();
-		wekaKMeans.setInputData(wekaDatosCluster);
-		wekaKMeans.setK(clusterer.numberOfClusters());
-		wekaKMeans.setSimpleKMeans(clusterer);
-
-		int iCluster = launcher.clasificarInstanciaWeka(inst);
-
-		Instance centroide = clusterer.getClusterCentroids().instance(iCluster);
-
-		double dEuclidea = wekaDatosCluster.getDistanciaEuclideaCentroide(
-				centroide.toDoubleArray(), attValues);
-		
-		/*
-		 * Elimino el id de la tabla del dataset
-		 * */
-		
-		int[] attributes = {0};
-        Remove rm = new Remove();
-        
-        rm.setAttributeIndicesArray(attributes);
-        rm.setInputFormat(data);
-        data = Filter.useFilter(data, rm);
-		
-		WekaSRIInstance[] instCluster = wekaKMeans.getWekaSRIInstancesDCluster(data.enumerateInstances(), iCluster);
-		WekaSRIInstance[] similares = wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance(), 5);
-		
-		ClusterEvaluation eval = new ClusterEvaluation();
-		eval.setClusterer(clusterer);
-		
-		/*
-		 * Imprimir resultados:
-		 * */
-		System.out.println("AN鏛ISIS NUEVO ELEMENTO ALBUM");
-		System.out.println("==============================\n");
-		System.out.println("G巒eros y valores del album:");
-		System.out.println("G巒ero         Peso");
-		System.out.println("-------------------");
-		System.out.println(inst.toString() + "\n");
-		System.out.println(" > Album clasificado en el cluster #" + iCluster);
-		System.out.println(" > Distancia Euclidea con centroide: " + dEuclidea);
-		System.out.println("\nALBUMS RECOMENDADOS (5):");
-		for(int i = 0; i < similares.length; i++) {
-//			WekaSRIInstance similar = new WekaSRIInstance(1.0, similares[i].toDoubleArray());
-//			double dEuclideaSimilar = wekaDatosCluster.getDistanciaEuclidea(attValues, similares[i].toDoubleArray());
-//			System.out.println(" > Instancia #" + i + ":   (dE: " + dEuclideaSimilar + ")");
-			System.out.println();
-			System.out.println("G巒ero         Peso");
-			System.out.println("-------------------");
-			System.out.println(similares[i].toString());
+	
+	private Properties getPropertiesBD() {
+		Properties properties = new Properties();
+		try {
+			properties.load(new FileInputStream(KSistema.Recursos.PATH_DATABASE_PROPERTIES));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-
+		return properties;
 	}
 
 }

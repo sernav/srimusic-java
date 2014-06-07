@@ -3,6 +3,13 @@ package es.uclm.sri.clustering.weka;
 import es.uclm.sri.sis.utilidades.Utils;
 import weka.core.Instance;
 
+/**
+ * Entidad de una instancia del sistema para Weka. Extiende de Instance.
+ * Los atributos se corresponden con los tags del sistema para identificar discos.
+ * 
+ * @author Sergio Navarro
+ * @version 1.0
+ * */
 public final class WekaSRIInstance extends Instance {
 
 	Instance instance = null;
@@ -29,12 +36,18 @@ public final class WekaSRIInstance extends Instance {
 	protected Double funk = Double.NaN;
 	protected Double instrumental = Double.NaN;
 	protected Double grunge = Double.NaN;
-
+	
+	/**
+	 * Constructor vacío
+	 * */
 	public WekaSRIInstance() {
 		super();
 		instance = new Instance(1.0, addAttValues());
 	}
 	
+	/**
+	 * Constructor con título y artista de album. Atributos vacíos.
+	 * */
 	public WekaSRIInstance(String titulo, String artista) {
 		super();
 		this.titulo = titulo;
@@ -42,18 +55,27 @@ public final class WekaSRIInstance extends Instance {
 		instance = new Instance(1.0, addAttValues());
 	}
 	
+	/**
+	 * Constructor con una instancia de Weka
+	 * */
 	public WekaSRIInstance(Instance instance) {
 		super();
 		this.instance = instance;
 	}
 	
+	/**
+	 * Constructor para una instancia de Weka con título y artista de album
+	 * */
 	public WekaSRIInstance(Instance instance, String titulo, String artista) {
 		super();
 		this.titulo = titulo;
 		this.artista = artista;
 		this.instance = instance;
 	}
-
+	
+	/**
+	 * Constructor con todos los atributos por parámetro
+	 * */
 	public WekaSRIInstance(double dsinger, double drap, double dambient,
 			double dindie, double dblues, double dreggae, double dpunk,
 			double dheavy, double dalternative, double dclassic,
@@ -66,19 +88,28 @@ public final class WekaSRIInstance extends Instance {
 				dgrunge);
 		instance = new Instance(1.0, attValues);
 	}
-
+	
+	/**
+	 * Constructor con los pesos de album para el tipo primitivo <code>double</code>
+	 * */
 	public WekaSRIInstance(double weight, double[] attValues) {
 		super();
 		attValues = attInitValues(attValues);
 		instance = new Instance(weight, attValues);
 	}
 	
+	/**
+	 * Constructor con los pesos de album para el Double
+	 * */
 	public WekaSRIInstance(double weight, Double[] attValues) {
 	    super();
         double[] auxAttValues = attInitValues(Utils.toDoubleArray(attValues));
         instance = new Instance(weight, auxAttValues);
     }
-
+	
+	/**
+	 * Constructor para un array de pesos junto al título y artista del album
+	 * */
     public WekaSRIInstance(double weight, double[] attValues, String titulo, String artista) {
 		super();
 		this.titulo = titulo;
@@ -87,6 +118,10 @@ public final class WekaSRIInstance extends Instance {
 		instance = new Instance(weight, attValues);
 	}
     
+    /**
+     * Constructor para un array de pesos junto al título y artista del album + el identificador de BD del 
+     * registro de dicho album en la tabla PesosAlbum.
+     * */
     public WekaSRIInstance(double weight, double[] attValues, String titulo, String artista, int idPesosAlbum) {
         super();
         this.titulo = titulo;
@@ -388,7 +423,7 @@ public final class WekaSRIInstance extends Instance {
 
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder();
-		strBuilder.append("T�tulo: " + titulo + "\n");
+		strBuilder.append("Título: " + titulo + "\n");
 		strBuilder.append("Artista: " + artista + "\n");
 		if (singer.doubleValue() > 0)
 			strBuilder.append("singer       " + singer.doubleValue() + "\n");

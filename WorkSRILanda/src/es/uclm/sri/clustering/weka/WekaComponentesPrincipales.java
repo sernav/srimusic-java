@@ -10,18 +10,19 @@ import es.uclm.sri.clustering.ClusterException;
 import es.uclm.sri.clustering.IAnalisisDComponentesPrincipales;
 import es.uclm.sri.clustering.ICluster;
 import es.uclm.sri.clustering.IDatosCluster;
+import es.uclm.sri.sis.log.Log;
 
 /**
- * An�lisis de componentes principales (PCA) en Weka
+ * Análisis de componentes principales (PCA) en Weka.
+ * Implementa la inteface IAnalisisDComponentesPrincipales
  * 
- * @author sernav
+ * @author Sergio Navarro
  * @version 1.0
- * @since 1.0
  */
 public class WekaComponentesPrincipales implements
 		IAnalisisDComponentesPrincipales {
 
-	// the cluster descriptions
+	// Atributos de descripción del cluster
 	private IDatosCluster inputData = null;
 	private Instances instances = null;
 	private Instances components = null;
@@ -35,10 +36,10 @@ public class WekaComponentesPrincipales implements
 	private int maxComponents = 2;
 
 	/**
-	 * Package-protected constructor.
+	 * Constructor protegido
 	 * 
-	 * @param cubeData
-	 * @param factory
+	 * @param rawData
+	 * 			IDatosCluster
 	 */
 	WekaComponentesPrincipales(IDatosCluster rawData) {
 		this.rawData = rawData;
@@ -47,12 +48,12 @@ public class WekaComponentesPrincipales implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.PrincipalComponentsAnalysisInterface#doPCA()
+	 * @see clustering.IAnalisisDComponentesPrincipales#doPCA()
 	 */
 	public void doPCA() throws ClusterException {
 
 		if (this.rawData != null) {
-			// this code is for performing PCA on the full data set
+			// Ejecuta el PCA para el dataset ya completo
 			try {
 				this.pca = new PrincipalComponents();
 				if (this.maxComponents > 0)
@@ -71,12 +72,11 @@ public class WekaComponentesPrincipales implements
 				components = pca.transformedData(instances);
 				transformed = new WekaDatosCluster(components);
 			} catch (Exception e) {
-				System.err.println("Error performing PCA on dataset");
+				Log.log(e, "Error al ejecutar PCA para el dataset");
 				e.printStackTrace(System.err);
 			}
 		} else {
-			// this code is for performing correlation analysis on two
-			// components.
+			// Análisis de correlación para dos componentes
 			ArrayList<String> names = new ArrayList<String>();
 			for (int i = 0; i < maxComponents; i++) {
 				names.add(clusters[i].getName()); // <-- OJO
@@ -97,7 +97,7 @@ public class WekaComponentesPrincipales implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * clustering.PrincipalComponentsAnalysisInterface#getComponentDescription
+	 * clustering.IAnalisisDComponentesPrincipales#getComponentDescription
 	 * (int)
 	 */
 	public ClusterDescripcion getComponentDescription(int i)
@@ -109,7 +109,7 @@ public class WekaComponentesPrincipales implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * clustering.PrincipalComponentsAnalysisInterface#setInputData(clustering
+	 * clustering.IAnalisisDComponentesPrincipales#setInputData(clustering
 	 * .IDatosCluster)
 	 */
 	public void setInputData(IDatosCluster inputData) {
@@ -121,7 +121,7 @@ public class WekaComponentesPrincipales implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * clustering.PrincipalComponentsAnalysisInterface#getCorrelationCoefficients
+	 * clustering.IAnalisisDComponentesPrincipales#getCorrelationCoefficients
 	 * ()
 	 */
 	public double[][] getCorrelationCoefficients() {
@@ -143,17 +143,16 @@ public class WekaComponentesPrincipales implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.PrincipalComponentsAnalysisInterface#getResults()
+	 * @see clustering.IAnalisisDComponentesPrincipales#getResults()
 	 */
 	public IDatosCluster getResults() {
-		// assert components != null : components;
 		return transformed;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.PrincipalComponentsAnalysisInterface#reset()
+	 * @see clustering.IAnalisisDComponentesPrincipales#reset()
 	 */
 	public void reset() {
 	}
@@ -161,7 +160,7 @@ public class WekaComponentesPrincipales implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.PrincipalComponentsAnalysisInterface#getClusters()
+	 * @see clustering.IAnalisisDComponentesPrincipales#getClusters()
 	 */
 	public IDatosCluster[] getClusters() {
 		if (this.clusterer != null) {
@@ -177,15 +176,13 @@ public class WekaComponentesPrincipales implements
 			int[] counters = new int[k];
 
 			for (int i = 0; i < k; i++) {
-				// we have to do this check, because sometimes Weka creates
-				// empty clusters, and removes them.
-				if (i >= clusterSizes.length)
-					instances[i] = new Instances(
-							(Instances) (transformed.getData()), 0);
-				else
-					instances[i] = new Instances(
-							(Instances) (transformed.getData()),
+				// Comprobación para clusters que Weka los cree vacíos.
+				if (i >= clusterSizes.length) {
+					instances[i] = new Instances((Instances) (transformed.getData()), 0);
+				} else {
+					instances[i] = new Instances((Instances) (transformed.getData()),
 							clusterSizes[i]);
+				}	
 				counters[i] = 0;
 			}
 
@@ -197,8 +194,7 @@ public class WekaComponentesPrincipales implements
 				double values[] = new double[2];
 				int location = clusterer.clusterInstance(i);
 				if (location < 0) {
-					location = instances.length - 1; // put the noise in the
-														// last cluster
+					location = instances.length - 1; // se almacena en el último cluster
 				}
 				values[0] = transformed.getValue(0, i);
 				values[1] = transformed.getValue(1, i);
@@ -216,14 +212,14 @@ public class WekaComponentesPrincipales implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see clustering.PrincipalComponentsAnalysisInterface#setClusterer()
+	 * @see clustering.IAnalisisDComponentesPrincipales#setClusterer()
 	 */
 	public void setClusterer(ICluster clusterer) {
 		this.clusterer = clusterer;
 	}
 
 	/**
-	 * @return the maxComponents
+	 * @return Número máximo de componentes
 	 */
 	public int getMaxComponents() {
 		return maxComponents;
@@ -231,7 +227,7 @@ public class WekaComponentesPrincipales implements
 
 	/**
 	 * @param maxComponents
-	 *            the maxComponents to set
+	 *            Número máximo de componenetes para el dataset
 	 */
 	public void setMaxComponents(int maxComponents) {
 		this.maxComponents = maxComponents;
