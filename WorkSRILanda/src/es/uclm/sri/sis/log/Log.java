@@ -41,7 +41,7 @@ public class Log {
     }
     
     /**
-     * Log espec�fico de las excepciones. Carga fichero concreto: XXXXX_SriLandaExeption.log
+     * Log específico de las excepciones. Carga fichero concreto: XXXXX_SriLandaExeption.log
      * 
      * @param mensaje: String
      * */
@@ -50,7 +50,7 @@ public class Log {
         log(exceptionLog, mensaje);
         if (exception != null)
             exception.printStackTrace(exceptionLog);
-        System.out.println(mensaje + "\n\t" + exception.toString());
+        System.err.println(mensaje + "\n\t" + exception.toString());
     }
     
     public static void log(String mensaje) {
@@ -58,7 +58,7 @@ public class Log {
     }
     
     /**
-     * Log espec�fico del scraping. Carga fichero concreto:  XXXXX_Sraping.log
+     * Log específico del scraping. Carga fichero concreto:  XXXXX_Sraping.log
      * 
      * @param mensaje: String
      * */
