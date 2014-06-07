@@ -4,8 +4,9 @@ import es.uclm.sri.sis.KSistema;
 import net.sf.ehcache.Element;
 
 /**
- * Crea y recupera instancias de <code>CacheClusters</code>. Utiliza el patrón
- * Singleton. Recoge elementos de la caché y actualiza la misma.
+ * Crea y recupera instancias de <code>CacheClusters</code>. Utiliza el patr√≥n
+ * Singleton. Recoge elementos de la cach√© y actualiza la misma.
+ * 
  * 
  * @author Sergio Navarro
  * */

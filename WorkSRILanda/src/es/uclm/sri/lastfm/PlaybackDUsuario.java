@@ -16,8 +16,8 @@ import es.uclm.sri.sis.log.Log;
 /**
  * 
  * La clase <code>PlaybackDUsuario</code> recoge los discos reproducidos
- * recientemente por un usuario de la aplicaci梟 web LastFm. Se utiliza el
- * proyecto lastfm-java que se comunica con la aplicaci梟 LastFm mediante los
+ * recientemente por un usuario de la aplicaci贸n web LastFm. Se utiliza el
+ * proyecto lastfm-java que se comunica con la aplicaci贸n LastFm mediante los
  * servicios web de su API.
  * 
  * @author Sergio Navarro
@@ -39,11 +39,11 @@ public class PlaybackDUsuario implements IAnalisisLastfm {
     }
 
     /**
-     * Inicia la sesi梟 de usuario mediante la key de LastFm para Sri.Landa y su
+     * Inicia la sesi贸n de usuario mediante la key de LastFm para Sri.Landa y su
      * clave secreta.
      * 
-     * Obtiene las reproducciones de un usuario concreto y, a trav巗 de 巗tas,
-     * sus albums recientes m噑 escuchados.
+     * Obtiene las reproducciones de un usuario concreto y, a trav茅s de 茅stas,
+     * sus albums recientes m谩s escuchados.
      * 
      * @param
      * @return
@@ -74,10 +74,10 @@ public class PlaybackDUsuario implements IAnalisisLastfm {
             ok = true;
         } catch (CallException e) {
             e.printStackTrace();
-            Log.log(e, "("+ PlaybackDUsuario.class.getSimpleName() + ") Excepci梟 LastFm! " + e.getMessage());
+            Log.log(e, "("+ PlaybackDUsuario.class.getSimpleName() + ") Excepci贸n LastFm! " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            Log.log(e, "("+ PlaybackDUsuario.class.getSimpleName() + ") Excepci梟 General! " + e.getMessage());
+            Log.log(e, "("+ PlaybackDUsuario.class.getSimpleName() + ") Excepci贸n General! " + e.getMessage());
         } finally {
             Log.log("Un total de " + this.hashAlbums.size() + " albums recopilados", 1);
         }

@@ -2,6 +2,10 @@ package es.uclm.sri.cache;
 
 import net.sf.ehcache.Cache;
 
+/**
+ * 
+ * @author Sergio Navarro
+ * */
 public interface ICache {
 	
 	public void getElementosTablaById(Integer identificador);

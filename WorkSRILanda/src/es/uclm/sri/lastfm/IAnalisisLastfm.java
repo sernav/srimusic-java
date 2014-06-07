@@ -2,10 +2,9 @@ package es.uclm.sri.lastfm;
 
 import de.umass.lastfm.Album;
 
-
 /**
+ *
  * @author Sergio Navarro
- * 
  * */
 public interface IAnalisisLastfm {
     
