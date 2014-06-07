@@ -3,7 +3,9 @@ package es.uclm.sri.cache;
 import org.w3c.dom.Element;
 
 /**
- * <code>Cache</code>
+ * Clase entidad <code>Cache</code>
+ * 
+ * (Singleton Pattern)
  * 
  * @author Sergio Navarro
  * */

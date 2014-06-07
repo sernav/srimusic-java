@@ -6,9 +6,9 @@ import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
 import es.uclm.sri.sis.KSistema;
 
 /**
- * Crea y recupera instancias de <code>CachePesosUsuario</code>. Utiliza el patrón
- * Singleton. Recoge elementos de la caché y actualiza la misma.
- * Si el elemento no está, se recupera de la tabla de base de datos.
+ * Crea y recupera instancias de <code>CachePesosUsuario</code>. Utiliza el patr√≥n
+ * Singleton. Recoge elementos de la cach√© y actualiza la misma.
+ * Si el elemento no est√°, se recupera de la tabla de base de datos.
  * 
  * @author Sergio Navarro
  * */

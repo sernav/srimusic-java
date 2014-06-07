@@ -3,6 +3,11 @@ package es.uclm.sri.cache.ehcache;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 
+/**
+ * EHCache Factory
+ * 
+ * @author Sergio Navarro
+ * */
 public class EhcacheFactory {
 	
 	private static CacheManager manager = new CacheManager();

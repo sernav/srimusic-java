@@ -5,8 +5,8 @@ import java.sql.Connection;
 import org.postgresql.core.v2.ConnectionFactoryImpl;
 
 /**
- * <code>AdmonCache</code> Instancia cachés por reflexión</br>
- * Utilidades para cachés del framework EHCaché.
+ * <code>AdmonCache</code> Instancia cach√©s por reflexi√≥n</br>
+ * Utilidades para cach√©s del framework EHCach√©.
  * 
  * @author Sergio Navarro
  * */
