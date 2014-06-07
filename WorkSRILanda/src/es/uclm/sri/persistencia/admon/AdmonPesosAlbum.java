@@ -11,9 +11,10 @@ import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.log.Log;
 
 /**
+ * Admon para atacar las operaciones de la tabla de base de datos PESOSALBUM.
+ * Utiliza XML de mapeo postgre.dao.sqlmap.PesosalbumMapper.xml
  * 
  * @author Sergio Navarro
- * @date Dic, 2013
  * */
 public class AdmonPesosAlbum extends AbstractAdmon {
 
@@ -24,38 +25,94 @@ public class AdmonPesosAlbum extends AbstractAdmon {
         this.mapper = session.getMapper(PesosalbumMapper.class);
     }
     
+    /**
+     * Devuelve entidad Pesosalbum por Id.
+     * 
+     * @param Id: Integer
+     * @return Pesosalbum
+     * */
     public Pesosalbum devolverPesosAlbums(Integer idPesosAlbum) {
         return mapper.selectByPrimaryKey(idPesosAlbum);
     }
 
+    /**
+     * Devuelve array de entidades Pesosalbum por nombre de artista.
+     * 
+     * @param artista: String
+     * @return Pesosalbum[]
+     * */
     public Pesosalbum[] devolverPesosAlbumsDArtista(String artista) {
         return mapper.selectByArtista(artista.trim());
     }
 
+    /**
+     * Devuelve array de entidades Pesosalbum por artista de Album
+     * 
+     * @param album: Album
+     * @return Pesosalbum[]
+     * */
     public Pesosalbum[] devolverPesosAlbumsDArtista(Album album) {
         return mapper.selectByArtista(album.getArtista().trim());
     }
 
+    /**
+     * Devuelve array de entidades Pesosalbum por artista de Album de lastfm
+     * 
+     * @param album: de.umass.lastfm.Album
+     * @return Pesosalbum[]
+     * */
     public Pesosalbum[] devolverPesosAlbumsDArtista(de.umass.lastfm.Album album) {
         return mapper.selectByArtista(album.getArtist().trim());
     }
 
+    /**
+     * Devuelve array de entidades Pesosalbum por título de album.
+     * 
+     * @param album: String
+     * @return Pesosalbum[]
+     * */
     public Pesosalbum[] devolverPesosAlbum(String album) {
         return mapper.selectByAlbum(album.trim());
     }
-
+    
+    /**
+     * Devuelve array de entidades Pesosalbum por Album
+     * 
+     * @param album: Album
+     * @return Pesosalbum[]
+     * */
     public Pesosalbum[] devolverPesosAlbum(Album album) {
         return mapper.selectByAlbum(album.getTitulo().trim());
     }
-
+    
+    /**
+     * Devuelve array de entidades Pesosalbum por Album de lastfm
+     * 
+     * @param album: de.umass.lastfm.Album
+     * @return Pesosalbum[]
+     * */
     public Pesosalbum[] devolverPesosAlbum(de.umass.lastfm.Album album) {
         return mapper.selectByAlbum(album.getName().trim());
     }
-
+    
+    /**
+     * Devuelve array de entidades Pesosalbum por título de album y artista
+     * 
+     * @param album: String
+     * @param artista: String
+     * @return Pesosalbum[]
+     * */
     public Pesosalbum[] devolverPesosAlbum(String album, String artista) {
         return mapper.selectByAlbumYArtista(album.trim(), artista.trim());
     }
-
+    
+    /**
+     * Devuelve un album ponderado (con sus pesos equilibrados) por album y artista
+     * 
+     * @param album: String
+     * @param artista: String
+     * @return AlbumPonderado
+     * */
     public AlbumPonderado devolverAlbumPonderado(String album, String artista) {
         Pesosalbum[] pesosAlbum = mapper.selectByAlbumYArtista(album.trim(), artista.trim());
         AlbumPonderado albumPonderado = new AlbumPonderado();
@@ -134,7 +191,12 @@ public class AdmonPesosAlbum extends AbstractAdmon {
         }
         return generos;
     }
-
+    
+    /**
+     * Inserta album ponderado
+     * 
+     * @param AlbumPonderado
+     * */
     public Pesosalbum insertarPesosAlbum(AlbumPonderado albumPonderado) throws SQLException, Exception {
         Pesosalbum record = convertirAlbumPonderado(albumPonderado);
         try {
@@ -145,7 +207,12 @@ public class AdmonPesosAlbum extends AbstractAdmon {
         return record;
 
     }
-
+    
+    /**
+     * Inserta entidad Pesosalbum
+     * 
+     * @param Pesosalbum
+     * */
     public void insertarPesosAlbum(Pesosalbum record) throws SQLException {
         try {
             mapper.insert(record);
@@ -154,6 +221,11 @@ public class AdmonPesosAlbum extends AbstractAdmon {
         }
     }
 
+    /**
+     * Actualiza registo de PESOSALBUM para un album ponderado
+     * 
+     * @param AlbumPonderado
+     * */
     public Pesosalbum actualizarPesosAlbum(AlbumPonderado albumPonderado) throws SQLException, Exception {
         Pesosalbum record = convertirAlbumPonderado(albumPonderado);
         try {
@@ -163,7 +235,12 @@ public class AdmonPesosAlbum extends AbstractAdmon {
         }
         return record;
     }
-
+    
+    /**
+     * Actualiza registo de PESOSALBUM
+     * 
+     * @param Pesosalbum
+     * */
     public int actualizarPesosAlbum(Pesosalbum record) {
         return mapper.updateByPrimaryKey(record);
     }

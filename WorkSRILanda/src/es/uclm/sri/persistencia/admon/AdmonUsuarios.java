@@ -10,9 +10,10 @@ import es.uclm.sri.persistencia.postgre.dao.DusuariosMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
 
 /**
+ * Admon para atacar las operaciones de la tabla de base de datos DUSUARIO
+ * Utiliza XML de mapeo postgre.dao.sqlmap.PesosusuarioMapper.xml
  * 
  * @author Sergio Navarro
- * @date Dic, 2013
  * */
 public class AdmonUsuarios extends AbstractAdmon {
 
@@ -23,6 +24,12 @@ public class AdmonUsuarios extends AbstractAdmon {
         this.mapper = session.getMapper(DusuariosMapper.class);
     }
 
+    /**
+     * Devuelver usuario por su nick
+     * 
+     * @param nick: String
+     * @return Dusuarios
+     * */
     public Dusuarios devolverUsuario(String nick) throws SQLException {
         try {
             return mapper.selectByNick(nick);
@@ -32,6 +39,12 @@ public class AdmonUsuarios extends AbstractAdmon {
         }
     }
 
+    /**
+     * Devuelver usuario por entidad User
+     * 
+     * @param user: User
+     * @return Dusuarios
+     * */
     public Dusuarios devolverUsuario(User user) throws SQLException {
         try {
             return mapper.selectByNick(user.getName());
@@ -41,6 +54,11 @@ public class AdmonUsuarios extends AbstractAdmon {
         }
     }
 
+    /**
+     * Inserta usuario por entidad Dusuarios
+     * 
+     * @param Dusuarios
+     * */
     public void insertarUsuario(Dusuarios record) throws SQLException {
         try {
             mapper.insert(record);
@@ -50,6 +68,11 @@ public class AdmonUsuarios extends AbstractAdmon {
 
     }
 
+    /**
+     * Inserta usuario por entidad User
+     * 
+     * @param user: User
+     * */
     public int insertarUsuario(User user) throws SQLException {
         Dusuarios record = new Dusuarios();
         record.setNICKUSER(user.getName());

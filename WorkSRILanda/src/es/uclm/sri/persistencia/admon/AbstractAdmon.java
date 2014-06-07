@@ -9,6 +9,12 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.sis.log.Log;
 
+/**
+ * Clase abstracta donde se invoca a la fábrica de conexiones y se obtiene una sesión.
+ * Todas las clases tipo "admon" deben extender de esta clase.
+ * 
+ * @author Sergio Navarro
+ * */
 public abstract class AbstractAdmon {
     
     static SqlSessionFactory sqlMapper;
