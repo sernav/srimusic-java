@@ -9,7 +9,7 @@ import es.uclm.sri.sis.log.Log;
  * jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the 
  * Standard for Fuzzy Control Programming.
  * 
- * Cingolani, Pablo, and Jesús Alcalá-Fdez.
+ * Cingolani, Pablo, and Jes√∫s Alcal√°-Fdez.
  * 
  * http://jfuzzylogic.sourceforge.net/
  * */
@@ -27,7 +27,10 @@ public final class MotorJFuzzyLogic {
         public static final String INPUT_ESCUCHAS_ACTUALES = "escuchas_actuales";
         public static final String OUTPUT = "salida";
     }
-
+    
+    /**
+     * Constructor con la ruta del fichero FCL.
+     * */
     public MotorJFuzzyLogic(String filename) {
         if (filename == null || filename.equals("")) {
             filename = Constantes.FILENAME;
@@ -39,7 +42,19 @@ public final class MotorJFuzzyLogic {
             System.exit(1);
         }
     }
-
+    
+    /**
+     * Funci√≥n principal.
+     * Ejecuta el sistema de reglas para las variables indicadas
+     * 
+     * @param variablesIn
+     * 			Array de nombres de variables de entrada
+     * @param valoresIn
+     * 			Array de valores de variables de entrada
+     * @param variableOut
+     * 			Variable resultante
+     * @return double
+     * */
     public double evaluar(String[] variablesIn, double[] valoresIn, String variableOut) {
         boolean ok = false;
         double resultado = 0;
@@ -65,13 +80,13 @@ public final class MotorJFuzzyLogic {
             Log.log("Evaluando variables de entrada: " + variablesIn[i] + " = " + valoresIn[i], 1);
         }
         
-        // Pintar gráfico con variables de entrada
+        // Pintar gr√°fico con variables de entrada
         // JFuzzyChart.get().chart(fb);
         
         // Evaluar
         fb.evaluate();
         
-        // Pintar gráfico con la salida
+        // Pintar gr√°fico con la salida
         // JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true);
 
         // Desborrosificar variable de salida
@@ -80,7 +95,7 @@ public final class MotorJFuzzyLogic {
         
         Log.log(tip.toStringCpp(), 1);
         
-        // Calcular valor de salida con la variable desborrosificada para actualizar peso histórico
+        // Calcular valor de salida con la variable desborrosificada para actualizar peso histÔøΩrico
         resultado = calculoResultado(tip.getValue(), valoresIn[0]*100, valoresIn[1]*100);
         
         // Resultados
@@ -95,26 +110,26 @@ public final class MotorJFuzzyLogic {
         
         } catch (Exception e) {
             e.printStackTrace();
-            Log.log(e, "(" + MotorJFuzzyLogic.class.getSimpleName() + ") Excepción Motor de Reglas! " + e.getMessage());
+            Log.log(e, "(" + MotorJFuzzyLogic.class.getSimpleName() + ") Excepci√≥n Motor de Reglas! " + e.getMessage());
         } finally {
             if (ok) {
-                Log.log("Proceso de evaluación de reglas para las variables finalizado con éxito", 1);
+                Log.log("Proceso de evaluaci√≥n de reglas para las variables finalizado con √©xito", 1);
             }
         }
         return resultado;  
     }
     
     private double calculoResultado(double salida, double historico, double actual) {
-        Log.log("Cálculo de resultado para actualizar el histórico de usuario", 1);
+        Log.log("C√°lculo de resultado para actualizar el hist√≥rico de usuario", 1);
         double aux = 0;
         if (salida > 0) {
             /*
-             * El valor actual supera al guardado en el histórico
+             * El valor actual supera al guardado en el hist√≥rico
              * */
             aux = actual * (salida / 100);
         } else {
             /*
-             * El valor de histórico es mayor que el actual
+             * El valor de hist√≥rico es mayor que el actual
              * */
             aux = historico * (salida / 100);
         }
