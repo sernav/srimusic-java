@@ -1,4 +1,4 @@
-package es.uclm.sri.sis.operaciones.csv;
+package es.uclm.sri.sis.procesos.csv;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,7 +17,7 @@ import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.utilidades.Utils;
 
 /**
- * Clase espec’fica para el tratamiento del CSV que contiene los albums.
+ * Clase especï¿½fica para el tratamiento del CSV que contiene los albums.
  * 
  * @author Sergio Navarro
  * */
@@ -76,7 +76,7 @@ public final class TratarCSVAlbum {
 	 * 
 	 * @parm albums: ArrayList<AlbumPonderado>
 	 * @parm generos: ArrayList<String>
-	 * @parm nœmero etiquetas: Int
+	 * @parm nï¿½mero etiquetas: Int
 	 * @parm destino CSV: String
 	 * */
 	public static void generarCSVAlbumPonderado(
@@ -130,13 +130,13 @@ public final class TratarCSVAlbum {
 			} finally {
 			}
 		}
-		System.out.println("ÁProceso finalizado!");
+		System.out.println("ï¿½Proceso finalizado!");
 		writer.close();
 	}
 
 	/**
 	 * Genera fichero CSV de album sin ponderar, con las etiquetas literales.
-	 * Las columnas son T’tulo + Artista + Fecha + N-Tags
+	 * Las columnas son Tï¿½tulo + Artista + Fecha + N-Tags
 	 * 
 	 * @parm albums: ArrayList<Album>
 	 * @parm etiquetas: Int
@@ -151,7 +151,7 @@ public final class TratarCSVAlbum {
 		 * Cabeceras de columnas
 		 */
 		try {
-			writer.write("T’tulo");
+			writer.write("Tï¿½tulo");
 			writer.write("Artista");
 			writer.write("Fecha");
 			if (numMaxEtiquetas > 1) {
@@ -159,8 +159,8 @@ public final class TratarCSVAlbum {
 					writer.write("Etiqueta " + i);
 				}
 			} else
-				writer.write("GŽnero");
-			writer.write("Pa’s");
+				writer.write("Gï¿½nero");
+			writer.write("Paï¿½s");
 			writer.endRecord();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

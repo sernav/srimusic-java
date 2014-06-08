@@ -1,42 +1,51 @@
-package es.uclm.sri.parches;
+package es.uclm.sri.sis.procesos;
 
 import java.util.ArrayList;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
-import es.uclm.sri.persistencia.ConnectionFactory;
-import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
+import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
-import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
+import es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
 
-public class CargarAlbumsPondsToDb {
+/**
+ * Almacena albums ponderados desde un fichero csv
+ * 
+ * @author Sergio Navarro
+ * */
+public class AlmacenarAlbumsPonderado {
 	
-	private static SqlSessionFactory sqlMapper;
-	private static SqlSession session = null;
+	private static String path;
 	
-	private static String path = "/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Ponderados.csv";
-
-	public static void main(String[] args) {
-		
-		establecerConexion();
-		sqlMapper.openSession();
-		PesosalbumMapper mapper = session.getMapper(PesosalbumMapper.class);
+	/**
+	 * Constructor con la ruta del fichero csv que contiene los albums ponderados
+	 * */
+	public AlmacenarAlbumsPonderado(String path) {
+		this.path = path;
+	}
+	
+	/**
+	 * Función principal de la clase. Utiliza la clase admon de pesos de album <code>AdmonPesosAlbum</code>
+	 * 
+	 * */
+	public void loadAlbumsPonderadosToBD() {
+		AdmonPesosAlbum admonPesosAlbum = new AdmonPesosAlbum();
 		
 		ArrayList<Pesosalbum> lPesos = getListaPesosDAlbum(path);
 		for (Pesosalbum pesos : lPesos) {
 			try {
-				mapper.insert(pesos);
+				admonPesosAlbum.insertarPesosAlbum(pesos);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
-		session.commit();
-		session.close();
 	}
 	
+	/**
+	 * Genera lista de pesos para cada uno de los albums del fichero csv
+	 * 
+	 * @param path fichero csv
+	 * @return ArrayList<Pesosalbum>
+	 * */
 	protected static ArrayList<Pesosalbum> getListaPesosDAlbum (String path) {
 		ArrayList<AlbumPonderado> lAlbums = TratarCSVAlbum.leerCVSAlbumsPonderado(path);
 		ArrayList<Pesosalbum> lPesos = new ArrayList<Pesosalbum>();
@@ -71,10 +80,6 @@ public class CargarAlbumsPondsToDb {
 		pesos.setINSTRUMENTAL(pesosAlbum[15]);
 		pesos.setAMBIENT(pesosAlbum[16]);
 		pesos.setREGGAE(pesosAlbum[17]);
-	}
-	
-	private static void establecerConexion() {
-		sqlMapper = ConnectionFactory.getSession();
 	}
 
 }
