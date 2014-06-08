@@ -82,7 +82,7 @@ public class ClustererSri {
     }
     
     protected void construirCluterer(Instances data) throws Exception {
-        Log.log("Construyendo clustering con Weka para los par‡metros configurados", 1);
+        Log.log("Construyendo clustering con Weka para los parÃ¡metros configurados", 1);
         Instances dataAux = null;
         String[] options = new String[2];
         options[0] = "-I"; // max. iterations
@@ -105,7 +105,7 @@ public class ClustererSri {
         rm.setInputFormat(data);
         dataAux = Filter.useFilter(data, rm);
 
-        // Funci—n de c‡lculo de distancias: Euclidea
+        // Funciï¿½n de cï¿½lculo de distancias: Euclidea
         EuclideanDistance df = new EuclideanDistance(dataAux);
         df.setAttributeIndices("first-last");
         df.setDontNormalize(false);
@@ -114,12 +114,12 @@ public class ClustererSri {
         clusterer.setDistanceFunction(df);
         
         Log.log("-Algoritmo: SimpleKMeans", 1);
-        Log.log("-Funci—n de c‡lculo de distancias: D. Euclidea", 1);
-        Log.log("-Nœmero de clusters: 8", 1);
-        Log.log("-Nœmero de iteraciones: 500", 1);
+        Log.log("-FunciÃ³n de cÃ¡lculo de distancias: D. Euclidea", 1);
+        Log.log("-NÃºmero de clusters: 8", 1);
+        Log.log("-NÃºmero de iteraciones: 500", 1);
 
-        // Construcci—n del clusterer con las instancias traidas
-        Log.log("Construcci—n del clusterer con las instancias traidas...", 1);
+        // ConstrucciÃ³n del clusterer con las instancias traidas
+        Log.log("ConstrucciÃ³n del clusterer con las instancias traidas...", 1);
         clusterer.buildClusterer(dataAux);
         
         ClusterEvaluation eval = new ClusterEvaluation();
