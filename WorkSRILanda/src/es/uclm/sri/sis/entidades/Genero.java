@@ -1,9 +1,9 @@
 package es.uclm.sri.sis.entidades;
 
 /**
- * <code>Genero</code> es la clase que representa la entidad de género de album para Sri.Landa</br>
- * Los géneros de album sirven para la ponderación de los mismos, ya que representa la claficación
- * por etiquetas no numéricas.
+ * <code>Genero</code> es la clase que representa la entidad de g√©nero de album para Sri.Landa</br>
+ * Los g√©neros de album sirven para la ponderaci√≥n de los mismos, ya que representa la claficaci√≥n
+ * por etiquetas no num√©ricas.
  * 
  * @author Sergio Navarro
  * */

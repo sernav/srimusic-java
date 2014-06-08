@@ -17,7 +17,7 @@ import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
 /**
  * Recoge los tags de cada uno de los discos y
- * los translada a géneros estandar del sistema. Calcula el peso de cada género
+ * los translada a g√©neros estandar del sistema. Calcula el peso de cada g√©nero
  * estandar para cada disco.
  * 
  * La suma de todos los pesos de un album es igual a 1.
@@ -26,7 +26,7 @@ import es.uclm.sri.sis.utilidades.UtilsDAlbum;
  * @author Sergio Navarro
  * @date Dic, 2013
  * */
-public class PonderacionDAlbum implements IPonderacion, IOperacion {
+public class PonderacionDAlbum implements IOperacion {
 
     private Album album;
     private de.umass.lastfm.Album albumLastfm;
@@ -38,6 +38,9 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
 
     private static final Logger logger = Logger.getLogger(PonderacionDAlbum.class);
 
+    /**
+     * Constructor desde la entidad Album del sistema
+     * */
     public PonderacionDAlbum(Album album) {
         this.album = album;
         this.albumLastfm = null;
@@ -48,6 +51,9 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
         cargarGenerosEstandar();
     }
 
+    /**
+     * Constructor desde la entidad Album de Lastfm
+     * */
     public PonderacionDAlbum(de.umass.lastfm.Album albumLastfm) {
         this.albumLastfm = albumLastfm;
         this.album = null;
@@ -59,8 +65,8 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     }
 
     /**
-     * Función que agrupa las operaciones para estandarizar y ponderar un album.
-     * Primero se estandariza y después calcula sus pesos.
+     * Funci√≥n que agrupa las operaciones para estandarizar y ponderar un album.
+     * Primero se estandariza y despu√©s calcula sus pesos.
      * 
      * @param
      * @return AlbumPonderado
@@ -86,7 +92,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
             crearAlbumPonderado();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.log(e, "(" + PonderacionDAlbum.class.getSimpleName() + ") Excepción General! Procesando " + e.getMessage());
+            Log.log(e, "(" + PonderacionDAlbum.class.getSimpleName() + ") Excepci√≥n General! Procesando " + e.getMessage());
         }
 
         return this.albumPonderado;
@@ -95,7 +101,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     /**
      * Las instancias de <code>AlbumPonderado</code> extienden de la clase
      * <code>Album</code> y le agrega el vector de pesos ponderados. El vector
-     * se costruye con los géneros estandarizados.
+     * se costruye con los g√©neros estandarizados.
      * 
      * Da valor al atributo <code>albumPonderado</code> de this.
      * 
@@ -108,7 +114,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     }
 
     /**
-     * Con la lista de géneros de estandarizados, la cual tiene el valor crea un
+     * Con la lista de g√©neros de estandarizados, la cual tiene el valor crea un
      * vector de valores.
      * 
      * @param
@@ -131,7 +137,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     }
 
     /**
-     * Inicializa el vector de doble presición a cero.
+     * Inicializa el vector de doble presici√≥n a cero.
      * 
      * @param Double[]
      * @return Double[]
@@ -146,10 +152,10 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
 
     /**
      * Recoge los tags de un album, bien desde el propio album, desde los tracks
-     * del album o, en última instancia, del artista.
+     * del album o, en √∫ltima instancia, del artista.
      * 
      * Descompone en tags simples y lo transforma en un tag estandar de la
-     * aplicación.
+     * aplicaci√≥n.
      * 
      * @param
      * @return ArrayList<String>
@@ -187,8 +193,8 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     }
 
     /**
-     * Estandariza un tag simple. Comprueba que el tag está en la lista de
-     * géneros del archivo de propiedades y lo devuelve.
+     * Estandariza un tag simple. Comprueba que el tag est√° en la lista de
+     * g√©neros del archivo de propiedades y lo devuelve.
      * 
      * @param String
      * @return String
@@ -215,7 +221,7 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     }
 
     /**
-     * El tag está en los elementos de género.
+     * El tag est√° en los elementos de g√©nero.
      * 
      * @param StringTokenizer
      * @param String
@@ -265,18 +271,19 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
     }
 
     /**
-     * Calcula los pesos de los géneros. El peso de cada género se recalcula en
-     * función del número de géneros que tiene el album.
+     * Calcula los pesos de los g√©neros. El peso de cada g√©nero se recalcula en
+     * funci√≥n del n√∫mero de g√©neros que tiene el album.
      * 
-     * Ng = Número de géneros Na = Número apariciones de un género en el album
-     * Pu = Peso unidad de aparición Pg = Peso de género
+     * Ng = N√∫mero de g√©neros Na = N√∫mero apariciones de un g√©nero en el album
+     * Pu = Peso unidad de aparici√≥n Pg = Peso de g√©nero
      * 
      * Pu = 1 / Ng Pg = Na * Pu
      * 
-     * El valor se setea al género correspondiente.
+     * El valor se setea al g√©nero correspondiente.
      * 
      * @param
      * @return
+     * @exception Exception
      * */
     public void calcularPesos() throws Exception {
         try {
@@ -291,15 +298,15 @@ public class PonderacionDAlbum implements IPonderacion, IOperacion {
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            Log.log(e, "(" + PonderacionDAlbum.class.getSimpleName() + ") Excepción Calculando Pesos" + e.getMessage());
+            Log.log(e, "(" + PonderacionDAlbum.class.getSimpleName() + ") Excepci√≥n Calculando Pesos" + e.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
-            Log.log(e, "(" + PonderacionDAlbum.class.getSimpleName() + ") Excepción Calculando Pesos" + e.getMessage());
+            Log.log(e, "(" + PonderacionDAlbum.class.getSimpleName() + ") Excepci√≥n Calculando Pesos" + e.getMessage());
         }
     }
 
     /**
-     * Número de ocurrencias de un género
+     * N√∫mero de ocurrencias de un g√©nero
      * 
      * @param ArrayList<Genero>
      * @return int

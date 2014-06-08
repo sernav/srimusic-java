@@ -8,9 +8,9 @@ import es.uclm.sri.clustering.weka.WekaSRIInstance;
 import es.uclm.sri.sis.KSistema;
 
 /**
+ * Representa la recomendación compleja con todos los elementos.
  * 
  * @author Sergio Navarro
- * @since Jan, 2014
  */
 public class Recomendacion {
 

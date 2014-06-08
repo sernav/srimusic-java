@@ -30,7 +30,7 @@ import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.utilidades.Utils;
 
 /**
- * Clase principal para lanzar el clustering
+ * Clase principal para construir el clustering
  * 
  * @author Sergio Navarro
  * @version 1.0

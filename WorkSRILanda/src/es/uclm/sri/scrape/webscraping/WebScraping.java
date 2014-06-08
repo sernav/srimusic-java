@@ -33,7 +33,7 @@ public class WebScraping {
 	public static final String XSLT_TEMPLATE_URL = "WebScrapingTemplate.xsl";
 
 	/**
-	 * Procesando la l�nea de comandos.
+	 * Procesando línea de comandos.
 	 * 
 	 * @param args args[0]: URL con la web HTML. args[1] Localización de la plantilla XSLT
 	 * @since 0.1

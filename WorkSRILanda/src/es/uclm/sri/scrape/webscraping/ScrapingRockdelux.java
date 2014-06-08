@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
 import es.uclm.sri.scrape.AbstractWebScraping;
 import es.uclm.sri.sis.entidades.Album;
 import es.uclm.sri.sis.log.Log;
-import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
+import es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
 
 /**
  * Producto concreto de la web Rockdelux.

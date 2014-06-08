@@ -4,16 +4,18 @@ import java.util.Date;
 
 import de.umass.lastfm.User;
 
+/**
+ * Entidad Usuario de sistema. Datos básicos de un usuario y el canal inductor
+ * por el que llega al sistema (importante para recoger sus escuchas)
+ * 
+ * @author Sergio Navarro
+ * */
 public class Usuario {
 
     private String nick;
-
     private String nombreCompleto;
-
     private String mailRegistro;
-
     private Date fechaRegistro;
-
     private String inductor;
 
     public Usuario(String nick, String nombreCompleto, String mailRegistro, Date fechaRegistro, String inductor) {

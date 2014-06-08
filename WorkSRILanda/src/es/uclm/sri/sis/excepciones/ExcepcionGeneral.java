@@ -2,16 +2,18 @@ package es.uclm.sri.sis.excepciones;
 
 import es.uclm.sri.sis.log.Log;
 
+/**
+ * Personalización de <code>Exception</code>
+ * 
+ * @author Sergio Navarro
+ * */
 public class ExcepcionGeneral extends Exception {
 
     private static final long serialVersionUID = 1L;
 
     private Throwable exception;
-
     private String codigoError;
-
     private String mensajeError;
-
     private String mensajeHtmlError;
 
     public ExcepcionGeneral(String codigoError, String mensajeError) {

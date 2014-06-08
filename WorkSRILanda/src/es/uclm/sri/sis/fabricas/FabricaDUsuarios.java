@@ -18,8 +18,8 @@ import es.uclm.sri.sis.log.Log;
 import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
 /**
- * Construye el usuario, as’ como sus pesos e invoca al sistema de reglas de
- * c‡lculo de pesos para actualizarlos.
+ * Construye el usuario, asÃ­ como sus pesos e invoca al sistema de reglas de
+ * cÃ¡lculo de pesos para actualizarlos.
  * 
  * @author Sergio Navarro
  * */
@@ -67,13 +67,13 @@ public class FabricaDUsuarios implements IFabrica {
     }
     
     /**
-     * Funci—n principal de las f‡bricas, comœn a todas las fabricas que implementan la 
+     * FunciÃ³n principal de las fÃ¡bricas, comÃºn a todas las fabricas que implementan la 
      * interface IFabrica.
      * 
-     * La f‡brica sigue el siguente proceso de construcci—n de usuario:
-     *  1. Busca al usuario en el sistema. De no existir crea el usaurio con los datos b‡sicos.
-     *  2. Si el usuario existe, recoge el hist—rico de pesos del mismo.
-     *  3. Con los pesos del hist—rico y los actuales, invoca al sistema de reglas.
+     * La fÃ¡brica sigue el siguente proceso de construcciÃ³n de usuario:
+     *  1. Busca al usuario en el sistema. De no existir crea el usaurio con los datos bÃ¡sicos.
+     *  2. Si el usuario existe, recoge el histÃ³rico de pesos del mismo.
+     *  3. Con los pesos del histÃ³rico y los actuales, invoca al sistema de reglas.
      *  
      * @exception SQLException
      * */
@@ -88,8 +88,8 @@ public class FabricaDUsuarios implements IFabrica {
             } else if (this.usuario != null && this.usuario.length() > 0) {
                 uapp = admonUsuario.devolverUsuario(this.usuario);
             } else {
-                this.avisosDSistema.put(new Integer(avisosDSistema.size() + 1), "No se puede buscar un usuario sin usuario ÁAs’ no!");
-                Log.log("ÁNo hay usuario!", 2);
+                this.avisosDSistema.put(new Integer(avisosDSistema.size() + 1), "No se puede buscar un usuario sin usuario Â¡AsÃ­ no!");
+                Log.log("Â¡No hay usuario!", 2);
             }
 
             if (uapp == null && this.usuarioLfm != null) {
@@ -109,13 +109,13 @@ public class FabricaDUsuarios implements IFabrica {
                 Log.log("El usuario " + usuarioLfm.getName().toUpperCase() + " es un viejo conocido", 1);
                 idUsuario = uapp.getID_DUSUARIO();
                 /**
-                 * 1. Recoger el hist—rico de pesos del usuario 
+                 * 1. Recoger el histÃ³rico de pesos del usuario 
                  * 2. Calcular los pesos actuales 
                  * 3. Pasar el sistema de reglas 
-                 * 4. Actualizar hist—rico de pesos
+                 * 4. Actualizar histÃ³rico de pesos
                  * */
                 historico = admonPesos.devolverPesosUsuario(idUsuario)[0];
-                Log.log("H¼ de pesos de " + usuarioLfm.getName().toUpperCase() + ": " + historico.toString(), 1);
+                Log.log("HÂº de pesos de " + usuarioLfm.getName().toUpperCase() + ": " + historico.toString(), 1);
                 this.pusuario = actuales = generarPesosUsuario();
                 this.pusuario.setID_DUSUARIO_FK(idUsuario);
                 this.pusuario.setID_PESOSUSUARIO(historico.getID_PESOSUSUARIO());
@@ -128,20 +128,20 @@ public class FabricaDUsuarios implements IFabrica {
             ok = true;
         } catch (Exception e) {
             e.printStackTrace();
-            Log.log(e, "(" + FabricaDUsuarios.class.getSimpleName() + ") Excepci—n! " + e.getMessage());
+            Log.log(e, "(" + FabricaDUsuarios.class.getSimpleName() + ") ExcepciÃ³n! " + e.getMessage());
         } finally {
             if (ok) {
-                Log.log("Proceso de F‡brica de Usuarios finalizado con Žxito", 1);
+                Log.log("Proceso de FÃ¡brica de Usuarios finalizado con Ã©xito", 1);
             } else {
-                Log.log("Proceso de F‡brica de Usuarios finalizado con errores", 2);
+                Log.log("Proceso de FÃ¡brica de Usuarios finalizado con errores", 2);
             }
         }
     }
     
     /**
      * Invoca al motor de reglas con el fichero de reglas FCL indicado.
-     * Para cada uno de los tags aplica el sistema de reglas recalculando Žste.
-     * Toda f‡brica que implementa IFabrica, debe sobreescribir esta funci—n.
+     * Para cada uno de los tags aplica el sistema de reglas recalculando Ã©ste.
+     * Toda fÃ¡brica que implementa IFabrica, debe sobreescribir esta funciÃ³n.
      * 
      * @exception Exception
      * */
@@ -285,8 +285,8 @@ public class FabricaDUsuarios implements IFabrica {
     }
     
     /**
-     * Funci—n que genera los pesos ponderados del usuario, bien para usuarios nuevos o
-     * para usuarios que ya tienen un hist—rico de pesos.
+     * Funciï¿½n que genera los pesos ponderados del usuario, bien para usuarios nuevos o
+     * para usuarios que ya tienen un histï¿½rico de pesos.
      * 
      * @return Pesousuario
      * @exception Exception

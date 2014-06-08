@@ -1,5 +1,10 @@
 package es.uclm.sri.sis.excepciones;
 
+/**
+ * Excepción de "Objeto no encontrado". Extiende de <code>ExcepcionGeneral</code>
+ * 
+ * @author Sergio Navarro
+ * */
 public class ObjetoNoEncontrado extends ExcepcionGeneral {
 
     private static final long serialVersionUID = 1L;

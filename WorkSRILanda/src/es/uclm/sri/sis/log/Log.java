@@ -69,7 +69,7 @@ public class Log {
     }
     
     /**
-     * Log con opciones de cabecera que se seleccionan como par�metro
+     * Log con opciones de cabecera que se seleccionan como parámetro
      *  1. INFO
      *  2. WARNING
      *  3. EXCEPTION

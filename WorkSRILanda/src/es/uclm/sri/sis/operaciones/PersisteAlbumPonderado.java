@@ -1,11 +1,11 @@
 package es.uclm.sri.sis.operaciones;
 
 /**
- * Operación encargada de almacenar en base de datos los albums capturaros mediante
- * el scraping y después ponderados.
+ * Operaci√≥n encargada de almacenar en base de datos los albums capturaros mediante
+ * el scraping y despu√©s ponderados.
  * 
- * Tiene un método <code>main(String[] args)</code> que recoge la ruta del archivo CSV
- * donde está almacenada esta información.
+ * Tiene un m√©todo <code>main(String[] args)</code> que recoge la ruta del archivo CSV
+ * donde est√° almacenada esta informaci√≥n.
  * 
  * @author Sergio Navarro
  * */
@@ -20,7 +20,7 @@ import es.uclm.sri.persistencia.ConnectionFactory;
 import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
 import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
 import es.uclm.sri.sis.entidades.AlbumPonderado;
-import es.uclm.sri.sis.operaciones.csv.TratarCSVAlbum;
+import es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
 import es.uclm.sri.sis.utilidades.Utils;
 
 public class PersisteAlbumPonderado {

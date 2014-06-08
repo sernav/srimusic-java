@@ -26,7 +26,7 @@ import es.uclm.sri.sis.operaciones.PonderacionDAlbum;
 /**
  * <code>FabricaDRecomendaciones</code> es la clase que se encarga de crear
  * recomendaciones para un usuario concreto. Recoge las escuchas del usuario y
- * genera los resultados, si las esuchas del usuario no están en el sistema, se
+ * genera los resultados, si las esuchas del usuario no est√°n en el sistema, se
  * ponderan y se incluyen para futuras recomendaciones.
  * 
  * @author Sergio Navarro
@@ -56,15 +56,15 @@ public class FabricaDRecomendaciones implements IFabrica {
 
     /**
      * Recoge el objeto <code>PlaybackDUsuario</code> con las escuchas de
-     * usuario para comprobar, primero si están en el modelo de datos, ponderar
-     * el album si no está en la base de datos e invocar el algoritmo de
+     * usuario para comprobar, primero si est√°n en el modelo de datos, ponderar
+     * el album si no est√° en la base de datos e invocar el algoritmo de
      * recomendaciones.
      * 
      * @param
      * @return
      * */
     public void run() {
-        Log.log("¡Fabrica de recomendaciones en marcha!", 1);
+        Log.log("¬°Fabrica de recomendaciones en marcha!", 1);
         boolean ok = false;
         AdmonAlbums admonAlbums = new AdmonAlbums();
         AdmonPesosAlbum admonPesos = new AdmonPesosAlbum();
@@ -98,11 +98,11 @@ public class FabricaDRecomendaciones implements IFabrica {
                      */
                     Pesosalbum[] pesosAlbum = admonPesos.devolverPesosAlbum(albumsLastfm[i].getName(), albumsLastfm[i].getArtist());
                     if (pesosAlbum.length == 0) {
-                        Log.log("New Album! Título: " + a.getTitulo().toUpperCase() + " Artista: " + a.getArtista().toUpperCase(), 1);
+                        Log.log("New Album! T√≠tulo: " + a.getTitulo().toUpperCase() + " Artista: " + a.getArtista().toUpperCase(), 1);
                         /*
                          * 1. Ponderar album 
                          * 2. Insertar en la tabla PESOSALBUM
-                         * 3. Algoritmo de recomendación
+                         * 3. Algoritmo de recomendaci√≥n
                          */
                         PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
                         AlbumPonderado albumPonderado = pondera.procesar();
@@ -112,10 +112,10 @@ public class FabricaDRecomendaciones implements IFabrica {
                             hashAlbums.put(albumPonderado.getTitulo().trim() + "#" + albumPonderado.getArtista().trim(), record);
                         } catch (SQLException e) {
                             e.printStackTrace();
-                            Log.log(e, "(" + FabricaDRecomendaciones.class.getSimpleName() + ") Excepción SQL al insertar nuevo album! " + e.getMessage());
+                            Log.log(e, "(" + FabricaDRecomendaciones.class.getSimpleName() + ") Excepci√≥n SQL al insertar nuevo album! " + e.getMessage());
                         }
                     } else if (!pesosAlbum[0].tienePesosValidos()) {
-                        Log.log("El album (Título: " + a.getTitulo().toUpperCase() + " Artista: " + a.getArtista().toUpperCase() + ") no tiene pesos válidos", 2);
+                        Log.log("El album (T√≠tulo: " + a.getTitulo().toUpperCase() + " Artista: " + a.getArtista().toUpperCase() + ") no tiene pesos v√°lidos", 2);
                         Log.log("Reprocesando album", 1);
                         PonderacionDAlbum pondera = new PonderacionDAlbum(albumsLastfm[i]);
                         AlbumPonderado albumPonderado = pondera.procesar();
@@ -123,12 +123,12 @@ public class FabricaDRecomendaciones implements IFabrica {
 
                         hashAlbums.put(albumPonderado.getTitulo().trim() + "#" + albumPonderado.getArtista().trim(), record);
                     } else {
-                        Log.log("El album (Título: " + a.getTitulo().toUpperCase() + " Artista: " + a.getArtista().toUpperCase() + ") ya está ponderado y en la BD: "
+                        Log.log("El album (T√≠tulo: " + a.getTitulo().toUpperCase() + " Artista: " + a.getArtista().toUpperCase() + ") ya est√° ponderado y en la BD: "
                                 + pesosAlbum[0].getID_PESOSALBUM(), 1);
                         hashAlbums.put(pesosAlbum[0].getALBUM().trim() + "#" + pesosAlbum[0].getARTISTA().trim(), pesosAlbum[0]);
                     }
                 }
-                Log.log("¡Invocando a la fábrica de Usuarios!", 1);
+                Log.log("¬°Invocando a la f√°brica de Usuarios!", 1);
                 FabricaDUsuarios makeupUser = new FabricaDUsuarios(playback.getNickUsuario(), hashAlbums, true);
                 makeupUser.run();
                 Pesosusuario pesosUser = makeupUser.getPesosManufactura();
@@ -137,7 +137,7 @@ public class FabricaDRecomendaciones implements IFabrica {
                  */
                 ClustererSri clusterer = ClustererSri.getInstance();
                 /*
-                 * Aquí el vector de géneros del usuario, una vez se ha
+                 * Aqu√≠ el vector de g√©neros del usuario, una vez se ha
                  * actualizado con las escuchas recientes
                  */
                 WekaSRIInstance inst = new WekaSRIInstance(pesosUser.getSINGER(), pesosUser.getRAP(), pesosUser.getAMBIENT(), pesosUser.getINDIE(),
@@ -149,7 +149,7 @@ public class FabricaDRecomendaciones implements IFabrica {
                 // clusterer.generarMapRecomendacionesWeka(inst);
 
                 /*
-                 * Aquí las recomendaciones
+                 * Aqu√≠ las recomendaciones
                  */
                 Dusuarios dusuario = makeupUser.getDUsuario();
                 Historico[] historicoUser = admonHistorico.devolverHistoricoDUsuario(dusuario.getID_DUSUARIO());
@@ -180,12 +180,12 @@ public class FabricaDRecomendaciones implements IFabrica {
             ok = true;
         } catch (Exception e) {
             e.printStackTrace();
-            Log.log(e, "(" + FabricaDRecomendaciones.class.getSimpleName() + ") Excepción General! " + e.getMessage());
+            Log.log(e, "(" + FabricaDRecomendaciones.class.getSimpleName() + ") Excepci√≥n General! " + e.getMessage());
         } finally {
             if (ok)
-                Log.log("¡Proceso de recomendaciones finalizado con éxito!", 1);
+                Log.log("¬°Proceso de recomendaciones finalizado con √©xito!", 1);
             else
-                Log.log("¡Proceso de recomendaciones finalizado con errores!", 2);
+                Log.log("¬°Proceso de recomendaciones finalizado con errores!", 2);
         }
 
     }

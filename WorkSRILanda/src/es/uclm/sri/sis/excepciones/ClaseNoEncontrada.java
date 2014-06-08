@@ -1,5 +1,10 @@
 package es.uclm.sri.sis.excepciones;
 
+/**
+ * Excepción de "Clase no encontrada". Extiende de <code>ExcepcionGeneral</code>
+ * 
+ * @author Sergio Navarro
+ * */
 public class ClaseNoEncontrada extends ExcepcionGeneral {
     
     private static final long serialVersionUID = 1L;

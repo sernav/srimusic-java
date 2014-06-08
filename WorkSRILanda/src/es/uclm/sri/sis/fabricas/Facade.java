@@ -6,7 +6,7 @@ import es.uclm.sri.sis.entidades.Recomendacion;
 /**
  * @author Sergio Navarro
  * 
- * Implementa el patrón facade para acceder a las fábricas desde fuera del sistema.
+ * Implementa el patr√≥n facade para acceder a las f√°bricas desde fuera del sistema.
  * */
 public class Facade {
     
