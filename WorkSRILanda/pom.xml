@@ -88,7 +88,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>3.0</version>
+			<version>3.0-alpha-1</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -101,6 +101,11 @@
 				org.apache.servicemix.bundles.commons-csv
 			</artifactId>
 			<version>1.0-r706899_1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jFuzzyLogic</groupId>
+			<artifactId>jFuzzyLogic</artifactId>
+			<version>1.2.1</version>
 		</dependency>
 	</dependencies>
 	<groupId>es.uclm.sri.jsrilanda</groupId>
