@@ -17,7 +17,7 @@ import es.uclm.sri.sis.entidades.AlbumPonderado;
 import es.uclm.sri.sis.utilidades.Utils;
 
 /**
- * Clase espec�fica para el tratamiento del CSV que contiene los albums.
+ * Clase específica para el tratamiento del CSV que contiene los albums.
  * 
  * @author Sergio Navarro
  * */
@@ -74,10 +74,10 @@ public final class TratarCSVAlbum {
 	 * Genera el archivo CSV con los albums ya ponderados. Guarda las siguientes
 	 * columnas: Album + Artista + N-Pesos de album
 	 * 
-	 * @parm albums: ArrayList<AlbumPonderado>
-	 * @parm generos: ArrayList<String>
-	 * @parm n�mero etiquetas: Int
-	 * @parm destino CSV: String
+	 * @param albums
+	 * @param generos
+	 * @param número etiquetas
+	 * @param destino CSV
 	 * */
 	public static void generarCSVAlbumPonderado(
 			ArrayList<AlbumPonderado> listAlbums, ArrayList<String> generos,
@@ -130,18 +130,18 @@ public final class TratarCSVAlbum {
 			} finally {
 			}
 		}
-		System.out.println("�Proceso finalizado!");
+		System.out.println("¡Proceso finalizado!");
 		writer.close();
 	}
 
 	/**
 	 * Genera fichero CSV de album sin ponderar, con las etiquetas literales.
-	 * Las columnas son T�tulo + Artista + Fecha + N-Tags
+	 * Las columnas son Título + Artista + Fecha + N-Tags
 	 * 
-	 * @parm albums: ArrayList<Album>
-	 * @parm etiquetas: Int
-	 * @parm destino: String
-	 * @parm Logger
+	 * @param albums: ArrayList<Album>
+	 * @param etiquetas: Int
+	 * @param destino: String
+	 * @param Logger
 	 */
 	public static void generarCSVAlbums(ArrayList<Album> listAlbums,
 			int numMaxEtiquetas, String destinyPath, Logger logger) {
@@ -151,7 +151,7 @@ public final class TratarCSVAlbum {
 		 * Cabeceras de columnas
 		 */
 		try {
-			writer.write("T�tulo");
+			writer.write("Título");
 			writer.write("Artista");
 			writer.write("Fecha");
 			if (numMaxEtiquetas > 1) {
@@ -159,8 +159,8 @@ public final class TratarCSVAlbum {
 					writer.write("Etiqueta " + i);
 				}
 			} else
-				writer.write("G�nero");
-			writer.write("Pa�s");
+				writer.write("Género");
+			writer.write("País");
 			writer.endRecord();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -207,7 +207,7 @@ public final class TratarCSVAlbum {
 	/**
 	 * Leer fichero CSV con los datos de los albums
 	 * 
-	 * @parm path: String
+	 * @param path: String
 	 * 
 	 * @return albums: ArrayList<Album> 
 	 * */
@@ -247,7 +247,7 @@ public final class TratarCSVAlbum {
 	/**
 	 * Leer fichero CSV con los datos de los albums ya ponderados
 	 * 
-	 * @parm path: String
+	 * @param path: String
 	 * 
 	 * @return albums: ArrayList<Album> 
 	 * */

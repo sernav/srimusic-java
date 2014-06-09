@@ -28,7 +28,7 @@ public interface ICluster {
 	/**
 	 * Establece los datos en entrada para el clustering
 	 * 
-	 * @param inputData: IDatosCluster
+	 * @param input
 	 */
 	public void setInputData(IDatosCluster input);
 

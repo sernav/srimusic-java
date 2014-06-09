@@ -39,8 +39,8 @@ public class WekaUtilities {
 	/**
 	 * Ordenar instancias Weka por valor
 	 * 
-	 * @param HashMap<Instance, Double> hashInstances
-	 * @return HashMap<Instance, Double>
+	 * @param hashInstances
+	 * @return HashMap
 	 * */
 	public static HashMap<Instance, Double> sortHashIntances(
 			HashMap<Instance, Double> hashInstances) {
@@ -61,8 +61,8 @@ public class WekaUtilities {
 	/**
 	 * Ordenar instancias WekaSRIInstance por valor
 	 * 
-	 * @param HashMap<Instance, Double> hashInstances
-	 * @return HashMap<Instance, Double>
+	 * @param hashInstances
+	 * @return HashMap
 	 * */
 	public static HashMap<WekaSRIInstance, Double> sortHashWekaIntances(
 			HashMap<WekaSRIInstance, Double> hashInstances) {
@@ -83,8 +83,8 @@ public class WekaUtilities {
 	/**
 	 * Ordenar instancias WekaSRIInstance por valor V2
 	 * 
-	 * @param HashMap<Instance, Double> hashInstances
-	 * @return HashMap<Instance, Double>
+	 * @param hashInstances
+	 * @return HashMap
 	 * */
 	public static HashMap<WekaSRIInstance, Double> sortHashWekaIntancesV2(
 			HashMap<WekaSRIInstance, Double> hashInstances) {
@@ -118,8 +118,8 @@ public class WekaUtilities {
 	/**
 	 * Ordenar instancias WekaSRIInstance por valor V3
 	 * 
-	 * @param HashMap<Instance, Double> hashInstances
-	 * @return HashMap<Instance, Double>
+	 * @param hashInstances
+	 * @return HashMap
 	 * */
 	public static HashMap<WekaSRIInstance, Double> sortHashWekaIntancesV3(
 			HashMap<WekaSRIInstance, Double> hashInstances) {

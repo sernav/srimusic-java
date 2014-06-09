@@ -44,10 +44,6 @@ public class PlaybackDUsuario implements IAnalisisLastfm {
      * 
      * Obtiene las reproducciones de un usuario concreto y, a través de éstas,
      * sus albums recientes más escuchados.
-     * 
-     * @param
-     * @return
-     * 
      * */
     public void run() {
         try {

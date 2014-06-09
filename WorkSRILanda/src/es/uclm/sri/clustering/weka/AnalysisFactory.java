@@ -33,7 +33,7 @@ public class AnalysisFactory {
 	 * @param name
 	 * 			Descripción del dato: String
 	 * @param attributes
-	 * 			Lista de nombres de columna: List<String>
+	 * 			Lista de nombres de columna: List
 	 * @param vectors
 	 * 			Número de filas de datos: int
 	 * @param dimensions
@@ -77,7 +77,7 @@ public class AnalysisFactory {
 	/**
 	 * Método que crea el componente para realizar el análisis del PCA
 	 * 
-	 * @param IDatosCluster
+	 * @param interface datos de cluster
 	 * @return IAnalisisDComponentesPrincipales
 	 */
 	public static IAnalisisDComponentesPrincipales createPCAEngine(

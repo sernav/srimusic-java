@@ -47,6 +47,7 @@ public class WekaClusteringLauncher {
 	 * 
 	 * @param pathFileARFF
 	 * 			Ruta del fichero ARFF
+	 * @exception Exception
 	 * */
 	public WekaClusteringLauncher(String pathFileARFF) throws Exception {
 		BufferedReader reader = new BufferedReader(new FileReader(pathFileARFF));
