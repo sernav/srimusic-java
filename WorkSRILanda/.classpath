@@ -6,7 +6,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/ehcache-core-2.6.3.jar"/>
+	<!-- <classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/ehcache-core-2.6.3.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/ehcache-terracotta-2.6.3.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/ehcache-2.6.3/slf4j-jdk14-1.6.1.jar"/>
@@ -23,7 +23,7 @@
 	<classpathentry kind="lib" path="/SRILanda.Lib/lastfm-java-0.1.2.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/log4j-1.2.12.jar"/>
 	<classpathentry kind="lib" path="/SRILanda.Lib/org.apache.servicemix.bundles.commons-csv-1.0-r706899_1.jar"/>
-	<classpathentry kind="lib" path="/SRILanda.Lib/Tidy.jar"/>
+	<classpathentry kind="lib" path="/SRILanda.Lib/Tidy.jar"/>  -->
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0 SriMusic "/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
