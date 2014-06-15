@@ -32,6 +32,8 @@ public class TestWekaClusteringLauncher {
 	@After
 	public void tearDown() throws Exception {
 		attValues = null;
+		clusterer = null;
+		wekaKMeans = null;
 	}
 
 	@Test
