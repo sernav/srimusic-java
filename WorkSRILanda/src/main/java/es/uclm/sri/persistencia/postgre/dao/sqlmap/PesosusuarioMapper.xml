@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="es.uclm.sri.persistencia.postgre.dao.PesosusuarioMapper">
+<mapper namespace="main.java.es.uclm.sri.persistencia.postgre.dao.PesosusuarioMapper">
 	<resultMap id="BaseResultMap"
-		type="es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
+		type="main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
 		<id column="ID_PESOSUSUARIO" property="ID_PESOSUSUARIO" jdbcType="INTEGER" />
 		<result column="ID_DUSUARIO_FK" property="ID_DUSUARIO_FK" jdbcType="INTEGER" />
 		<result column="FECHSESI" property="FECHSESI" jdbcType="DATE" />
@@ -49,7 +49,7 @@
 		where "ID_PESOSUSUARIO" = #{ID_PESOSUSUARIO,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert"
-		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario"
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario"
 		useGeneratedKeys="true" keyProperty="ID_PESOSUSUARIO">
 		insert into "PESOSUSUARIO" ("ID_DUSUARIO_FK","FECHSESI", "SINGER", "RAP", "AMBIENT",
 		"INDIE", "BLUES", "REGGAE", "PUNK", "HEAVY", "ALTERNATIVE", "CLASSIC", "ELECTRONIC",
@@ -65,7 +65,7 @@
 		#{INSTRUMENTAL,jdbcType=DOUBLE}, #{GRUNGE,jdbcType=DOUBLE})
 	</insert>
 	<update id="updateByPrimaryKeySelective"
-		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
 		update "PESOSUSUARIO"
 		<set>
 			<if test="ID_DUSUARIO_FK != null">
@@ -132,7 +132,7 @@
 		where ID_PESOSUSUARIO = #{ID_PESOSUSUARIO,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey"
-		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
 		update "PESOSUSUARIO"
 		set "ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
 		"FECHSESI" = #{FECHSESI,jdbcType=DATE},

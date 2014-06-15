@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="es.uclm.sri.persistencia.postgre.dao.DalbumsMapper">
+<mapper namespace="main.java.es.uclm.sri.persistencia.postgre.dao.DalbumsMapper">
 	<resultMap id="BaseResultMap"
-		type="es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
+		type="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
 		<id column="ID_DALBUM" property="ID_DALBUM" jdbcType="INTEGER" />
 		<result column="TITUALBM" property="TITUALBM" jdbcType="VARCHAR" />
 		<result column="AUTALBM" property="AUTALBM" jdbcType="VARCHAR" />
@@ -46,7 +46,7 @@
 		where "ID_DALBUM" = #{ID_DALBUM,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert"
-		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Dalbums"
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums"
 		useGeneratedKeys="true" keyProperty="ID_DALBUM">
 		insert into "DALBUMS" ("TITUALBM", "AUTALBM",
 		"GENRALBM", "NUMEPIST", "ANYIOPUB"
@@ -56,7 +56,7 @@
 		)
 	</insert>
 	<insert id="insertSelective"
-		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
 		insert into "DALBUMS"
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="ID_DALBUM != null">
@@ -100,7 +100,7 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective"
-		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
 		update "DALBUMS"
 		<set>
 			<if test="TITUALBM != null">
@@ -122,7 +122,7 @@
 		where "ID_DALBUM" = #{ID_DALBUM,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey"
-		parameterType="es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
 		update "DALBUMS"
 		set "TITUALBM" = #{TITUALBM,jdbcType=VARCHAR},
 		AUTALBM = #{AUTALBM,jdbcType=VARCHAR},

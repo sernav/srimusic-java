@@ -3,11 +3,11 @@ package main.java.es.uclm.sri.persistencia;
 import java.io.IOException;
 import java.io.Reader;
 
+import main.java.es.uclm.sri.sis.log.Log;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-import main.java.es.uclm.sri.sis.log.Log;
 
 public class ConnectionFactory {
 	
@@ -16,7 +16,7 @@ public class ConnectionFactory {
 
     static{
         try{
-            reader = Resources.getResourceAsReader("es/uclm/sri/recursos/xml/sqlMapConfig.xml");
+            reader = Resources.getResourceAsReader("sqlMapConfig.xml");
             sqlMapper = new SqlSessionFactoryBuilder().build(reader);
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="es.uclm.sri.persistencia.postgre.dao.HistoricoMapper">
+<mapper namespace="main.java.es.uclm.sri.persistencia.postgre.dao.HistoricoMapper">
 	<resultMap id="BaseResultMap"
-		type="es.uclm.sri.persistencia.postgre.dao.model.Historico">
+		type="main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico">
 		<id column="ID_HISTORICO" property="ID_HISTORICO" jdbcType="INTEGER" />
 		<result column="ID_DUSUARIO_FK" property="ID_DUSUARIO_FK"
 			jdbcType="INTEGER" />
@@ -34,7 +34,7 @@
 		delete from "HISTORICO"
 		where "ID_HISTORICO" = #{ID_HISTORICO,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Historico"
+	<insert id="insert" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico"
 		useGeneratedKeys="true" keyProperty="ID_HISTORICO">
 		insert into "HISTORICO" ("ID_DUSUARIO_FK", "ID_DALBUM_FK",
 		"NUMREPRD", "FULTREPR", "ID_PESOSALBUM_FK")
@@ -42,7 +42,7 @@
 		#{ID_DALBUM_FK,jdbcType=INTEGER},
 		#{NUMREPRD,jdbcType=INTEGER}, #{FULTREPR,jdbcType=DATE}, #{ID_PESOSALBUM_FK,jdbcType=INTEGER})
 	</insert>
-	<insert id="insertSelective" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Historico"
+	<insert id="insertSelective" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico"
 		useGeneratedKeys="true" keyProperty="ID_HISTORICO">
 		insert into "HISTORICO"
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -80,7 +80,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Historico">
+	<update id="updateByPrimaryKeySelective" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico">
 		update "HISTORICO"
 		<set>
 			<if test="ID_DUSUARIO_FK != null">
@@ -101,7 +101,7 @@
 		</set>
 		where "ID_HISTORICO" = #{ID_HISTORICO,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="es.uclm.sri.persistencia.postgre.dao.model.Historico">
+	<update id="updateByPrimaryKey" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico">
 		update "HISTORICO"
 		set "ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
 		"ID_DALBUM_FK" = #{ID_DALBUM_FK,jdbcType=INTEGER},
