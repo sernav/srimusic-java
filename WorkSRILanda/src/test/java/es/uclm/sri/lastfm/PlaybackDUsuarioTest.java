@@ -3,13 +3,10 @@ package test.java.es.uclm.sri.lastfm;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import de.umass.lastfm.Album;
 import de.umass.lastfm.Authenticator;
 import de.umass.lastfm.PaginatedResult;
 import de.umass.lastfm.Session;
