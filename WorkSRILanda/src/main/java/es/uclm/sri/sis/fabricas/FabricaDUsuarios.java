@@ -146,64 +146,64 @@ public class FabricaDUsuarios implements IFabrica {
      * @exception Exception
      * */
     public void aplicarSistemaDReglas() throws Exception {
-        MotorJFuzzyLogic motor = new MotorJFuzzyLogic("/Users/sergionavarro/git/SRILanda-Local/WorkSRILanda/src/es/uclm/sri/logica/borrosa/fcl/definiciones.fcl");
+        MotorJFuzzyLogic motor = new MotorJFuzzyLogic("src/main/java/es/uclm/sri/logica/borrosa/fcl/definiciones.fcl");
         String[] varsInput = { "escuchas_historico", "escuchas_actuales" };
 
         if (this.historico == null || this.actuales == null) {
             Log.log("No es posible aplicar el sistema de reglas para los pesos del usuario " + this.usuario, 2);
         } else {
-            double[] inSinger = { this.historico.getSINGER(), this.actuales.getSINGER() };
+            double[] inSinger = { this.historico.getSINGER(), this.actuales.getSINGER() != null ? this.actuales.getSINGER() : Double.NaN };
             double outSinger = motor.evaluar(varsInput, inSinger, new String("salida"));
 
-            double[] inRap = { this.historico.getRAP(), this.actuales.getRAP() };
+            double[] inRap = { this.historico.getRAP(), this.actuales.getRAP() != null ? this.actuales.getRAP() : Double.NaN };
             double outRap = motor.evaluar(varsInput, inRap, new String("salida"));
 
-            double[] inAmbient = { this.historico.getAMBIENT(), this.actuales.getAMBIENT() };
+            double[] inAmbient = { this.historico.getAMBIENT(), this.actuales.getAMBIENT() != null ? this.actuales.getAMBIENT() : Double.NaN };
             double outAmbient = motor.evaluar(varsInput, inAmbient, new String("salida"));
 
-            double[] inIndie = { this.historico.getINDIE(), this.actuales.getINDIE() };
+            double[] inIndie = { this.historico.getINDIE(), this.actuales.getINDIE() != null ? this.actuales.getINDIE() : Double.NaN };
             double outIndie = motor.evaluar(varsInput, inIndie, new String("salida"));
 
-            double[] inBlues = { this.historico.getBLUES(), this.actuales.getBLUES() };
+            double[] inBlues = { this.historico.getBLUES(), this.actuales.getBLUES() != null ? this.actuales.getBLUES() : Double.NaN };
             double outBlues = motor.evaluar(varsInput, inBlues, new String("salida"));
 
-            double[] inReggae = { this.historico.getREGGAE(), this.actuales.getREGGAE() };
+            double[] inReggae = { this.historico.getREGGAE(), this.actuales.getREGGAE() != null ? this.actuales.getREGGAE() : Double.NaN };
             double outReggae = motor.evaluar(varsInput, inReggae, new String("salida"));
 
-            double[] inPunk = { this.historico.getPUNK(), this.actuales.getPUNK() };
+            double[] inPunk = { this.historico.getPUNK(), this.actuales.getPUNK() != null ? this.actuales.getPUNK() : Double.NaN };
             double outPunk = motor.evaluar(varsInput, inPunk, new String("salida"));
 
-            double[] inHeavy = { this.historico.getHEAVY(), this.actuales.getHEAVY() };
+            double[] inHeavy = { this.historico.getHEAVY(), this.actuales.getHEAVY() != null ? this.actuales.getHEAVY() : Double.NaN };
             double outHeavy = motor.evaluar(varsInput, inHeavy, new String("salida"));
 
-            double[] inAlternative = { this.historico.getALTERNATIVE(), this.actuales.getALTERNATIVE() };
+            double[] inAlternative = { this.historico.getALTERNATIVE(), this.actuales.getALTERNATIVE() != null ? this.actuales.getALTERNATIVE() : Double.NaN };
             double outAlternative = motor.evaluar(varsInput, inAlternative, new String("salida"));
 
-            double[] inClassic = { this.historico.getCLASSIC(), this.actuales.getCLASSIC() };
+            double[] inClassic = { this.historico.getCLASSIC(), this.actuales.getCLASSIC() != null ? this.actuales.getCLASSIC() : Double.NaN };
             double outClassic = motor.evaluar(varsInput, inClassic, new String("salida"));
 
-            double[] inElectronic = { this.historico.getELECTRONIC(), this.actuales.getELECTRONIC() };
+            double[] inElectronic = { this.historico.getELECTRONIC(), this.actuales.getELECTRONIC() != null ? this.actuales.getELECTRONIC() : Double.NaN };
             double outElectronic = motor.evaluar(varsInput, inElectronic, new String("salida"));
 
-            double[] inRock = { this.historico.getROCK(), this.actuales.getROCK() };
+            double[] inRock = { this.historico.getROCK(), this.actuales.getROCK() != null ? this.actuales.getROCK() : Double.NaN };
             double outRock = motor.evaluar(varsInput, inRock, new String("salida"));
 
-            double[] inPop = { this.historico.getPOP(), this.actuales.getPOP() };
+            double[] inPop = { this.historico.getPOP(), this.actuales.getPOP() != null ? this.actuales.getPOP() : Double.NaN };
             double outPop = motor.evaluar(varsInput, inPop, new String("salida"));
 
-            double[] inBrit = { this.historico.getBRIT(), this.actuales.getBRIT() };
+            double[] inBrit = { this.historico.getBRIT(), this.actuales.getBRIT() != null ? this.actuales.getBRIT() : Double.NaN };
             double outBrit = motor.evaluar(varsInput, inBrit, new String("salida"));
 
-            double[] inFolk = { this.historico.getFOLK(), this.actuales.getFOLK() };
+            double[] inFolk = { this.historico.getFOLK(), this.actuales.getFOLK() != null ? this.actuales.getFOLK() : Double.NaN };
             double outFolk = motor.evaluar(varsInput, inFolk, new String("salida"));
 
-            double[] inFunk = { this.historico.getFUNK(), this.actuales.getFUNK() };
+            double[] inFunk = { this.historico.getFUNK(), this.actuales.getFUNK() != null ? this.actuales.getFUNK() : Double.NaN };
             double outFunk = motor.evaluar(varsInput, inFunk, new String("salida"));
 
-            double[] inInstrumental = { this.historico.getINSTRUMENTAL(), this.actuales.getINSTRUMENTAL() };
+            double[] inInstrumental = { this.historico.getINSTRUMENTAL(), this.actuales.getINSTRUMENTAL() != null ? this.actuales.getINSTRUMENTAL() : Double.NaN };
             double outInstrumental = motor.evaluar(varsInput, inInstrumental, new String("salida"));
 
-            double[] inGrunge = { this.historico.getGRUNGE(), this.actuales.getGRUNGE() };
+            double[] inGrunge = { this.historico.getGRUNGE(), this.actuales.getGRUNGE() != null ? this.actuales.getGRUNGE() : Double.NaN };
             double outGrunge = motor.evaluar(varsInput, inGrunge, new String("salida"));
 
             Double ptotal = outSinger + outRap + outAmbient + outIndie + outBlues + outReggae + outPunk + outHeavy + outAlternative + outClassic + outElectronic
