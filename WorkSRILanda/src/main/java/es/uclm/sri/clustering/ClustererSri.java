@@ -22,10 +22,12 @@ import main.java.es.uclm.sri.sis.utilidades.FicheroDPropiedades;
 import main.java.es.uclm.sri.sis.utilidades.Utils;
 
 /**
+ * Launcher de clustering v.0.1
  * 
  * @author Sergio Navarro
  * @date Dic, 2013
  * */
+@Deprecated
 public class ClustererSri {
     
     private static Instances data = null;
@@ -105,7 +107,7 @@ public class ClustererSri {
         rm.setInputFormat(data);
         dataAux = Filter.useFilter(data, rm);
 
-        // Funci�n de c�lculo de distancias: Euclidea
+        // Función de cálculo de distancias: Euclidea
         EuclideanDistance df = new EuclideanDistance(dataAux);
         df.setAttributeIndices("first-last");
         df.setDontNormalize(false);
