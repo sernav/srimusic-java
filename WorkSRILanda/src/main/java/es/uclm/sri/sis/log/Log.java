@@ -21,7 +21,7 @@ public class Log {
 
     static {
         synchronized (Log.class) {
-            String pathLog = "/Users/sergionavarro/git/SRILanda-Local/logs/";
+            String pathLog = "./logs/";
             String mascara = Utils.convertirFecha(Calendar.getInstance().getTime(), "ddMMyyyy");
             try {
                 log = new PrintWriter(new FileWriter(new File(pathLog, mascara + "_SriLanda.log"), true));
