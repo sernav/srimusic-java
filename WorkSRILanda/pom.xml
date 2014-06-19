@@ -26,11 +26,6 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>nz.ac.waikato.cms.weka</groupId>
-			<artifactId>weka-stable</artifactId>
-			<version>3.6.9</version>
-		</dependency>
-		<dependency>
 			<groupId>de.u-mass</groupId>
 			<artifactId>lastfm-java</artifactId>
 			<version>0.1.2</version>
@@ -106,6 +101,18 @@
 			<groupId>net.sourceforge.jFuzzyLogic</groupId>
 			<artifactId>jFuzzyLogic</artifactId>
 			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.ac.waikato.cms.weka</groupId>
+			<artifactId>weka</artifactId>
+			<version>3.6.9</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/weka.jar</systemPath>
 		</dependency>
 	</dependencies>
 	<groupId>es.uclm.sri.jsrilanda</groupId>
