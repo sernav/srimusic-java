@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 import main.java.es.uclm.sri.clustering.ClustererSri;
+import main.java.es.uclm.sri.clustering.weka.WekaClusteringFacade;
 import main.java.es.uclm.sri.clustering.weka.WekaSRIInstance;
 import main.java.es.uclm.sri.lastfm.PlaybackDUsuario;
 import main.java.es.uclm.sri.persistencia.admon.AdmonAlbums;
@@ -135,7 +136,7 @@ public class FabricaDRecomendaciones implements IFabrica {
                 /*
                  * Invocar clusterer (Singleton)
                  */
-                ClustererSri clusterer = ClustererSri.getInstance();
+                WekaClusteringFacade clusterer = WekaClusteringFacade.getInstance();
                 /*
                  * Aquí el vector de géneros del usuario, una vez se ha
                  * actualizado con las escuchas recientes
@@ -162,7 +163,7 @@ public class FabricaDRecomendaciones implements IFabrica {
                 for (int i = 0; i < wekaInst.length && hashRecomendaciones.size() < 11; i++) {
                     if (!hashHitos.containsKey(wekaInst[i].getTitulo() + "#" + wekaInst[i].getArtita())) {
                         Recomendacion recomendacion = new Recomendacion(wekaInst[i], usuario);
-                        Log.log(recomendacion.getAlbum().toString(), 1);
+                        Log.log(">> " + recomendacion.getAlbum().toString(), 1);
                         hashRecomendaciones.put(recomendacion.getAlbum().getTitulo() + "#" + recomendacion.getAlbum().getArtista(), recomendacion);
                         Historico hito = new Historico();
                         hito.setID_DUSUARIO_FK(makeupUser.getDUsuario().getID_DUSUARIO());
