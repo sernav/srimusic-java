@@ -15,9 +15,14 @@ import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Properties;
 
+import main.java.es.uclm.sri.clustering.ClustererSri;
+import main.java.es.uclm.sri.sis.KSistema;
+import main.java.es.uclm.sri.sis.log.Log;
+import main.java.es.uclm.sri.sis.utilidades.Utils;
 import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
 import weka.core.EuclideanDistance;
+import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.WekaException;
 import weka.core.converters.ArffLoader;
@@ -25,9 +30,6 @@ import weka.core.converters.ArffSaver;
 import weka.experiment.InstanceQuery;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
-import main.java.es.uclm.sri.sis.KSistema;
-import main.java.es.uclm.sri.sis.log.Log;
-import main.java.es.uclm.sri.sis.utilidades.Utils;
 
 /**
  * Clase principal para construir el clustering
@@ -35,11 +37,13 @@ import main.java.es.uclm.sri.sis.utilidades.Utils;
  * @author Sergio Navarro
  * @version 1.0
  * */
-public class WekaClusteringLauncher {
+public class WekaClusteringFacade {
 
 	private static Instances data = null;
 	private static SimpleKMeans clusterer = null;
 	private static WekaSimpleKMeansCluster wekaKMeans = null;
+	
+	private static WekaClusteringFacade instance;
 	
 	/**
 	 * Constructor partiendo de un archivo ARFF con las instancias
@@ -49,7 +53,7 @@ public class WekaClusteringLauncher {
 	 * 			Ruta del fichero ARFF
 	 * @exception Exception
 	 * */
-	public WekaClusteringLauncher(String pathFileARFF) throws Exception {
+	public WekaClusteringFacade(String pathFileARFF) throws Exception {
 		BufferedReader reader = new BufferedReader(new FileReader(pathFileARFF));
 		this.data = new Instances(reader);
 
@@ -63,7 +67,7 @@ public class WekaClusteringLauncher {
 	 * Conecta con la base de datos y trae los datos de la tabla donde se almacenan los pesos de album.
 	 * Ejecuta la función <code>executeWekaKmeans</code> para obtener el dataset y el clustering.
 	 * */
-	public WekaClusteringLauncher() {
+	public WekaClusteringFacade() {
 	    InstanceQuery query;
 	    boolean ok = false;
 	    Properties properties = getPropertiesBD();
@@ -74,8 +78,9 @@ public class WekaClusteringLauncher {
         	 * ****************************
         	 * */
             query = new InstanceQuery();
-            query.setUsername(properties.getProperty("username"));
-            query.setPassword(properties.getProperty("password"));
+            query.setDatabaseURL(properties.getProperty("database.url"));
+            query.setUsername(properties.getProperty("database.username"));
+            query.setPassword(properties.getProperty("database.password"));
 
             query.setQuery("SELECT * FROM \"PESOSALBUM\"");
             
@@ -101,6 +106,25 @@ public class WekaClusteringLauncher {
             }
         }
 	}
+	
+	/**
+	 * Patron Singleton
+	 * */
+	public static WekaClusteringFacade getInstance() {
+        Log.log("====== INVOCANDO A SISTEMA DE CLUSTERING WEKA ======", 2);
+        createInstance();
+        return instance;
+    }
+	
+	private static void createInstance() {
+        if (instance == null) {
+            synchronized (WekaClusteringFacade.class) {
+                if (instance == null) {
+                    instance = new WekaClusteringFacade();
+                }
+            }
+        }
+    }
 	
 	/**
 	 * Función que lanza el clustering partiendo de un fichero con el modelo de datos Weka
@@ -136,9 +160,9 @@ public class WekaClusteringLauncher {
         	 *    Conexión general BD
         	 * *****************************
         	 * */
-            String database = properties.getProperty("url");
-            String username = properties.getProperty("username");
-            String password = properties.getProperty("password");
+            String database = properties.getProperty("database.url");
+            String username = properties.getProperty("database.username");
+            String password = properties.getProperty("database.password");
             
             // Conexión
             Class.forName(properties.getProperty("driver"));
@@ -174,6 +198,7 @@ public class WekaClusteringLauncher {
 	 * @exception Exception
 	 * */
 	protected void executeWekaKMeans() throws Exception {
+		Log.log("Construyendo clustering con Weka para los parámetros configurados", 1);
 	    Instances dataAux;
 		String[] options = new String[2];
 		options[0] = "-I"; // max. iterations
@@ -211,8 +236,53 @@ public class WekaClusteringLauncher {
 		Log.log(" -Max. Iteraciones: 500");
 		Log.log(" -Función de distancias: Euclidea");
 		clusterer.buildClusterer(dataAux);
-
+		
+		ClusterEvaluation eval = new ClusterEvaluation();
+        eval.setClusterer(clusterer);
 	}
+	
+	public WekaSRIInstance[] generarRecomendacionesWeka(WekaSRIInstance inst) throws Exception {
+        Log.log("Generando recomendaciones del clustering", 1);
+        AnalysisFactory.buildFactory();
+
+        WekaDatosCluster wekaDatosCluster = (WekaDatosCluster) AnalysisFactory
+                .createRawData(data);
+        wekaKMeans = new WekaSimpleKMeansCluster();
+        wekaKMeans.setInputData(wekaDatosCluster);
+        wekaKMeans.setK(clusterer.numberOfClusters());
+        wekaKMeans.setSimpleKMeans(clusterer);
+
+        int iCluster = clasificarInstanciaWeka(inst);
+        Log.log("Cluster #" + iCluster, 1);
+        Instance centroide = clusterer.getClusterCentroids().instance(iCluster);
+        
+        WekaSRIInstance[] instCluster = wekaKMeans.getWekaSRIInstancesDCluster(data.enumerateInstances(), iCluster);
+        WekaSRIInstance[] resultados = wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance(), 10);
+        Log.log("Recomendaciones del clustering: ", 1);
+        Log.log(WekaUtilities.toStringRecomendaciones(resultados), 1);
+        return resultados;
+    }
+    
+    public WekaSRIInstance[] generarRecomendacionesWekaAll(WekaSRIInstance inst) throws Exception {
+        Log.log("Generando recomendaciones del clustering", 1);
+        AnalysisFactory.buildFactory();
+
+        WekaDatosCluster wekaDatosCluster = (WekaDatosCluster) AnalysisFactory
+                .createRawData(data);
+        wekaKMeans = new WekaSimpleKMeansCluster();
+        wekaKMeans.setInputData(wekaDatosCluster);
+        wekaKMeans.setK(clusterer.numberOfClusters());
+        wekaKMeans.setSimpleKMeans(clusterer);
+
+        int iCluster = clasificarInstanciaWeka(inst);
+        Log.log("Cluster #" + iCluster, 1);
+        Instance centroide = clusterer.getClusterCentroids().instance(iCluster);
+        
+        WekaSRIInstance[] instCluster = wekaKMeans.getWekaSRIInstancesDCluster(data.enumerateInstances(), iCluster);
+        WekaSRIInstance[] resultados = wekaDatosCluster.getSimiliarWekaSRIInstance(instCluster, inst.getInstance());
+        Log.log("Se devuelven todas las recomendaciones del cluster ordenadas por afinidad");
+        return resultados;
+    }
 	
 	/**
 	 * Genera los datos para el atributo de la clase WekaSimpleKMeansCluster una vez
@@ -239,7 +309,7 @@ public class WekaClusteringLauncher {
 	 * @return número de cluster: int
 	 * @exception Exception
 	 * */
-	protected int clasificarInstanciaWeka(WekaSRIInstance wekaInst)
+	public int clasificarInstanciaWeka(WekaSRIInstance wekaInst)
 			throws Exception {
 		int cluster = wekaKMeans.clusterInstance(wekaInst.getInstance());
 
@@ -293,6 +363,18 @@ public class WekaClusteringLauncher {
 			e.printStackTrace();
 		}
 		return properties;
+	}
+	
+	public Instances getData() {
+		return this.data;
+	}
+	
+	public SimpleKMeans getClusterer() {
+		return this.clusterer;
+	}
+	
+	public WekaSimpleKMeansCluster getWekaKMeans() {
+		return this.wekaKMeans;
 	}
 
 }

@@ -226,5 +226,21 @@ public class WekaUtilities {
 		}
 		return instance;
 	}
+	
+	public static String toStringRecomendaciones(WekaSRIInstance[] resultados) {
+        StringBuffer sb = new StringBuffer();
+        int cont = 1;
+        for (int i = 0; i < resultados.length; i++) {
+            String artista = resultados[i].getArtita();
+            String album = resultados[i].getTitulo();
+            sb.append("#" + cont + " ");
+            sb.append(artista);
+            sb.append(" -- ");
+            sb.append(album);
+            sb.append(" | ");
+            cont++;
+        }
+        return sb.toString();
+    }
 
 }
