@@ -46,14 +46,14 @@ public class KSistema {
         /*
          * Properties
          * */
-        public static final String PATH_DATABASE_PROPERTIES = "src/main/java/es/uclm/sri/recursos/database.properties";
-        public static final String PATH_GENEROS_ESTANDAR_PROPERTIES = "src/main/java/es/uclm/sri/recursos/generoEstandar.properties";
-        public static final String PATH_LOG4J_PROPERTIES = "src/main/java/es/uclm/sri/recursos/log4j.properties";
+        public static final String PATH_DATABASE_PROPERTIES = "./src/main/resources/database.properties";
+        public static final String PATH_GENEROS_ESTANDAR_PROPERTIES = "./src/main/resources/generoEstandar.properties";
+        public static final String PATH_LOG4J_PROPERTIES = "./src/main/resources/log4j.properties";
         
         /*
          * XML
          * */
-        public static final String PATH_MAPPING_POSTGRE = "src/main/java/es/uclm/sri/recursos/xml/sqlMapConfig.xml";
+        public static final String PATH_MAPPING_POSTGRE = "./src/main/resources/sqlMapConfig.xml";
         
     }
     

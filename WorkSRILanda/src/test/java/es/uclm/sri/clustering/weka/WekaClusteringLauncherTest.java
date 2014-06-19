@@ -2,7 +2,7 @@ package test.java.es.uclm.sri.clustering.weka;
 
 import static org.junit.Assert.assertNotNull;
 import main.java.es.uclm.sri.clustering.weka.AnalysisFactory;
-import main.java.es.uclm.sri.clustering.weka.WekaClusteringLauncher;
+import main.java.es.uclm.sri.clustering.weka.WekaClusteringFacade;
 import main.java.es.uclm.sri.clustering.weka.WekaDatosCluster;
 import main.java.es.uclm.sri.clustering.weka.WekaSRIInstance;
 import main.java.es.uclm.sri.clustering.weka.WekaSimpleKMeansCluster;
@@ -38,7 +38,7 @@ public class WekaClusteringLauncherTest {
 
 	@Test
 	public void testWekaClusteringLauncher() {
-		WekaClusteringLauncher launcher = new WekaClusteringLauncher();
+		WekaClusteringFacade launcher = new WekaClusteringFacade();
 		assertNotNull("Objeto launcher generado", launcher);
 		
 		data = launcher.getData();

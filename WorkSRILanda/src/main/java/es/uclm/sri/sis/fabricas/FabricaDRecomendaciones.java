@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import main.java.es.uclm.sri.clustering.ClustererSri;
 import main.java.es.uclm.sri.clustering.weka.WekaClusteringFacade;
 import main.java.es.uclm.sri.clustering.weka.WekaSRIInstance;
 import main.java.es.uclm.sri.lastfm.PlaybackDUsuario;
