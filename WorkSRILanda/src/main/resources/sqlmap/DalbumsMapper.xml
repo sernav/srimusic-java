@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="main.java.es.uclm.sri.persistencia.postgre.dao.DalbumsMapper">
+	<resultMap id="BaseResultMap"
+		type="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
+		<id column="ID_DALBUM" property="ID_DALBUM" jdbcType="INTEGER" />
+		<result column="TITUALBM" property="TITUALBM" jdbcType="VARCHAR" />
+		<result column="AUTALBM" property="AUTALBM" jdbcType="VARCHAR" />
+		<result column="GENRALBM" property="GENRALBM" jdbcType="VARCHAR" />
+		<result column="NUMEPIST" property="NUMEPIST" jdbcType="INTEGER" />
+		<result column="ANYIOPUB" property="ANYIOPUB" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		"ID_DALBUM", "TITUALBM", "AUTALBM", "GENRALBM", "NUMEPIST", "ANYIOPUB"
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "DALBUMS"
+		where "ID_DALBUM" = #{ID_DALBUM,jdbcType=INTEGER}
+	</select>
+	<select id="selectByAlbum" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "DALBUMS"
+		where "TITUALBM" = #{TITUALBM,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByArtista" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "DALBUMS"
+		where "AUTALBM" = #{AUTALBM,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByAlbumYArtista" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "DALBUMS"
+		where "TITUALBM" = #{TITUALBM,jdbcType=VARCHAR} and "AUTALBM" = #{AUTALBM,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from "DALBUMS"
+		where "ID_DALBUM" = #{ID_DALBUM,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums"
+		useGeneratedKeys="true" keyProperty="ID_DALBUM">
+		insert into "DALBUMS" ("TITUALBM", "AUTALBM",
+		"GENRALBM", "NUMEPIST", "ANYIOPUB"
+		)
+		values (#{TITUALBM,jdbcType=VARCHAR}, #{AUTALBM,jdbcType=VARCHAR},
+		#{GENRALBM,jdbcType=VARCHAR}, #{NUMEPIST,jdbcType=INTEGER}, #{ANYIOPUB,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
+		insert into "DALBUMS"
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ID_DALBUM != null">
+				"ID_DALBUM",
+			</if>
+			<if test="TITUALBM != null">
+				"TITUALBM",
+			</if>
+			<if test="AUTALBM != null">
+				"AUTALBM",
+			</if>
+			<if test="GENRALBM != null">
+				"GENRALBM",
+			</if>
+			<if test="NUMEPIST != null">
+				"NUMEPIST",
+			</if>
+			<if test="ANYIOPUB != null">
+				"ANYIOPUB",
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="ID_DALBUM != null">
+				#{ID_DALBUM,jdbcType=INTEGER},
+			</if>
+			<if test="TITUALBM != null">
+				#{TITUALBM,jdbcType=VARCHAR},
+			</if>
+			<if test="AUTALBM != null">
+				#{AUTALBM,jdbcType=VARCHAR},
+			</if>
+			<if test="GENRALBM != null">
+				#{GENRALBM,jdbcType=VARCHAR},
+			</if>
+			<if test="NUMEPIST != null">
+				#{NUMEPIST,jdbcType=INTEGER},
+			</if>
+			<if test="ANYIOPUB != null">
+				#{ANYIOPUB,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
+		update "DALBUMS"
+		<set>
+			<if test="TITUALBM != null">
+				"TITUALBM" = #{TITUALBM,jdbcType=VARCHAR},
+			</if>
+			<if test="AUTALBM != null">
+				"AUTALBM" = #{AUTALBM,jdbcType=VARCHAR},
+			</if>
+			<if test="GENRALBM != null">
+				"GENRALBM" = #{GENRALBM,jdbcType=VARCHAR},
+			</if>
+			<if test="NUMEPIST != null">
+				"NUMEPIST" = #{NUMEPIST,jdbcType=INTEGER},
+			</if>
+			<if test="ANYIOPUB != null">
+				"ANYIOPUB" = #{ANYIOPUB,jdbcType=INTEGER},
+			</if>
+		</set>
+		where "ID_DALBUM" = #{ID_DALBUM,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums">
+		update "DALBUMS"
+		set "TITUALBM" = #{TITUALBM,jdbcType=VARCHAR},
+		AUTALBM = #{AUTALBM,jdbcType=VARCHAR},
+		GENRALBM = #{GENRALBM,jdbcType=VARCHAR},
+		NUMEPIST = #{NUMEPIST,jdbcType=INTEGER},
+		ANYIOPUB = #{ANYIOPUB,jdbcType=INTEGER}
+		where "ID_DALBUM" = #{ID_DALBUM,jdbcType=INTEGER}
+	</update>
+</mapper>

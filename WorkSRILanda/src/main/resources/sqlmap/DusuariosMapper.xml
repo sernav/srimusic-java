@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="main.java.es.uclm.sri.persistencia.postgre.dao.DusuariosMapper">
+	<resultMap id="BaseResultMap"
+		type="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dusuarios">
+		<id column="ID_DUSUARIO" property="ID_DUSUARIO" jdbcType="INTEGER" />
+		<result column="NICKUSER" property="NICKUSER" jdbcType="VARCHAR" />
+		<result column="MAILREGS" property="MAILREGS" jdbcType="VARCHAR" />
+		<result column="FECHREGS" property="FECHREGS" jdbcType="DATE" />
+		<result column="NOMBUSER" property="NOMBUSER" jdbcType="VARCHAR" />
+		<result column="APLLUSER" property="APLLUSER" jdbcType="VARCHAR" />
+		<result column="ORIGEN" property="ORIGEN" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		"ID_DUSUARIO", "NICKUSER", "MAILREGS", "FECHREGS", "NOMBUSER", "APLLUSER", "ORIGEN"
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "DUSUARIOS"
+		where "ID_DUSUARIO" = #{ID_DUSUARIO,jdbcType=INTEGER}
+	</select>
+	<select id="selectByNick" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "DUSUARIOS"
+		where "NICKUSER" = #{NICKUSER,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from "DUSUARIOS"
+		where "ID_DUSUARIO" = #{ID_DUSUARIO,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dusuarios"
+		useGeneratedKeys="true" keyProperty="ID_DUSUARIO">
+		insert into "DUSUARIOS" ("NICKUSER", "MAILREGS",
+		"FECHREGS", "NOMBUSER", "APLLUSER", "ORIGEN"
+		)
+		values (#{NICKUSER,jdbcType=VARCHAR}, #{MAILREGS,jdbcType=VARCHAR}, 
+		#{FECHREGS,jdbcType=DATE}, #{NOMBUSER,jdbcType=VARCHAR}, 
+		#{APLLUSER,jdbcType=VARCHAR}, #{ORIGEN,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dusuarios">
+		insert into "DUSUARIOS"
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ID_DUSUARIO != null">
+				"ID_DUSUARIO",
+			</if>
+			<if test="NICKUSER != null">
+				"NICKUSER",
+			</if>
+			<if test="MAILREGS != null">
+				"MAILREGS",
+			</if>
+			<if test="FECHREGS != null">
+				"FECHREGS",
+			</if>
+			<if test="NOMBUSER != null">
+				"NOMBUSER",
+			</if>
+			<if test="APLLUSER != null">
+				"APLLUSER",
+			</if>
+			<if test="ORIGEN != null">
+				"ORIGEN",
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="ID_DUSUARIO != null">
+				#{ID_DUSUARIO,jdbcType=INTEGER},
+			</if>
+			<if test="NICKUSER != null">
+				#{NICKUSER,jdbcType=VARCHAR},
+			</if>
+			<if test="MAILREGS != null">
+				#{MAILREGS,jdbcType=VARCHAR},
+			</if>
+			<if test="FECHREGS != null">
+				#{FECHREGS,jdbcType=DATE},
+			</if>
+			<if test="NOMBUSER != null">
+				#{NOMBUSER,jdbcType=VARCHAR},
+			</if>
+			<if test="APLLUSER != null">
+				#{APLLUSER,jdbcType=VARCHAR},
+			</if>
+			<if test="ORIGEN != null">
+				#{ORIGEN,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dusuarios">
+		update "DUSUARIOS"
+		<set>
+			<if test="NICKUSER != null">
+				"NICKUSER" = #{NICKUSER,jdbcType=VARCHAR},
+			</if>
+			<if test="MAILREGS != null">
+				"MAILREGS" = #{MAILREGS,jdbcType=VARCHAR},
+			</if>
+			<if test="FECHREGS != null">
+				"FECHREGS" = #{FECHREGS,jdbcType=DATE},
+			</if>
+			<if test="NOMBUSER != null">
+				"NOMBUSER" = #{NOMBUSER,jdbcType=VARCHAR},
+			</if>
+			<if test="APLLUSER != null">
+				"APLLUSER" = #{APLLUSER,jdbcType=VARCHAR},
+			</if>
+			<if test="ORGEN != null">
+				"ORIGEN" = #{ORIGEN,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where "ID_DUSUARIO" = #{ID_DUSUARIO,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Dusuarios">
+		update "DUSUARIOS"
+		set "NICKUSER" = #{NICKUSER,jdbcType=VARCHAR},
+		"MAILREGS" = #{MAILREGS,jdbcType=VARCHAR},
+		"FECHREGS" = #{FECHREGS,jdbcType=DATE},
+		"NOMBUSER" = #{NOMBUSER,jdbcType=VARCHAR},
+		"APLLUSER" = #{APLLUSER,jdbcType=VARCHAR},
+		"ORIGEN" = #{ORIGEN,jdbcType=VARCHAR}
+		where "ID_DUSUARIO" = #{ID_DUSUARIO,jdbcType=INTEGER}
+	</update>
+</mapper>

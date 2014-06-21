@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="main.java.es.uclm.sri.persistencia.postgre.dao.HistoricoMapper">
+	<resultMap id="BaseResultMap"
+		type="main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico">
+		<id column="ID_HISTORICO" property="ID_HISTORICO" jdbcType="INTEGER" />
+		<result column="ID_DUSUARIO_FK" property="ID_DUSUARIO_FK"
+			jdbcType="INTEGER" />
+		<result column="ID_DALBUM_FK" property="ID_DALBUM_FK"
+			jdbcType="INTEGER" />
+		<result column="NUMREPRD" property="NUMREPRD" jdbcType="INTEGER" />
+		<result column="FULTREPR" property="FULTREPR" jdbcType="DATE" />
+		<result column="ID_PESOSALBUM_FK" property="ID_PESOSALBUM_FK"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		"ID_HISTORICO", "ID_DUSUARIO_FK", "ID_DALBUM_FK", "NUMREPRD", "FULTREPR", "ID_PESOSALBUM_FK"
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "HISTORICO"
+		where "ID_HISTORICO" = #{ID_HISTORICO,jdbcType=INTEGER}
+	</select>
+	<select id="selectByIdUser" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "HISTORICO"
+		where "ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from "HISTORICO"
+		where "ID_HISTORICO" = #{ID_HISTORICO,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico"
+		useGeneratedKeys="true" keyProperty="ID_HISTORICO">
+		insert into "HISTORICO" ("ID_DUSUARIO_FK", "ID_DALBUM_FK",
+		"NUMREPRD", "FULTREPR", "ID_PESOSALBUM_FK")
+		values (#{ID_DUSUARIO_FK,jdbcType=INTEGER},
+		#{ID_DALBUM_FK,jdbcType=INTEGER},
+		#{NUMREPRD,jdbcType=INTEGER}, #{FULTREPR,jdbcType=DATE}, #{ID_PESOSALBUM_FK,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico"
+		useGeneratedKeys="true" keyProperty="ID_HISTORICO">
+		insert into "HISTORICO"
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ID_DUSUARIO_FK != null">
+				"ID_DUSUARIO_FK",
+			</if>
+			<if test="ID_DALBUM_FK != null">
+				"ID_DALBUM_FK",
+			</if>
+			<if test="NUMREPRD != null">
+				"NUMREPRD",
+			</if>
+			<if test="FULTREPR != null">
+				"FULTREPR",
+			</if>
+			<if test="ID_PESOSALBUM_FK != null">
+				"ID_PESOSALBUM_FK"
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="ID_DUSUARIO_FK != null">
+				#{ID_DUSUARIO_FK,jdbcType=INTEGER},
+			</if>
+			<if test="ID_DALBUM_FK != null">
+				#{ID_DALBUM_FK,jdbcType=INTEGER},
+			</if>
+			<if test="NUMREPRD != null">
+				#{NUMREPRD,jdbcType=INTEGER},
+			</if>
+			<if test="FULTREPR != null">
+				#{FULTREPR,jdbcType=DATE},
+			</if>
+			<if test="ID_PESOSALBUM_FK != null">
+				#{ID_PESOSALBUM_FK,jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico">
+		update "HISTORICO"
+		<set>
+			<if test="ID_DUSUARIO_FK != null">
+				"ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
+			</if>
+			<if test="ID_DALBUM_FK != null">
+				"ID_DALBUM_FK" = #{ID_DALBUM_FK,jdbcType=INTEGER},
+			</if>
+			<if test="NUMREPRD != null">
+				"NUMREPRD" = #{NUMREPRD,jdbcType=INTEGER},
+			</if>
+			<if test="FULTREPR != null">
+				"FULTREPR" = #{FULTREPR,jdbcType=DATE},
+			</if>
+			<if test="ID_PESOSALBUM_FK != null">
+				"ID_PESOSALBUM_FK" = #{ID_PESOSALBUM_FK,jdbcType=INTEGER}
+			</if>
+		</set>
+		where "ID_HISTORICO" = #{ID_HISTORICO,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico">
+		update "HISTORICO"
+		set "ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
+		"ID_DALBUM_FK" = #{ID_DALBUM_FK,jdbcType=INTEGER},
+		"NUMREPRD" = #{NUMREPRD,jdbcType=INTEGER},
+		"FULTREPR" = #{FULTREPR,jdbcType=DATE},
+		"ID_PESOSALBUM_FK" = #{ID_PESOSALBUM_FK,jdbcType=INTEGER}
+		where "ID_HISTORICO" = #{ID_HISTORICO,jdbcType=INTEGER}
+	</update>
+</mapper>

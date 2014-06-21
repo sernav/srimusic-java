@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<properties resource="main/java/es/uclm/sri/recursos/database.properties" />
+	<properties resource="./database.properties" />
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -15,14 +15,14 @@
 	</environments>
 	<mappers>
 		<mapper
-			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/DalbumsMapper.xml" />
+			resource="sqlmap/DalbumsMapper.xml" />
 		<mapper
-			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/HistoricoMapper.xml" />
+			resource="sqlmap/HistoricoMapper.xml" />
 		<mapper
-			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/DusuariosMapper.xml" />
+			resource="sqlmap/DusuariosMapper.xml" />
 		<mapper
-			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/PesosusuarioMapper.xml" />
+			resource="sqlmap/PesosusuarioMapper.xml" />
 		<mapper
-			resource="es/uclm/sri/persistencia/postgre/dao/sqlmap/PesosalbumMapper.xml" />
+			resource="sqlmap/PesosalbumMapper.xml" />
 	</mappers>
 </configuration>

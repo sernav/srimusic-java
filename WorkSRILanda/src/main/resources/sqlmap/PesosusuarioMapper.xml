@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="main.java.es.uclm.sri.persistencia.postgre.dao.PesosusuarioMapper">
+	<resultMap id="BaseResultMap"
+		type="main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
+		<id column="ID_PESOSUSUARIO" property="ID_PESOSUSUARIO" jdbcType="INTEGER" />
+		<result column="ID_DUSUARIO_FK" property="ID_DUSUARIO_FK" jdbcType="INTEGER" />
+		<result column="FECHSESI" property="FECHSESI" jdbcType="DATE" />
+		<result column="SINGLE" property="SINGLE" jdbcType="DOUBLE" />
+		<result column="RAP" property="RAP" jdbcType="DOUBLE" />
+		<result column="AMBIENT" property="AMBIENT" jdbcType="DOUBLE" />
+		<result column="INDIE" property="INDIE" jdbcType="DOUBLE" />
+		<result column="BLUES" property="BLUES" jdbcType="DOUBLE" />
+		<result column="REGGAE" property="REGGAE" jdbcType="DOUBLE" />
+		<result column="PUNK" property="PUNK" jdbcType="DOUBLE" />
+		<result column="HEAVY" property="HEAVY" jdbcType="DOUBLE" />
+		<result column="ALTERNATIVE" property="ALTERNATIVE" jdbcType="DOUBLE" />
+		<result column="CLASSIC" property="CLASSIC" jdbcType="DOUBLE" />
+		<result column="ELECTRONIC" property="ELECTRONIC" jdbcType="DOUBLE" />
+		<result column="ROCK" property="ROCK" jdbcType="DOUBLE" />
+		<result column="POP" property="POP" jdbcType="DOUBLE" />
+		<result column="BRIT" property="BRIT" jdbcType="DOUBLE" />
+		<result column="FOLK" property="FOLK" jdbcType="DOUBLE" />
+		<result column="FUNK" property="FUNK" jdbcType="DOUBLE" />
+		<result column="INSTRUMENTAL" property="INSTRUMENTAL" jdbcType="DOUBLE" />
+		<result column="GRUNGE" property="GRUNGE" jdbcType="DOUBLE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		"ID_PESOSUSUARIO", "ID_DUSUARIO_FK", "FECHSESI", "SINGER", "RAP", "AMBIENT", "INDIE", "BLUES", "REGGAE",
+		"PUNK", "HEAVY", "ALTERNATIVE", "CLASSIC", "ELECTRONIC", "ROCK", "POP", "BRIT", "FOLK",
+		"FUNK", "INSTRUMENTAL", "GRUNGE"
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "PESOSALBUM"
+		where "ID_PESOSUSUARIO" = #{ID_PESOSUSUARIO,jdbcType=INTEGER}
+	</select>
+	<select id="selectByUsuario" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select 'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from "PESOSUSUARIO"
+		where "ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from "PESOSUSUARIO"
+		where "ID_PESOSUSUARIO" = #{ID_PESOSUSUARIO,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario"
+		useGeneratedKeys="true" keyProperty="ID_PESOSUSUARIO">
+		insert into "PESOSUSUARIO" ("ID_DUSUARIO_FK","FECHSESI", "SINGER", "RAP", "AMBIENT",
+		"INDIE", "BLUES", "REGGAE", "PUNK", "HEAVY", "ALTERNATIVE", "CLASSIC", "ELECTRONIC",
+		"ROCK", "POP", "BRIT", "FOLK", "FUNK", "INSTRUMENTAL", "GRUNGE")
+		values (#{ID_DUSUARIO_FK,jdbcType=INTEGER}, #{FECHSESI,jdbcType=DATE},
+		#{SINGER,jdbcType=DOUBLE}, #{RAP,jdbcType=DOUBLE}, #{AMBIENT,jdbcType=DOUBLE},
+		#{INDIE,jdbcType=DOUBLE}, #{BLUES,jdbcType=DOUBLE},
+		#{REGGAE,jdbcType=DOUBLE}, #{PUNK,jdbcType=DOUBLE},
+		#{HEAVY,jdbcType=DOUBLE}, #{ALTERNATIVE,jdbcType=DOUBLE},
+		#{CLASSIC,jdbcType=DOUBLE},#{ELECTRONIC,jdbcType=DOUBLE},#{ROCK,jdbcType=DOUBLE},
+		#{POP,jdbcType=DOUBLE}, #{BRIT,jdbcType=DOUBLE}, 
+		#{FOLK,jdbcType=DOUBLE}, #{FUNK,jdbcType=DOUBLE},
+		#{INSTRUMENTAL,jdbcType=DOUBLE}, #{GRUNGE,jdbcType=DOUBLE})
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
+		update "PESOSUSUARIO"
+		<set>
+			<if test="ID_DUSUARIO_FK != null">
+				#{ID_DUSUARIO_FK,jdbcType=INTEGER},
+			</if>
+			<if test="FECHSESI != null">
+				#{FECHSESI,jdbcType=DATE},
+			</if>
+			<if test="SINGER != null">
+				#{SINGER,jdbcType=DOUBLE},
+			</if>
+			<if test="RAP != null">
+				#{RAP,jdbcType=DOUBLE},
+			</if>
+			<if test="AMBIENT != null">
+				#{AMBIENT,jdbcType=DOUBLE},
+			</if>
+			<if test="INDIE != null">
+				#{INDIE,jdbcType=DOUBLE},
+			</if>
+			<if test="BLUES != null">
+				#{BLUES,jdbcType=DOUBLE},
+			</if>
+			<if test="REGGAE != null">
+				#{REGGAE,jdbcType=DOUBLE},
+			</if>
+			<if test="PUNK != null">
+				#{PUNK,jdbcType=DOUBLE},
+			</if>
+			<if test="HEAVY != null">
+				#{HEAVY,jdbcType=DOUBLE},
+			</if>
+			<if test="ALTERNATIVE != null">
+				#{ALTERNATIVE,jdbcType=DOUBLE},
+			</if>
+			<if test="CLASSIC != null">
+				#{CLASSIC,jdbcType=DOUBLE},
+			</if>
+			<if test="ELECTRONIC != null">
+				#{ELECTRONIC,jdbcType=DOUBLE},
+			</if>
+			<if test="ROCK != null">
+				#{ROCK,jdbcType=DOUBLE},
+			</if>
+			<if test="POP != null">
+				#{POP,jdbcType=DOUBLE},
+			</if>
+			<if test="BRIT != null">
+				#{BRIT,jdbcType=DOUBLE},
+			</if>
+			<if test="FOLK != null">
+				#{FOLK,jdbcType=DOUBLE},
+			</if>
+			<if test="FUNK != null">
+				#{FUNK,jdbcType=DOUBLE},
+			</if>
+			<if test="INSTRUMENTAL != null">
+				#{INSTRUMENTAL,jdbcType=DOUBLE},
+			</if>
+			<if test="GRUNGE != null">
+				#{GRUNGE,jdbcType=DOUBLE}
+			</if>
+		</set>
+		where ID_PESOSUSUARIO = #{ID_PESOSUSUARIO,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario">
+		update "PESOSUSUARIO"
+		set "ID_DUSUARIO_FK" = #{ID_DUSUARIO_FK,jdbcType=INTEGER},
+		"FECHSESI" = #{FECHSESI,jdbcType=DATE},
+		"SINGER" = #{SINGER,jdbcType=DOUBLE},
+		"RAP" = #{RAP,jdbcType=DOUBLE},
+		"AMBIENT" = #{AMBIENT,jdbcType=DOUBLE},
+		"INDIE" = #{INDIE,jdbcType=DOUBLE},
+		"BLUES" = #{BLUES,jdbcType=DOUBLE},
+		"REGGAE" = #{REGGAE,jdbcType=DOUBLE},
+		"HEAVY" = #{HEAVY,jdbcType=DOUBLE},
+		"ALTERNATIVE" = #{ALTERNATIVE,jdbcType=DOUBLE},
+		"CLASSIC" = #{CLASSIC,jdbcType=DOUBLE},
+		"ELECTRONIC" = #{ELECTRONIC,jdbcType=DOUBLE},
+		"ROCK" = #{ROCK,jdbcType=DOUBLE},
+		"POP" = #{POP,jdbcType=DOUBLE},
+		"BRIT" = #{BRIT,jdbcType=SMALLINT},
+		"FOLK" = #{FOLK,jdbcType=DOUBLE},
+		"FUNK" = #{FUNK,jdbcType=DOUBLE},
+		"GRUNGE" = #{GRUNGE,jdbcType=DOUBLE},
+		"INSTRUMENTAL" = #{INSTRUMENTAL,jdbcType=DOUBLE},
+		"PUNK" = #{PUNK,jdbcType=DOUBLE}
+		where "ID_PESOSUSUARIO" = #{ID_PESOSUSUARIO,jdbcType=INTEGER}
+	</update>
+</mapper>
