@@ -26,8 +26,14 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
 		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
@@ -64,11 +70,6 @@
 			<name>WebContent/WEB-INF/lib/javax.servlet-api-3.0.1.jar</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/javax.servlet-api-3.0.1.jar</locationURI>
-		</link>
-		<link>
-			<name>WebContent/WEB-INF/lib/last.fm-apis.jar</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/last.fm-apis.jar</locationURI>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/lastfm-java-0.1.2.jar</name>

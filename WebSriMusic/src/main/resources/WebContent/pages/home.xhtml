@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="../template/template.xhtml">
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<p:panel id="panel" header="Introduce tu usuario de LastFm" style="margin-bottom:15px; font-size:16px;">
+		<p:messages id="messages" />
+		<h:panelGrid columns="3">
+		<h:outputLabel for="userName" value="Nick usuario LastFm" style="font-size:12px;" />  
+            <p:inputText id="userName"   
+                value="#{recomendacionesBean.userName}" required="true" label="Nick de usuario" style="font-size:12px; width:200%;" >  
+                <f:validateLength minimum="3" />  
+            </p:inputText>  
+            <p:message for="userName" />
+            </h:panelGrid>
+		</p:panel>
+		<p:commandButton value="Reset" type="reset" style="margin-right:20px;" />  
+        <p:commandButton value="Obtener recomendaciones!" update="" oncomplete="PF('dlg').show()" action="#{recomendacionesBean.generarRecomendaciones()}" style="margin-right:20px;" />
+	</ui:define>
+</ui:composition>

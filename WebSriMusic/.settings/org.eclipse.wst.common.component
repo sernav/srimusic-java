@@ -2,8 +2,10 @@
     <wb-module deploy-name="WebSriMusic">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="WebSriMusic"/>
+        <dependent-module archiveName="jsrilanda-music-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/WorkSRILanda/WorkSRILanda">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/WebSriMusic/build/classes"/>
+        <property name="context-root" value="jsrilanda-music-web"/>
     </wb-module>
 </project-modules>
