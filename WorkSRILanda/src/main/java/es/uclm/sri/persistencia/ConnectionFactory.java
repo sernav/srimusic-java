@@ -16,7 +16,7 @@ public class ConnectionFactory {
 
     static{
         try{
-            reader = Resources.getResourceAsReader("./src/main/resources/xml/sqlMapConfig.xml");
+            reader = Resources.getResourceAsReader("./xml/sqlMapConfig.xml");
             sqlMapper = new SqlSessionFactoryBuilder().build(reader);
         } catch (IOException e) {
             e.printStackTrace();
