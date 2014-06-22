@@ -22,10 +22,13 @@ public class CalcularPesosDGenero {
 	private static ArrayList<AlbumPonderado> listAlbumPonderados = new ArrayList<AlbumPonderado>();
 	private static ArrayList<Album> listAlbums;
 	
+	private static String destinoCsv;
+	
 	/**
 	 * Constructor con la ruta del fichero csv.
 	 * */
-	public CalcularPesosDGenero(String pathCsv) {
+	public CalcularPesosDGenero(String pathCsv, String destinoCsv) {
+		this.destinoCsv = destinoCsv;
 		this.listAlbums = procesarDatosIN(pathCsv);
 	}
 	
@@ -45,7 +48,7 @@ public class CalcularPesosDGenero {
 			}
 			numAlbum++;
 		}
-		TratarCSVAlbum.generarCSVAlbumPonderado(listAlbumPonderados, properties.getPropiedades(), 18, "/Users/sergionavarro/PFC/CSV_Albums/CSV_Albums_Ponderados_v2.csv");
+		TratarCSVAlbum.generarCSVAlbumPonderado(listAlbumPonderados, properties.getPropiedades(), 18, destinoCsv);
 	}
 	
 	/**
