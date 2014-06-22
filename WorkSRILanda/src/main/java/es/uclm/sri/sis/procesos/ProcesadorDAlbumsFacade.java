@@ -41,7 +41,7 @@ public class ProcesadorDAlbumsFacade {
 		estandariza.generarAlbumsEstandar();
 		
 		//Albums con géneros estándar a albums ponderados
-		CalcularPesosDGenero calculaPesos = new CalcularPesosDGenero(destinoCsv);
+		CalcularPesosDGenero calculaPesos = new CalcularPesosDGenero(destinoCsv, destinoCsv);
 		calculaPesos.procesoDCalculo();
 		
 		//SI queremos almacenar en base de datos los albums ponderados en el fichero CSV
