@@ -27,7 +27,7 @@ public class AdmonsTest {
 		testEstablecerConexion();
 		session = sqlMapper.openSession();
 
-		assertNotNull("Conexión establecida con éxito", session);
+		assertNotNull("Sesión establecida con éxito", session);
 	}
 	
 	@Test(expected = ConnectException.class)
