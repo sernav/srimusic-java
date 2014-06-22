@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.clustering.weka;
+package es.uclm.sri.clustering.weka;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import weka.core.Attribute;
 import weka.core.FastVector;
 import weka.core.Instance;
 import weka.core.Instances;
-import main.java.es.uclm.sri.clustering.IDatosCluster;
+import es.uclm.sri.clustering.IDatosCluster;
 
 /**
  * Implementación de la interfaz de datos de cluster

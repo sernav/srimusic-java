@@ -1,7 +1,7 @@
-package main.java.es.uclm.sri.persistencia.admon;
+package es.uclm.sri.persistencia.admon;
 
-import main.java.es.uclm.sri.persistencia.postgre.dao.HistoricoMapper;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico;
+import es.uclm.sri.persistencia.postgre.dao.HistoricoMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Historico;
 
 /**
  * Admon para atacar las operaciones de la tabla de base de datos HISTORICO.

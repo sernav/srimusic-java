@@ -1,9 +1,9 @@
-package main.java.es.uclm.sri.persistencia;
+package es.uclm.sri.persistencia;
 
 import java.io.IOException;
 import java.io.Reader;
 
-import main.java.es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.log.Log;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;

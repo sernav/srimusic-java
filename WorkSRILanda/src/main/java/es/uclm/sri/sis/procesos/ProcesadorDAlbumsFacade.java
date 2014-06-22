@@ -1,8 +1,8 @@
-package main.java.es.uclm.sri.sis.procesos;
+package es.uclm.sri.sis.procesos;
 
 import java.util.Calendar;
 
-import main.java.es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.sis.utilidades.Utils;
 
 /**
  * Procesador (Facade) para el tratamiento de los albums conseguidos mediante el Scraping

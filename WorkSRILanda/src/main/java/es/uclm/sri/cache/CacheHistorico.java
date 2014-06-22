@@ -1,9 +1,9 @@
-package main.java.es.uclm.sri.cache;
+package es.uclm.sri.cache;
 
 import net.sf.ehcache.Element;
-import main.java.es.uclm.sri.persistencia.postgre.dao.HistoricoMapper;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico;
-import main.java.es.uclm.sri.sis.KSistema;
+import es.uclm.sri.persistencia.postgre.dao.HistoricoMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Historico;
+import es.uclm.sri.sis.KSistema;
 
 /**
  * Crea y recupera instancias de <code>CacheHistorico</code>. Utiliza el patrón

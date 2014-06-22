@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.scrape.webscraping;
+package es.uclm.sri.scrape.webscraping;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,7 +15,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.w3c.tidy.Configuration;
 import org.w3c.tidy.Tidy;
 
-import main.java.es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.sis.utilidades.Utils;
 
 /**
  * Para el scraping de cualquier de las web que siga la plantilla indicada.

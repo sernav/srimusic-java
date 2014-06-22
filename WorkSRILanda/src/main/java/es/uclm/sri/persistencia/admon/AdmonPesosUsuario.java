@@ -1,7 +1,7 @@
-package main.java.es.uclm.sri.persistencia.admon;
+package es.uclm.sri.persistencia.admon;
 
-import main.java.es.uclm.sri.persistencia.postgre.dao.PesosusuarioMapper;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
+import es.uclm.sri.persistencia.postgre.dao.PesosusuarioMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
 
 /**
  * Admon para atacar las operaciones de la tabla de base de datos PESOSUSUARIO

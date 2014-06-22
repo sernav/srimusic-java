@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.clustering;
+package es.uclm.sri.clustering;
 
 /**
  * Módulo clustering: Clase Exception pesonalizada para el cluster

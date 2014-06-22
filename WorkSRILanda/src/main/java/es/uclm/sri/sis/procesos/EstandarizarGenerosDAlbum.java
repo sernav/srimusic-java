@@ -1,16 +1,16 @@
-package main.java.es.uclm.sri.sis.procesos;
+package es.uclm.sri.sis.procesos;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
-import main.java.es.uclm.sri.sis.KSistema;
-import main.java.es.uclm.sri.sis.entidades.Album;
-import main.java.es.uclm.sri.sis.log.Log;
-import main.java.es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
-import main.java.es.uclm.sri.sis.utilidades.FicheroDPropiedades;
-import main.java.es.uclm.sri.sis.utilidades.UtilsDAlbum;
+import es.uclm.sri.sis.KSistema;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
+import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
+import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
 /**
  * Desde un fichero CSV en el que están almacenados los albums, se estandarizan los tags que traen

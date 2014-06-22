@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.logica.borrosa;
+package es.uclm.sri.logica.borrosa;
 
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;

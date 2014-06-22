@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.persistencia.admon;
+package es.uclm.sri.persistencia.admon;
 
 import java.net.ConnectException;
 import java.sql.SQLException;
@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import main.java.es.uclm.sri.persistencia.ConnectionFactory;
-import main.java.es.uclm.sri.sis.log.Log;
+import es.uclm.sri.persistencia.ConnectionFactory;
+import es.uclm.sri.sis.log.Log;
 
 /**
  * Clase abstracta donde se invoca a la fábrica de conexiones y se obtiene una sesión.

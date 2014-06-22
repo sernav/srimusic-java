@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.operaciones;
+package es.uclm.sri.sis.operaciones;
 
 /**
  * Operación encargada de almacenar en base de datos los albums capturaros mediante
@@ -16,12 +16,12 @@ import org.apache.ibatis.exceptions.IbatisException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import main.java.es.uclm.sri.persistencia.ConnectionFactory;
-import main.java.es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
-import main.java.es.uclm.sri.sis.entidades.AlbumPonderado;
-import main.java.es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
-import main.java.es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.persistencia.ConnectionFactory;
+import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
+import es.uclm.sri.sis.utilidades.Utils;
 
 public class PersisteAlbumPonderado {
 	

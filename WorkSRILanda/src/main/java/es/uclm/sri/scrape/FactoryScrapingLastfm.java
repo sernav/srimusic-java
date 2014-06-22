@@ -1,6 +1,6 @@
-package main.java.es.uclm.sri.scrape;
+package es.uclm.sri.scrape;
 
-import main.java.es.uclm.sri.scrape.webscraping.ScrapingLastfm;
+import es.uclm.sri.scrape.webscraping.ScrapingLastfm;
 
 /**
  * Factoría concreta de scraping en plataforma Lastfm

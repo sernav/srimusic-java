@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.clustering;
+package es.uclm.sri.clustering;
 
 /**
  * Intefaz para definir las funciones básicas del algoritmo Simple K Means

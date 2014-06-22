@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.procesos.csv;
+package es.uclm.sri.sis.procesos.csv;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,9 +12,9 @@ import org.apache.log4j.Logger;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
-import main.java.es.uclm.sri.sis.entidades.Album;
-import main.java.es.uclm.sri.sis.entidades.AlbumPonderado;
-import main.java.es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.utilidades.Utils;
 
 /**
  * Clase específica para el tratamiento del CSV que contiene los albums.

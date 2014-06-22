@@ -5,7 +5,6 @@
 Servers/
 target/
 /bin
-/PesosalbumMapper_deprecated.xml
 
 #java specific
 *.class
@@ -16,3 +15,5 @@ target/
 *.DS_Store
 *.swp
 *.out
+/doc
+/MyBatisGenerator

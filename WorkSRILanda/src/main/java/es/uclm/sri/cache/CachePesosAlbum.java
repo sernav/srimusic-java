@@ -1,9 +1,9 @@
-package main.java.es.uclm.sri.cache;
+package es.uclm.sri.cache;
 
 import net.sf.ehcache.Element;
-import main.java.es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
-import main.java.es.uclm.sri.sis.KSistema;
+import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
+import es.uclm.sri.sis.KSistema;
 
 /**
  * Crea y recupera instancias de <code>CachePesosAlbum</code>. Utiliza el patrón

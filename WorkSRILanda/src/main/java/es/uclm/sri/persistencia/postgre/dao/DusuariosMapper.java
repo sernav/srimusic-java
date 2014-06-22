@@ -1,8 +1,8 @@
-package main.java.es.uclm.sri.persistencia.postgre.dao;
+package es.uclm.sri.persistencia.postgre.dao;
 
 import org.apache.ibatis.annotations.Param;
 
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
+import es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
 
 public interface DusuariosMapper {
     

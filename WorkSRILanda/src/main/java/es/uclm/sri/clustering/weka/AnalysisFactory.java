@@ -1,12 +1,12 @@
-package main.java.es.uclm.sri.clustering.weka;
+package es.uclm.sri.clustering.weka;
 
 import java.util.List;
 
 import weka.classifiers.functions.LinearRegression;
 import weka.core.Instances;
-import main.java.es.uclm.sri.clustering.IAnalisisDComponentesPrincipales;
-import main.java.es.uclm.sri.clustering.IDatosCluster;
-import main.java.es.uclm.sri.clustering.ISimpleKMeansCluster;
+import es.uclm.sri.clustering.IAnalisisDComponentesPrincipales;
+import es.uclm.sri.clustering.IDatosCluster;
+import es.uclm.sri.clustering.ISimpleKMeansCluster;
 
 /**
  * Módulo clustering:

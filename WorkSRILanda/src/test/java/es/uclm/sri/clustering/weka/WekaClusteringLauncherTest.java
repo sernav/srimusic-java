@@ -1,11 +1,11 @@
-package test.java.es.uclm.sri.clustering.weka;
+package es.uclm.sri.clustering.weka;
 
 import static org.junit.Assert.assertNotNull;
-import main.java.es.uclm.sri.clustering.weka.AnalysisFactory;
-import main.java.es.uclm.sri.clustering.weka.WekaClusteringFacade;
-import main.java.es.uclm.sri.clustering.weka.WekaDatosCluster;
-import main.java.es.uclm.sri.clustering.weka.WekaSRIInstance;
-import main.java.es.uclm.sri.clustering.weka.WekaSimpleKMeansCluster;
+import es.uclm.sri.clustering.weka.AnalysisFactory;
+import es.uclm.sri.clustering.weka.WekaClusteringFacade;
+import es.uclm.sri.clustering.weka.WekaDatosCluster;
+import es.uclm.sri.clustering.weka.WekaSRIInstance;
+import es.uclm.sri.clustering.weka.WekaSimpleKMeansCluster;
 
 import org.junit.After;
 import org.junit.Before;

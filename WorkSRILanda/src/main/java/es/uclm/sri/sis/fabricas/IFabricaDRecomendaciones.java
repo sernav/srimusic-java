@@ -1,7 +1,7 @@
-package main.java.es.uclm.sri.sis.fabricas;
+package es.uclm.sri.sis.fabricas;
 
-import main.java.es.uclm.sri.sis.entidades.Album;
-import main.java.es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
 
 /**
  * @author Sergio Navarro

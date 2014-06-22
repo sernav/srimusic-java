@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.clustering.weka;
+package es.uclm.sri.clustering.weka;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +13,7 @@ import java.util.TreeSet;
 import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
-import main.java.es.uclm.sri.sis.utilidades.ValueComparator;
+import es.uclm.sri.sis.utilidades.ValueComparator;
 
 /**
  * Herramientas comunes para la aplicación de Weka en el sistema.

@@ -1,10 +1,10 @@
-package test.java.es.uclm.sri.sis.procesos;
+package es.uclm.sri.sis.procesos;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class AlmacenarAlbumsPonderado {
+public class AlmacenarAlbumsPonderadoTest {
 
 	@Test
 	public void test() {

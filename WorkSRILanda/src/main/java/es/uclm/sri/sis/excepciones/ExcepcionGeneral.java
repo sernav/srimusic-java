@@ -1,6 +1,6 @@
-package main.java.es.uclm.sri.sis.excepciones;
+package es.uclm.sri.sis.excepciones;
 
-import main.java.es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.log.Log;
 
 /**
  * Personalización de <code>Exception</code>

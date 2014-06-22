@@ -1,7 +1,7 @@
-package main.java.es.uclm.sri.sis;
+package es.uclm.sri.sis;
 
-import main.java.es.uclm.sri.lastfm.PlaybackDUsuario;
-import main.java.es.uclm.sri.sis.fabricas.FabricaDRecomendaciones;
+import es.uclm.sri.lastfm.PlaybackDUsuario;
+import es.uclm.sri.sis.fabricas.FabricaDRecomendaciones;
 
 public class SriLandaTest {
 
@@ -12,6 +12,8 @@ public class SriLandaTest {
 
         PlaybackDUsuario playback = new PlaybackDUsuario("djAguadilla");
         playback.run();
+        
+        
         
         FabricaDRecomendaciones mainFactory = new FabricaDRecomendaciones(playback);
         mainFactory.run();

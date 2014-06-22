@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.utilidades;
+package es.uclm.sri.sis.utilidades;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import de.umass.lastfm.Album;
 import de.umass.lastfm.Artist;
 import de.umass.lastfm.CallException;
 import de.umass.lastfm.Track;
-import main.java.es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.log.Log;
 
 /**
  * Utilidades específicas para tratamiendo de la entidad Album de la aplicación

@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.scrape.webscraping;
+package es.uclm.sri.scrape.webscraping;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,10 +10,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import main.java.es.uclm.sri.scrape.AbstractWebScraping;
-import main.java.es.uclm.sri.sis.entidades.Album;
-import main.java.es.uclm.sri.sis.log.Log;
-import main.java.es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
+import es.uclm.sri.scrape.AbstractWebScraping;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
 
 /**
  * Producto concreto de la web Rockdelux.

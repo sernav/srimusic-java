@@ -1,6 +1,6 @@
-package main.java.es.uclm.sri.scrape;
+package es.uclm.sri.scrape;
 
-import main.java.es.uclm.sri.scrape.webscraping.ScrapingRockdelux;
+import es.uclm.sri.scrape.webscraping.ScrapingRockdelux;
 
 /**
  * Factoría concreta de scraping en la web Rockdelux

@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.fabricas;
+package es.uclm.sri.sis.fabricas;
 
 import java.sql.SQLException;
 import java.util.HashMap;

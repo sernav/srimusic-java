@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.fabricas;
+package es.uclm.sri.sis.fabricas;
 
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -6,22 +6,22 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import main.java.es.uclm.sri.clustering.weka.WekaClusteringFacade;
-import main.java.es.uclm.sri.clustering.weka.WekaSRIInstance;
-import main.java.es.uclm.sri.lastfm.PlaybackDUsuario;
-import main.java.es.uclm.sri.persistencia.admon.AdmonAlbums;
-import main.java.es.uclm.sri.persistencia.admon.AdmonHistorico;
-import main.java.es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
-import main.java.es.uclm.sri.sis.entidades.Album;
-import main.java.es.uclm.sri.sis.entidades.AlbumPonderado;
-import main.java.es.uclm.sri.sis.entidades.Recomendacion;
-import main.java.es.uclm.sri.sis.log.Log;
-import main.java.es.uclm.sri.sis.operaciones.PonderacionDAlbum;
+import es.uclm.sri.clustering.weka.WekaClusteringFacade;
+import es.uclm.sri.clustering.weka.WekaSRIInstance;
+import es.uclm.sri.lastfm.PlaybackDUsuario;
+import es.uclm.sri.persistencia.admon.AdmonAlbums;
+import es.uclm.sri.persistencia.admon.AdmonHistorico;
+import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
+import es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
+import es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
+import es.uclm.sri.persistencia.postgre.dao.model.Historico;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.entidades.Recomendacion;
+import es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.operaciones.PonderacionDAlbum;
 
 /**
  * <code>FabricaDRecomendaciones</code> es la clase que se encarga de crear

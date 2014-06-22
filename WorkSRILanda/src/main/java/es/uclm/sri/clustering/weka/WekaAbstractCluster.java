@@ -1,13 +1,13 @@
-package main.java.es.uclm.sri.clustering.weka;
+package es.uclm.sri.clustering.weka;
 
 import weka.attributeSelection.PrincipalComponents;
 import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
-import main.java.es.uclm.sri.clustering.ClusterDescripcion;
-import main.java.es.uclm.sri.clustering.ClusterException;
-import main.java.es.uclm.sri.clustering.ICluster;
-import main.java.es.uclm.sri.clustering.IDatosCluster;
+import es.uclm.sri.clustering.ClusterDescripcion;
+import es.uclm.sri.clustering.ClusterException;
+import es.uclm.sri.clustering.ICluster;
+import es.uclm.sri.clustering.IDatosCluster;
 
 /**
  * Módulo clustering:

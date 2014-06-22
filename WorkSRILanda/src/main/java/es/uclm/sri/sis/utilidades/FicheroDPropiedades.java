@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.utilidades;
+package es.uclm.sri.sis.utilidades;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
 
-import main.java.es.uclm.sri.sis.KSistema;
+import es.uclm.sri.sis.KSistema;
 
 public class FicheroDPropiedades {
 	

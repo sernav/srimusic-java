@@ -1,4 +1,4 @@
-package test.java.es.uclm.sri.logica.borrosa;
+package es.uclm.sri.logica.borrosa;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

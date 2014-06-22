@@ -1,11 +1,11 @@
-package main.java.es.uclm.sri.sis.procesos;
+package es.uclm.sri.sis.procesos;
 
 import java.util.ArrayList;
 
-import main.java.es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
-import main.java.es.uclm.sri.sis.entidades.AlbumPonderado;
-import main.java.es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
+import es.uclm.sri.persistencia.admon.AdmonPesosAlbum;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
 
 /**
  * Almacena albums ponderados desde un fichero csv

@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.persistencia.admon;
+package es.uclm.sri.persistencia.admon;
 
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -6,8 +6,8 @@ import java.util.Calendar;
 import org.apache.ibatis.exceptions.IbatisException;
 
 import de.umass.lastfm.User;
-import main.java.es.uclm.sri.persistencia.postgre.dao.DusuariosMapper;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
+import es.uclm.sri.persistencia.postgre.dao.DusuariosMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
 
 /**
  * Admon para atacar las operaciones de la tabla de base de datos DUSUARIO

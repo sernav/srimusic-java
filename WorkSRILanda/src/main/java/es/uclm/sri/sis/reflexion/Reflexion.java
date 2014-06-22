@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.reflexion;
+package es.uclm.sri.sis.reflexion;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -6,8 +6,8 @@ import java.lang.reflect.Method;
 
 import javax.management.RuntimeErrorException;
 
-import main.java.es.uclm.sri.sis.excepciones.ClaseNoEncontrada;
-import main.java.es.uclm.sri.sis.excepciones.ExcepcionGeneral;
+import es.uclm.sri.sis.excepciones.ClaseNoEncontrada;
+import es.uclm.sri.sis.excepciones.ExcepcionGeneral;
 
 /**
  * @author Sergio Navarro

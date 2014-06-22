@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.cache;
+package es.uclm.sri.cache;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
@@ -6,8 +6,8 @@ import net.sf.ehcache.Element;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import main.java.es.uclm.sri.cache.ehcache.EhcacheFactory;
-import main.java.es.uclm.sri.persistencia.ConnectionFactory;
+import es.uclm.sri.cache.ehcache.EhcacheFactory;
+import es.uclm.sri.persistencia.ConnectionFactory;
 
 /**
  * <code>AbstractCache</code> clase abstracta que define las funcionalidades

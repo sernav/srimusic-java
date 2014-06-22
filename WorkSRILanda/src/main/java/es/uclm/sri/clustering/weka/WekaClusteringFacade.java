@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.clustering.weka;
+package es.uclm.sri.clustering.weka;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,10 +15,10 @@ import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Properties;
 
-import main.java.es.uclm.sri.clustering.ClustererSri;
-import main.java.es.uclm.sri.sis.KSistema;
-import main.java.es.uclm.sri.sis.log.Log;
-import main.java.es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.clustering.ClustererSri;
+import es.uclm.sri.sis.KSistema;
+import es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.utilidades.Utils;
 import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.SimpleKMeans;
 import weka.core.EuclideanDistance;

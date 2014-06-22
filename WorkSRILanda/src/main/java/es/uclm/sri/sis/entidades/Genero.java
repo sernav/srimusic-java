@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.entidades;
+package es.uclm.sri.sis.entidades;
 
 /**
  * <code>Genero</code> es la clase que representa la entidad de género de album para Sri.Landa</br>

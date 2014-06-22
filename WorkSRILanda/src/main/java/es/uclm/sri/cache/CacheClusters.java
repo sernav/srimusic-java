@@ -1,6 +1,6 @@
-package main.java.es.uclm.sri.cache;
+package es.uclm.sri.cache;
 
-import main.java.es.uclm.sri.sis.KSistema;
+import es.uclm.sri.sis.KSistema;
 import net.sf.ehcache.Element;
 
 /**

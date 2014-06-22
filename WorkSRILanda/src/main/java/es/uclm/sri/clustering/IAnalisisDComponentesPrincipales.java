@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.clustering;
+package es.uclm.sri.clustering;
 
 /**
  * Interface para definir las funciones del PCA

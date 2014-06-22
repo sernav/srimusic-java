@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis;
+package es.uclm.sri.sis;
 
 public class KSistema {
     
@@ -53,7 +53,7 @@ public class KSistema {
         /*
          * XML
          * */
-        public static final String PATH_MAPPING_POSTGRE = "./src/main/resources/sqlMapConfig.xml";
+        public static final String PATH_MAPPING_POSTGRE = "../src/main/resources/xml/sqlMapConfig.xml";
         
     }
     

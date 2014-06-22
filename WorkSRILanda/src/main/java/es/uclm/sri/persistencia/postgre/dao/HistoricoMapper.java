@@ -1,6 +1,6 @@
-package main.java.es.uclm.sri.persistencia.postgre.dao;
+package es.uclm.sri.persistencia.postgre.dao;
 
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Historico;
+import es.uclm.sri.persistencia.postgre.dao.model.Historico;
 
 public interface HistoricoMapper {
     

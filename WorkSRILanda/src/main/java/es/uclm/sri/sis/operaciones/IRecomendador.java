@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.operaciones;
+package es.uclm.sri.sis.operaciones;
 
 import java.util.ArrayList;
 

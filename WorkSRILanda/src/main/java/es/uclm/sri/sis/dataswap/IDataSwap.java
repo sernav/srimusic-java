@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.dataswap;
+package es.uclm.sri.sis.dataswap;
 
 public interface IDataSwap {
     

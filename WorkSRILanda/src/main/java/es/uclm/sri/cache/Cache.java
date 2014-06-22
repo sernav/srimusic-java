@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.cache;
+package es.uclm.sri.cache;
 
 import org.w3c.dom.Element;
 

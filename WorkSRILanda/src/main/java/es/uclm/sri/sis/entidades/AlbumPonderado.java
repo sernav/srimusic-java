@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.entidades;
+package es.uclm.sri.sis.entidades;
 
 import java.util.ArrayList;
 

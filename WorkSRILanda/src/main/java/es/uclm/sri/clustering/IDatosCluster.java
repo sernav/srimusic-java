@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.clustering;
+package es.uclm.sri.clustering;
 
 import java.util.List;
 

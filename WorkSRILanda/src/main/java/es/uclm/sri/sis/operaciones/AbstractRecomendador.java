@@ -1,10 +1,10 @@
-package main.java.es.uclm.sri.sis.operaciones;
+package es.uclm.sri.sis.operaciones;
 
 import java.util.ArrayList;
 
 import de.umass.lastfm.Album;
-import main.java.es.uclm.sri.lastfm.IAnalisisLastfm;
-import main.java.es.uclm.sri.lastfm.PlaybackDUsuario;
+import es.uclm.sri.lastfm.IAnalisisLastfm;
+import es.uclm.sri.lastfm.PlaybackDUsuario;
 
 /**
  * 

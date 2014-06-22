@@ -1,7 +1,7 @@
-package main.java.es.uclm.sri.sis.dataswap;
+package es.uclm.sri.sis.dataswap;
 
-import main.java.es.uclm.sri.clustering.weka.WekaSRIInstance;
-import main.java.es.uclm.sri.sis.entidades.Recomendacion;
+import es.uclm.sri.clustering.weka.WekaSRIInstance;
+import es.uclm.sri.sis.entidades.Recomendacion;
 
 /**
  * El dataswap de recomiendación es la pasarela entre un diferentes instancias que pueden

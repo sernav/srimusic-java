@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.excepciones;
+package es.uclm.sri.sis.excepciones;
 
 /**
  * Excepción de "Objeto no encontrado". Extiende de <code>ExcepcionGeneral</code>

@@ -1,6 +1,6 @@
-package main.java.es.uclm.sri.clustering.weka;
+package es.uclm.sri.clustering.weka;
 
-import main.java.es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.sis.utilidades.Utils;
 import weka.core.Instance;
 
 /**

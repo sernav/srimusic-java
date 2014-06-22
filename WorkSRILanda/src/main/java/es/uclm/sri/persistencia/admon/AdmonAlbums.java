@@ -1,8 +1,8 @@
-package main.java.es.uclm.sri.persistencia.admon;
+package es.uclm.sri.persistencia.admon;
 
-import main.java.es.uclm.sri.persistencia.postgre.dao.DalbumsMapper;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
-import main.java.es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.persistencia.postgre.dao.DalbumsMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Dalbums;
+import es.uclm.sri.sis.entidades.Album;
 
 /**
  * Admon para atacar las operaciones de la tabla de base de datos DALBUMS.

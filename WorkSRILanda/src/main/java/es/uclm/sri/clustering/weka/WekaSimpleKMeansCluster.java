@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.clustering.weka;
+package es.uclm.sri.clustering.weka;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -6,9 +6,9 @@ import java.util.Enumeration;
 import weka.clusterers.SimpleKMeans;
 import weka.core.Instance;
 import weka.core.Instances;
-import main.java.es.uclm.sri.clustering.ClusterException;
-import main.java.es.uclm.sri.clustering.ISimpleKMeansCluster;
-import main.java.es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.clustering.ClusterException;
+import es.uclm.sri.clustering.ISimpleKMeansCluster;
+import es.uclm.sri.sis.utilidades.Utils;
 
 /**
  * Operaciones de clustering. Lista de nombre y valores que definen los grupos

@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.cache.ehcache;
+package es.uclm.sri.cache.ehcache;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;

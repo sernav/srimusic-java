@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.persistencia.postgre.dao.model;
+package es.uclm.sri.persistencia.postgre.dao.model;
 
 import java.util.Date;
 

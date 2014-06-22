@@ -1,10 +1,10 @@
-package main.java.es.uclm.sri.sis.dataswap;
+package es.uclm.sri.sis.dataswap;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import main.java.es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.Album;
 
 /**
  * El dataswap de album es la herramienta encargada de convertir albums de entidades

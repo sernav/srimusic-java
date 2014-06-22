@@ -1,4 +1,4 @@
-package test.java.es.uclm.sri.lastfm;
+package es.uclm.sri.lastfm;
 
 import static org.junit.Assert.assertNotNull;
 

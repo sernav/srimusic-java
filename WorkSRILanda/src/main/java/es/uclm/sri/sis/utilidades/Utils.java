@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.utilidades;
+package es.uclm.sri.sis.utilidades;
 
 import java.io.BufferedReader;
 import java.io.IOException;

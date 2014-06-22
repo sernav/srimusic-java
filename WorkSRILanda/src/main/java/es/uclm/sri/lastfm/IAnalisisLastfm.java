@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.lastfm;
+package es.uclm.sri.lastfm;
 
 import de.umass.lastfm.Album;
 

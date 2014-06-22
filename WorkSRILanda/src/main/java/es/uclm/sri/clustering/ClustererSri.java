@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.clustering;
+package es.uclm.sri.clustering;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,14 +12,14 @@ import weka.core.WekaException;
 import weka.experiment.InstanceQuery;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
-import main.java.es.uclm.sri.clustering.weka.AnalysisFactory;
-import main.java.es.uclm.sri.clustering.weka.WekaDatosCluster;
-import main.java.es.uclm.sri.clustering.weka.WekaSRIInstance;
-import main.java.es.uclm.sri.clustering.weka.WekaSimpleKMeansCluster;
-import main.java.es.uclm.sri.sis.KSistema;
-import main.java.es.uclm.sri.sis.log.Log;
-import main.java.es.uclm.sri.sis.utilidades.FicheroDPropiedades;
-import main.java.es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.clustering.weka.AnalysisFactory;
+import es.uclm.sri.clustering.weka.WekaDatosCluster;
+import es.uclm.sri.clustering.weka.WekaSRIInstance;
+import es.uclm.sri.clustering.weka.WekaSimpleKMeansCluster;
+import es.uclm.sri.sis.KSistema;
+import es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
+import es.uclm.sri.sis.utilidades.Utils;
 
 /**
  * Launcher de clustering v.0.1

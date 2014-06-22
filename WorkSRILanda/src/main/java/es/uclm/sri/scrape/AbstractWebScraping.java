@@ -1,11 +1,11 @@
-package main.java.es.uclm.sri.scrape;
+package es.uclm.sri.scrape;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import main.java.es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.Album;
 
 /**
  * Producto Abstracto

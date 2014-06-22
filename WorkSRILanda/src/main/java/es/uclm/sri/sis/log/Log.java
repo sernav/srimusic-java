@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.log;
+package es.uclm.sri.sis.log;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 
-import main.java.es.uclm.sri.sis.utilidades.Utils;
+import es.uclm.sri.sis.utilidades.Utils;
 
 /**
  * Centralización de los log para funciones del sistema, errores y scraping.

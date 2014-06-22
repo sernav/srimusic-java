@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.utilidades;
+package es.uclm.sri.sis.utilidades;
 
 import java.util.Comparator;
 import java.util.Map;

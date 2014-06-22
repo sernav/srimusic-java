@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.operaciones;
+package es.uclm.sri.sis.operaciones;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,12 +8,12 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
-import main.java.es.uclm.sri.sis.entidades.Album;
-import main.java.es.uclm.sri.sis.entidades.AlbumPonderado;
-import main.java.es.uclm.sri.sis.entidades.Genero;
-import main.java.es.uclm.sri.sis.log.Log;
-import main.java.es.uclm.sri.sis.utilidades.FicheroDPropiedades;
-import main.java.es.uclm.sri.sis.utilidades.UtilsDAlbum;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.entidades.Genero;
+import es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
+import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
 /**
  * Recoge los tags de cada uno de los discos y

@@ -1,14 +1,14 @@
-package main.java.es.uclm.sri.persistencia.admon;
+package es.uclm.sri.persistencia.admon;
 
 import java.sql.SQLException;
 
 import org.apache.ibatis.exceptions.IbatisException;
 
-import main.java.es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
-import main.java.es.uclm.sri.sis.entidades.Album;
-import main.java.es.uclm.sri.sis.entidades.AlbumPonderado;
-import main.java.es.uclm.sri.sis.log.Log;
+import es.uclm.sri.persistencia.postgre.dao.PesosalbumMapper;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.log.Log;
 
 /**
  * Admon para atacar las operaciones de la tabla de base de datos PESOSALBUM.

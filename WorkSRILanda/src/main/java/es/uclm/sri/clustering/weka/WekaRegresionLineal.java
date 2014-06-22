@@ -1,10 +1,10 @@
-package main.java.es.uclm.sri.clustering.weka;
+package es.uclm.sri.clustering.weka;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.es.uclm.sri.clustering.IDatosCluster;
-import main.java.es.uclm.sri.sis.log.Log;
+import es.uclm.sri.clustering.IDatosCluster;
+import es.uclm.sri.sis.log.Log;
 import weka.classifiers.functions.LinearRegression;
 import weka.core.Instances;
 import weka.core.SelectedTag;

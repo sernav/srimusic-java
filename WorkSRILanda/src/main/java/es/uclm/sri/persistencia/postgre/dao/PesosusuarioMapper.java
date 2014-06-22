@@ -1,6 +1,6 @@
-package main.java.es.uclm.sri.persistencia.postgre.dao;
+package es.uclm.sri.persistencia.postgre.dao;
 
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
 
 public interface PesosusuarioMapper {
 	

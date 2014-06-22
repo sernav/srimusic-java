@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.scrape;
+package es.uclm.sri.scrape;
 
 public interface IHtmlScraping {
 	

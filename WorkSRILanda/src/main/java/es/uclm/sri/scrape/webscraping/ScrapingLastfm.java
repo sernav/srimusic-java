@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.scrape.webscraping;
+package es.uclm.sri.scrape.webscraping;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -11,12 +11,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import main.java.es.uclm.sri.scrape.AbstractWebScraping;
-import main.java.es.uclm.sri.sis.entidades.Album;
-import main.java.es.uclm.sri.sis.entidades.Artista;
-import main.java.es.uclm.sri.sis.log.Log;
-import main.java.es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
-import main.java.es.uclm.sri.sis.utilidades.UtilsDAlbum;
+import es.uclm.sri.scrape.AbstractWebScraping;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.Artista;
+import es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
+import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
 /**
  * Producto concreto de la web Lastfm.

@@ -1,10 +1,10 @@
-package test.java.es.uclm.sri.persistencia.admon;
+package es.uclm.sri.persistencia.admon;
 
 import static org.junit.Assert.assertNotNull;
 
 import java.net.ConnectException;
 
-import main.java.es.uclm.sri.persistencia.ConnectionFactory;
+import es.uclm.sri.persistencia.ConnectionFactory;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

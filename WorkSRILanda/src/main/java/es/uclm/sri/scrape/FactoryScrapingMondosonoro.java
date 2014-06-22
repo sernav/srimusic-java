@@ -1,6 +1,6 @@
-package main.java.es.uclm.sri.scrape;
+package es.uclm.sri.scrape;
 
-import main.java.es.uclm.sri.scrape.webscraping.ScrapingMondosonoro;
+import es.uclm.sri.scrape.webscraping.ScrapingMondosonoro;
 
 /**
  * Factoría concreta de scraping en la web Mondosonoro

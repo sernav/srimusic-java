@@ -1,4 +1,4 @@
-package test.java.es.uclm.sri.sis.fabricas;
+package es.uclm.sri.sis.fabricas;
 
 import static org.junit.Assert.*;
 

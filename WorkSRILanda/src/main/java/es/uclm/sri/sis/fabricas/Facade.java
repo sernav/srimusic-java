@@ -1,7 +1,7 @@
-package main.java.es.uclm.sri.sis.fabricas;
+package es.uclm.sri.sis.fabricas;
 
-import main.java.es.uclm.sri.lastfm.PlaybackDUsuario;
-import main.java.es.uclm.sri.sis.entidades.Recomendacion;
+import es.uclm.sri.lastfm.PlaybackDUsuario;
+import es.uclm.sri.sis.entidades.Recomendacion;
 
 /**
  * @author Sergio Navarro

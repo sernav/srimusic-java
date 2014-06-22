@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.fabricas;
+package es.uclm.sri.sis.fabricas;
 
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -8,14 +8,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import de.umass.lastfm.User;
-import main.java.es.uclm.sri.logica.borrosa.MotorJFuzzyLogic;
-import main.java.es.uclm.sri.persistencia.admon.AdmonPesosUsuario;
-import main.java.es.uclm.sri.persistencia.admon.AdmonUsuarios;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
-import main.java.es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
-import main.java.es.uclm.sri.sis.log.Log;
-import main.java.es.uclm.sri.sis.utilidades.UtilsDAlbum;
+import es.uclm.sri.logica.borrosa.MotorJFuzzyLogic;
+import es.uclm.sri.persistencia.admon.AdmonPesosUsuario;
+import es.uclm.sri.persistencia.admon.AdmonUsuarios;
+import es.uclm.sri.persistencia.postgre.dao.model.Dusuarios;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosalbum;
+import es.uclm.sri.persistencia.postgre.dao.model.Pesosusuario;
+import es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.utilidades.UtilsDAlbum;
 
 /**
  * Construye el usuario, así como sus pesos e invoca al sistema de reglas de

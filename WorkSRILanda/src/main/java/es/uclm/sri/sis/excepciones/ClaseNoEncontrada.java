@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.sis.excepciones;
+package es.uclm.sri.sis.excepciones;
 
 /**
  * Excepción de "Clase no encontrada". Extiende de <code>ExcepcionGeneral</code>

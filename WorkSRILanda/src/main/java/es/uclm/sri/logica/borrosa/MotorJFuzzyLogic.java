@@ -1,9 +1,9 @@
-package main.java.es.uclm.sri.logica.borrosa;
+package es.uclm.sri.logica.borrosa;
 
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
-import main.java.es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.log.Log;
 
 /**
  * jFuzzyLogic: a Java Library to Design Fuzzy Logic Controllers According to the 

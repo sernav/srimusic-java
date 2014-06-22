@@ -1,4 +1,4 @@
-package test.java.es.uclm.sri;
+package es.uclm.sri;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

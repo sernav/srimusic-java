@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.cache;
+package es.uclm.sri.cache;
 
 import java.sql.Connection;
 

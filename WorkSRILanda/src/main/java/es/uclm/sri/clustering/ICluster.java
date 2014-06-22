@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.clustering;
+package es.uclm.sri.clustering;
 
 /**
  * Interfaz para definir una jerarquía de clases de clustering

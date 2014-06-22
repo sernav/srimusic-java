@@ -1,4 +1,4 @@
-package test.java.es.uclm.sri.persistencia;
+package es.uclm.sri.persistencia;
 
 import static org.junit.Assert.*;
 

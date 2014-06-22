@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.lastfm;
+package es.uclm.sri.lastfm;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import de.umass.lastfm.PaginatedResult;
 import de.umass.lastfm.Session;
 import de.umass.lastfm.Track;
 import de.umass.lastfm.User;
-import main.java.es.uclm.sri.sis.log.Log;
+import es.uclm.sri.sis.log.Log;
 
 /**
  * 

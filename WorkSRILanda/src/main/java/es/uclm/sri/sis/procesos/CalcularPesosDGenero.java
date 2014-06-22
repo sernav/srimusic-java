@@ -1,14 +1,14 @@
-package main.java.es.uclm.sri.sis.procesos;
+package es.uclm.sri.sis.procesos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import main.java.es.uclm.sri.sis.KSistema;
-import main.java.es.uclm.sri.sis.entidades.Album;
-import main.java.es.uclm.sri.sis.entidades.AlbumPonderado;
-import main.java.es.uclm.sri.sis.entidades.Genero;
-import main.java.es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
-import main.java.es.uclm.sri.sis.utilidades.FicheroDPropiedades;
+import es.uclm.sri.sis.KSistema;
+import es.uclm.sri.sis.entidades.Album;
+import es.uclm.sri.sis.entidades.AlbumPonderado;
+import es.uclm.sri.sis.entidades.Genero;
+import es.uclm.sri.sis.procesos.csv.TratarCSVAlbum;
+import es.uclm.sri.sis.utilidades.FicheroDPropiedades;
 
 /**
  * Calcula los pesos del global de los géneros para cada uno de los albums.

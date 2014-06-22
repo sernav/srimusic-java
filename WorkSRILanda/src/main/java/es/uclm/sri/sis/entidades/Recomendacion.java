@@ -1,11 +1,11 @@
-package main.java.es.uclm.sri.sis.entidades;
+package es.uclm.sri.sis.entidades;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import main.java.es.uclm.sri.clustering.weka.WekaSRIInstance;
-import main.java.es.uclm.sri.sis.KSistema;
+import es.uclm.sri.clustering.weka.WekaSRIInstance;
+import es.uclm.sri.sis.KSistema;
 
 /**
  * Representa la recomendación compleja con todos los elementos.
