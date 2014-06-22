@@ -1,4 +1,4 @@
-package main.java.es.uclm.sri.jsrilanda.logica;
+package es.uclm.sri.jsrilanda.logica;
 
 import main.java.es.uclm.sri.sis.entidades.Recomendacion;
 import main.java.es.uclm.sri.sis.fabricas.Facade;
