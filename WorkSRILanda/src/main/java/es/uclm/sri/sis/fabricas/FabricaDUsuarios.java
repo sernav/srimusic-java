@@ -285,8 +285,8 @@ public class FabricaDUsuarios implements IFabrica {
     }
     
     /**
-     * Funci�n que genera los pesos ponderados del usuario, bien para usuarios nuevos o
-     * para usuarios que ya tienen un hist�rico de pesos.
+     * Función que genera los pesos ponderados del usuario, bien para usuarios nuevos o
+     * para usuarios que ya tienen un histórico de pesos.
      * 
      * @return Pesousuario
      * @exception Exception
