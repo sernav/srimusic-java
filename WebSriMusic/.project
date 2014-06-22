@@ -44,62 +44,62 @@
 		<link>
 			<name>WebContent/WEB-INF/lib/all-themes-1.0.10.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/all-themes-1.0.10.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/all-themes-1.0.10.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/commons-fileupload-1.2.2.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/commons-fileupload-1.2.2.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/commons-fileupload-1.2.2.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/commons-io-1.4.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/commons-io-1.4.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/commons-io-1.4.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/jFuzzyLogic.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/jFuzzyLogic.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/jFuzzyLogic.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/javax.faces-2.2.6.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/javax.faces-2.2.6.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/javax.faces-2.2.6.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/javax.servlet-api-3.0.1.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/javax.servlet-api-3.0.1.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/javax.servlet-api-3.0.1.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/lastfm-java-0.1.2.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/lastfm-java-0.1.2.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/lastfm-java-0.1.2.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/log4j-1.2.12.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/log4j-1.2.12.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/log4j-1.2.12.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/mybatis-3.2.0.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/mybatis-3.2.0/mybatis-3.2.0.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/mybatis-3.2.0/mybatis-3.2.0.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/postgresql-9.2-1002.jdbc3.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/postgresql/postgresql-9.2-1002.jdbc3.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/postgresql/postgresql-9.2-1002.jdbc3.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/primefaces-5.0.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/primeface-3.5/primefaces-5.0.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/primeface-3.5/primefaces-5.0.jar</location>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib/weka_postgresql.jar</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/SRILanda.Lib/weka-3-6-9/weka_postgresql.jar</locationURI>
+			<location>/Users/sergionavarro/git/srimusic-java/SRILanda.Lib/weka-3-6-9/weka_postgresql.jar</location>
 		</link>
 	</linkedResources>
 </projectDescription>
