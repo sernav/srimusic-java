@@ -15,6 +15,6 @@ import es.uclm.sri.sis.operaciones.PonderacionDAlbumTest;
 @SuiteClasses({WekaClusteringLauncherTest.class , PlaybackDUsuarioTest.class , 
 			   MotorJFuzzyLogicTest.class , FabricaDUsuariosTest.class , 
 			   FabricaDRecomendaciones.class , PonderacionDAlbumTest.class})
-public class AllTestsSistema {
+public class JunitTestSuite {
 
 }
