@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import main.java.es.uclm.sri.sis.entidades.Recomendacion;
+import es.uclm.sri.sis.entidades.Recomendacion;
 import es.uclm.sri.jsrilanda.logica.RecomendacionesByLastfm;
 
 @ManagedBean(name = "recomendacionesBean")

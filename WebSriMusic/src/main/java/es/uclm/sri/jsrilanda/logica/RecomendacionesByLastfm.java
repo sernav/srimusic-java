@@ -1,7 +1,7 @@
 package es.uclm.sri.jsrilanda.logica;
 
-import main.java.es.uclm.sri.sis.entidades.Recomendacion;
-import main.java.es.uclm.sri.sis.fabricas.Facade;
+import es.uclm.sri.sis.entidades.Recomendacion;
+import es.uclm.sri.sis.fabricas.Facade;
 
 public class RecomendacionesByLastfm {
     
