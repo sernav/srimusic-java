@@ -18,7 +18,7 @@ import es.uclm.sri.sis.log.Log;
  * */
 public class UtilsDAlbum {
 	
-	private static String API_KEY_LASTFM = "58169c7f645f6ad54529f3012548fc3a";
+	private static final String API_KEY_LASTFM = "58169c7f645f6ad54529f3012548fc3a";
     
     private UtilsDAlbum() {
     }
